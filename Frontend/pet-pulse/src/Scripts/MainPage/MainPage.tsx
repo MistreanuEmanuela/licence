@@ -8,34 +8,27 @@ interface ContentData {
   subtitle: string;
   content: string;
   image: string;
-  page:string;
+  page: string;
 }
 
 function Header() {
   return (
     <div className={styles.top_container}>
-      <div className={styles.top_container1}></div>
-      <div className={styles.top_container2}>
-        <div className={styles.dog_container_picture}></div>
-        <div className={styles.dog_container}></div>
-      </div>
     </div>
   );
 }
 
-function BodyContent({ title, subtitle, content,page }: ContentData) {
+function BodyContent({ title, subtitle, content, currentDataIndex }: ContentData & { currentDataIndex: number }) {
   return (
-    <div>
     <div className={styles.body_text}>
       <div className={styles.first_title}>{title}</div>
       <div className={styles.second_title}>{subtitle}</div>
       <div className={styles.body_content}>{content}</div>
-    </div>
-    <div className={styles.page_number} style={{ backgroundImage: `url('${page}')` }}> </div>
+      {currentDataIndex === 2 && <button>Get started</button>}
+      <div>Current Index: {currentDataIndex}</div>
     </div>
   );
 }
-
 function Body() {
   const [currentDataIndex, setCurrentDataIndex] = useState<number>(0);
   const [contentData, setContentData] = useState<ContentData[]>([
@@ -75,28 +68,28 @@ function Body() {
 
   const handleTouchStart = (event: React.TouchEvent) => {
     const startX = event.touches[0].clientX;
-  
+
     const handleTouchMove = (moveEvent: TouchEvent) => {
       const endX = moveEvent.touches[0].clientX;
       const deltaX = startX - endX;
       console.log(deltaX);
-      
+
       if (Math.abs(deltaX) > 50) {
         const direction = deltaX > 0 ? 'left' : 'right';
         console.log('Swipe detected:', direction);
-        
+
         if ((direction === 'left' && currentDataIndex < contentData.length - 1) ||
-            (direction === 'right' && currentDataIndex > 0)) {
+          (direction === 'right' && currentDataIndex > 0)) {
           handleSwipe(direction);
         }
-        
+
         document.removeEventListener('touchmove', handleTouchMove);
       }
     };
-  
+
     document.addEventListener('touchmove', handleTouchMove);
   };
-
+  console.log(currentDataIndex)
   return (
     <div className={styles.second_body} onTouchStart={handleTouchStart}>
       <div className={styles.container_bottom}>
@@ -104,24 +97,27 @@ function Body() {
           <button className={styles.previous_bottom} onClick={() => handleSwipe('right')}></button>
         )}
       </div>
-      <div className={styles.main_container}>
-        <div className={styles.navBar}>
-          <Logo size="40%" />
-          <div className={styles.NavLink}>
-            <Navbar />
+      <div className={styles.center_container}>
+        <div className={styles.main_container}>
+          <div className={styles.navBar}>
+            <Logo size="50%" />
+            <div className={styles.navLink}>
+              <Navbar />
+            </div>
+          </div>
+          <div className={styles.second_main_container}>
+            <div className={styles.left_main}>
+              <div
+                className={styles.image}
+                style={{ backgroundImage: `url('${contentData[currentDataIndex].image}')` }}
+              ></div>
+            </div>
+            <div className={styles.right_main}>
+            <BodyContent {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} />
+            </div>
           </div>
         </div>
-        <div className={styles.second_main_container}>
-          <div className={styles.left_main}>
-            <div
-              className={styles.image}
-              style={{ backgroundImage: `url('${contentData[currentDataIndex].image}')` }}
-            ></div>
-          </div>
-          <div className={styles.right_main}>
-            <BodyContent {...contentData[currentDataIndex]} />
-          </div>
-        </div>
+        <div className={styles.page_number} style={{ backgroundImage: `url('${contentData[currentDataIndex].page}')` }}> </div>
       </div>
       <div className={styles.container_bottom}>
         {currentDataIndex !== contentData.length - 1 && (

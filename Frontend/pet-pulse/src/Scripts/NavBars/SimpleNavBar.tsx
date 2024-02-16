@@ -10,16 +10,16 @@ const Navbar = () => {
 
   return (
     <nav className={styles.navbar}>
-      <ul className={`${styles['nav-links']} ${isMenuOpen ? styles.open : ''}`}>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </ul>
       <div className={styles['menu-icon']} onClick={toggleMenu}>
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
       </div>
+      <ul className={`${styles['nav-links']} ${isMenuOpen ? styles.open : ''}`}>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
   );
 };

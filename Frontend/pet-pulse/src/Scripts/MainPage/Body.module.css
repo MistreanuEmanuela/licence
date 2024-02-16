@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 20%;
+  height: 10%;
   background-color: transparent
 }
 
@@ -36,42 +36,23 @@
   background-color: transparent
 }
 
-.dog_container
+.center_container
 {
-  width: 50%;
-  height: 100%;
-  background-color:transparent
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2%;
 }
-
-.dog_container_picture
-{
-  margin-left: 15%;
-  position: relative;
-  background-image: url(./DesignPictures/picture1.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 40%;
-  height: 180%;
-  background-color:transparent;
-  z-index: 999;
-  margin-top: -2%;
-  background-position: center bottom;
-
-} 
-
 .main_container
 {
   background-image: url('./DesignPictures/bgd.png');
   background-size: cover;
   background-position: center center;
   background-attachment: fixed; 
-  margin-bottom: 3%;
   height: 90%;
   border-radius: 10px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.333);
   display:flex;
   flex-direction: column;
-
 }
 
 .second_main_container
@@ -104,6 +85,7 @@
   display: flex;
   flex-direction: column;
   width: 60%;
+  height: 100%;
 }
 
 
@@ -121,7 +103,7 @@
 
 .navLink
 {
-  width: 60%;
+  width: 100%;
   height: 100%;
   background-color: transparent;
 }
@@ -173,8 +155,7 @@
 .container_bottom
 {
   width: 10%;
-  height: 90%;
-  margin-bottom: 3%;
+  height: 85%;
   background-color:rgba(67, 67, 67, 0); 
   display: flex;
   justify-content: center; 
@@ -215,9 +196,8 @@
 }
 .page_number{
   width: 100%;
-  height: 20%;
-  margin-top:3%;
-  background-position: left;
+  height: 10%;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -228,43 +208,24 @@
   font-family: 'Playfair Display', serif;
   color: black;
   margin-top: 5%;
-  font-size: calc(2vh + 1vw);
+  font-size: calc(1.5vh + 1vw);
   font-weight:bold;
 }
 
-@media screen and (max-width: 1500px) {
-  .top_container2{
-   width: 50%;
-  }
-}
-@media screen and (max-width: 1600px) {
-  .dog_container_picture{
-    height: calc(100% + 3.5vw + 2em);
-  }  
-}
+
 @media screen and (max-width: 1250px) {
   .dog_container_picture{
     height: calc(100% + 8vw + 2em);
   }  
 }
 @media screen and (max-width: 1100px) {
-  .dog_container_picture{
-    height: calc(100% + 9vw + 2em);
-  }  
   .body_text
   {
     margin-left: 0%;
   }
 }
-@media screen and (max-width: 950px) {
-  .dog_container_picture{
-    height: calc(100% + 8.5vw + 2em);
-  }  
-}
+
 @media screen and (max-width: 800px) {
-  .dog_container_picture{
-    height: calc(100% + 8vw + 2em);
-  } 
   .body_text
 {
   margin-left: -50%;
@@ -278,14 +239,12 @@
   {
     height: 8%;
   }
-  .page_number{
-    margin-top: 12%;
+  .second_title
+  {
+    margin-top: 10%;
   }
 }
 @media screen and (max-width: 700px) {
-  .dog_container_picture{
-    height: calc(100% + 7vw + 2em);
-  }  
   .body_text
   {
     margin-left: -60%;
@@ -300,39 +259,29 @@
       height: 8%;
       width: 100%;
     }
-    .page_number{
-      margin-top: 15%;
-    }
+
 }
-@media screen and (max-width: 600px) {
-  .dog_container_picture{
-    height: calc(100% + 6vw + 2em);
-  }  
-  .page_number{
-    margin-top: 23%;
-  }
-}
-@media screen and (max-width: 500px) {
-  .dog_container_picture{
-    height: calc(100% + 10vw + 2em);
-    width: 70%;
-  }  
+
+@media screen and (max-width: 500px) { 
   .top_container2{
     width: 60%;
    }
-   .page_number{
-    margin-top: 27%;
-  }
+
 }
 @media screen and (max-width: 400px) {
-  .dog_container_picture{
-    height: calc(100% + 6.5vw + 2em);
-    width: 70%;
-  }  
   .top_container2{
     width: 60%;
    }
-   .page_number{
-    margin-top: 35%;
-  }
+
+}
+@viewport {
+  width: device-width; 
+  initial-scale: 1; 
+  maximum-scale: 1; 
+  minimum-scale: 1;
+}
+@media (max-width: 768px) {
+.navBar{
+  height: 20%;
+}
 }
