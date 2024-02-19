@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Body.module.css';
 import Logo from '../Logo/logo';
 import Navbar from '../NavBars/SimpleNavBar';
+import { Link } from 'react-router-dom';
 
 interface ContentData {
   title: string;
@@ -11,12 +12,7 @@ interface ContentData {
   page: string;
 }
 
-function Header() {
-  return (
-    <div className={styles.top_container}>
-    </div>
-  );
-}
+
 
 function BodyContent({ title, subtitle, content, currentDataIndex }: ContentData & { currentDataIndex: number }) {
   return (
@@ -24,11 +20,22 @@ function BodyContent({ title, subtitle, content, currentDataIndex }: ContentData
       <div className={styles.first_title}>{title}</div>
       <div className={styles.second_title}>{subtitle}</div>
       <div className={styles.body_content}>{content}</div>
-      {currentDataIndex === 2 && <button>Get started</button>}
-      <div>Current Index: {currentDataIndex}</div>
+      {currentDataIndex === 2 && <Link to='/login' className={styles.link}> <button className={styles.start_bottom}>Get started</button> </Link>}
     </div>
   );
 }
+
+function BodyContent2({ title, subtitle, content, currentDataIndex }: ContentData & { currentDataIndex: number }) {
+  return (
+    <div className={styles.body_text2}>
+      <div className={styles.first_title}>{title}</div>
+      <div className={styles.second_title}>{subtitle}</div>
+      <div className={styles.body_content}>{content}</div>
+      {currentDataIndex === 2 && <Link to='/login'> <button className={styles.start_bottom}>Get started</button> </Link>}
+    </div>
+  );
+}
+
 function Body() {
   const [currentDataIndex, setCurrentDataIndex] = useState<number>(0);
   const [contentData, setContentData] = useState<ContentData[]>([
@@ -116,7 +123,23 @@ function Body() {
             <BodyContent {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} />
             </div>
           </div>
+
+          <div className={styles.second_main_container_2}>
+          <div className={styles.right_main2}>
+            <BodyContent2 {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} />
+            </div>
+            <div className={styles.left_main2}>
+              <div
+                className={styles.image2}
+                style={{ backgroundImage: `url('${contentData[currentDataIndex].image}')` }}
+              ></div>
+            </div>
+          </div>
+
         </div>
+
+
+        
         <div className={styles.page_number} style={{ backgroundImage: `url('${contentData[currentDataIndex].page}')` }}> </div>
       </div>
       <div className={styles.container_bottom}>
@@ -132,7 +155,6 @@ function MainPage() {
   console.log('I am in this page');
   return (
     <div className={styles.body}>
-      <Header />
       <Body />
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './NavBar.module.css'; // Import your CSS file for styling
+import styles from './NavBar.module.css'; 
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
       </div>
       <ul className={`${styles['nav-links']} ${isMenuOpen ? styles.open : ''}`}>
-        <li><a href="#">Home</a></li>
+        <li><a href="./Home">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
