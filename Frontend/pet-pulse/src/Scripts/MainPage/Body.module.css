@@ -276,4 +276,8 @@
   .center_container{
     margin-bottom: 0%;
   }
-}
+  .main_container
+  {
+    height: max-content;
+  }
+  }
