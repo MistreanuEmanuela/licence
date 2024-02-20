@@ -27,6 +27,7 @@ public class User {
 
     @Column(unique = true)
     private String username;
+    private boolean activated;
 
     public User() {
     }
@@ -38,6 +39,15 @@ public class User {
         this.password = password;
         this.birthDate = birthDate;
         this.username = username;
+        this.activated = false;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
     }
 
     public Long getId() {
