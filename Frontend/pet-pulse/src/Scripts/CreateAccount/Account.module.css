@@ -1,0 +1,160 @@
+.body{
+    width: 100%;
+    background-image: url(./DesignPictures/background_login.png);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; 
+    height: 100vh;
+}
+.navbar
+{
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  width: 100vw;
+
+}
+.center
+{
+    width: 37%;
+    height: auto;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+
+.but {
+    width: fit-content;
+    background-color: #edc16e;
+    padding: 1%;
+    padding-left: 7%;
+    padding-right: 7%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 15px;
+    border: none;
+    margin-top: 2%;
+    font-family: 'Lily Script One', cursive; 
+    font-size: 1em;
+  }
+  
+.but:hover {
+    color:white;
+  }
+
+
+.adaugare
+{
+    padding-top:2%;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-style:italic;
+    margin-left: -0.5%;
+    align-items: center;
+}
+.adaugare .form
+ {
+    background-color: rgba(200, 206, 206, 0.626);
+    width: 60%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    height:fit-content;
+    margin-left: 5%;
+    padding-bottom:2%;
+    justify-content: center;
+    align-items: center;
+ } 
+ .form .textBox
+ {
+        align-self: center;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        font-family:inherit;
+        font-weight: bold;
+        position: relative;
+        font-size: 1.5em;
+        margin-bottom: 1em;
+        margin-top:1em;
+ }
+ .input{
+    width: 60%;
+    height: auto;
+    color: rgb(0, 0, 0);
+    display: inline-flex;
+    font-family: inherit;
+    font-weight: bold;
+    align-self: center;
+    margin: 1.5%;
+    box-sizing: border-box;
+    border: 0.15em solid #848383;
+    background-color: #fffbfb87;
+    border-radius: 7px;
+    font-size:1em;
+  }
+
+@media screen and (max-width: 650px) {
+ .body
+ {
+    height: 100vh;
+ }
+.adaugare .form
+{
+   width: 80%;
+   margin-top: 10%;
+
+} 
+
+.input{
+   font-size: 1.2em;
+}
+.form .textBox
+{
+
+       font-size: 1.5em;
+
+}
+.but
+{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    font-size: 1.3em;
+}
+}
+@media screen and (max-width: 1000px) and (min-width: 650px)  {
+    .descriere .textBox
+    {
+        font-style:italic;
+        padding-left: 2%;
+        padding-top: 1%;
+        font-size:4vi;
+        color:black;
+        width:100%;
+    }
+    .but
+    {
+        font-size: 2vi;
+    }
+    .adaugare .form
+  
+    { 
+        width: 80%;
+    }
+    .body
+    {
+        height: 100vh;
+    }
+    .input{
+        font-size: 1.5em;
+    }
+}
+.error
+{
+    color:red;
+    font-size: 1em;
+}

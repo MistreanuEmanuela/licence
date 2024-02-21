@@ -14,12 +14,15 @@ const Navbar = () => {
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
         <div className={`${styles.line} ${isMenuOpen ? styles.open : ''}`}></div>
+        
       </div>
+      <div className={styles.list}> 
       <ul className={`${styles['nav-links']} ${isMenuOpen ? styles.open : ''}`}>
         <li><a href="./Home">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
+      </div>
     </nav>
   );
 };

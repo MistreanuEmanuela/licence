@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import Navbar from '../NavBars/SimpleNavBar';
 import Logo from '../Logo/logo';
+import { Link } from 'react-router-dom';
 
 interface Credentials {
   username: string;
@@ -58,7 +59,7 @@ function RightMainContainer() {
     <div className={styles.right_main_container}>
       <div className={styles.right_cloud_container}>
         <div className={styles.cloud_picture_container}>  </div>
-          <button className={styles.inreg_bottom}>Create account</button>
+          <Link className={styles.inreg_bottom}to='../sign'> Create account </Link>
       </div>
       <div className={styles.right_dog_container}></div>
     </div>

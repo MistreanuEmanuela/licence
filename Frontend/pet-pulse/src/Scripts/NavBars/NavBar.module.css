@@ -66,6 +66,13 @@
     width: 100%;
     text-align: center;
   }
+  
+   .list
+   {
+    position: absolute;
+    width: 50%;
+    height: 0;
+   }
 
   .nav-links.open {
     position: relative;
@@ -74,7 +81,7 @@
     background-color: rgba(85, 82, 82, 0.742);
     color: white;
     margin-right: inherit;
-    width: 50%;
+    width: 100%;
     padding: 0%;
     margin-top: auto;
   }
