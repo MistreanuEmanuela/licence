@@ -1,5 +1,6 @@
 package com.example.PetPulse.services;
 import com.example.PetPulse.Advice.EmailTokenProvider;
+import com.example.PetPulse.Advice.ForgotPasswordToken;
 import com.example.PetPulse.Exception.User.*;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.UUID;
@@ -21,6 +23,8 @@ public class UserServiceImp implements UserService{
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private ForgotPasswordToken forgotPasswordToken;
     @Autowired
     private JavaMailSender mailSender;
 
@@ -85,22 +89,72 @@ public class UserServiceImp implements UserService{
     @Override
     public void sendConfirmationEmail(User user) {
         String token = EmailTokenProvider.generateToken(user.getEmail());
+        System.out.print(token);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Account Confirmation");
-        message.setText("Please click the following link to confirm your account: http://localhost/users/confirm?token=" + token);
+        message.setText("Please click the following link to confirm your account: http://localhost:3000/users/confirm?token=" + token);
 //        mailSender.send(message);
+        System.out.print(message);
     }
     @Override
     public boolean confirmUserAccount(String token) {
         if (EmailTokenProvider.validateToken(token)) {
             String email = EmailTokenProvider.getEmailFromToken(token);
-            userRepository.activate(email);
+            System.out.print(email);
+            User user = userRepository.findByEmail(email);
+            if(user != null)
+            {
+                user.setActivated(true);
+                System.out.print(user);
+                userRepository.save(user);
+            }
             return true;
         }
         else{
                 throw new IncorrectLinkException("Link is not correct");
             }
     }
+    @Override
+    public void validatePasswordCode(String code, String email){
+        if (forgotPasswordToken.validateToken(email,code) == false)
+        {
+            throw new IncorrectCodeException("The code is not correct");
+        }
+    }
+    @Override
+    public void changePassword(String email, String newPassword){
+        if (!isValidPassword(newPassword)) {
+            throw new PasswordValidationException("Invalid password");
+        }
+        String encodedPassword = encodePassword(newPassword);
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+        {
+            throw new UserNotFoundException("This email is not valid");
+        }
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+    }
+    @Override
+    public void forgotPassword(String email){
+        User user = userRepository.findByEmail(email);
+        if (user == null)
+        {
+            throw new EmailNotFoundException("The email introduced is not associated with any account");
+        }
+        String token = forgotPasswordToken.generateToken(email);
+        System.out.print(token);
+        sendPasswordResetEmail(email, token);
+    }
+    @Override
+    public void sendPasswordResetEmail(String email, String token) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("PasswordChange");
+        message.setText("The code for resetting password is" + token);
+//        mailSender.send(message);
+    }
+
 }
 

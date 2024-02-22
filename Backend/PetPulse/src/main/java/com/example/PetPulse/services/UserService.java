@@ -13,4 +13,10 @@ public interface UserService {
 
     public boolean confirmUserAccount(String token);
 
-}
+    public void validatePasswordCode(String code, String email);
+    public void changePassword(String email, String newPassword);
+    public void forgotPassword(String email);
+    public void sendPasswordResetEmail(String email, String token) ;
+
+
+    }

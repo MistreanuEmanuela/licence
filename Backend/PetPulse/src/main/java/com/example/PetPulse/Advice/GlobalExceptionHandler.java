@@ -27,16 +27,28 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIncorrectPasswordException(IncorrectPasswordException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
+
     @ExceptionHandler(IncorrectLinkException.class)
     public ResponseEntity<String> handleIncorrectLinkException(IncorrectLinkException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
+
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(AccountNotActivatedException.class)
     public ResponseEntity<String> handleAccountNotActivatedException(AccountNotActivatedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(EmailNotFoundException.class)
+    public ResponseEntity<String> handleEmailNofFoundException(EmailNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(IncorrectCodeException.class)
+    public ResponseEntity<String> handleIncorrectCodeException(IncorrectCodeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }

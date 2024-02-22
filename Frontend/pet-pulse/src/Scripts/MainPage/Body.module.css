@@ -9,7 +9,6 @@
   color: white;
   font-family: Arial, sans-serif;
   font-size: 1.5em;
-  height: 100vh;
 }
 
 .center_container
@@ -21,10 +20,9 @@
 .main_container
 {
   background-image: url('./DesignPictures/bgd.png');
-  background-size: cover;
+  background-size:cover;
   background-position: center center;
-  background-attachment: fixed; 
-  height: 85vh;
+  height: 80vh;
   border-radius: 10px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.333);
   display:flex;
@@ -154,8 +152,9 @@
   background-repeat: no-repeat;
   background-size: contain;
   width : 100%;
-  height : 100%;
+  height : 93%;
   display:flex;
+  margin-bottom: auto;
   background-color: transparent;
   border: none;
 }
@@ -170,10 +169,11 @@
   background-repeat: no-repeat;
   background-size: contain;
   width : 100%;
-  height : 100%;
+  height : 93%;
   display:flex;
   background-color: transparent;
   border: none;
+  margin-bottom: auto;
 }
 .next_bottom:hover
 {
@@ -183,7 +183,7 @@
 }
 .page_number{
   width: 100%;
-  height: 8%;
+  height: 6vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -205,10 +205,10 @@
   padding: 1%;
   padding-left: 3%;
   padding-right: 3%;
-  border-top-left-radius: 15px;
+  border-top-left-radius: 5px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 5px;
   border: none;
   margin-left: auto;
   margin-top: 2%;
@@ -218,6 +218,11 @@
 
 .start_bottom:hover {
   color:white;
+  transition: all 1s ease-in-out;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 15px;
 }
 
 
@@ -230,6 +235,10 @@
 @media (max-width: 768px) {
 .navBar{
   height: 20%;
+}
+.body
+{
+  height: calc(100vh)
 }
 }
 
@@ -260,7 +269,10 @@
     margin-left: -5%;
     margin-bottom: 0%;
   }
-
+  .body
+  {
+    height:calc(120vh)
+  }
   .image
   {
     display: none;
