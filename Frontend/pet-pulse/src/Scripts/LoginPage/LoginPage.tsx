@@ -149,12 +149,16 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onCancel }) => {
 
   const handleSendEmail = () => {
     const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain");
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw: string = JSON.stringify({
+      "email": email
+    });
 
     const requestOptions: RequestInit = {
       method: "POST",
       headers: myHeaders,
-      body: email,
+      body: raw,
       redirect: "follow"
     };
 

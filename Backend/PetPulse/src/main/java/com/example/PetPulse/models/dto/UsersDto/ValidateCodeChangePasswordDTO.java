@@ -10,6 +10,9 @@ public class ValidateCodeChangePasswordDTO {
     @NotBlank
     private String code;
 
+    public ValidateCodeChangePasswordDTO() {
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }

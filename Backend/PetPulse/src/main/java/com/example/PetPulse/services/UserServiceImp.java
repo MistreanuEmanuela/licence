@@ -93,7 +93,7 @@ public class UserServiceImp implements UserService{
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Account Confirmation");
-        message.setText("Please click the following link to confirm your account: http://localhost:3000/users/confirm?token=" + token);
+        message.setText("Please click the following link to confirm your account: http://localhost:8082/users/confirm?token=" + token);
 //        mailSender.send(message);
         System.out.print(message);
     }

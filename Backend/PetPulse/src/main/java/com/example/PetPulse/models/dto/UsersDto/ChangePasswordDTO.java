@@ -9,6 +9,9 @@ public class ChangePasswordDTO {
     @NotBlank
     private String newPassword;
 
+    public ChangePasswordDTO() {
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }

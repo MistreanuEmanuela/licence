@@ -10,6 +10,9 @@ public class ForgotPasswordDTO {
         this.email = email;
     }
 
+    public ForgotPasswordDTO() {
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }

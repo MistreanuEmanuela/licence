@@ -9,6 +9,9 @@ public class LoginUserDTO {
     @NotBlank
     private String password;
 
+    public LoginUserDTO() {
+    }
+
     public LoginUserDTO(String username, String password) {
         this.username = username;
         this.password = password;

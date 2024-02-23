@@ -41,6 +41,7 @@ public class UserController {
     @PostMapping(value = "/forgotPassword", produces = "application/json")
     public void forgotPassword(@RequestBody ForgotPasswordDTO forgotPasswordDTO) {
         String email = forgotPasswordDTO.getEmail();
+        System.out.println(email);
         userService.forgotPassword(email);
     }
 
