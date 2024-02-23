@@ -1,4 +1,4 @@
-package com.example.PetPulse.models.dto;
+package com.example.PetPulse.models.dto.UsersDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

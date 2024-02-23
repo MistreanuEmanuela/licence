@@ -1,14 +1,12 @@
 package com.example.PetPulse.controllers;
-import com.example.PetPulse.Advice.EmailTokenProvider;
 import com.example.PetPulse.models.entities.User;
-import com.example.PetPulse.models.entities.UserCredentials;
 import com.example.PetPulse.services.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
+import com.example.PetPulse.models.dto.UsersDto.*;
 
-import javax.lang.model.util.SimpleElementVisitor7;
 import java.util.Map;
 
 @RestController
@@ -29,38 +27,34 @@ public class UserController {
     }
 
     @PostMapping(value = "/connect", produces = "application/json")
-    public void login(@RequestBody UserCredentials credentials) {
-        String username = credentials.getUsername();
-        String password = credentials.getPassword();
+    public void login(@RequestBody LoginUserDTO loginUserDTO) {
+        String username =loginUserDTO.getUsername();
+        String password = loginUserDTO.getPassword();
         userService.login(username, password);
     }
 
     @GetMapping(value = "/confirm", produces = "application/json")
     public void confirmUserAccount(@RequestParam("token") String token) {
-        System.out.print("here");
         userService.confirmUserAccount(token);
     }
 
     @PostMapping(value = "/forgotPassword", produces = "application/json")
-    public void forgotPassword(@RequestBody String email) {
-        System.out.print(email);
+    public void forgotPassword(@RequestBody ForgotPasswordDTO forgotPasswordDTO) {
+        String email = forgotPasswordDTO.getEmail();
         userService.forgotPassword(email);
     }
 
     @PostMapping(value = "/codeForgotPassword", produces = "application/json")
-    public void forgotPassword(@RequestBody Map<String, String> requestBody) {
-        System.out.print(requestBody);
-        String code = requestBody.get("code");
-        String email = requestBody.get("email");
+    public void forgotPasswordCode(@RequestBody ValidateCodeChangePasswordDTO validateCodeChangePasswordDTO) {
+        String code = validateCodeChangePasswordDTO.getCode();
+        String email = validateCodeChangePasswordDTO.getEmail();
         userService.validatePasswordCode(code, email);
     }
 
     @PostMapping(value = "/changePassword", produces = "application/json")
-    public void changePassword(@RequestBody Map<String, String> requestBody) {
-        String email = requestBody.get("email");
-        String newPassword = requestBody.get("newPassword");
-        System.out.print(email);
-        System.out.print(newPassword);
+    public void changePassword(@RequestBody ChangePasswordDTO changePasswordDTO) {
+        String email = changePasswordDTO.getEmail();
+        String newPassword = changePasswordDTO.getNewPassword();
         userService.changePassword(email, newPassword);
     }
 }
