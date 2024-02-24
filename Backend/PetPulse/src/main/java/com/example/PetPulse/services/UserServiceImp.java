@@ -1,9 +1,12 @@
 package com.example.PetPulse.services;
 import com.example.PetPulse.Advice.EmailTokenProvider;
 import com.example.PetPulse.Advice.ForgotPasswordToken;
+import com.example.PetPulse.Advice.JwtTokenProvider;
 import com.example.PetPulse.Exception.User.*;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.repositories.UserRepository;
@@ -11,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.UUID;
 import java.util.regex.Pattern;
 
 
@@ -23,16 +23,21 @@ public class UserServiceImp implements UserService{
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private AuthenticationManager authenticationManager;
     @Autowired
     private ForgotPasswordToken forgotPasswordToken;
     @Autowired
     private JavaMailSender mailSender;
 
     @Autowired
-    public UserServiceImp(UserRepository userDao, BCryptPasswordEncoder passwordEncoder) {
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    public UserServiceImp(UserRepository userDao, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userRepository = userDao;
 
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
 @Override
     public User createUser(User user) {
@@ -55,6 +60,7 @@ public class UserServiceImp implements UserService{
     @Override
     public boolean login(String username, String password){
         User user = userRepository.findByUsername(username);
+
         if (user == null) {
             throw new UserNotFoundException("Username not found");
         }
@@ -69,6 +75,17 @@ public class UserServiceImp implements UserService{
                 }
             }
         }
+
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                username,
+                password
+        ));
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        System.out.println(token);
         return true;
     }
 

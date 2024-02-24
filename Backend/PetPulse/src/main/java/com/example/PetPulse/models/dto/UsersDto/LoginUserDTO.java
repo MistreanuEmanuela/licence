@@ -1,6 +1,10 @@
 package com.example.PetPulse.models.dto.UsersDto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class LoginUserDTO {
     @NotBlank
@@ -32,4 +36,7 @@ public class LoginUserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
+
