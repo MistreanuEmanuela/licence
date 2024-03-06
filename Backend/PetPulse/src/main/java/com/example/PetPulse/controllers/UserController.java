@@ -1,6 +1,7 @@
 package com.example.PetPulse.controllers;
 import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.services.UserServiceImp;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +23,11 @@ public class UserController {
 
     @PostMapping(value = "/create", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody @Valid User user) {
+    public void createUser(@RequestBody @Valid UserDto user) {
         userService.createUser(user);
     }
 
+    @Operation(security = {})
     @PostMapping(value = "/connect", produces = "application/json")
     public void login(@RequestBody LoginUserDTO loginUserDTO) {
         String username =loginUserDTO.getUsername();

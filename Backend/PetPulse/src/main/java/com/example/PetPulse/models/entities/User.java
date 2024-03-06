@@ -3,6 +3,7 @@ package com.example.PetPulse.models.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -42,6 +43,7 @@ public class User {
     }
 
     public User() {
+
     }
 
     public User(String firstName, String lastName, String email, String password, Date birthDate, String username) {

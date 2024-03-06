@@ -13,11 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class UserDto {
-    private Long id;
     private String lastName;
+    private String password;
     private String firstName;
     private String email;
     private Date birthdate;
     private String username;
-    private Boolean activated;
 }

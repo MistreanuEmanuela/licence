@@ -3,6 +3,8 @@ import com.example.PetPulse.Advice.EmailTokenProvider;
 import com.example.PetPulse.Advice.ForgotPasswordToken;
 import com.example.PetPulse.Advice.JwtTokenProvider;
 import com.example.PetPulse.Exception.User.*;
+import com.example.PetPulse.models.dto.UsersDto.UserDto;
+import com.example.PetPulse.models.entities.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,6 +17,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+
+import java.util.Collections;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 
@@ -40,7 +45,7 @@ public class UserServiceImp implements UserService{
         this.authenticationManager = authenticationManager;
     }
 @Override
-    public User createUser(User user) {
+    public User createUser(UserDto user) {
         if (userRepository.findByEmail(user.getEmail()) !=null) {
             throw new EmailAlreadyExistsException("Email already exists");
         }
@@ -54,8 +59,10 @@ public class UserServiceImp implements UserService{
         }
         String encodedPassword = encodePassword(user.getPassword());
         user.setPassword(encodedPassword);
-        sendConfirmationEmail(user);
-        return userRepository.save(user);
+        User newUser = new User(user.getFirstName(), user.getLastName(), user.getEmail(),
+                encodedPassword,user.getBirthdate(), user.getUsername());
+        sendConfirmationEmail(newUser);
+        return userRepository.save(newUser);
     }
     @Override
     public boolean login(String username, String password){
@@ -104,14 +111,14 @@ public class UserServiceImp implements UserService{
         return passwordEncoder.matches(rawPassword, encodedPassword);
     }
     @Override
-    public void sendConfirmationEmail(User user) {
+    public void sendConfirmationEmail(User user)  {
         String token = EmailTokenProvider.generateToken(user.getEmail());
         System.out.print(token);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Account Confirmation");
         message.setText("Please click the following link to confirm your account: http://localhost:8082/users/confirm?token=" + token);
-//        mailSender.send(message);
+        mailSender.send(message);
         System.out.print(message);
     }
     @Override
@@ -170,7 +177,7 @@ public class UserServiceImp implements UserService{
         message.setTo(email);
         message.setSubject("PasswordChange");
         message.setText("The code for resetting password is" + token);
-//        mailSender.send(message);
+        mailSender.send(message);
     }
 
 }

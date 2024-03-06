@@ -1,9 +1,13 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.entities.User;
+import jakarta.mail.MessagingException;
+
+import java.io.UnsupportedEncodingException;
 
 public interface UserService {
-    User createUser(User user);
+    User createUser(UserDto user);
     boolean isValidPassword(String password);
     public String encodePassword(String rawPassword);
     public boolean matchesPassword(String rawPassword, String encodedPassword);
@@ -17,6 +21,5 @@ public interface UserService {
     public void changePassword(String email, String newPassword);
     public void forgotPassword(String email);
     public void sendPasswordResetEmail(String email, String token) ;
-
 
     }
