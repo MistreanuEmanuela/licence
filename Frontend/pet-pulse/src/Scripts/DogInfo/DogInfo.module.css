@@ -1,0 +1,86 @@
+.main-container {
+    display: flex;
+    width: 80%;
+  }
+  
+
+  .left_container {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+  }
+  .right_container {
+    border: 1px solid #030066;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .image
+  {
+    width: 100%;
+    height: 100%;
+    border-radius: 6%;
+  }
+  .dog_img
+  {
+    
+    width: 35vw;
+    height: 45vh;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+
+  .name
+  {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    font-family: 'Lily Script One', cursive; 
+    font-size: 1.5em;
+    margin-top:10%;
+  }
+  .right-container {
+    margin-left: 20px;
+  }
+  
+  .display-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .button-container button {
+    margin-right: 10px;
+  }
+  .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .dog_details
+  {
+    margin: 4%;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+  }
+  .navbar
+{
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  width: auto;
+  background-color:#68A279;
+  padding-bottom: 1%;
+
+}
+.center
+{
+    width: 37%;
+    height: auto;
+}

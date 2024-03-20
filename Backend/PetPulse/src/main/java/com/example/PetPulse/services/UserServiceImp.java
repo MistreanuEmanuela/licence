@@ -168,6 +168,7 @@ public class UserServiceImp implements UserService{
             throw new EmailNotFoundException("The email introduced is not associated with any account");
         }
         String token = forgotPasswordToken.generateToken(email);
+        System.out.print("token");
         System.out.print(token);
         sendPasswordResetEmail(email, token);
     }
