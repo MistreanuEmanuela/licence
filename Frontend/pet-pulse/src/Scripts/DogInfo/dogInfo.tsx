@@ -14,6 +14,15 @@ interface Dog {
     friendship: string;
     care: string;
 }
+function addLineBreaks(text: string): string {
+    const breakAfter = [".", ";", "\n"];
+
+    for (const char of breakAfter) {
+        text = text.split(char).join(char + "\n");
+    }
+
+    return text;
+}
 
 const DogInfo: React.FC<{}> = () => {
     const [dog, setDog] = useState<Dog | null>(null);
@@ -52,7 +61,8 @@ const DogInfo: React.FC<{}> = () => {
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
-    };
+        console.log(dog);
+        };
 
     return (
         <><div className={styles.navbar}>
@@ -80,7 +90,7 @@ const DogInfo: React.FC<{}> = () => {
                                 <button onClick={() => handleCategoryClick("personality")}>Personality</button>
                                 <button onClick={() => handleCategoryClick("size")}>Size</button>
                             </div>
-                            <div className="display-container">
+                            <div className={styles.display_container}>
                                 {selectedCategory === "general" && <p>{dog.general}</p>}
                                 {selectedCategory === "health" && <p>{dog.health}</p>}
                                 {selectedCategory === "feeding" && <p>{dog.feeding}</p>}

@@ -1,6 +1,7 @@
 package com.example.PetPulse.services;
 
 
+import com.example.PetPulse.models.dto.DogDTO.DogAllDTO;
 import com.example.PetPulse.models.entities.Dog;
 import com.example.PetPulse.repositories.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DogServiceImp implements DogService {
@@ -31,12 +34,21 @@ public class DogServiceImp implements DogService {
 
     @Override
     public byte[] getDogPicture(String name) {
-        String path = "D:\\dogs\\" + name;
+        String path = "D:\\dogs\\" + name + ".png";
         Path filePath = Paths.get(path);
         try {
             return Files.readAllBytes(filePath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<DogAllDTO> getAllDogs() {
+        List<Dog> dogs = dogRepository.findAllDogs();
+        List<DogAllDTO> dogDTOs = dogs.stream()
+                .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
+                .collect(Collectors.toList());
+        return dogDTOs;
     }
 }

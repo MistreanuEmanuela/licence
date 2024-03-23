@@ -45,25 +45,20 @@
     margin-left: 20px;
   }
   
-  .display-container {
+  .display_container {
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
+    white-space: pre-wrap;
+    text-indent: 1.5em;
   }
-  
+ 
   .button-container button {
     margin-right: 10px;
-  }
-  .app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
   }
 
   .dog_details
   {
-    margin: 4%;
     background-color: red;
     display: flex;
     flex-direction: row;
@@ -83,4 +78,9 @@
 {
     width: 37%;
     height: auto;
+}
+.dog_info{
+  background-color: rgb(54, 87, 54);
+  padding: 3%;
+  background-image: url("./background_login.png");
 }

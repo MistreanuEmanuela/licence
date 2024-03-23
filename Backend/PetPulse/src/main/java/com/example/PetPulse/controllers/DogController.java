@@ -1,5 +1,6 @@
 package com.example.PetPulse.controllers;
 
+import com.example.PetPulse.models.dto.DogDTO.DogAllDTO;
 import com.example.PetPulse.models.entities.Dog;
 import com.example.PetPulse.services.DogServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
@@ -37,4 +39,10 @@ public class DogController {
         headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<>(pictureBytes, headers, HttpStatus.OK);
     }
+    @GetMapping(path = "/alldogs")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<DogAllDTO> getAllDogs() {
+        return dogService.getAllDogs();
+    }
+
 }

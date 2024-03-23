@@ -19,7 +19,14 @@ public class Dog{
     private String friendship;
     private String care;
 
-    // Constructors, getters, and setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public Dog() {
     }
