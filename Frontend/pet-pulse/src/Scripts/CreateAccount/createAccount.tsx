@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Account.module.css';
-import Navbar from '../NavBars/SimpleNavBar';
+import Navbar from '../NavBars/SimpleNav';
 import Logo from '../Logo/logo';
 
 
@@ -91,11 +91,7 @@ const CreateAccount: React.FC = () => {
 
   return (
     <div className={styles.body}>
-      <div className={styles.navbar}>
-        <Logo size={"50%"}></Logo>
-        <div className={styles.center}></div>
-        <Navbar></Navbar>
-      </div>
+      <Navbar></Navbar>
       <div className={styles.adaugare} id='add'>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.textBox}>

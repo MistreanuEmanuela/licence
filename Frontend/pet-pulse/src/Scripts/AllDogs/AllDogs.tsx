@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../Logo/logo';
-import Navbar from '../NavBars/SimpleNavBar';
 import styles from './AllDogs.module.css';
-
+import Navbar from '../NavBars/NavBar';
 interface Dog {
   id: number;
   name: string;
@@ -85,11 +84,7 @@ const AllDogs: React.FC = () => {
   return (
     <div className={styles.body}>
       <>
-        <div className={styles.navbar}>
-          <Logo size={'50%'} />
-          <div className={styles.center}></div>
           <Navbar />
-        </div>
         <div>
           <div className={styles.container}>
             <div className={styles.filterContainer}>
