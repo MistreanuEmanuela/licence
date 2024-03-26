@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import styles from './NavbarC.module.css';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  pagename: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -18,7 +22,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     if (isSearchOpen) {
-      const text = 'Search a dog or a cat bread';
+      const text = 'Search a dog or a cat breed';
       let index = -1;
       const intervalId = setInterval(() => {
         setPlaceholder((prevPlaceholder) => prevPlaceholder + text[index]);
@@ -49,9 +53,33 @@ const Navbar: React.FC = () => {
         </div>
         <div className={styles.list}>
           <ul className={`${styles['nav-links']} ${isMenuOpen ? styles.open : ''}`}>
-            <li><a href="./Home">Home</a></li>
-            <li><a href="#">Dogs</a></li>
-            <li><a href="#">Cats</a></li>
+            {pagename === 'home' && !isMenuOpen && (
+              <div className={styles.home}>
+                <div className={styles.page_home}></div>
+                <li><a href="./Home">Home</a></li>
+              </div>
+            )}
+           {(pagename !=='home' || isMenuOpen) && (
+              <li><a href="./Home">Home</a></li>
+            )}
+            {pagename === 'dogs' && !isMenuOpen && (
+              <div className={styles.home}>
+                <div className={styles.page_dog}></div>
+                <li><a href="./Home">Dogs</a></li>
+              </div>
+            )}
+           {(pagename !=='dogs' || isMenuOpen) && (
+              <li><a href="./Home">Dogs</a></li>
+            )}
+          {pagename === 'cats' && !isMenuOpen && (
+              <div className={styles.home}>
+                <div className={styles.page_cat}></div>
+                <li><a href="./Home">Cats</a></li>
+              </div>
+            )}
+           {(pagename !=='cats' || isMenuOpen) && (
+              <li><a href="./Home">Cats</a></li>
+            )}
           </ul>
         </div>
       </nav>

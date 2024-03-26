@@ -83,8 +83,9 @@ const AllDogs: React.FC = () => {
 
   return (
     <div className={styles.body}>
+
+      <Navbar pagename="dogs" />
       <>
-          <Navbar />
         <div>
           <div className={styles.container}>
             <div className={styles.filterContainer}>
@@ -148,7 +149,7 @@ const AllDogs: React.FC = () => {
             </button>
           </div>
         </div></>
-      </div>
+    </div>
   );
 };
 

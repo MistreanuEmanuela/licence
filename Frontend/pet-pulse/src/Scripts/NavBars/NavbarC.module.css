@@ -26,7 +26,7 @@
     display: flex;
     justify-content: center; 
     align-items: center;
-    width: 50%;
+    width:fit-content;
   }
   
   .nav-links li {
@@ -164,6 +164,37 @@
 }
 .searchInputSmall {
   display: none;
+}
+.home
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid #121010; 
+  width: 80px;
+  padding: 2%;
+  margin-top:-10px;
+  margin-bottom: -10px;
+  border-radius: 7px;
+  margin-right: 10%;
+}
+.page_home
+{
+  width: 40px;
+  background-image: url(./DesignPictures/60bcb2a467fce67904e84ee31d509fac-removebg-preview.png);
+  background-size: contain;
+}
+.page_dog
+{
+  width: 40px;
+  background-image: url(./DesignPictures/e9bafb0327bde3594ec16b3a15365741-removebg-preview.png);
+  background-size: contain;
+}
+.page_cat
+{
+  width: 40px;
+  background-image: url(./DesignPictures/1d2601b54fd924aff37b6d5b6ea1f846-removebg-preview.png);
+  background-size: contain;
 }
 @media (max-width: 768px) {
     .navbar {
