@@ -42,7 +42,7 @@
   }
   
   .nav-links a:hover {
-    color: lightgray;
+    color: rgb(211, 211, 211);
   }
   
   .menu-icon {
@@ -162,7 +162,9 @@
   border: none;
   border-width: 0.5px;
 }
-
+.searchInputSmall {
+  display: none;
+}
 @media (max-width: 768px) {
     .navbar {
       display: flex;
@@ -191,17 +193,71 @@
     .nav-links.open {
       position: relative;
       display: flex;
-      margin-bottom: auto;
-      background-color: rgba(85, 82, 82, 0.742);
-      color: white;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      background-color: rgba(255, 255, 255, 0.96);
       margin-right: inherit;
-      width: 100%;
+      width: 70%;
       padding: 0%;
-      
+      margin-left: 15%;
     }
   
     .menu-icon {
       display: flex;
+    }
+    .menu-icon.open {
+      display: flex;
+      color:rgb(255, 255, 255);
+      border: 1px solid black; 
+      border-radius: 10px;
+      padding-left: 10%;
+      padding-right: 10%;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      color: white;
+      text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    }
+
+    .search_small_weight
+    {
+      width: 80vw;
+      height: 7vh;
+      background-color:rgb(190, 190, 190);
+      margin-top:1%;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10vw;
+    }
+    .searchInputSmall {
+      display: flex;
+      position: relative;
+      width: 70vw;
+      padding: 5px; 
+      border: 1px solid #ccc; 
+      border-radius: 4px;
+      height: auto;
+      margin-right: 0.5vw;
+    }
+    
+    .searchInputSmall:focus
+    {
+      border: none;
+      border-width: 0.5px;
+    }
+    .searchInput {
+      display: none;
+    }
+
+    .nav-links li:hover {
+      width: 90%;
+      background-color: rgb(180, 181, 181);
+      margin-left: 15%;
+    }
+    .nav-links a:hover {
+      color: white;
     }
   }
   

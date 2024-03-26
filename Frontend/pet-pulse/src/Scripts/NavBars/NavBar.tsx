@@ -6,7 +6,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [placeholder, setPlaceholder] = useState('');
+  const [placeholder, setPlaceholder] = useState('Search a dog');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -38,13 +38,13 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className={styles.body}>
+    <><div className={styles.body}>
       <div className={styles.logo}>
         <Link to="/login" className={styles.logo_picture}></Link>
         <div className={styles.logo_text}> PetPulse</div>
       </div>
       <nav className={styles.navbar}>
-        <div className={styles['menu-icon']} onClick={toggleMenu}>
+        <div className={`${styles['menu-icon']} ${isMenuOpen ? styles.open : ''}`} onClick={toggleMenu}>
           <div>Menu</div>
         </div>
         <div className={styles.list}>
@@ -63,8 +63,7 @@ const Navbar: React.FC = () => {
               placeholder={placeholder}
               className={styles.searchInput}
               value={searchValue}
-              onChange={handleSearchInputChange}
-            />
+              onChange={handleSearchInputChange} />
             <button className={styles.search_active} onClick={toggleSearch}></button>
           </>
         )}
@@ -75,6 +74,17 @@ const Navbar: React.FC = () => {
         <button className={styles.profile}></button>
       </div>
     </div>
+    {isSearchOpen && (
+          <><div className={styles.search_small_weight}>
+            <input
+              type="text"
+              placeholder={placeholder}
+              className={styles.searchInputSmall}
+              value={searchValue}
+              onChange={handleSearchInputChange} />
+          </div></>
+        )}
+    </>
   );
 };
 
