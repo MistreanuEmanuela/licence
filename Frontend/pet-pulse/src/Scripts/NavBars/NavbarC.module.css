@@ -6,7 +6,7 @@
     font-family: 'Lily Script One', cursive; 
     font-size: medium;
     font-size: 1em;
-    background-color:#aceec0;
+    background-color:#d3f3dd;
     flex-direction: row;
   }
 .navbar {
@@ -31,7 +31,7 @@
   
   .nav-links li {
     padding: 0 5px;
-    margin-right: 3%;
+    margin-right: 10%;
     width: 100%;
   }
   
@@ -79,12 +79,95 @@
     align-self: center;
     font-size: 25px;
   }
+  .default_buttoms
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+.search {
+  border: none;
+  border-radius: 50px;
+  margin-right: 7px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url(./DesignPictures/pet_search_result.png__1_-removebg-preview.png);
+  background-color: transparent;
+  background-size: contain;
+}
+
+.search:hover {
+  border: 1px solid black; 
+}
+.search_active {
+  border: 1px solid black; 
+  border-radius: 50px;
+  margin-right: 7px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url(./DesignPictures/pet_search_result.png__1_-removebg-preview.png);
+  background-color: transparent;
+  background-size: contain;
+}
+.pets
+{
+  border: none;
+  border-radius: 50px;
+  margin-right: 7px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url(./DesignPictures/pet_home_result.png-removebg-preview.png);
+  background-color: transparent;
+  background-size: contain;
+}
+.pets:hover {
+  border: 1px solid black; 
+}
+
+.profile
+{
+  border: none;
+  border-radius: 50px;
+  margin-right: 7px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url(./DesignPictures/profile-removebg-preview.png);
+  background-color: transparent;
+  background-size: contain;
+}
+.profile:hover {
+  border: 1px solid black; 
+}
+.searchInput {
+  position: relative;
+  top: 0; 
+  right: 0; 
+  width: 20vw;
+  padding: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  height: 28px;
+  margin-right: 0.5vw;
+  margin-left: -21.3vw;
+  z-index: 1;
+}
+
+.searchInput:focus
+{
+  border: none;
+  border-width: 0.5px;
+}
 
 @media (max-width: 768px) {
     .navbar {
       display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+      justify-content: center;
+      align-items: center;
       padding: 5px 5px;
       flex-direction: column;
       z-index: 1;
@@ -114,7 +197,7 @@
       margin-right: inherit;
       width: 100%;
       padding: 0%;
-      margin-top: auto;
+      
     }
   
     .menu-icon {
