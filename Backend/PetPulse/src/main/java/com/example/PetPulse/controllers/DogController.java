@@ -45,4 +45,9 @@ public class DogController {
         return dogService.getAllDogs();
     }
 
+    @GetMapping(path = "/alldogsbysize{size}")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<DogAllDTO> getAllDogsBySize(@PathVariable String size) {
+        return dogService.getAllDogsBySize(size);
+    }
 }

@@ -13,4 +13,5 @@ public interface DogService {
     byte[] getDogPicture( String name);
 
     List<DogAllDTO> getAllDogs();
+    List<DogAllDTO> getAllDogsBySize(String size);
 }

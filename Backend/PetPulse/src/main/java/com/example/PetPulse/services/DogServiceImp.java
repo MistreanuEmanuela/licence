@@ -50,5 +50,16 @@ public class DogServiceImp implements DogService {
                 .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
                 .collect(Collectors.toList());
         return dogDTOs;
+
+    }
+
+    @Override
+    public List<DogAllDTO> getAllDogsBySize(String size) {
+        List<Dog> dogs = dogRepository.findAllDogsBySize(size);
+        List<DogAllDTO> dogDTOs = dogs.stream()
+                .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
+                .collect(Collectors.toList());
+        return dogDTOs;
+
     }
 }
