@@ -17,4 +17,9 @@ public interface DogService {
     List<DogAllDTO> getAllDogsByLifespan(String lifespan);
 
     List<DogAllDTO> getAllDogsByCoat(String coat);
+
+    List<DogAllDTO> getAllDogsByColor(String color);
+
+    List<DogAllDTO> getAllDogsByFirstLetter(String letter);
+
 }

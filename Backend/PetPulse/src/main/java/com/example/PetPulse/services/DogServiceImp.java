@@ -79,4 +79,22 @@ public class DogServiceImp implements DogService {
                 .collect(Collectors.toList());
         return dogDTOs;
     }
+
+    @Override
+    public List<DogAllDTO> getAllDogsByColor(String color) {
+        List<Dog> dogs = dogRepository.findDogsByCoatColor(color);
+        List<DogAllDTO> dogDTOs = dogs.stream()
+                .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
+                .collect(Collectors.toList());
+        return dogDTOs;
+    }
+
+    @Override
+    public List<DogAllDTO> getAllDogsByFirstLetter(String letter) {
+        List<Dog> dogs = dogRepository.findDogsByNameStartingWithLetter(letter);
+        List<DogAllDTO> dogDTOs = dogs.stream()
+                .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
+                .collect(Collectors.toList());
+        return dogDTOs;
+    }
 }

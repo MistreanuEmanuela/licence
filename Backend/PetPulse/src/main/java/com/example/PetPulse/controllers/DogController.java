@@ -45,21 +45,33 @@ public class DogController {
         return dogService.getAllDogs();
     }
 
-    @GetMapping(path = "/alldogsbysize{size}")
+    @GetMapping(path = "/alldogsbysize", params = "size")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public List<DogAllDTO> getAllDogsBySize(@PathVariable String size) {
+    public List<DogAllDTO> getAllDogsBySize(@RequestParam String size) {
         return dogService.getAllDogsBySize(size);
     }
 
-    @GetMapping(path = "/alldogsbylifespan{lifespan}")
+    @GetMapping(path = "/alldogsbylifespan", params = "lifespan")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public List<DogAllDTO> getAllDogsByLifespan(@PathVariable String lifespan) {
+    public List<DogAllDTO> getAllDogsByLifespan(@RequestParam String lifespan) {
         return dogService.getAllDogsByLifespan(lifespan);
     }
 
-    @GetMapping(path = "/alldogsbycoattype{coat}")
+    @GetMapping(path = "/alldogsbycoattype", params = "coat")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public List<DogAllDTO> getAllDogsByCoat(@PathVariable String coat) {
+    public List<DogAllDTO> getAllDogsByCoat(@RequestParam String coat) {
         return dogService.getAllDogsByCoat(coat);
+    }
+
+    @GetMapping(path = "/alldogsbycoatcolor", params = "color")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<DogAllDTO> getAllDogsByCoatColor(@RequestParam String color) {
+        return dogService.getAllDogsByColor(color);
+    }
+
+    @GetMapping(path = "/alldogsbyname", params = "letter")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<DogAllDTO> getAllDogsByStartName(@RequestParam String letter) {
+        return dogService.getAllDogsByFirstLetter(letter);
     }
 }
