@@ -60,6 +60,23 @@ public class DogServiceImp implements DogService {
                 .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
                 .collect(Collectors.toList());
         return dogDTOs;
+    }
 
+    @Override
+    public List<DogAllDTO> getAllDogsByLifespan(String lifespan) {
+        List<Dog> dogs = dogRepository.findAllDogsByLifespan("-" + lifespan);
+        List<DogAllDTO> dogDTOs = dogs.stream()
+                .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
+                .collect(Collectors.toList());
+        return dogDTOs;
+    }
+
+    @Override
+    public List<DogAllDTO> getAllDogsByCoat(String coat) {
+        List<Dog> dogs = dogRepository.findAllDogsByCoatType(coat);
+        List<DogAllDTO> dogDTOs = dogs.stream()
+                .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
+                .collect(Collectors.toList());
+        return dogDTOs;
     }
 }

@@ -50,4 +50,16 @@ public class DogController {
     public List<DogAllDTO> getAllDogsBySize(@PathVariable String size) {
         return dogService.getAllDogsBySize(size);
     }
+
+    @GetMapping(path = "/alldogsbylifespan{lifespan}")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<DogAllDTO> getAllDogsByLifespan(@PathVariable String lifespan) {
+        return dogService.getAllDogsByLifespan(lifespan);
+    }
+
+    @GetMapping(path = "/alldogsbycoattype{coat}")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<DogAllDTO> getAllDogsByCoat(@PathVariable String coat) {
+        return dogService.getAllDogsByCoat(coat);
+    }
 }
