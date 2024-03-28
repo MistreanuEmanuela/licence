@@ -125,12 +125,10 @@ public class UserServiceImp implements UserService{
     public boolean confirmUserAccount(String token) {
         if (EmailTokenProvider.validateToken(token)) {
             String email = EmailTokenProvider.getEmailFromToken(token);
-            System.out.print(email);
             User user = userRepository.findByEmail(email);
             if(user != null)
             {
                 user.setActivated(true);
-                System.out.print(user);
                 userRepository.save(user);
             }
             return true;

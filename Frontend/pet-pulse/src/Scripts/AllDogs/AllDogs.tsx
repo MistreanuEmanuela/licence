@@ -12,6 +12,7 @@ const AllDogs: React.FC = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [fetchCounter, setFetchCounter] = useState<number>(16);
   const [selectedFilter, setSelectedFilter] = useState<string>('');
+  const [dogChange, setDogChange] = useState<boolean>(false);
 
   const handleFilter = (filter: string) => {
     setSelectedFilter(filter);
@@ -27,16 +28,19 @@ const AllDogs: React.FC = () => {
   const [lifespanHovered, setLifespanHovered] = useState<boolean>(false);
   const [letterHovered, setLetterHovered] = useState<boolean>(false);
 
-  const [selectedColor, setSelectedColor] = useState<string>(''); 
+  const [selectedColor, setSelectedColor] = useState<string>('');
 
   useEffect(() => {
-    fetchAllDogs();
-  }, []);
+    if (selectedFilter === '') {
+      fetchAllDogs();
+    }
+  }, [selectedFilter]);
+
 
   const fetchAllDogs = () => {
     fetch('http://localhost:8082/dog/alldogs', {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTEyMDAwMjYsImV4cCI6MTcxMTU2MDAyNn0.KSqQaxiEshvAnsoUayb0jLzr9ZxOScHMVGapKwlFHTkm6PdC76p1AwhgyQG1kCW_rk2E-C_9_CqVvkWV25FShw',
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2Mjg4ODYsImV4cCI6MTcxMTk4ODg4Nn0.AzC0BLK8wUbzI4Db5-2QKbesggXP57cYZaq92WOpL-iZ63gOxRHU6-xF3XWMGbq6WZJW7iDwDG10oBoKo0lyCw',
       },
     })
       .then(response => response.json())
@@ -50,7 +54,7 @@ const AllDogs: React.FC = () => {
     return fetch(`http://localhost:8082/dog/picture/${dog.name}`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTEyMDAwMjYsImV4cCI6MTcxMTU2MDAyNn0.KSqQaxiEshvAnsoUayb0jLzr9ZxOScHMVGapKwlFHTkm6PdC76p1AwhgyQG1kCW_rk2E-C_9_CqVvkWV25FShw',
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2Mjg4ODYsImV4cCI6MTcxMTk4ODg4Nn0.AzC0BLK8wUbzI4Db5-2QKbesggXP57cYZaq92WOpL-iZ63gOxRHU6-xF3XWMGbq6WZJW7iDwDG10oBoKo0lyCw',
       },
     })
       .then(response => response.blob())
@@ -81,27 +85,30 @@ const AllDogs: React.FC = () => {
         setDogs(updatedDogs);
       });
     }
-  }, [fetchCounter, dogs]);
+  }, [fetchCounter, colorHovered])
 
   const fetchedIndices: number[] = Array.from(Array(fetchCounter).keys());
 
 
   const fetchDogsByColor = (color: string) => {
-  console.log(color)
-  fetch('http://localhost:8082/dog/alldogs', {
+    console.log(color);
+    fetch(`http://localhost:8082/dog/alldogsbycoatcolor?color=${color}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTEyMDAwMjYsImV4cCI6MTcxMTU2MDAyNn0.KSqQaxiEshvAnsoUayb0jLzr9ZxOScHMVGapKwlFHTkm6PdC76p1AwhgyQG1kCW_rk2E-C_9_CqVvkWV25FShw',
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2Mjg4ODYsImV4cCI6MTcxMTk4ODg4Nn0.AzC0BLK8wUbzI4Db5-2QKbesggXP57cYZaq92WOpL-iZ63gOxRHU6-xF3XWMGbq6WZJW7iDwDG10oBoKo0lyCw',
       },
     })
       .then(response => response.json())
       .then((data: Dog[]) => {
+        console.log(color);
         setDogs(data);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
 
   const handleFilteredByColor = (color: string) => {
-    setSelectedColor(color); 
+    handleFilter("color");
+    setFetchCounter(16);
+    setSelectedColor(color);
     fetchDogsByColor(color);
   };
 
@@ -117,6 +124,7 @@ const AllDogs: React.FC = () => {
                 className={styles.filtered}
                 onMouseEnter={() => setLetterHovered(true)}
                 onMouseLeave={() => setLetterHovered(false)}
+
               >
                 Letter
                 {letterHovered && (
@@ -132,14 +140,14 @@ const AllDogs: React.FC = () => {
                 className={`${styles.filtered} ${selectedFilter === 'Color' ? styles.active : ''}`}
                 onMouseEnter={() => setColorHovered(true)}
                 onMouseLeave={() => setColorHovered(false)}
-               
+
               >
                 Color
                 {colorHovered && (
                   <ul className={styles.subFilterOptions}>
-                    <li onClick={() =>  handleFilteredByColor('Red')}>Red</li>
-                    <li onClick={() => handleFilteredByColor('Blue')}>Blue</li>
-                    <li onClick={() => handleFilteredByColor('Green')}>Green</li>
+                    <li onClick={() => handleFilteredByColor('black')}>black</li>
+                    <li onClick={() => handleFilteredByColor('white')}>Blue</li>
+                    <li onClick={() => handleFilteredByColor('chocolate')}>Green</li>
                   </ul>
                 )}
               </button>
@@ -188,21 +196,20 @@ const AllDogs: React.FC = () => {
                 )}
               </button>
             </div>
-            <ul className={styles.main_container}>
-              {fetchedIndices.map(index => (
-                <button className={styles.bottom_dog} key={index}>
-                  {dogs[index] && (
-                    <>
-                      <img src={dogs[index].picture} alt={dogs[index].name} className={styles.dog_picture} />
-                      <div className={styles.name}>{dogs[index].name}</div>
-                    </>
-                  )}
-                </button>
-              ))}
-            </ul>
-            <button className={styles.next} onClick={fetchNextBatch}>
-              MORE
-            </button>
+            <><ul className={styles.main_container}>
+                {fetchedIndices.map(index => (
+                  <button className={styles.bottom_dog} key={index}>
+                    {dogs[index] && (
+                      <>
+                        <img src={dogs[index].picture} alt={dogs[index].name} className={styles.dog_picture} />
+                        <div className={styles.name}>{dogs[index].name}</div>
+                      </>
+                    )}
+                  </button>
+                ))}
+              </ul><button className={styles.next} onClick={fetchNextBatch}>
+                  MORE
+                </button></>
           </div>
         </div></>
     </div>

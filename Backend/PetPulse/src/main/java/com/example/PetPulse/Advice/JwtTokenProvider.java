@@ -33,11 +33,6 @@ public class JwtTokenProvider {
 
 
     public String getUsername(String token){
-        System.out.println(Jwts.parser()
-                .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject());
         return Jwts.parser()
                 .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token)
@@ -46,11 +41,6 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) {
-        System.out.println("here");
-        System.out.println(Jwts.parserBuilder()
-                .setSigningKey(SECRET_KEY)
-                .build()
-                .parseClaimsJws(token));
         try {
             Jwts.parserBuilder()
                     .setSigningKey(SECRET_KEY)
