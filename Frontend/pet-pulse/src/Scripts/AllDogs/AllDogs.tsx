@@ -23,7 +23,11 @@ const AllDogs: React.FC = () => {
 
   const [colorHovered, setColorHovered] = useState<boolean>(false);
   const [sizeHovered, setSizeHovered] = useState<boolean>(false);
-  const [originHovered, setOriginHovered] = useState<boolean>(false);
+  const [coatHovered, setCoatHovered] = useState<boolean>(false);
+  const [lifespanHovered, setLifespanHovered] = useState<boolean>(false);
+  const [letterHovered, setLetterHovered] = useState<boolean>(false);
+
+  const [selectedColor, setSelectedColor] = useState<string>(''); 
 
   useEffect(() => {
     fetchAllDogs();
@@ -81,6 +85,26 @@ const AllDogs: React.FC = () => {
 
   const fetchedIndices: number[] = Array.from(Array(fetchCounter).keys());
 
+
+  const fetchDogsByColor = (color: string) => {
+  console.log(color)
+  fetch('http://localhost:8082/dog/alldogs', {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTEyMDAwMjYsImV4cCI6MTcxMTU2MDAyNn0.KSqQaxiEshvAnsoUayb0jLzr9ZxOScHMVGapKwlFHTkm6PdC76p1AwhgyQG1kCW_rk2E-C_9_CqVvkWV25FShw',
+      },
+    })
+      .then(response => response.json())
+      .then((data: Dog[]) => {
+        setDogs(data);
+      })
+      .catch(error => console.error('Error fetching dogs:', error));
+  };
+
+  const handleFilteredByColor = (color: string) => {
+    setSelectedColor(color); 
+    fetchDogsByColor(color);
+  };
+
   return (
     <div className={styles.body}>
 
@@ -91,18 +115,50 @@ const AllDogs: React.FC = () => {
             <div className={styles.filterContainer}>
               <button
                 className={styles.filtered}
+                onMouseEnter={() => setLetterHovered(true)}
+                onMouseLeave={() => setLetterHovered(false)}
+              >
+                Letter
+                {letterHovered && (
+                  <ul className={styles.subFilterOptions}>
+                    <li onClick={() => handleSubFilter('a')}>a</li>
+                    <li onClick={() => handleSubFilter('b')}>b</li>
+                    <li onClick={() => handleSubFilter('c')}>c</li>
+                  </ul>
+                )}
+              </button>
+
+              <button
+                className={`${styles.filtered} ${selectedFilter === 'Color' ? styles.active : ''}`}
                 onMouseEnter={() => setColorHovered(true)}
                 onMouseLeave={() => setColorHovered(false)}
+               
               >
                 Color
                 {colorHovered && (
                   <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleSubFilter('Red')}>Red</li>
-                    <li onClick={() => handleSubFilter('Blue')}>Blue</li>
-                    <li onClick={() => handleSubFilter('Green')}>Green</li>
+                    <li onClick={() =>  handleFilteredByColor('Red')}>Red</li>
+                    <li onClick={() => handleFilteredByColor('Blue')}>Blue</li>
+                    <li onClick={() => handleFilteredByColor('Green')}>Green</li>
                   </ul>
                 )}
               </button>
+
+              <button
+                className={styles.filtered}
+                onMouseEnter={() => setLifespanHovered(true)}
+                onMouseLeave={() => setLifespanHovered(false)}
+              >
+                Lifespan
+                {lifespanHovered && (
+                  <ul className={styles.subFilterOptions}>
+                    <li onClick={() => handleSubFilter('12')}>12 years</li>
+                    <li onClick={() => handleSubFilter('14')}>15 years</li>
+                    <li onClick={() => handleSubFilter('16')}>17 years</li>
+                  </ul>
+                )}
+              </button>
+
               <button
                 className={styles.filtered}
                 onMouseEnter={() => setSizeHovered(true)}
@@ -119,11 +175,11 @@ const AllDogs: React.FC = () => {
               </button>
               <button
                 className={styles.filtered}
-                onMouseEnter={() => setOriginHovered(true)}
-                onMouseLeave={() => setOriginHovered(false)}
+                onMouseEnter={() => setCoatHovered(true)}
+                onMouseLeave={() => setCoatHovered(false)}
               >
-                Origin
-                {originHovered && (
+                Coat
+                {coatHovered && (
                   <ul className={styles.subFilterOptions}>
                     <li onClick={() => handleSubFilter('Europe')}>Europe</li>
                     <li onClick={() => handleSubFilter('Asia')}>Asia</li>
@@ -145,7 +201,7 @@ const AllDogs: React.FC = () => {
               ))}
             </ul>
             <button className={styles.next} onClick={fetchNextBatch}>
-              Fetch Next Batch
+              MORE
             </button>
           </div>
         </div></>
