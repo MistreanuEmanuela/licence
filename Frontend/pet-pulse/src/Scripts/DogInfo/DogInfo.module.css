@@ -1,3 +1,14 @@
+.body
+{
+    background-color: rgb(250, 250, 250);
+    background-image: url("./background.png");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    padding-bottom: 3%;
+}
+
+
 .main-container {
     display: flex;
     width: 80%;
@@ -5,28 +16,31 @@
   
 
   .left_container {
-    background-color: green;
     display: flex;
     flex-direction: column;
-    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: rgb(0, 0, 0);
+    padding-bottom: 2%;
+    padding-top: 2%;
+    font-family:Arial, Helvetica, sans-serif;
+    
   }
   .right_container {
-    border: 1px solid #030066;
     display: flex;
     flex-direction: column;
+    
   }
   
   .image
   {
     width: 100%;
     height: 100%;
-    border-radius: 6%;
   }
   .dog_img
   {
-    
-    width: 35vw;
-    height: 45vh;
+    width: 25vw;
+    height: 35vh;
   }
   @import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
 
@@ -37,50 +51,172 @@
     align-self: center;
     align-content: center;
     text-align: center;
-    font-family: 'Lily Script One', cursive; 
-    font-size: 1.5em;
+    font-family: Verdana sans-serif;
+    font-size: 2em;
     margin-top:10%;
+    color: black;
   }
   .right-container {
     margin-left: 20px;
+    background-color: #fdf6ac;
   }
   
   .display_container {
-    border: 1px solid #ccc;
+    
     padding: 20px;
     margin-bottom: 20px;
     white-space: pre-wrap;
     text-indent: 1.5em;
+    background-color: #fffcd8;
+    padding-left :0px;
   }
  
-  .button-container button {
-    margin-right: 10px;
+  .button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-bottom: 2%;
   }
 
   .dog_details
   {
-    background-color: red;
     display: flex;
     flex-direction: row;
   }
-  .navbar
-{
-  height: 7vh;
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
-  width: auto;
-  background-color:#68A279;
-  padding-bottom: 1%;
-
-}
-.center
-{
-    width: 37%;
-    height: auto;
-}
+ 
 .dog_info{
-  background-color: rgb(54, 87, 54);
-  padding: 3%;
-  background-image: url("./background_login.png");
+  margin: 3%;
+  background-color: #fffcd8;
+}
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.title {
+  margin-top: 2%;
+  font-family: Georgia, serif;
+  color:rgb(0, 0, 0);
+  font-weight: 200; 
+  font-size: 2em;
+  margin-bottom: 4%;
+}
+.content
+{
+  font-size: small;
+  color:rgb(70, 69, 69);
+  font-family: 'Merriweather', serif;
+  padding-right: 2%;
+}
+
+.button_care
+{
+  border: none;
+  background-color: #ffe8a8;
+  height: 140px;
+  width: 110px;
+  margin-right: 3%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4%;
+}
+.button_care_pressed
+{
+  border: none;
+  background-color: #fad076;
+  height: 140px;
+  width: 110px;
+  margin-right: 3%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4%;
+}
+.button_care:hover{
+  background-color: #fad076;
+}
+.button_care_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/care.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_health_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/health-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+.button_food_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/food-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+.button_personality_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/personality-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_coat_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/coat.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_size_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/size-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_frendly_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/friendly-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_name
+{
+  margin-top: 5%;
+  font-family: 'Merriweather', serif;
+  color:rgb(32, 31, 30)
+}
+.display_container2
+{
+  background-color: hsla(0, 73%, 97%, 0.619);
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 2%;
+  padding: 2%
+  
+}
+
+.second_part_info
+{
+  padding-bottom: 2%;
 }
