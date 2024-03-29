@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../Logo/logo';
 import styles from './AllDogs.module.css';
 import Navbar from '../NavBars/NavBar';
+import { useNavigate } from 'react-router-dom';
+
+
 interface Dog {
   id: number;
   name: string;
@@ -11,16 +14,12 @@ interface Dog {
 const AllDogs: React.FC = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [fetchCounter, setFetchCounter] = useState<number>(16);
+  const [last, setLast] = useState<boolean>(false);
+  const [showLoading, setShowLoading] = useState<boolean>(true);
   const [selectedFilter, setSelectedFilter] = useState<string>('');
-  const [dogChange, setDogChange] = useState<boolean>(false);
+  const history = useNavigate();
 
-  const handleFilter = (filter: string) => {
-    setSelectedFilter(filter);
-  };
 
-  const handleSubFilter = (subFilter: string) => {
-    console.log('Selected sub-filter:', subFilter);
-  };
 
   const [colorHovered, setColorHovered] = useState<boolean>(false);
   const [sizeHovered, setSizeHovered] = useState<boolean>(false);
@@ -29,13 +28,8 @@ const AllDogs: React.FC = () => {
   const [letterHovered, setLetterHovered] = useState<boolean>(false);
 
   const [selectedColor, setSelectedColor] = useState<string>('');
-
-  useEffect(() => {
-    if (selectedFilter === '') {
-      fetchAllDogs();
-    }
-  }, [selectedFilter]);
-
+  const [selectedLetter, setSelectedLetter] = useState<string>('');
+  const [selectedLifespan, setSelectedLifespan] = useState<number>(0);
 
   const fetchAllDogs = () => {
     fetch('http://localhost:8082/dog/alldogs', {
@@ -46,80 +40,152 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
 
-  const fetchDogPicture = (dog: Dog): Promise<Dog> => {
-    return fetch(`http://localhost:8082/dog/picture/${dog.name}`, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2Mjg4ODYsImV4cCI6MTcxMTk4ODg4Nn0.AzC0BLK8wUbzI4Db5-2QKbesggXP57cYZaq92WOpL-iZ63gOxRHU6-xF3XWMGbq6WZJW7iDwDG10oBoKo0lyCw',
-      },
-    })
-      .then(response => response.blob())
-      .then(blob => {
-        const url = URL.createObjectURL(blob);
-        return { ...dog, picture: url };
-      })
-      .catch(error => {
-        console.error('Error fetching dog picture:', error);
-        return dog;
-      });
-  };
+  useEffect(() => {
+    if (selectedFilter === '') {
+     handleFetch();
+    }
+  }, [selectedFilter]);
 
   const fetchNextBatch = () => {
-    setFetchCounter(prevCounter => prevCounter + 16);
+    if (dogs.length <= fetchCounter) {
+      setLast(true);
+    } else {
+      setFetchCounter(prevCounter => prevCounter + 16);
+    }
   };
 
   useEffect(() => {
-    if (fetchCounter > 0 && fetchCounter <= dogs.length) {
-      const dogsToUpdate = dogs.slice(fetchCounter - 16, fetchCounter);
-      const updatedDogsPromises = dogsToUpdate.map(dog => fetchDogPicture(dog));
-
-      Promise.all(updatedDogsPromises).then(updatedDogsData => {
-        const updatedDogs = dogs.map(dog => {
-          const updatedDog = updatedDogsData.find(updatedDog => updatedDog.name === dog.name);
-          return updatedDog ? updatedDog : dog;
-        });
-        setDogs(updatedDogs);
-      });
+    setShowLoading(false);
+    if (fetchCounter >= dogs.length) {
+      setFetchCounter(dogs.length);
     }
-  }, [fetchCounter, colorHovered])
-
-  const fetchedIndices: number[] = Array.from(Array(fetchCounter).keys());
-
+  }, [fetchCounter]);
 
   const fetchDogsByColor = (color: string) => {
-    console.log(color);
     fetch(`http://localhost:8082/dog/alldogsbycoatcolor?color=${color}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2Mjg4ODYsImV4cCI6MTcxMTk4ODg4Nn0.AzC0BLK8wUbzI4Db5-2QKbesggXP57cYZaq92WOpL-iZ63gOxRHU6-xF3XWMGbq6WZJW7iDwDG10oBoKo0lyCw',
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
       },
     })
       .then(response => response.json())
       .then((data: Dog[]) => {
-        console.log(color);
         setDogs(data);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
+      })
+      .catch(error => console.error('Error fetching dogs:', error));
+  };
+
+  const fetchDogsByLetter = (letter: string) => {
+    fetch(`http://localhost:8082/dog/alldogsbyname?letter=${letter}`, {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+      },
+    })
+      .then(response => response.json())
+      .then((data: Dog[]) => {
+        setDogs(data);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
+      })
+      .catch(error => console.error('Error fetching dogs:', error));
+  };
+
+  const fetchDogsByLifespan = (years: number) => {
+    fetch(`http://localhost:8082/dog/alldogsbylifespan?lifespan=${years}`, {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+      },
+    })
+      .then(response => response.json())
+      .then((data: Dog[]) => {
+        setDogs(data);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
+      })
+      .catch(error => console.error('Error fetching dogs:', error));
+  };
+
+  const fetchDogsBySize = (size: string) => {
+    fetch(`http://localhost:8082/dog/alldogsbysize?size=${size}`, {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+      },
+    })
+      .then(response => response.json())
+      .then((data: Dog[]) => {
+        setDogs(data);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
+      })
+      .catch(error => console.error('Error fetching dogs:', error));
+  };
+
+  const fetchDogsByCoat = (coat: string) => {
+    fetch(`http://localhost:8082/dog/alldogsbycoattype?coat=${coat}`, {
+      headers: {
+        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+      },
+    })
+      .then(response => response.json())
+      .then((data: Dog[]) => {
+        setDogs(data);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
 
   const handleFilteredByColor = (color: string) => {
-    handleFilter("color");
-    setFetchCounter(16);
+    setSelectedFilter('color');
     setSelectedColor(color);
     fetchDogsByColor(color);
   };
 
+  const handleFilteredByLetter = (letter: string) => {
+    setSelectedFilter('letter');
+    setSelectedLetter(letter);
+    fetchDogsByLetter(letter);
+  };
+
+  const handleFilteredByLifespan = (lifespan: number) => {
+    setSelectedFilter('lifespan');
+    setSelectedLifespan(lifespan);
+    fetchDogsByLifespan(lifespan);
+  };
+
+  const handleFilteredBySize = (size: string) => {
+    setSelectedFilter('size');
+    fetchDogsBySize(size);
+  };
+
+  const handleFilteredByCoat = (coat: string) => {
+    setSelectedFilter('coat');
+    fetchDogsByCoat(coat);
+  };
+
+  const handleFetch = () => {
+    fetchDogsByCoat('');
+    fetchAllDogs();
+  };
+
+  const handleSetId = (dogId: number) => {
+    const dogIdString = String(dogId)
+    localStorage.setItem("dogId", dogIdString);
+    history('/dog');
+
+  }
+
   return (
     <div className={styles.body}>
-
       <Navbar pagename="dogs" />
-      <>
-        <div>
-          <div className={styles.container}>
-            <div className={styles.filterContainer}>
+      <div className={styles.container}>
+      <div className={styles.filterContainer}>
               <button
                 className={styles.filtered}
                 onMouseEnter={() => setLetterHovered(true)}
@@ -128,10 +194,30 @@ const AllDogs: React.FC = () => {
               >
                 Letter
                 {letterHovered && (
-                  <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleSubFilter('a')}>a</li>
-                    <li onClick={() => handleSubFilter('b')}>b</li>
-                    <li onClick={() => handleSubFilter('c')}>c</li>
+                  <ul className={`${styles.subFilterOptions} ${styles.scrollableList}`}>
+                    <li onClick={() => handleFilteredByLetter('a')}>a</li>
+                    <li onClick={() => handleFilteredByLetter('b')}>b</li>
+                    <li onClick={() => handleFilteredByLetter('c')}>c</li>
+                    <li onClick={() => handleFilteredByLetter('d')}>d</li>
+                    <li onClick={() => handleFilteredByLetter('e')}>e</li>
+                    <li onClick={() => handleFilteredByLetter('f')}>f</li>
+                    <li onClick={() => handleFilteredByLetter('g')}>g</li>
+                    <li onClick={() => handleFilteredByLetter('h')}>h</li>
+                    <li onClick={() => handleFilteredByLetter('j')}>j</li>
+                    <li onClick={() => handleFilteredByLetter('k')}>k</li>
+                    <li onClick={() => handleFilteredByLetter('l')}>l</li>
+                    <li onClick={() => handleFilteredByLetter('m')}>m</li>
+                    <li onClick={() => handleFilteredByLetter('n')}>n</li>
+                    <li onClick={() => handleFilteredByLetter('o')}>o</li>
+                    <li onClick={() => handleFilteredByLetter('p')}>p</li>
+                    <li onClick={() => handleFilteredByLetter('q')}>q</li>
+                    <li onClick={() => handleFilteredByLetter('s')}>s</li>
+                    <li onClick={() => handleFilteredByLetter('t')}>t</li>
+                    <li onClick={() => handleFilteredByLetter('u')}>u</li>
+                    <li onClick={() => handleFilteredByLetter('v')}>v</li>
+                    <li onClick={() => handleFilteredByLetter('x')}>x</li>
+                    <li onClick={() => handleFilteredByLetter('y')}>y</li>
+                    <li onClick={() => handleFilteredByLetter('z')}>z</li>
                   </ul>
                 )}
               </button>
@@ -156,13 +242,14 @@ const AllDogs: React.FC = () => {
                 className={styles.filtered}
                 onMouseEnter={() => setLifespanHovered(true)}
                 onMouseLeave={() => setLifespanHovered(false)}
+               
               >
                 Lifespan
                 {lifespanHovered && (
                   <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleSubFilter('12')}>12 years</li>
-                    <li onClick={() => handleSubFilter('14')}>15 years</li>
-                    <li onClick={() => handleSubFilter('16')}>17 years</li>
+                    <li onClick={() => handleFilteredByLifespan(12)}>12 years</li>
+                    <li onClick={() => handleFilteredByLifespan(14)}>15 years</li>
+                    <li onClick={() => handleFilteredByLifespan(15)}>17 years</li>
                   </ul>
                 )}
               </button>
@@ -175,9 +262,9 @@ const AllDogs: React.FC = () => {
                 Size
                 {sizeHovered && (
                   <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleSubFilter('Small')}>Small</li>
-                    <li onClick={() => handleSubFilter('Medium')}>Medium</li>
-                    <li onClick={() => handleSubFilter('Large')}>Large</li>
+                    <li onClick={() => handleFilteredBySize('small')}>Small</li>
+                    <li onClick={() => handleFilteredBySize('medium')}>Medium</li>
+                    <li onClick={() => handleFilteredBySize('large')}>Large</li>
                   </ul>
                 )}
               </button>
@@ -189,29 +276,28 @@ const AllDogs: React.FC = () => {
                 Coat
                 {coatHovered && (
                   <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleSubFilter('Europe')}>Europe</li>
-                    <li onClick={() => handleSubFilter('Asia')}>Asia</li>
-                    <li onClick={() => handleSubFilter('Africa')}>Africa</li>
+                    <li onClick={() => handleFilteredByCoat('smooth')}>smooth</li>
+                    <li onClick={() => handleFilteredByCoat('short')}>short</li>
+                    <li onClick={() => handleFilteredByCoat('long')}>long</li>
                   </ul>
                 )}
               </button>
+              <button onClick={() => handleFetch()}> exit</button>
             </div>
-            <><ul className={styles.main_container}>
-                {fetchedIndices.map(index => (
-                  <button className={styles.bottom_dog} key={index}>
-                    {dogs[index] && (
-                      <>
-                        <img src={dogs[index].picture} alt={dogs[index].name} className={styles.dog_picture} />
-                        <div className={styles.name}>{dogs[index].name}</div>
-                      </>
-                    )}
-                  </button>
-                ))}
-              </ul><button className={styles.next} onClick={fetchNextBatch}>
-                  MORE
-                </button></>
-          </div>
-        </div></>
+        <ul className={styles.main_container}>
+          {dogs.slice(0, fetchCounter).map((dog, index) => (
+            <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(dog.id)}>
+              <img src={`./Dogs/${dog.name}.png`} alt={dog.name} className={styles.dog_picture} />
+              <div className={styles.name}>{dog.name}</div>
+            </button>
+          ))}
+        </ul>
+        {!last && (
+          <button className={styles.next} onClick={fetchNextBatch}>
+            MORE
+          </button>
+        )}
+      </div>
     </div>
   );
 };
