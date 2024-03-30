@@ -65,20 +65,17 @@ public class UserServiceImp implements UserService{
         return userRepository.save(newUser);
     }
     @Override
-    public boolean login(String username, String password){
+    public String login(String username, String password) {
         User user = userRepository.findByUsername(username);
 
         if (user == null) {
             throw new UserNotFoundException("Username not found");
-        }
-        else
-        {
-            if(!matchesPassword(password, user.getPassword())){
+        } else {
+            if (!matchesPassword(password, user.getPassword())) {
                 throw new IncorrectPasswordException("The password is not correct");
-            }
-            else{
-                if (user.isActivated() == false){
-                    throw new AccountNotActivatedException("You account has not been activated, you should check you e-mail");
+            } else {
+                if (!user.isActivated()) {
+                    throw new AccountNotActivatedException("Your account has not been activated, you should check your e-mail");
                 }
             }
         }
@@ -93,7 +90,7 @@ public class UserServiceImp implements UserService{
         String token = jwtTokenProvider.generateToken(authentication);
 
         System.out.println(token);
-        return true;
+        return token;
     }
 
     @Override

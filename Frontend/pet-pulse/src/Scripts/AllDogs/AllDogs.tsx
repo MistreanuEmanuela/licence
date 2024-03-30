@@ -10,6 +10,8 @@ interface Dog {
   name: string;
   picture: string;
 }
+const token = localStorage.getItem("token");
+console.log(token)
 
 const AllDogs: React.FC = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);
@@ -31,10 +33,12 @@ const AllDogs: React.FC = () => {
   const [selectedLetter, setSelectedLetter] = useState<string>('');
   const [selectedLifespan, setSelectedLifespan] = useState<number>(0);
 
+  
+
   const fetchAllDogs = () => {
     fetch('http://localhost:8082/dog/alldogs', {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2Mjg4ODYsImV4cCI6MTcxMTk4ODg4Nn0.AzC0BLK8wUbzI4Db5-2QKbesggXP57cYZaq92WOpL-iZ63gOxRHU6-xF3XWMGbq6WZJW7iDwDG10oBoKo0lyCw',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())
@@ -69,7 +73,7 @@ const AllDogs: React.FC = () => {
   const fetchDogsByColor = (color: string) => {
     fetch(`http://localhost:8082/dog/alldogsbycoatcolor?color=${color}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())
@@ -84,7 +88,7 @@ const AllDogs: React.FC = () => {
   const fetchDogsByLetter = (letter: string) => {
     fetch(`http://localhost:8082/dog/alldogsbyname?letter=${letter}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())
@@ -99,7 +103,7 @@ const AllDogs: React.FC = () => {
   const fetchDogsByLifespan = (years: number) => {
     fetch(`http://localhost:8082/dog/alldogsbylifespan?lifespan=${years}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())
@@ -114,7 +118,7 @@ const AllDogs: React.FC = () => {
   const fetchDogsBySize = (size: string) => {
     fetch(`http://localhost:8082/dog/alldogsbysize?size=${size}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())
@@ -129,7 +133,7 @@ const AllDogs: React.FC = () => {
   const fetchDogsByCoat = (coat: string) => {
     fetch(`http://localhost:8082/dog/alldogsbycoattype?coat=${coat}`, {
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE2OTk5NDAsImV4cCI6MTcxMjA1OTk0MH0.5dBER8FHQkiRyrrLVFJA6cBQ-dzdJYWylX-I4Ogw_cZGwPNUBBeSfgn-nib27pfj90PJ1CcAAu_VLdoSWBX3sA',
+        Authorization: `Bearer ${token}`,
       },
     })
       .then(response => response.json())

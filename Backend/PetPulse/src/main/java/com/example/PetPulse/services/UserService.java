@@ -11,7 +11,7 @@ public interface UserService {
     boolean isValidPassword(String password);
     public String encodePassword(String rawPassword);
     public boolean matchesPassword(String rawPassword, String encodedPassword);
-    public boolean login(String username, String password);
+    public String login(String username, String password);
 
     public void sendConfirmationEmail(User user);
 

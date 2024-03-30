@@ -29,10 +29,10 @@ public class UserController {
 
     @Operation(security = {})
     @PostMapping(value = "/connect", produces = "application/json")
-    public void login(@RequestBody LoginUserDTO loginUserDTO) {
+    public String login(@RequestBody LoginUserDTO loginUserDTO) {
         String username =loginUserDTO.getUsername();
         String password = loginUserDTO.getPassword();
-        userService.login(username, password);
+        return userService.login(username, password);
     }
 
     @GetMapping(value = "/confirm", produces = "application/json")

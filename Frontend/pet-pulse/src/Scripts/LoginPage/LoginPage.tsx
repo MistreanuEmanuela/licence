@@ -3,6 +3,8 @@ import styles from './Login.module.css';
 import Navbar from '../NavBars/SimpleNavBar';
 import Logo from '../Logo/logo';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 interface Credentials {
   username: string;
@@ -81,6 +83,15 @@ function RightMainContainer() {
 const LoginPage: React.FC = () => {
   const [errors, setErrors] = useState<string[]>([]);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const history = useNavigate();
+
+  const handleConnect=(token: string) => {
+      localStorage.setItem("token", token);
+      console.log(token);
+      setTimeout(() => {
+        history('/alldog');
+    }, 500);
+  }
 
   const handleSubmit = async ({ username, password }: Credentials) => {
     const myHeaders: HeadersInit = new Headers();
@@ -98,12 +109,20 @@ const LoginPage: React.FC = () => {
       redirect: "follow"
     };
 
-    fetch("http://localhost:8082/users/connect", requestOptions)
-      .then((response) => response.text())
-      .then((result) => setErrors([result]))
-      .catch((error) => console.error(error));
-  }
+    try{
+      const response = await fetch("http://localhost:8082/users/connect", requestOptions)
+      const result = await response.text()
+      if (response.ok) {
+        handleConnect(result);
 
+      }
+      if (!response.ok) {
+        setErrors([result])
+      }
+    }catch (error) {
+      console.error(error);
+    }
+  }
   const handleForgotPasswordClick = () => {
     setShowForgotPassword(true);
   };
@@ -111,7 +130,7 @@ const LoginPage: React.FC = () => {
   const handleForgotPasswordCancel = () => {
     setShowForgotPassword(false);
   };
-
+  
   return (
     <div className={styles.body}>
       {!showForgotPassword ? (
@@ -135,7 +154,6 @@ const LoginPage: React.FC = () => {
       )}
     </div>
   );
-
 }
 
 interface ForgotPasswordProps {
