@@ -100,6 +100,7 @@
   font-weight: 200; 
   font-size: 2em;
   margin-bottom: 4%;
+  margin-right: 50%;
 }
 .content
 {
@@ -118,6 +119,7 @@
   margin-right: 3%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   border-radius: 4%;
+  margin-top: 2%;
 }
 .button_care_pressed
 {
@@ -128,6 +130,7 @@
   margin-right: 3%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   border-radius: 4%;
+  margin-top: 2%;
 }
 .button_care:hover{
   background-color: #fad076;
@@ -213,11 +216,214 @@
   margin-right: 5%;
   white-space: pre-wrap;
   border-radius: 2%;
-  padding: 2%
-  
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(234, 102, 46, 0.4);
 }
 
 .second_part_info
 {
   padding-bottom: 2%;
+}
+
+
+.info_picture_feeding
+{
+  background-color: hsla(32, 90%, 75%, 0.619);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/eating-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_care
+{
+  background-color: hsla(32, 90%, 75%, 0.619);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/eating-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+.info_picture_size
+{
+  background-color: hsla(32, 90%, 75%, 0.619);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.40.04-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+.info_picture_care
+{
+  background-color: hsla(32, 91%, 75%, 0.697);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.45.06-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_friendship
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.42.24-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_health
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/istock68229937large-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_coat
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/coat_type-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+
+.info_picture_personality
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.43.39-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+
+.title_and_picture
+{
+  display: flex;
+  flex-direction: row;
+}
+.title2
+{
+  font-size: 3em;
+  align-self: center;
+  align-items: center;
+  margin-left: 10%;
+  font-family: 'Lily Script One', cursive; 
+  -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: rgb(72, 70, 70);
+}
+.subtitle
+{
+  color:rgb(255, 76, 76);
+  margin-left: 60%;
+}
+@media screen and (max-width: 800px) {
+  .dog_details
+  {
+    display: flex;
+    flex-direction: column;
+  }
+  .dog_img
+  {
+    width: 70vw;
+    height: 40vh;
+    align-self: center;
+  }
+  .title
+  {
+    align-self: flex-start;
+    margin-left: 5%;
+  }
+  .content
+  {
+    padding: 2%;
+  }
+  .subtitle
+  {
+    margin-left: 2%;
+  }
 }

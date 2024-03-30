@@ -14,17 +14,18 @@ interface Dog {
     care: string;
 }
 const token = localStorage.getItem("token");
-const id = localStorage.getItem("idDog");
+const id = localStorage.getItem("dogId");
 
 const DogInfo: React.FC<{}> = () => {
     const [dog, setDog] = useState<Dog | null>(null);
     const [dogPicture, setDogPicture] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    const [oneTm, setOneTm] = useState<Boolean>(false);
 
     useEffect(() => {
+
         const token = localStorage.getItem("token");
         const id = localStorage.getItem("dogId");
-
         if (!token || !id) {
             return;
         }
@@ -34,47 +35,49 @@ const DogInfo: React.FC<{}> = () => {
                 Authorization: `Bearer ${token}`,
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch dog details');
-            }
-            return response.json();
-        })
-        .then(data => setDog(data))
-        .catch(error => console.error('Error fetching dog details:', error));
-
-        fetch(`http://localhost:8082/dog/picture/${dog?.name}`, {
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch dog details');
+                }
+                return response.json();
+            })
+            .then(data => setDog(data))
+            .catch(error => console.error('Error fetching dog details:', error));
+    }, []);
+    useEffect(() => {
+        if (dog?.name !== undefined) {
+            fetch(`http://localhost:8082/dog/picture/${dog?.name}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch dog picture');
-            }
-            return response.blob();
-        })
-        .then(blob => {
-            const url = URL.createObjectURL(blob);
-            setDogPicture(url);
-        })
-        .catch(error => console.error('Error fetching dog picture:', error));
-
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch dog picture');
+                }
+                return response.blob();
+            })
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                setDogPicture(url);
+            })
+            .catch(error => console.error('Error fetching dog picture:', error));
+        }
     }, [dog]);
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
         console.log(dog);
-        setTimeout(() => { 
+        setTimeout(() => {
             const element = document.getElementById('category');
             if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'end' }); 
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-        }, 500); 
+        }, 500);
     };
 
     return (
-        <div className={styles.body} id='category'>
+        <div className={styles.body}>
             <Navbar pagename="" />
             <div className={styles.dog_info}>
                 {dog && (
@@ -113,42 +116,69 @@ const DogInfo: React.FC<{}> = () => {
                                 <button className={selectedCategory === "feeding" ? `${styles.button_care} ${styles.button_care_pressed}` : styles.button_care}
                                     onClick={() => handleCategoryClick("feeding")}>
                                     <div className={styles.button_food_image}> </div>
-                                    <div className={styles.button_name}>Fiding</div>
-                                </button>     
+                                    <div className={styles.button_name}>Feeding</div>
+                                </button>
 
                                 <button className={selectedCategory === "personality" ? `${styles.button_care} ${styles.button_care_pressed}` : styles.button_care}
                                     onClick={() => handleCategoryClick("personality")}>
                                     <div className={styles.button_personality_image}> </div>
                                     <div className={styles.button_name}>Personality</div>
-                                </button>  
+                                </button>
 
                                 <button className={selectedCategory === "size" ? `${styles.button_care} ${styles.button_care_pressed}` : styles.button_care}
                                     onClick={() => handleCategoryClick("size")}>
                                     <div className={styles.button_size_image}> </div>
                                     <div className={styles.button_name}>Size</div>
-                                </button> 
-                              
-                              
+                                </button>
+
+
                                 <button className={selectedCategory === "coat" ? `${styles.button_care} ${styles.button_care_pressed}` : styles.button_care}
                                     onClick={() => handleCategoryClick("coat")}>
                                     <div className={styles.button_coat_image}> </div>
                                     <div className={styles.button_name}>Coat</div>
-                                </button>  
+                                </button>
 
                                 <button className={selectedCategory === "frendly" ? `${styles.button_care} ${styles.button_care_pressed}` : styles.button_care}
                                     onClick={() => handleCategoryClick("frendly")}>
                                     <div className={styles.button_frendly_image}> </div>
                                     <div className={styles.button_name}>Friendship</div>
-                                </button>  
+                                </button>
                             </div>
-                            <div className={styles.display_container2} >
-                                {selectedCategory === "health" && <p>{dog.health}</p>}
-                                {selectedCategory === "feeding" && <p>{dog.feeding}</p>}
-                                {selectedCategory === "personality" && <p>{dog.personality}</p>}
-                                {selectedCategory === "size" && <p>{dog.size}</p>}
-                                {selectedCategory === "coat" && <p>{dog.coat}</p>}
-                                {selectedCategory === "frendly" && <p>{dog.friendship}</p>}
-                                {selectedCategory === "care" && <p>{dog.care}</p>}
+                            <div className={styles.display_container2}  id='category'>
+                                {selectedCategory === "health" && 
+                                <><div className={styles.title_and_picture}>
+                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Health </div></div>
+                                
+                                        <div className={styles.info_picture_health}></div></div>
+                                        <div>{dog.health}</div></>
+                                }
+                                {selectedCategory === "feeding" && 
+                                 <><div className={styles.title_and_picture}>
+                                 <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Feeding </div></div>
+                                       <div className={styles.info_picture_feeding}></div></div> 
+                                       <div>{dog.feeding}</div></>
+}
+                                {selectedCategory === "personality" && 
+                                 <><div className={styles.title_and_picture}>
+                                 <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Personality </div></div>
+                                       <div className={styles.info_picture_personality}></div></div> 
+                                       <div>{dog.personality}</div></>}
+                                {selectedCategory === "size" && <><div className={styles.title_and_picture}>
+                                 <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Size </div></div>
+                                       <div className={styles.info_picture_size}></div></div> 
+                                       <div>{dog.size}</div></>}
+                                {selectedCategory === "coat" &&  <><div className={styles.title_and_picture}>
+                                 <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Coat </div></div>
+                                       <div className={styles.info_picture_coat}></div></div> 
+                                       <div>{dog.coat}</div></>}
+                                {selectedCategory === "frendly" &&  <><div className={styles.title_and_picture}>
+                                 <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Friendship </div></div>
+                                       <div className={styles.info_picture_friendship}></div></div> 
+                                       <div>{dog.friendship}</div></>}
+                                {selectedCategory === "care" &&  <><div className={styles.title_and_picture}>
+                                 <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Care </div></div>
+                                       <div className={styles.info_picture_care}></div></div> 
+                                       <div>{dog.care}</div></>}
                                 {selectedCategory === ""}
                             </div>
                         </div>
