@@ -44,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
   return (
     <><div className={styles.body}>
       <div className={styles.logo}>
-        <Link to="/login" className={styles.logo_picture}></Link>
+        <Link to="/principalPage" className={styles.logo_picture}></Link>
         <div className={styles.logo_text}> PetPulse</div>
       </div>
       <nav className={styles.navbar}>
@@ -56,29 +56,29 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
             {pagename === 'home' && !isMenuOpen && (
               <div className={styles.home}>
                 <div className={styles.page_home}></div>
-                <li><a href="./Home">Home</a></li>
+                <li><a href="./principalPage">Home</a></li>
               </div>
             )}
            {(pagename !=='home' || isMenuOpen) && (
-              <li><a href="./Home">Home</a></li>
+              <li><a href="./principalPage">Home</a></li>
             )}
             {pagename === 'dogs' && !isMenuOpen && (
               <div className={styles.home}>
                 <div className={styles.page_dog}></div>
-                <li><a href="./Home">Dogs</a></li>
+                <li><a href="./alldog">Dogs</a></li>
               </div>
             )}
            {(pagename !=='dogs' || isMenuOpen) && (
-              <li><a href="./Home">Dogs</a></li>
+              <li><a href="./alldog">Dogs</a></li>
             )}
           {pagename === 'cats' && !isMenuOpen && (
               <div className={styles.home}>
                 <div className={styles.page_cat}></div>
-                <li><a href="./Home">Cats</a></li>
+                <li><a href="./allcats">Cats</a></li>
               </div>
             )}
            {(pagename !=='cats' || isMenuOpen) && (
-              <li><a href="./Home">Cats</a></li>
+              <li><a href="./allcats">Cats</a></li>
             )}
           </ul>
         </div>

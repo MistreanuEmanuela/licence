@@ -89,7 +89,7 @@ const LoginPage: React.FC = () => {
       localStorage.setItem("token", token);
       console.log(token);
       setTimeout(() => {
-        history('/alldog');
+        history('/principalPage');
     }, 500);
   }
 

@@ -211,6 +211,7 @@
   background-color: hsla(0, 73%, 97%, 0.619);
   margin-left: 5%;
   margin-right: 5%;
+  white-space: pre-wrap;
   border-radius: 2%;
   padding: 2%
   

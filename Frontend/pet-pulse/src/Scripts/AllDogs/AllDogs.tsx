@@ -29,13 +29,22 @@ const AllDogs: React.FC = () => {
   const [lifespanHovered, setLifespanHovered] = useState<boolean>(false);
   const [letterHovered, setLetterHovered] = useState<boolean>(false);
 
+  const [selectedSize, setSelectedSize] = useState<String>('');
+  const [selectedCoat, setSelectedCoat] = useState<String>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [selectedLetter, setSelectedLetter] = useState<string>('');
   const [selectedLifespan, setSelectedLifespan] = useState<number>(0);
 
-  
+
 
   const fetchAllDogs = () => {
+    setSelectedFilter('');
+    setSelectedLetter('');
+    setSelectedCoat('')
+    setSelectedLifespan(0);
+    setSelectedSize('');
+    setSelectedFilter('');
+
     fetch('http://localhost:8082/dog/alldogs', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -51,7 +60,7 @@ const AllDogs: React.FC = () => {
 
   useEffect(() => {
     if (selectedFilter === '') {
-     handleFetch();
+      handleFetch();
     }
   }, [selectedFilter]);
 
@@ -146,31 +155,53 @@ const AllDogs: React.FC = () => {
   };
 
   const handleFilteredByColor = (color: string) => {
+    setSelectedLetter('');
+    setSelectedCoat('')
+    setSelectedLifespan(0);
+    setSelectedSize('');
     setSelectedFilter('color');
     setSelectedColor(color);
     fetchDogsByColor(color);
   };
 
   const handleFilteredByLetter = (letter: string) => {
+    setSelectedColor('');
+    setSelectedCoat('')
+    setSelectedLifespan(0);
+    setSelectedSize('');
     setSelectedFilter('letter');
     setSelectedLetter(letter);
     fetchDogsByLetter(letter);
   };
 
   const handleFilteredByLifespan = (lifespan: number) => {
+    setSelectedColor('');
+    setSelectedCoat('')
+    setSelectedLetter('');
+    setSelectedSize('');
     setSelectedFilter('lifespan');
     setSelectedLifespan(lifespan);
     fetchDogsByLifespan(lifespan);
   };
 
   const handleFilteredBySize = (size: string) => {
+    setSelectedColor('');
+    setSelectedLifespan(0);
+    setSelectedLetter('');
+    setSelectedCoat('');
     setSelectedFilter('size');
+    setSelectedSize(size)
     fetchDogsBySize(size);
   };
 
   const handleFilteredByCoat = (coat: string) => {
+    setSelectedColor('');
+    setSelectedLifespan(0);
+    setSelectedLetter('');
+    setSelectedSize('');
     setSelectedFilter('coat');
     fetchDogsByCoat(coat);
+    setSelectedCoat(coat);
   };
 
   const handleFetch = () => {
@@ -189,105 +220,129 @@ const AllDogs: React.FC = () => {
     <div className={styles.body}>
       <Navbar pagename="dogs" />
       <div className={styles.container}>
-      <div className={styles.filterContainer}>
-              <button
-                className={styles.filtered}
-                onMouseEnter={() => setLetterHovered(true)}
-                onMouseLeave={() => setLetterHovered(false)}
+        <div className={styles.filterContainer}>
+          <button
+            className={`${styles.filtered} ${selectedFilter !== 'letter' ? styles.filtered : styles.filteredActive}`}
 
-              >
-                Letter
-                {letterHovered && (
-                  <ul className={`${styles.subFilterOptions} ${styles.scrollableList}`}>
-                    <li onClick={() => handleFilteredByLetter('a')}>a</li>
-                    <li onClick={() => handleFilteredByLetter('b')}>b</li>
-                    <li onClick={() => handleFilteredByLetter('c')}>c</li>
-                    <li onClick={() => handleFilteredByLetter('d')}>d</li>
-                    <li onClick={() => handleFilteredByLetter('e')}>e</li>
-                    <li onClick={() => handleFilteredByLetter('f')}>f</li>
-                    <li onClick={() => handleFilteredByLetter('g')}>g</li>
-                    <li onClick={() => handleFilteredByLetter('h')}>h</li>
-                    <li onClick={() => handleFilteredByLetter('j')}>j</li>
-                    <li onClick={() => handleFilteredByLetter('k')}>k</li>
-                    <li onClick={() => handleFilteredByLetter('l')}>l</li>
-                    <li onClick={() => handleFilteredByLetter('m')}>m</li>
-                    <li onClick={() => handleFilteredByLetter('n')}>n</li>
-                    <li onClick={() => handleFilteredByLetter('o')}>o</li>
-                    <li onClick={() => handleFilteredByLetter('p')}>p</li>
-                    <li onClick={() => handleFilteredByLetter('q')}>q</li>
-                    <li onClick={() => handleFilteredByLetter('s')}>s</li>
-                    <li onClick={() => handleFilteredByLetter('t')}>t</li>
-                    <li onClick={() => handleFilteredByLetter('u')}>u</li>
-                    <li onClick={() => handleFilteredByLetter('v')}>v</li>
-                    <li onClick={() => handleFilteredByLetter('x')}>x</li>
-                    <li onClick={() => handleFilteredByLetter('y')}>y</li>
-                    <li onClick={() => handleFilteredByLetter('z')}>z</li>
-                  </ul>
-                )}
-              </button>
+            onMouseEnter={() => setLetterHovered(true)}
+            onMouseLeave={() => setLetterHovered(false)}
 
-              <button
-                className={`${styles.filtered} ${selectedFilter === 'Color' ? styles.active : ''}`}
-                onMouseEnter={() => setColorHovered(true)}
-                onMouseLeave={() => setColorHovered(false)}
+          >
+            Letter
+            {letterHovered && (
+              <ul className={`${styles.subFilterOptions} ${styles.scrollableList}`}>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'a' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('a')}>a</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'b' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('b')}>b</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'c' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('c')}>c</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'd' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('d')}>d</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'e' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('e')}>e</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'f' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('f')}>f</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'g' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('g')}>g</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'h' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('h')}>h</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'i' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('i')}>i</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'j' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('j')}>j</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'k' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('k')}>k</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'l' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('l')}>l</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'm' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('m')}>m</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'n' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('n')}>n</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'o' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('o')}>o</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'p' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('p')}>p</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'q' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('q')}>q</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'r' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('r')}>r</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 's' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('s')}>s</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 't' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('t')}>t</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'u' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('u')}>u</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'v' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('v')}>v</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'w' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('w')}>w</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'x' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('x')}>x</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'y' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('y')}>y</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLetter !== 'z' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`} onClick={() => handleFilteredByLetter('z')}>z</li>
+              </ul>
+            )}
+          </button>
 
-              >
-                Color
-                {colorHovered && (
-                  <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleFilteredByColor('black')}>black</li>
-                    <li onClick={() => handleFilteredByColor('white')}>Blue</li>
-                    <li onClick={() => handleFilteredByColor('chocolate')}>Green</li>
-                  </ul>
-                )}
-              </button>
+          <button
+            className={`${styles.filtered} ${selectedFilter !== 'color' ? styles.filtered : styles.filteredActive}`}
+            onMouseEnter={() => setColorHovered(true)}
+            onMouseLeave={() => setColorHovered(false)}
 
-              <button
-                className={styles.filtered}
-                onMouseEnter={() => setLifespanHovered(true)}
-                onMouseLeave={() => setLifespanHovered(false)}
-               
-              >
-                Lifespan
-                {lifespanHovered && (
-                  <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleFilteredByLifespan(12)}>12 years</li>
-                    <li onClick={() => handleFilteredByLifespan(14)}>15 years</li>
-                    <li onClick={() => handleFilteredByLifespan(15)}>17 years</li>
-                  </ul>
-                )}
-              </button>
+          >
+            Color
+            {colorHovered && (
+              <ul className={styles.subFilterOptions}>
+                <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'black' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByColor('black')}>black</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'white' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByColor('white')}>White
+                </li>
+                <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'chocolate' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByColor('chocolate')}>Chocolate</li>
+              </ul>
+            )}
+          </button>
 
-              <button
-                className={styles.filtered}
-                onMouseEnter={() => setSizeHovered(true)}
-                onMouseLeave={() => setSizeHovered(false)}
-              >
-                Size
-                {sizeHovered && (
-                  <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleFilteredBySize('small')}>Small</li>
-                    <li onClick={() => handleFilteredBySize('medium')}>Medium</li>
-                    <li onClick={() => handleFilteredBySize('large')}>Large</li>
-                  </ul>
-                )}
-              </button>
-              <button
-                className={styles.filtered}
-                onMouseEnter={() => setCoatHovered(true)}
-                onMouseLeave={() => setCoatHovered(false)}
-              >
-                Coat
-                {coatHovered && (
-                  <ul className={styles.subFilterOptions}>
-                    <li onClick={() => handleFilteredByCoat('smooth')}>smooth</li>
-                    <li onClick={() => handleFilteredByCoat('short')}>short</li>
-                    <li onClick={() => handleFilteredByCoat('long')}>long</li>
-                  </ul>
-                )}
-              </button>
-              <button onClick={() => handleFetch()}> exit</button>
-            </div>
+          <button
+            className={`${styles.filtered} ${selectedFilter !== 'lifespan' ? styles.filtered : styles.filteredActive}`}
+            onMouseEnter={() => setLifespanHovered(true)}
+            onMouseLeave={() => setLifespanHovered(false)}
+
+          >
+            Lifespan
+            {lifespanHovered && (
+              <ul className={styles.subFilterOptions}>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 12 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(12)}>12 years</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 14 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(14)}>14 years</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 15 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(15)}>15 years</li>
+              </ul>
+            )}
+          </button>
+
+          <button
+            className={`${styles.filtered} ${selectedFilter !== 'size' ? styles.filtered : styles.filteredActive}`}
+            onMouseEnter={() => setSizeHovered(true)}
+            onMouseLeave={() => setSizeHovered(false)}
+          >
+            Size
+            {sizeHovered && (
+              <ul className={styles.subFilterOptions}>
+                <li className={`${styles.subFilterOptionsli} ${selectedSize !== 'small' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+
+                  onClick={() => handleFilteredBySize('small')}>Small</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedSize !== 'medium' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+
+                  onClick={() => handleFilteredBySize('medium')}>Medium</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedSize !== 'large' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+
+                  onClick={() => handleFilteredBySize('large')}>Large</li>
+              </ul>
+            )}
+          </button>
+          <button
+            className={`${styles.filtered} ${selectedFilter !== 'coat' ? styles.filtered : styles.filteredActive}`}
+
+            onMouseEnter={() => setCoatHovered(true)}
+            onMouseLeave={() => setCoatHovered(false)}
+          >
+            Coat
+            {coatHovered && (
+              <ul className={styles.subFilterOptions}>
+                <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'smooth' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+
+                  onClick={() => handleFilteredByCoat('smooth')}>smooth</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'short' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+
+                  onClick={() => handleFilteredByCoat('short')}>short</li>
+
+                <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'long' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByCoat('long')}>long</li>
+              </ul>
+            )}
+          </button>
+          <button className= {styles.exit} onClick={() => handleFetch()}> </button>
+        </div>
         <ul className={styles.main_container}>
           {dogs.slice(0, fetchCounter).map((dog, index) => (
             <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(dog.id)}>

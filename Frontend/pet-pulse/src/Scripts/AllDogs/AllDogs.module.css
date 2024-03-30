@@ -117,7 +117,18 @@
     font-family: 'Roboto', sans-serif;
     background-color: transparent
   }
- 
+  .filteredActive {
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 20%;
+    border: 1px solid red; /* Border shorthand */
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
   .filterOptions {
     display: inline-block;
     position: relative;
@@ -135,11 +146,19 @@
     max-height: 200px; /* Adjust the max height as needed */
     overflow-y: auto;
   }
-  .subFilterOptions li {
+  .subFilterOptionsli {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     cursor: pointer;
+  }
+
+  .subFilterOptionsliActive {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    background-color: #ddd;
   }
   
   .subFilterOptions li:hover {
@@ -150,3 +169,13 @@
     display: block;
   }
   
+  .exit
+  {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    border: none;
+    background-image: url(./exit-removebg-preview.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }

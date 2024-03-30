@@ -13,51 +13,64 @@ interface Dog {
     friendship: string;
     care: string;
 }
+const token = localStorage.getItem("token");
+const id = localStorage.getItem("idDog");
 
 const DogInfo: React.FC<{}> = () => {
     const [dog, setDog] = useState<Dog | null>(null);
     const [dogPicture, setDogPicture] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    const id = 61;
-    const name = "Akita";
 
     useEffect(() => {
+        const token = localStorage.getItem("token");
+        const id = localStorage.getItem("dogId");
+
+        if (!token || !id) {
+            return;
+        }
+
         fetch(`http://localhost:8082/dog/${id}`, {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE3MjIzNDcsImV4cCI6MTcxMjA4MjM0N30.weZPK-yXdRvnSgqKoMrkvAhabym3Xxc36rpyrtCb2A75TVup5hbgLlEc_-GFVrNAlbqfhnutvZjvnw36L4xbEQ'
+                Authorization: `Bearer ${token}`,
             }
         })
-            .then(response => response.json())
-            .then(data => setDog(data))
-            .catch(error => console.error('Error fetching dog details:', error));
-
-
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWEiLCJpYXQiOjE3MTE3MjIzNDcsImV4cCI6MTcxMjA4MjM0N30.weZPK-yXdRvnSgqKoMrkvAhabym3Xxc36rpyrtCb2A75TVup5hbgLlEc_-GFVrNAlbqfhnutvZjvnw36L4xbEQ");
-
-        fetch(`http://localhost:8082/dog/picture/${name}`, {
-            method: "GET",
-            headers: myHeaders,
-            redirect: "follow"
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch dog details');
+            }
+            return response.json();
         })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = URL.createObjectURL(blob);
-                setDogPicture(url);
-            })
-            .catch(error => console.error('Error fetching dog picture:', error));
+        .then(data => setDog(data))
+        .catch(error => console.error('Error fetching dog details:', error));
 
-    }, [id, name]);
+        fetch(`http://localhost:8082/dog/picture/${dog?.name}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch dog picture');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            setDogPicture(url);
+        })
+        .catch(error => console.error('Error fetching dog picture:', error));
+
+    }, [dog]);
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
         console.log(dog);
-        setTimeout(() => { // Delay scrolling by 2 seconds
+        setTimeout(() => { 
             const element = document.getElementById('category');
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'end' }); 
             }
-        }, 500); // 2000 milliseconds = 2 seconds
+        }, 500); 
     };
 
     return (

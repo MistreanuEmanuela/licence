@@ -15,6 +15,8 @@ interface User {
 
 const CreateAccount: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [confirmEmail, setConfirmEmail] = useState<string>('');
+
   const [user, setUser] = useState<User>({
     firstName: '',
     lastName: '',
@@ -50,6 +52,10 @@ const CreateAccount: React.FC = () => {
 
     if (user.password !== confirmPassword) {
       setErrors(['Passwords do not match']);
+      return;
+    }
+    if (user.email !== confirmEmail) {
+      setErrors(['Emails do not match']);
       return;
     }
 
@@ -99,16 +105,16 @@ const CreateAccount: React.FC = () => {
           </div>
           <div className={styles.formInputs}>
             <div className={styles.part}>
-              <input className={styles.input} type="text" placeholder="Enter Username" name="username" id="uname" value={user.username} onChange={handleChange} required />
               <input className={styles.input} type="email" placeholder="Enter E-mail" name="email" id="email" value={user.email} onChange={handleChange} required />
+              <input className={styles.input} type="email" placeholder="Confirm E-mail" name="email" id="email2" value={confirmEmail} onChange={(e) => setConfirmEmail(e.target.value)} required />
               <input className={styles.input} type="password" placeholder="Enter Password" name="password" id="password" value={user.password} onChange={handleChange} required />
               <input className={styles.input} type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
             </div>
             <div className={styles.part}>
+            <input className={styles.input} type="text" placeholder="Enter Username" name="username" id="uname" value={user.username} onChange={handleChange} required />
               <input className={styles.input} type="text" placeholder="Lastname" name="lastName" id="lastname" value={user.lastName} onChange={handleChange} required />
               <input className={styles.input} type="text" placeholder="Firstname" name="firstName" id="firstname" value={user.firstName} onChange={handleChange} required />
               <input className={styles.input} type="date" placeholder="Birthdate" name="birthDate" id="birthdate" value={user.birthDate} onChange={handleChange} required />
-              <textarea className={styles.input} placeholder="something about you"></textarea>
             </div>
           </div>
           <button className={styles.but} type="submit">Submit</button>
