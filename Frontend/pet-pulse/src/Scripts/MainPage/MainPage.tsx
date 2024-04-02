@@ -44,14 +44,16 @@ function BodyContent22({ title, subtitle, content, currentDataIndex }: ContentDa
             <div className={styles.page_number}>0{currentDataIndex + 1}</div>
             <div className={styles.title}>{title}</div>
           </div>
-          <div className={styles.right_part}>ceva</div>
+          <div className={styles.right_part}>{content}</div>
         </div>
       ) : (
         <div className={styles.content}>
           <div className={styles.left_part_2}> 
             <div className={styles.page_number}>0{currentDataIndex + 1}</div>
             <div className={styles.title_new}>{title}</div>
-            <button> Stay inform</button>
+            <div className={styles.description}> Discover advice on raising and keeping your furry friends healthy and happy.<br />Join us on this journey of companionship and discover the joy of pet ownership!
+            </div>
+            <Link to='./sign' className={styles.start}> Join</Link>
           </div>
         </div>
       )}
@@ -63,27 +65,25 @@ function Body() {
   const [currentDataIndex, setCurrentDataIndex] = useState<number>(0);
   const [contentData, setContentData] = useState<ContentData[]>([
     {
-      title: 'Labrador',
-      subtitle: 'cuteness',
-      content:
-        'A puppy is a juvenile dog. Some puppies can weigh 1-1.5 kg, while larger ones can weigh up to 7-11 kg. With their wobbly walks, floppy ears, and boundless enthusiasm, they remind us to embrace the simple pleasures in life.',
-      image: './MainPagePictures/dog.png',
-      page: './MainPagePictures/page1.png',
+      title: "Labrador",
+      subtitle: "Cuteness",
+      content: "Height: \n Males 56–57 cm (22–22.5 in),\n Females 54–56 cm (21.5–22 in)\n \nWeight:\n Males 29–36 kg (65–80 lb), \n Females 25–32 kg (55–70 lb)\n \nCoat:\n Short, dense, weather-resistant double coat\n \nColour:\n Black, chocolate, or yellow (ranges from pale yellow to fox red)\n \nLife span:\n 13 years\n\n Common nicknames:\n Lab\n \n Origin:\n	United Kingdom\n \n",
+      image: "./MainPagePictures/dog.png",
+      page: "./MainPagePictures/page1.png"
     },
     {
       title: 'Russian Blue',
       subtitle: '',
-      content:
-        'With their small and soft tongues, they blend us into their unconditional love. Despite their small size, kittens possess boundless energy and curiosity, making every moment spent with them a delightful adventure',
+      content: "Height: \n Males 24-25 cm (9-10 in),\n Females 23-24 cm (9-10 in)\n \nWeight:\n Males 5–7 kg (11–15 lb), \n Females 3–6 kg (7–13 lb)\n \nCoat:\n Short, dense, and plush coat.\n \nColour:\n Medium silvery-blue shade without any white markings or ghost patterning\n \nLife span:\n 10-15 years\n\n Common nicknames:\n Blue\n \n Origin:\n	Russia\n \n",
       image: './MainPagePictures/p21.png',
       page: './MainPagePictures/page2.png',
     },
     {
-      title: 'They need your help',
+      title: 'They need you',
       subtitle: 'important',
       content:
         "We're here to provide personalized care advice tailored to your pet's breed, ensuring their health and happiness. Join us, the ultimate destination for pet lovers, to discover everything you need to know about caring for your beloved friend.",
-      image: './MainPagePictures/dct_1.png',
+      image: './MainPagePictures/p33.png',
       page: './MainPagePictures/page3.png',
     },
   ]);
@@ -132,13 +132,9 @@ function Body() {
           </div>
           <div className={styles.left_main}>
           <BodyContent22 {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} />
-            {/* <div
-              className={styles.image}
-              style={{ backgroundImage: `url('${contentData[currentDataIndex].image}')` }}
-            ></div> */}
+         <div className={styles.page_display} style={{ backgroundImage: `url('${contentData[currentDataIndex].page}')` }}> </div>
           </div>
           <div className={styles.right_main}>
-            {/* <BodyContent {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} /> */}
             <div
               className={styles.image}
               style={{ backgroundImage: `url('${contentData[currentDataIndex].image}')` }}></div>
@@ -152,7 +148,7 @@ function Body() {
 
         <div className={styles.second_main_container_2}>
           <div className={styles.right_main2}>
-            <BodyContent2 {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} />
+            <BodyContent22 {...contentData[currentDataIndex]} currentDataIndex={currentDataIndex} />
           </div>
           <div className={styles.left_main2}>
             <div
@@ -162,12 +158,7 @@ function Body() {
           </div>
        
         </div>
-
-       
-
-        {/* <div className={styles.page_number} style={{ backgroundImage: `url('${contentData[currentDataIndex].page}')` }}> </div> */}
       </div>
-    
     </div>
     
   );
