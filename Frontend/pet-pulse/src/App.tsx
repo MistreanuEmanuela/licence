@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from './Scripts/MainPage/MainPage';
-import LoginPage from './Scripts/LoginPage/LoginPage';
+import LoginPage from './Scripts/LoginPage/Login';
 import CreateAccount from './Scripts/CreateAccount/createAccount';
 import DogInfo from './Scripts/DogInfo/dogInfo';
 import AllDogs from './Scripts/AllDogs/AllDogs';
