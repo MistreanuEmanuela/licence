@@ -1,32 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .body {
-  background: linear-gradient(to bottom right, #40E0D0, #5aef8a);
-  background: -webkit-linear-gradient(to bottom right, #40E0D0, #5aef8a);
-  background: -moz-linear-gradient(to bottom right, #40E0D0, #5aef8a);
-  background: -o-linear-gradient(to bottom right, #40E0D0, #5aef8a);
-  background: -ms-linear-gradient(to bottom right, #40E0D0, #5aef8a);
+  background-color:#A4CCB9;
   display: flex;
   flex-direction: column;
   color: white;
-  font-family: Arial, sans-serif;
-  font-size: 1.5em;
+  font-family: 'Trebuchet MS', sans-serif;
+  height: 100vh;
 }
 
 .center_container
 {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2%;
-}
-.main_container
-{
-  background-image: url('./DesignPictures/bgd.png');
-  background-size:cover;
-  background-position: center center;
-  height: 80vh;
+  height: 90vh;
+  background-color:#CBE1D6;
   border-radius: 10px;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.333);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.333);
   display:flex;
   flex-direction: column;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+
+}
+
+.second_body
+{
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: 90vh;
 }
 
 .second_main_container
@@ -34,22 +39,15 @@
   display:flex;
   flex-direction:row;
   width: 100%;
-  height: 85%;
+  height: 100%;
 }
 
-.navBar
-{
-  height: 15%;
-  display: flex;
-  flex-direction: row;
-  background-color: transparent;
-  width: 100%;
-}
+
 .left_main
 {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 50vw;
   height: 100%;
 }
 
@@ -58,24 +56,25 @@
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 40vw;
   height: 100%;
 }
 .second_main_container_2{
   display: none;
 }
 
-
 .image
 {
-  width: calc(15vh + 15vw);
-  height: calc(20vh + 20vw);
+  width: 40vw;
+  height: calc(25vw + 25vh);
   opacity: 1;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   z-index: 1000;
-  background-position: center bottom;
+  background-position: right bottom;
   margin-top: auto;
+  margin-left: auto;
+  
 }
 .link{
   text-decoration: none;
@@ -129,18 +128,11 @@
   font-size: calc(4vh + 3vw); 
   margin-left:35%;
 }
-.second_body
-{
-  display: flex;
-  flex-direction: row;
-  width: auto;
-  height: 100%;
-  margin-top: 5%;
-}
+
 .container_bottom
 {
-  width: 10%;
-  height: 85vh;
+  width: 2vw;
+  height: 100%;
   background-color:rgba(67, 67, 67, 0); 
   display: flex;
   justify-content: center; 
@@ -152,14 +144,14 @@
   background-repeat: no-repeat;
   background-size: contain;
   width : 100%;
-  height : 93%;
+  height : 100%;
   display:flex;
   margin-bottom: auto;
   background-color: transparent;
   border: none;
 }
 .previous_bottom:hover {
-  background-color: rgba(92, 92, 92, 0.301);
+  background-color: rgba(92, 92, 92, 0.063);
   background-image: url("./DesignPictures/left_arrow.png");
 
 }
@@ -169,7 +161,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   width : 100%;
-  height : 93%;
+  height : 100%;
   display:flex;
   background-color: transparent;
   border: none;
@@ -177,7 +169,7 @@
 }
 .next_bottom:hover
 {
-  background-color: rgba(92, 92, 92, 0.301);
+  background-color: rgba(92, 92, 92, 0.063);
   background-image: url("./DesignPictures/right_arrow.png");
 
 }
@@ -292,4 +284,61 @@
   {
     height: max-content;
   }
+  }
+
+  .left_part
+  {
+    width: 60%;
+    height: 100%;
+   
+  }
+  .right_part
+  {
+    width:40%;
+    height: 100%;
+    background-color: rgb(163, 15, 15);
+  }
+
+  .content 
+  {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .title
+  {
+    font-size: 6em;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-left: 25%;
+    font-weight: bold;
+    align-self: center;
+    justify-content: center;
+    margin-top: 8%;
+  }
+
+  .page_number
+  {
+    font-size: 10em;
+    color:#a0a0a0;
+    font-weight: 600;
+  }
+
+  .left_part_2
+  {
+    width: 100%;
+    height: 100%;
+   
+  }
+
+  .title_new
+  {
+    font-size: 6em;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    margin-left: 15%;
+    font-weight: bold;
+    align-self: center;
+    justify-content: center;
+    margin-top: 7%;
   }

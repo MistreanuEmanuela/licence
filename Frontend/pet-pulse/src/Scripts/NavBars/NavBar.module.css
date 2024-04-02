@@ -1,60 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
-.navbar {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 5px 5px;
-  font-family: 'Lily Script One', cursive; 
-  font-size: medium;
-  font-size: 1em;
-}
-
-.nav-links {
-  list-style-type: none;
-  display: flex;
-  justify-content: flex-end; 
-  align-items: center;
-  width: 50%;
-  margin-right: 10%;
-}
-
-.nav-links li {
-  padding: 0 5px;
-  margin-right: 3%;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: lightgray;
-}
-
-.menu-icon {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  justify-content: flex-end; 
-}
-
-.line {
-  width: 8vw;
-  height: 1vh;
-  background-color: rgb(0, 0, 0);
-  margin: 1vw;
-  transition: transform 0.3s ease;
-  border-radius: 10%;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-family: 'Lily Script One', cursive; 
+    font-family: 'Trebuchet MS', sans-serif;
     font-size: medium;
     font-size: 1em;
     background-color:transparent;
@@ -65,9 +14,9 @@
   justify-content: flex-end;
   align-items: center;
   padding: 2px 2px;
-  font-family: 'Lily Script One', cursive; 
+  font-family: 'Trebuchet MS', sans-serif;
   font-size: medium;
-  font-size: 1em;
+  font-size: 20px;
   width: 100%;
 }
 
@@ -110,6 +59,7 @@
     margin-right: auto;
     display: flex;
     flex-direction: row;
+    margin-left:1%;
   }
   .logo_picture
   {
@@ -119,16 +69,17 @@
     height: 55px;
     background-image: url('./logo.png');
     background-size: contain;
+    background-repeat: no-repeat;
     box-sizing: none;
     cursor: pointer;
   }
   .logo_text
   {
-    font-family: 'Lily Script One', cursive; 
+    font-family: 'Trebuchet MS', sans-serif;
     width: 100px;
     color: black;
     align-self: center;
-    font-size: 25px;
+    font-size: 30px
   }
 
 @media (max-width: 768px) {

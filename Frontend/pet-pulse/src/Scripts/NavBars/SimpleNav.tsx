@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import styles from './Nav.module.css';
+import styles from './Nav.module.css'; 
+import { Link } from 'react-router-dom'; 
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,6 +18,7 @@ const Navbar = () => {
         <div className={styles.logo_text}> PetPulse</div>
     </div>
     <nav className={styles.navbar}>
+    <Link to="./login" className={styles.start}> Get Started</Link>
       <div className={styles['menu-icon']} onClick={toggleMenu}>
         <div>Menu</div>
       </div>
@@ -26,6 +28,7 @@ const Navbar = () => {
         <li><a href="#">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
+    
       </div>
     </nav>
     </div>
