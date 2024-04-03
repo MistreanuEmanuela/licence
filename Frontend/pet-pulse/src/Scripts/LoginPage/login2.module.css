@@ -10,7 +10,7 @@
     min-height: 100vh;
     background-color: rgb(98, 172, 105);
     color:black;
-    background-image: url(./DesignPictures/cat.jpg);
+    background-image: url(./DesignPictures/dogoo.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -93,7 +93,7 @@
 {
     width: 72.5%;
     height: 45px;
-    background: rgb(148, 147, 147);
+    background: rgb(233, 231, 231);
     border:none;
     outline: none;
     border-radius:40px;
@@ -125,3 +125,100 @@
 {
     text-decoration: underline;
 }
+.error
+{
+    color: red;
+    align-self: center;
+    justify-content: center;
+    text-align:  center;
+    font-size: 16px;
+    font-weight: 400;
+}
+.forgot_password_container
+{
+  z-index: 1000;
+}
+.message_box {
+    position: fixed;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border: none;
+    box-shadow: 10px 0px 10px 2px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    position: absolute;
+    filter: none;
+    text-align: center;
+    font-size: 1.3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .message_box input
+  {
+    height: 100%;
+    width: 80%;
+    background: transparent;
+    border:none;
+    outline:none;
+    border:  2px solid rgba(0, 0, 0, 0.77);
+    border-radius: 40px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    padding: 2%;  
+    margin-top:2%;
+    margin-bottom: 2%; 
+  }
+
+  .botton_cancel
+  {
+    font-size: 30px;
+    color: red;
+    align-self: flex-end;
+    margin-bottom: 1%;
+  }
+  .botton_send
+  {
+    width: auto;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    background: rgb(224, 224, 224);
+    border:none;
+    outline: none;
+    border-radius:40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+  
+  }
+
+  @media  (max-width:1000px) {
+    .wrapper
+    {
+        width: 60vw;
+    }
+    .message_box
+    {
+        width: 50vw;
+    }
+  }
+
+  
+  @media  (max-width:600px) {
+    .wrapper
+    {
+        width: 80vw;
+      
+    }
+    .message_box
+    {
+        width: 60vw;
+    }
+  }

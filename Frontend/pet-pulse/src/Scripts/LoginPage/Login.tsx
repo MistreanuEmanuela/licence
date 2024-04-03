@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
+import { MdCancel } from "react-icons/md";
+
 
 
 
@@ -35,7 +37,7 @@ const LoginForm: React.FC<FormProps> = ({ onSubmit, errors, onForgotPasswordClic
   return (
      <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>Welcome back!</h1>
 
         {errors.length > 0 && (
           <div className={styles.error}>
@@ -135,7 +137,7 @@ const LoginPage: React.FC = () => {
   
   return (
     <div className={styles.body}>
-      {!showForgotPassword ? (
+      {/* {!showForgotPassword ? (
 
         <div className={`${styles.container} ${showForgotPassword ? styles.container_blur : ''}`} id='main_container'>
       
@@ -153,8 +155,12 @@ const LoginPage: React.FC = () => {
               
             </div>
           </div><ForgotPassword onCancel={handleForgotPasswordCancel} /></>
+      )} */}
+      {showForgotPassword && (
+        <ForgotPassword onCancel={handleForgotPasswordCancel} />
       )}
-      {/* <LoginForm onSubmit={handleSubmit} errors={errors} onForgotPasswordClick={handleForgotPasswordClick} /> */}
+
+      <LoginForm onSubmit={handleSubmit} errors={errors} onForgotPasswordClick={handleForgotPasswordClick} />
     </div>
   );
 }
@@ -207,6 +213,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onCancel }) => {
   return (
     <div className={styles.forgot_password_container}>
       <div className={styles.message_box}>
+      <div className={styles.botton_cancel} onClick={handleCancel}><MdCancel /></div>
         <div className={styles.error}>
           {messageBoxErrors[0] && <div>{messageBoxErrors[0]}</div>}
         </div>
@@ -219,8 +226,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onCancel }) => {
           required
         />
         <div className={styles.bottoms_container}>
-          <div className={styles.bottom_send} onClick={handleSendEmail}>Send</div>
-          <div className={styles.bottom_cancel} onClick={handleCancel}>Cancel</div>
+          <div className={styles.botton_send} onClick={handleSendEmail}>Send</div>
         </div>
       </div>
       {isEmailOk === true ? <ValidateCode onCancel={handleCancel} email={email} /> : null}
@@ -282,6 +288,7 @@ const ValidateCode: React.FC<ValidateCode> = ({ onCancel, email }) => {
   return (
     <div className={styles.forgot_password_container}>
       <div className={styles.message_box}>
+      <div className={styles.botton_cancel} onClick={handleCancel}><MdCancel /></div>
         <div className={styles.error}>
           {messageBoxErrors[0] && <div>{messageBoxErrors[0]}</div>}
         </div>
@@ -294,8 +301,8 @@ const ValidateCode: React.FC<ValidateCode> = ({ onCancel, email }) => {
           required
         />
         <div className={styles.bottoms_container}>
-          <div className={styles.bottom_send} onClick={handleSendCode}>Send</div>
-          <div className={styles.bottom_cancel} onClick={handleCancel}>Cancel</div>
+          <div className={styles.botton_send} onClick={handleSendCode}>Send</div>
+       
         </div>
       </div>
       {isCodeOk=== true ? <ChangePassword onCancel={handleCancel} email={email} /> : null}
@@ -361,6 +368,7 @@ const ChangePassword: React.FC<ValidateCode> = ({ onCancel, email }) => {
   return (
     <div className={styles.forgot_password_container}>
       <div className={styles.message_box}>
+      <div className={styles.botton_cancel} onClick={handleCancel}><MdCancel /></div>
         <div className={styles.error}>
           {messageBoxErrors[0] && <div>{messageBoxErrors[0]}</div>}
         </div>
@@ -381,8 +389,7 @@ const ChangePassword: React.FC<ValidateCode> = ({ onCancel, email }) => {
           required
         />
         <div className={styles.bottoms_container}>
-          <div className={styles.bottom_send} onClick={handleSendNewPassword}>Send</div>
-          <div className={styles.bottom_cancel} onClick={handleCancel}>Cancel</div>
+          <div className={styles.botton_send} onClick={handleSendNewPassword}>Send</div>
         </div>
       </div>
       {isPasswordOk=== true ? <ChangeSuccessful onCancel={handleCancel}/> : null}

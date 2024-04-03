@@ -69,7 +69,7 @@ function Body() {
       subtitle: "Cuteness",
       content: "Height: \n Males 56–57 cm (22–22.5 in),\n Females 54–56 cm (21.5–22 in)\n \nWeight:\n Males 29–36 kg (65–80 lb), \n Females 25–32 kg (55–70 lb)\n \nCoat:\n Short, dense, weather-resistant double coat\n \nColour:\n Black, chocolate, or yellow (ranges from pale yellow to fox red)\n \nLife span:\n 13 years\n\n Common nicknames:\n Lab\n \n Origin:\n	United Kingdom\n \n",
       image: "./MainPagePictures/dog.png",
-      page: "./MainPagePictures/page1.png"
+      page: "./MainPagePictures/page3.png"
     },
     {
       title: 'Russian Blue',
@@ -84,7 +84,7 @@ function Body() {
       content:
         "We're here to provide personalized care advice tailored to your pet's breed, ensuring their health and happiness. Join us, the ultimate destination for pet lovers, to discover everything you need to know about caring for your beloved friend.",
       image: './MainPagePictures/p33.png',
-      page: './MainPagePictures/page3.png',
+      page: './MainPagePictures/page1.png',
     },
   ]);
 

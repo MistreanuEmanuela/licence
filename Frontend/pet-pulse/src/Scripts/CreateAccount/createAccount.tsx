@@ -97,12 +97,20 @@ const CreateAccount: React.FC = () => {
 
   return (
     <div className={styles.body}>
-      <Navbar></Navbar>
       <div className={styles.adaugare} id='add'>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.textBox}>
-            Create an account
+            Welcome!
           </div>
+          {errors.length > 0 && (
+            <div className={styles.error}>
+              <ul>
+                {errors.map((error, index) => (
+                  <div key={index}>{error}</div>
+                ))}
+              </ul>
+            </div>
+          )}
           <div className={styles.formInputs}>
             <div className={styles.part}>
               <input className={styles.input} type="email" placeholder="Enter E-mail" name="email" id="email" value={user.email} onChange={handleChange} required />
@@ -118,15 +126,7 @@ const CreateAccount: React.FC = () => {
             </div>
           </div>
           <button className={styles.but} type="submit">Submit</button>
-          {errors.length > 0 && (
-            <div className={styles.error}>
-              <ul>
-                {errors.map((error, index) => (
-                  <div key={index}>{error}</div>
-                ))}
-              </ul>
-            </div>
-          )}
+     
         </form>
         <div className={styles.picture}></div>
 
