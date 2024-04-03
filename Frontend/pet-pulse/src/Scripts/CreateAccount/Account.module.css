@@ -3,7 +3,7 @@
 
 .body{
     width: 100%;
-    background-color:#A4CCB9;
+    background-color:#cdeede;
     background-size: cover;
     background-position: center center;
     background-attachment: fixed; 
@@ -16,16 +16,19 @@
     display: initial;
     width: 40%;
     height: 45px;
-    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, 0.485);
     border:none;
     outline: none;
     border-radius:40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 1px 1px 5px 4px rgba(0, 0, 0, .2);
     margin-top: 2%;
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
     margin-left: -2%;
+    font-family: 'Trebuchet MS', sans-serif;
+    
+
   }
   
 .but:hover {
@@ -35,9 +38,9 @@
 
 .adaugare
 {
-    background-image: url(./DesignPictures/close-up-adorable-cat-with-copy-space.jpg);
+    background-image: url(./DesignPictures/Design\ fără\ titlu\ \(6\).png);
     background-size: cover;
-    background-position: right bottom;
+    background-position: right center;
     background-repeat: no-repeat;
     padding-top:2%;
     width: 90%;
@@ -46,9 +49,8 @@
     justify-content: center;
     flex-direction: row;
     font-style:italic;
-    margin-left: -0.5%;
     align-items: center;
-    /* background-color: rgba(233, 233, 233, 0.626); */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.333);
     align-self: center;
     margin-left: 5%;
     align-items: center;
@@ -83,18 +85,20 @@
  } 
  .form .textBox
  {
-        align-self: center;
-        width: 100%;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        font-family:inherit;
-        font-weight: bold;
-        position: relative;
-        font-size: 2.5em;
-        margin-bottom: 1em;
-        margin-top:1em;
-        font-weight: 700;
+    font-family: 'Trebuchet MS', sans-serif;
+
+    align-self: center;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-family:inherit;
+    font-weight: bold;
+    position: relative;
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    margin-top:1em;
+    font-weight: 700;
  }
  .input{
     width: 80%;
@@ -104,11 +108,15 @@
     border:  2px solid rgba(0, 0, 0, 0.881);
     border-radius: 10px;
     font-size: 18px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     padding: 2%;  
     margin-top:2%;
-    margin-bottom: 2%; 
+    margin-bottom: 2%;
+    font-family: 'Trebuchet MS', sans-serif;
   }
+  .input::placeholder {
+    color: rgba(0, 0, 0, 0.6); /* Adjust the color and transparency as needed */
+}
 .picture
 {
     width: 40vw;
@@ -127,11 +135,13 @@
 {
    width: 80%;
    margin-top: 10%;
+   padding-left: 0%;
 
 } 
 
 .input{
    font-size: 1.2em;
+   width: 80%;
 }
 .form .textBox
 {
@@ -197,7 +207,8 @@
     }
     .input
     {
-        width: 100%;
+        width: 80%;
+        margin-left: 9%;
     }
     .part
     {
@@ -209,7 +220,9 @@
     }
     .form
     {
-        box-shadow: 0%
+        box-shadow: 0%;
+        margin-left: 0%;
+        
     }
 }
 
@@ -235,13 +248,14 @@
   
     { 
         width: 80%;
-      
+        margin-left: 0%;
 
     }
 
     .input{
         font-size: 1.5em;
     }
+  
     
 
 }

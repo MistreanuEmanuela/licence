@@ -2,13 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .body
 {
-    background-color:antiquewhite;
     font-family: 'Trebuchet MS', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(98, 172, 105);
     color:black;
     background-image: url(./DesignPictures/dogoo.jpg);
     background-size: cover;
@@ -32,6 +30,7 @@
 .wrapper h1 {
     font-size: 40px;
     text-align: center;
+    font-style: italic;
 }
 
 .wrapper .input_box
@@ -147,7 +146,7 @@
     background-color: #ffffff;
     padding: 20px;
     border: none;
-    box-shadow: 10px 0px 10px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 10px 10px 10px 10px rgba(31, 69, 73, 0.5);
     z-index: 9999;
     position: absolute;
     filter: none;
@@ -166,12 +165,13 @@
     border:none;
     outline:none;
     border:  2px solid rgba(0, 0, 0, 0.77);
-    border-radius: 40px;
+    border-radius: 10px;
     font-size: 18px;
     color: rgb(0, 0, 0);
     padding: 2%;  
     margin-top:2%;
     margin-bottom: 2%; 
+    
   }
 
   .botton_cancel
@@ -183,12 +183,14 @@
   }
   .botton_send
   {
+    display: flex;
+    flex-direction: row;
     width: auto;
     padding-top: 1vh;
     padding-bottom: 1vh;
     padding-left: 5vw;
     padding-right: 5vw;
-    background: rgb(224, 224, 224);
+    background: rgb(220, 236, 230);
     border:none;
     outline: none;
     border-radius:40px;
@@ -196,9 +198,15 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
+    padding-top: 5%;
+    padding-bottom: 5%;
   
   }
 
+  .send_icon
+  {
+    margin-top:2%
+  }
   @media  (max-width:1000px) {
     .wrapper
     {

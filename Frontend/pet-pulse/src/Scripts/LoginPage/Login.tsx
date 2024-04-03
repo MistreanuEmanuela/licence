@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
+import { IoIosSend } from "react-icons/io";
 
 
 
@@ -226,7 +227,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onCancel }) => {
           required
         />
         <div className={styles.bottoms_container}>
-          <div className={styles.botton_send} onClick={handleSendEmail}>Send</div>
+          <div className={styles.botton_send} onClick={handleSendEmail}><div className={styles.send_icon}> <IoIosSend /></div>Send</div>
         </div>
       </div>
       {isEmailOk === true ? <ValidateCode onCancel={handleCancel} email={email} /> : null}
