@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lily+Script+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 .body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-family: 'Lily Script One', cursive; 
+    font-family: 'Trebuchet MS', sans-serif;
     font-size: medium;
     font-size: 1em;
-    background-color:#d3f3dd;
+    background-color:#B1D3C3;
     flex-direction: row;
   }
 .navbar {
@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: center;
   padding: 2px 2px;
-  font-family: 'Lily Script One', cursive; 
+  font-family: 'Trebuchet MS', sans-serif;
   font-size: medium;
   font-size: 1em;
   width: 100%;
@@ -59,6 +59,9 @@
     margin-right: auto;
     display: flex;
     flex-direction: row;
+    font-weight: 600;
+    font-family: 'Trebuchet MS', sans-serif;
+
   }
   .logo_picture
   {
@@ -70,10 +73,11 @@
     background-size: contain;
     box-sizing: none;
     cursor: pointer;
+    background-repeat: no-repeat;
   }
   .logo_text
   {
-    font-family: 'Lily Script One', cursive; 
+    font-family: 'Trebuchet MS', sans-serif;
     width: 100px;
     color: black;
     align-self: center;
@@ -123,6 +127,8 @@
   background-image: url(./DesignPictures/pet_home_result.png-removebg-preview.png);
   background-color: transparent;
   background-size: contain;
+  background-repeat: no-repeat;
+
 }
 .pets:hover {
   border: 1px solid black; 
@@ -177,24 +183,28 @@
   margin-bottom: -10px;
   border-radius: 7px;
   margin-right: 10%;
+  font-weight: 300;
 }
 .page_home
 {
   width: 40px;
   background-image: url(./DesignPictures/60bcb2a467fce67904e84ee31d509fac-removebg-preview.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 .page_dog
 {
   width: 40px;
   background-image: url(./DesignPictures/e9bafb0327bde3594ec16b3a15365741-removebg-preview.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 .page_cat
 {
   width: 40px;
   background-image: url(./DesignPictures/1d2601b54fd924aff37b6d5b6ea1f846-removebg-preview.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 @media (max-width: 768px) {
     .navbar {

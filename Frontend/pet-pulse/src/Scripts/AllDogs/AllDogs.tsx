@@ -3,6 +3,10 @@ import Logo from '../Logo/logo';
 import styles from './AllDogs.module.css';
 import Navbar from '../NavBars/NavBar';
 import { useNavigate } from 'react-router-dom';
+import { GrPrevious } from "react-icons/gr";
+import { GrNext } from "react-icons/gr";
+import { HiDotsHorizontal } from "react-icons/hi";
+
 
 
 interface Dog {
@@ -35,7 +39,9 @@ const AllDogs: React.FC = () => {
   const [selectedLetter, setSelectedLetter] = useState<string>('');
   const [selectedLifespan, setSelectedLifespan] = useState<number>(0);
 
-
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const dogsPerPage = 16;
 
   const fetchAllDogs = () => {
     setSelectedFilter('');
@@ -57,7 +63,24 @@ const AllDogs: React.FC = () => {
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
+  const handleSetId = (dogId: number) => {
+    const dogIdString = String(dogId);
+    localStorage.setItem("dogId", dogIdString);
+    history('/dog');
+  };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const indexOfLastDog = currentPage * dogsPerPage;
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
+  const currentDogs = dogs.slice(indexOfFirstDog, indexOfLastDog);
+  useEffect(() => {
+    setCurrentPage(1);
+    const totalPages = Math.ceil(dogs.length / dogsPerPage);
+    setTotalPages(totalPages);
+  }, [dogs]);
   useEffect(() => {
     if (selectedFilter === '') {
       handleFetch();
@@ -209,12 +232,7 @@ const AllDogs: React.FC = () => {
     fetchAllDogs();
   };
 
-  const handleSetId = (dogId: number) => {
-    const dogIdString = String(dogId)
-    localStorage.setItem("dogId", dogIdString);
-    history('/dog');
 
-  }
 
   return (
     <div className={styles.body}>
@@ -341,23 +359,60 @@ const AllDogs: React.FC = () => {
               </ul>
             )}
           </button>
-          <button className= {styles.exit} onClick={() => handleFetch()}> </button>
+          <button className={styles.exit} onClick={() => handleFetch()}> </button>
         </div>
         <ul className={styles.main_container}>
-          {dogs.slice(0, fetchCounter).map((dog, index) => (
+          {currentDogs.map((dog, index) => (
             <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(dog.id)}>
               <img src={`./Dogs/${dog.name}.png`} alt={dog.name} className={styles.dog_picture} />
               <div className={styles.name}>{dog.name}</div>
             </button>
           ))}
+
         </ul>
-        {!last && (
-          <button className={styles.next} onClick={fetchNextBatch}>
-            MORE
+
+        <div className={styles.pagination}>
+          <button className={styles.page_button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+            <GrPrevious />
           </button>
-        )}
+          <>
+            <button onClick={() => handlePageChange(1)} className={styles.page_button}>
+              1
+            </button>
+            {(currentPage - 1) > 2 &&
+              <div className={styles.dots}><HiDotsHorizontal />
+              </div>
+            }
+            {(currentPage - 1) > 1 &&
+              <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className={styles.page_button}>
+                {currentPage - 1}
+              </button>
+            }
+            {(currentPage) > 1 && (currentPage) < totalPages &&
+              <button onClick={() => handlePageChange(currentPage)} className={styles.page_button}>
+                {currentPage}
+              </button>
+            }           {(currentPage + 1) < totalPages &&
+              <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.page_button}>
+                {currentPage + 1}
+              </button>
+            }
+            {(currentPage + 1) < totalPages &&
+              <div className={styles.dots}><HiDotsHorizontal />
+              </div>
+            }
+            <button onClick={() => handlePageChange(totalPages)} className={styles.page_button}>
+              {totalPages}
+            </button>
+          </>
+          <button className={styles.page_button} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}
+          >
+            <GrNext />
+          </button>
+        </div>
       </div>
     </div>
+
   );
 };
 
