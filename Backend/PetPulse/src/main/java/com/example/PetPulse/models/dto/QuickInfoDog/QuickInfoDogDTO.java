@@ -7,6 +7,15 @@ public class QuickInfoDogDTO {
     private String size;
     private String lifespan;
     private String coat;
+    private String temperament;
+
+    public String getTemperament() {
+        return temperament;
+    }
+
+    public void setTemperament(String temperament) {
+        this.temperament = temperament;
+    }
 
     public Integer getIdDog() {
         return idDog;
@@ -48,12 +57,13 @@ public class QuickInfoDogDTO {
         this.coat = coat;
     }
 
-    public QuickInfoDogDTO(Integer idDog, String origin, String size, String lifespan, String coat) {
+    public QuickInfoDogDTO(Integer idDog, String origin, String size, String lifespan, String coat, String temperament) {
         this.idDog = idDog;
         this.origin = origin;
         this.size = size;
         this.lifespan = lifespan;
         this.coat = coat;
+        this.temperament=temperament;
     }
 
     public QuickInfoDogDTO() {

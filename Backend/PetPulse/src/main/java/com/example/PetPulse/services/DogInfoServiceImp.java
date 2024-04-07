@@ -18,7 +18,7 @@ public class DogInfoServiceImp implements DogInfoService {
     @Override
     public QuickInfoDogDTO getDogInfo(long id) {
         QuickInfoDog quick = quickInfoDogRepository.findInfoById(id);
-        QuickInfoDogDTO quickInfoDogDTO = new QuickInfoDogDTO(quick.getIdDog(), quick.getOrigin(), quick.getSize(),quick.getLifespan(),quick.getCoat());
+        QuickInfoDogDTO quickInfoDogDTO = new QuickInfoDogDTO(quick.getIdDog(), quick.getOrigin(), quick.getSize(),quick.getLifespan(),quick.getCoat(), quick.getTemperament());
         return quickInfoDogDTO;
     }
 }
