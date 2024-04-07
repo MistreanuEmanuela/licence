@@ -61,6 +61,7 @@
 {
     display: flex;
     flex-direction: row;
+    width: 90%;
 }
 
 .part
@@ -86,7 +87,6 @@
  .form .textBox
  {
     font-family: 'Trebuchet MS', sans-serif;
-
     align-self: center;
     width: 100%;
     text-align: center;
@@ -114,6 +114,7 @@
     margin-bottom: 2%;
     font-family: 'Trebuchet MS', sans-serif;
   }
+
   .input::placeholder {
     color: rgba(0, 0, 0, 0.6); /* Adjust the color and transparency as needed */
 }
@@ -125,11 +126,15 @@
     background-size:contain;
     background-repeat: no-repeat;
 } 
+.input_box
+{
+    width: 100%;
+    position: relative;
+}
 .icon
 {
     position: absolute;
-    transform:translateY(90%);
-    font-size:18px;
+    transform: translateX(10%) translateY(90%);
     margin-left: -8%;
 }
 
@@ -163,37 +168,8 @@
     font-size: 1.3em;
 }
 }
-@media screen and (max-width: 1100px) and (min-width: 1000px)  {
-    .picture
-    {
-        width: 30%;
-        height: 50vh;
-    }
-}
-@media screen and (max-width: 800px)  {
-    .body
-    {
-        height: fit-content;
-    }
-    .formInputs
-    {
-        display: flex;
-        flex-direction:column ;
-        width: 100%;
-    }
-    .input
-    {
-        width: 100%;
-    }
-    .part
-    {
-        width: 100%;
-    }
-    .form
-    {
-        box-shadow: 0%
-    }
-}
+
+
 
 
 @media screen and (max-width: 650px){
@@ -233,7 +209,7 @@
     }
 }
 
-@media screen and (max-width: 1000px) and (min-width: 650px)  {
+@media screen and (max-width: 1200px) and (min-width: 650px)  {
     .picture
     {
         display: none;

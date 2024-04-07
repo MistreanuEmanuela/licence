@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import styles from './Account.module.css';
-import Navbar from '../NavBars/SimpleNav';
-import Logo from '../Logo/logo';
+import { FaUserAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { MdMarkEmailRead } from "react-icons/md";
+import { FaLock } from "react-icons/fa";
+import { MdDriveFileRenameOutline } from "react-icons/md";
+
+
+
 
 
 interface User {
@@ -113,20 +119,42 @@ const CreateAccount: React.FC = () => {
           )}
           <div className={styles.formInputs}>
             <div className={styles.part}>
-              <input className={styles.input} type="email" placeholder="Enter E-mail" name="email" id="email" value={user.email} onChange={handleChange} required />
-              <input className={styles.input} type="email" placeholder="Confirm E-mail" name="email" id="email2" value={confirmEmail} onChange={(e) => setConfirmEmail(e.target.value)} required />
-              <input className={styles.input} type="password" placeholder="Enter Password" name="password" id="password" value={user.password} onChange={handleChange} required />
-              <input className={styles.input} type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+              <div className={styles.input_box}>
+
+                <input className={styles.input} type="email" placeholder="Enter E-mail" name="email" id="email" value={user.email} onChange={handleChange} required />
+                <span className={styles.icon}> <MdEmail /></span></div>
+
+              <div className={styles.input_box}>
+                <input className={styles.input} type="email" placeholder="Confirm E-mail" name="email" id="email2" value={confirmEmail} onChange={(e) => setConfirmEmail(e.target.value)} required />
+                <span className={styles.icon}><MdMarkEmailRead /></span></div>
+
+              <div className={styles.input_box}>
+                <input className={styles.input} type="password" placeholder="Enter Password" name="password" id="password" value={user.password} onChange={handleChange} required />
+                <span className={styles.icon}><FaLock /></span></div>
+
+              <div className={styles.input_box}>
+                <input className={styles.input} type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+                <span className={styles.icon}><FaLock /></span></div>
+
+
             </div>
             <div className={styles.part}>
-            <input className={styles.input} type="text" placeholder="Enter Username" name="username" id="uname" value={user.username} onChange={handleChange} required />
-              <input className={styles.input} type="text" placeholder="Lastname" name="lastName" id="lastname" value={user.lastName} onChange={handleChange} required />
-              <input className={styles.input} type="text" placeholder="Firstname" name="firstName" id="firstname" value={user.firstName} onChange={handleChange} required />
+              <div className={styles.input_box}>
+                <input className={styles.input} type="text" placeholder="Enter Username" name="username" id="uname" value={user.username} onChange={handleChange} required />
+                <span className={styles.icon}> <FaUserAlt /></span></div>
+                <div className={styles.input_box}>
+                <input className={styles.input} type="text" placeholder="Lastname" name="lastName" id="lastname" value={user.lastName} onChange={handleChange} required />
+                <span className={styles.icon}> <MdDriveFileRenameOutline /></span></div>
+                <div className={styles.input_box}>
+
+                <input className={styles.input} type="text" placeholder="Firstname" name="firstName" id="firstname" value={user.firstName} onChange={handleChange} required />
+                <span className={styles.icon}> <MdDriveFileRenameOutline /></span></div>
+
               <input className={styles.input} type="date" placeholder="Birthdate" name="birthDate" id="birthdate" value={user.birthDate} onChange={handleChange} required />
             </div>
           </div>
           <button className={styles.but} type="submit">Submit</button>
-     
+
         </form>
         <div className={styles.picture}></div>
 
