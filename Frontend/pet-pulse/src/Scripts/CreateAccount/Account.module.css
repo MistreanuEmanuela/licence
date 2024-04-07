@@ -125,6 +125,13 @@
     background-size:contain;
     background-repeat: no-repeat;
 } 
+.icon
+{
+    position: absolute;
+    transform:translateY(90%);
+    font-size:18px;
+    margin-left: -8%;
+}
 
 @media screen and (max-width: 650px) {
  .body

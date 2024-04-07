@@ -19,7 +19,7 @@ console.log(token)
 
 const AllDogs: React.FC = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);
-  const [fetchCounter, setFetchCounter] = useState<number>(16);
+  const [fetchCounter, setFetchCounter] = useState<number>(15);
   const [last, setLast] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(true);
   const [selectedFilter, setSelectedFilter] = useState<string>('');
@@ -41,7 +41,7 @@ const AllDogs: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const dogsPerPage = 16;
+  const dogsPerPage = 15;
 
   const fetchAllDogs = () => {
     setSelectedFilter('');
@@ -59,7 +59,7 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
-        setLast(data.length <= 16);
+        setLast(data.length <= 15);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
@@ -91,7 +91,7 @@ const AllDogs: React.FC = () => {
     if (dogs.length <= fetchCounter) {
       setLast(true);
     } else {
-      setFetchCounter(prevCounter => prevCounter + 16);
+      setFetchCounter(prevCounter => prevCounter + 15);
     }
   };
 
@@ -111,8 +111,8 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
-        setFetchCounter(16);
-        setLast(data.length <= 16);
+        setFetchCounter(15);
+        setLast(data.length <= 15);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
@@ -126,8 +126,8 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
-        setFetchCounter(16);
-        setLast(data.length <= 16);
+        setFetchCounter(15);
+        setLast(data.length <= 15);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
@@ -141,8 +141,8 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
-        setFetchCounter(16);
-        setLast(data.length <= 16);
+        setFetchCounter(15);
+        setLast(data.length <= 15);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
@@ -156,8 +156,8 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
-        setFetchCounter(16);
-        setLast(data.length <= 16);
+        setFetchCounter(15);
+        setLast(data.length <= 15);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
@@ -171,8 +171,8 @@ const AllDogs: React.FC = () => {
       .then(response => response.json())
       .then((data: Dog[]) => {
         setDogs(data);
-        setFetchCounter(16);
-        setLast(data.length <= 16);
+        setFetchCounter(15);
+        setLast(data.length <= 15);
       })
       .catch(error => console.error('Error fetching dogs:', error));
   };
