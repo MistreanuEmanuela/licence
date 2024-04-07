@@ -144,43 +144,45 @@ const DogInfo: React.FC<{}> = () => {
                                     <div className={styles.button_name}>Friendship</div>
                                 </button>
                             </div>
+                            {selectedCategory !==null &&
                             <div className={styles.display_container2}  id='category'>
                                 {selectedCategory === "health" && 
                                 <><div className={styles.title_and_picture}>
                                   <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Health </div></div>
                                 
                                         <div className={styles.info_picture_health}></div></div>
-                                        <div>{dog.health}</div></>
+                                        <div className={styles.content}>{dog.health}</div></>
                                 }
                                 {selectedCategory === "feeding" && 
                                  <><div className={styles.title_and_picture}>
                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Feeding </div></div>
                                        <div className={styles.info_picture_feeding}></div></div> 
-                                       <div>{dog.feeding}</div></>
+                                       <div className={styles.content}>{dog.feeding}</div></>
 }
                                 {selectedCategory === "personality" && 
                                  <><div className={styles.title_and_picture}>
                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Personality </div></div>
                                        <div className={styles.info_picture_personality}></div></div> 
-                                       <div>{dog.personality}</div></>}
+                                       <div className={styles.content}>{dog.personality}</div></>}
                                 {selectedCategory === "size" && <><div className={styles.title_and_picture}>
                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Size </div></div>
                                        <div className={styles.info_picture_size}></div></div> 
-                                       <div>{dog.size}</div></>}
+                                       <div className={styles.content}>{dog.size}</div></>}
                                 {selectedCategory === "coat" &&  <><div className={styles.title_and_picture}>
                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Coat </div></div>
                                        <div className={styles.info_picture_coat}></div></div> 
-                                       <div>{dog.coat}</div></>}
+                                       <div className={styles.content} >{dog.coat}</div></>}
                                 {selectedCategory === "frendly" &&  <><div className={styles.title_and_picture}>
                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Friendship </div></div>
                                        <div className={styles.info_picture_friendship}></div></div> 
-                                       <div>{dog.friendship}</div></>}
+                                       <div className={styles.content}>{dog.friendship}</div></>}
                                 {selectedCategory === "care" &&  <><div className={styles.title_and_picture}>
                                  <div className={styles.title2}>{dog.name} <div className={styles.subtitle}>Care </div></div>
                                        <div className={styles.info_picture_care}></div></div> 
-                                       <div>{dog.care}</div></>}
+                                       <div className={styles.content}>{dog.care}</div></>}
                                 {selectedCategory === ""}
                             </div>
+}
                         </div>
                     </>
                 )}
