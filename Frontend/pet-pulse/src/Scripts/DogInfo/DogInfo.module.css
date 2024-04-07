@@ -7,7 +7,7 @@
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
-    padding-bottom: 3%;
+    padding-bottom: 1%;
     min-height: 100vh;
 }
 
@@ -62,10 +62,11 @@
     padding-left: 10%;
     padding-right: 10%;
     margin-top: -2vh;
-    padding-top: 1px;
+    padding-top: 5px;
     padding-bottom: 1px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
+    padding-bottom: 5px;
     
   }
   .right-container {
@@ -144,9 +145,11 @@
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
   border-radius: 4%;
   margin-top: 2%;
+  transform: translateY(-7%);
 }
 .button_care:hover{
   background-color: #fad076;
+  transform: translateY(-7%);
 }
 .button_care_image
 {
@@ -307,7 +310,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.45.06-removebg-preview.png);
+  background-image: url(./DesignPicture/care_img.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -326,7 +329,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.42.24-removebg-preview.png);
+  background-image: url(./DesignPicture/Golden_Moments__25_Adorable_Retriever_Pups_to_Melt_Your_Heart-removebg-preview\ \(1\).png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -384,7 +387,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.43.39-removebg-preview.png);
+  background-image: url(./DesignPicture/peronality.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -414,6 +417,97 @@
   color:rgb(255, 76, 76);
   margin-left: 60%;
 }
+
+.quick_info
+{
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  height: max-content;
+  background-color: transparent;
+  padding: 1%;
+  align-content: center;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.quick_info .info
+{
+  background-color: hsla(0, 73%, 97%, 0.619);
+  width: 40%;
+  border: 1px solid rgb(147, 147, 147);
+  animation: fadeIn 1s ease-in-out forwards;
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quick_info .info .information
+{
+  margin-top: 1%;
+}
+.quick_info .star
+{
+  background-color: hsla(0, 73%, 97%, 0.619);
+  width: 40%;
+  height: auto;
+  border: 1px solid rgb(147, 147, 147);
+  animation: fadeIn 1s ease-in-out forwards;
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+      display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.quick_info .star .starInfo
+{
+  margin-top: 1%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.quick_info .star .starInfo img
+{
+  width: 300px;
+  height: 20px;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .quick_info
+  {
+    flex-direction: column;
+    align-items: center;
+  }
+  .quick_info .star
+  {
+    margin-top: 2%;
+    width: 60%;
+  }
+  .quick_info .info
+  {
+    width: 60%;
+  }
+}
 @media screen and (max-width: 800px) {
   .dog_details
   {
@@ -439,4 +533,33 @@
   {
     margin-left: 2%;
   }
+  .quick_info .star
+  {
+    margin-top: 2%;
+    width: 80%;
+  }
+  .quick_info .info
+  {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .quick_info .star .starInfo img 
+  {
+    width: 150px;
+    height: 15px;
+  }
+  .title2
+  {
+    font-size: 1.5em;
+  }
+
+}
+@media screen and (max-width: 350px) {
+  .quick_info .star .starInfo img 
+  {
+    width: 100px;
+    height: 10px;
+  }
+
 }
