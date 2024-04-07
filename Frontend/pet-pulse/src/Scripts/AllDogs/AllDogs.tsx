@@ -77,10 +77,21 @@ const AllDogs: React.FC = () => {
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDogs = dogs.slice(indexOfFirstDog, indexOfLastDog);
   useEffect(() => {
+    setShowLoading(true);
+
     setCurrentPage(1);
     const totalPages = Math.ceil(dogs.length / dogsPerPage);
     setTotalPages(totalPages);
+    const timeoutId = setTimeout(() => {
+      setShowLoading(false);
+    }, 1000);
   }, [dogs]);
+  useEffect(() => {
+    setShowLoading(true);
+    const timeoutId = setTimeout(() => {
+      setShowLoading(false);
+    }, 100);
+  }, [currentPage]);
   useEffect(() => {
     if (selectedFilter === '') {
       handleFetch();
@@ -96,7 +107,6 @@ const AllDogs: React.FC = () => {
   };
 
   useEffect(() => {
-    setShowLoading(false);
     if (fetchCounter >= dogs.length) {
       setFetchCounter(dogs.length);
     }
@@ -362,14 +372,21 @@ const AllDogs: React.FC = () => {
           <button className={styles.exit} onClick={() => handleFetch()}> </button>
         </div>
         <ul className={styles.main_container}>
-          {currentDogs.map((dog, index) => (
-            <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(dog.id)}>
-              <img src={`./Dogs/${dog.name}.png`} alt={dog.name} className={styles.dog_picture} />
-              <div className={styles.name}>{dog.name}</div>
-            </button>
-          ))}
+        {!showLoading && (
+  <>
+    {currentDogs.map((dog, index) => (
+      <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(dog.id)}>
+        <img src={`./Dogs/${dog.name}.png`} alt={dog.name} className={styles.dog_picture} />
+        <div className={styles.name}>{dog.name}</div>
+      </button>
+    ))}
+  </>
+)}
+
+{showLoading && <p>Loading...</p>}
 
         </ul>
+       
 
         <div className={styles.pagination}>
           <button className={styles.page_button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
