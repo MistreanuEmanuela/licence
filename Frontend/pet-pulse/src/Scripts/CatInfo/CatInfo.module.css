@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.body
+{
+    background-color: rgb(250, 250, 250);
+    background-image: url("./background.png");
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    padding-bottom: 1%;
+    min-height: 100vh;
+}
+
+
+.main-container {
+    display: flex;
+    width: 80%;
+  }
+  
+
+  .left_container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+    color: rgb(0, 0, 0);
+    padding-bottom: 2%;
+    padding-top: 2%;
+    font-family: 'Trebuchet MS', sans-serif;
+    height: 100%;
+    justify-content: center;
+    
+  }
+  .right_container {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .image
+  {
+    width: 100%;
+    height: 100%;
+  }
+  .dog_img
+  {
+    width: 25vw;
+    height: 300px;
+  }
+
+  .name
+  {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 2em;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: -2vh;
+    padding-top: 5px;
+    padding-bottom: 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding-bottom: 5px;
+    
+  }
+  .right-container {
+    margin-left: 20px;
+    background-color: transparent
+
+  }
+  
+  .display_container {
+    
+    padding: 20px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    text-indent: 1.5em;
+    padding-left :0px;
+  }
+ 
+  .button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-bottom: 2%;
+  }
+
+  .dog_details
+  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+ 
+.dog_info{
+  margin: 3%;
+  background-color: #F7ECCA;
+}
+
+
+.title {
+  margin-top: 2%;
+  font-family: 'Trebuchet MS', sans-serif;
+  color:rgb(0, 0, 0);
+  font-weight: 200; 
+  font-size: 2.5em;
+  margin-bottom: 4%;
+  margin-right: 50%;
+}
+.content
+{
+  font-size: 1em;
+  color:rgb(70, 69, 69);
+  font-family: 'Trebuchet MS', sans-serif;
+  padding-right: 2%;
+}
+
+.button_care
+{
+  border: none;
+  background-color: #ffe8a8;
+  height: 140px;
+  width: 110px;
+  margin-right: 3%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4%;
+  margin-top: 2%;
+}
+.button_care_pressed
+{
+  border: none;
+  background-color: #fad076;
+  height: 140px;
+  width: 110px;
+  margin-right: 3%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4%;
+  margin-top: 2%;
+  transform: translateY(-7%);
+}
+.button_care:hover{
+  background-color: #fad076;
+  transform: translateY(-7%);
+}
+.button_care_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/care.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_health_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/health-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+.button_food_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/food-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+.button_personality_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/personality-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_coat_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/coat.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_size_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/size-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_frendly_image
+{
+  margin-right: 3%;
+  background-image: url("./DesignPicture/friendly-removebg-preview.png");
+  background-position: center;
+  background-size: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.button_name
+{
+  margin-top: 5%;
+  font-family: 'Trebuchet MS', sans-serif;
+  color:rgb(32, 31, 30);
+  font-weight: 400;
+}
+.display_container2
+{
+  background-color: hsla(0, 73%, 97%, 0.619);
+  margin-left: 5%;
+  margin-right: 5%;
+  white-space: pre-wrap;
+  border-radius: 2%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(234, 102, 46, 0.4);
+}
+
+.second_part_info
+{
+  padding-bottom: 2%;
+}
+
+
+.info_picture_feeding
+{
+  background-color: hsla(32, 90%, 75%, 0.619);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/eating-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_care
+{
+  background-color: hsla(32, 90%, 75%, 0.619);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/eating-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+.info_picture_size
+{
+  background-color: hsla(32, 90%, 75%, 0.619);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.40.04-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+.info_picture_care
+{
+  background-color: hsla(32, 91%, 75%, 0.697);
+  width:30vw;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/care_img.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_friendship
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/Golden_Moments__25_Adorable_Retriever_Pups_to_Melt_Your_Heart-removebg-preview\ \(1\).png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_health
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/istock68229937large-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+.info_picture_coat
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/coat_type-removebg-preview.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+
+.info_picture_personality
+{
+  background-color: hsla(32, 91%, 75%, 0.649);
+  width:40%;
+  height: 28vh;
+  align-self: center;
+  border-top-left-radius: 150%;
+  border-top-right-radius: 150%;
+  border-bottom-left-radius: 150%;
+  border-bottom-right-radius: 150%;
+  background-image: url(./DesignPicture/peronality.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  margin-right:5%;
+  margin-left:auto;
+
+}
+
+
+.title_and_picture
+{
+  display: flex;
+  flex-direction: row;
+}
+.title2
+{
+  font-size: 2.5em;
+  align-self: center;
+  align-items: center;
+  margin-left: 10%;
+  font-family: 'Trebuchet MS', sans-serif;
+    -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: rgb(72, 70, 70);
+}
+.subtitle
+{
+  color:rgb(255, 76, 76);
+  margin-left: 60%;
+}
+
+.quick_info
+{
+  margin-top: 1%;
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  height: max-content;
+  background-color: transparent;
+  padding: 1%;
+  align-content: center;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.quick_info .info
+{
+  background-color: hsla(0, 73%, 97%, 0.619);
+  width: 40%;
+  border: 1px solid rgb(147, 147, 147);
+  animation: fadeIn 1s ease-in-out forwards;
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-start;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quick_info .info .information
+{
+  margin-top: 1%;
+}
+.quick_info .star
+{
+  background-color: hsla(0, 73%, 97%, 0.619);
+  width: 40%;
+  height: auto;
+  border: 1px solid rgb(147, 147, 147);
+  animation: fadeIn 1s ease-in-out forwards;
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+      display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+}
+.quick_info .star .starInfo
+{
+  margin-top: 1%;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+.quick_info .star .starInfo img
+{
+  width: 300px;
+  height: 20px;
+}
+
+
+@media screen and (max-width: 1000px) {
+  .quick_info
+  {
+    flex-direction: column;
+    align-items: center;
+  }
+  .quick_info .star
+  {
+    margin-top: 2%;
+    width: 60%;
+  }
+  .quick_info .info
+  {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .dog_details
+  {
+    display: flex;
+    flex-direction: column;
+  }
+  .dog_img
+  {
+    width: 70vw;
+    height: 40vh;
+    align-self: center;
+  }
+  .title
+  {
+    align-self: flex-start;
+    margin-left: 5%;
+  }
+  .content
+  {
+    padding: 2%;
+  }
+  .subtitle
+  {
+    margin-left: 2%;
+  }
+  .quick_info .star
+  {
+    margin-top: 2%;
+    width: 80%;
+  }
+  .quick_info .info
+  {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .quick_info .star .starInfo img 
+  {
+    width: 150px;
+    height: 15px;
+  }
+  .title2
+  {
+    font-size: 1.5em;
+  }
+
+}
+@media screen and (max-width: 350px) {
+  .quick_info .star .starInfo img 
+  {
+    width: 100px;
+    height: 10px;
+  }
+
+}

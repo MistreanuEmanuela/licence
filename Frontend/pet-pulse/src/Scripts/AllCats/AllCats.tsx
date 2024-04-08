@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Logo from '../Logo/logo';
-import styles from './AllDogs.module.css';
+import styles from './AllCats.module.css';
 import Navbar from '../NavBars/NavBar';
 import { useNavigate } from 'react-router-dom';
 import { GrPrevious } from "react-icons/gr";
@@ -64,7 +64,7 @@ const AllCats: React.FC = () => {
   };
   const handleSetId = (catId: number) => {
     const catIdString = String(catId);
-    localStorage.setItem("dogId", catIdString);
+    localStorage.setItem("catId", catIdString);
     history('/cat');
   };
 
@@ -245,7 +245,7 @@ const AllCats: React.FC = () => {
 
   return (
     <div className={styles.body}>
-      <Navbar pagename="dogs" />
+      <Navbar pagename="cats" />
       <div className={styles.container}>
         <div className={styles.filterContainer}>
           <button
