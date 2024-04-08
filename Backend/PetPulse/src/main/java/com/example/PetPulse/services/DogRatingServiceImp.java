@@ -20,7 +20,6 @@ public class DogRatingServiceImp implements DogRatingService{
     @Override
     public DogRatingDTO getDogRating(long id) {
         DogRating dogRating = dogRatingRepository.findInfoById(id);
-        DogRatingDTO dogRatingDTO = new DogRatingDTO(dogRating.getIdDog(), dogRating.getApartmentLiving(),dogRating.getSensibility(),dogRating.getAlone(), dogRating.getAffection(), dogRating.getSize(), dogRating.getIntelligence(), dogRating.getPlayfulness());
-        return dogRatingDTO;
+        return new DogRatingDTO(dogRating.getIdDog(), dogRating.getApartmentLiving(),dogRating.getSensibility(),dogRating.getAlone(), dogRating.getAffection(), dogRating.getSize(), dogRating.getIntelligence(), dogRating.getPlayfulness());
     }
 }
