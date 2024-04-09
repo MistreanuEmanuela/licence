@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 @Service
 public class UserServiceImp implements UserService{
 
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     @Autowired

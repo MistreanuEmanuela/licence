@@ -15,10 +15,10 @@ interface Pet {
     color: string;
     gender: string;
     weight: number;
-    microchipId?: string;
-    allergies?: string;
-    photoPath?: string;
-    public: string;
+    microchipId : string;
+    allergies: string;
+    imagePath: string;
+    visibility: string;
 }
 
 interface Dog {
@@ -41,13 +41,14 @@ const AddPet: React.FC = () => {
         weight: 0,
         microchipId: '',
         allergies: '',
-        photoPath: '',
-        public: '',
+        imagePath: '',
+        visibility: '',
     });
     const [path, SetPath] = useState<string>('');
     const [petType, setPetType] = useState<string>('Dog');
     const [dogs, setDogs] = useState<Dog[]>([]);
     const [cats, setCats] = useState<Cat[]>([]);
+    const [file, setFile] = useState<File | null>(null); // State to hold the file
 
 
     useEffect(() => {
@@ -88,6 +89,9 @@ const AddPet: React.FC = () => {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
+            setFile(e.target.files[0]); 
+        }
+        if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
             reader.onload = function (e) {
                 if (e.target && e.target.result) {
@@ -98,9 +102,72 @@ const AddPet: React.FC = () => {
         }
     };
 
-    const handleSubmit = () => {
-        console.log("hellou")
-    }
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!file) {
+            console.error('Please select a file');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await fetch('http://localhost:8082/pet/dogs/upload', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                body: formData,
+            });
+
+            if (response.ok) {
+                const imagePath = await response.text();
+                pet.imagePath = imagePath;
+                console.log('Image uploaded:', imagePath);
+            } else {
+                console.error('Failed to upload image:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        }
+        if (pet.imagePath !== '') {
+            console.log(pet.imagePath);
+            const token = localStorage.getItem("token");
+        
+            if (!token) {
+                console.error('Token not found');
+                return;
+            }
+        
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", `Bearer ${token}`);
+        
+            const requestOptions: RequestInit = {
+                method: "POST",
+                headers: myHeaders,
+                body: JSON.stringify(pet),
+                redirect: "follow"
+            };
+        
+            try {
+                const response = await fetch("http://localhost:8082/pet/dogs/addDog", requestOptions);
+                const result = await response.text()
+                console.log(result)
+                if (response.ok) {
+                    console.log("created")
+                }
+                if (!response.ok) {
+                    throw new Error('Failed to create account');
+                }
+        
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     return (
         <div>
@@ -247,13 +314,13 @@ const AddPet: React.FC = () => {
                                         <div className={styles.ratio_label}>
 
                                             <label >
-                                                <input type="radio" name="public" value="public" checked={pet.public === 'public'} onChange={handleInputChange} />
+                                                <input type="radio" name="visibility" value="public" checked={pet.visibility === 'public'} onChange={handleInputChange} />
                                                 public
                                             </label></div>
                                         <div className={styles.ratio_label}>
 
                                             <label>
-                                                <input type="radio" name="public" value="private" checked={pet.public === 'private'} onChange={handleInputChange} />
+                                                <input type="radio" name="visibility" value="private" checked={pet.visibility === 'private'} onChange={handleInputChange} />
                                                 private
                                             </label>
                                         </div>

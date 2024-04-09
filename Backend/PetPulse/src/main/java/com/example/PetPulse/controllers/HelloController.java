@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     @GetMapping
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public String hello() {
+    public String hello(){
         return "Hello, authenticated user!";
     }
 }
