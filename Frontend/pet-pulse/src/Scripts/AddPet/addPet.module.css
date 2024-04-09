@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.body
+{
+    display: flex;
+    align-content: center;
+    min-height: 90vh;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.form
+{
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    height: max-content;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    margin-top:1%;
+}
+
+.title
+{
+  font-size: 2em;
+  padding-top:5%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.buttons
+{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+
+    
+}
+.button_pet
+{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffffff;
+  padding-left: 10%;
+  width: 50%;
+ justify-content: center;
+}
+.button_pet:hover
+{
+  transform: translateY(5%);
+  border: solid 1px rgba(0, 0, 0, 0.8);
+
+}
+.button_pet_active
+{
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  background-color: #f5fefb;
+  padding-left: 10%;
+  transform: translateY(5%);
+  width: 50%;
+  border:none;
+  justify-content: center;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border: solid 1px rgba(0, 0, 0, 0.8);
+  border-bottom: none;
+}
+
+.button_pet_active_cat
+{
+  background-color: white;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  background-color: rgb(250, 247, 236);
+  padding-left: 10%;
+  transform: translateY(5%);
+  width: 50%;
+  border:none;
+  justify-content: center;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border: solid 1px rgba(0, 0, 0, 0.8);
+  border-bottom: none;
+}
+.icon
+{
+    font-size: 30px;
+    color:#000000;
+    position: absolute;
+    transform: translateX(-350%) translateY(-15%);
+}
+.icon_transparente
+{
+    font-size: 30px;
+    color:#0000001e;
+    position: absolute;
+    transform: translateX(-350%) translateY(-15%);
+}
+
+.picture
+{
+    width: 150px;
+    height: 150px;
+    background-color: red;
+}
+
+.fileInputContainer {
+    
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fileInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .customButton {
+    display: inline-block;
+    background-image: url('./86a31e35b4b769ae5861db102a9e0404-removebg-preview.png');
+    background-size: cover;
+    width: 250px; 
+    height: 150px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px; 
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgb(237, 237, 237);
+    
+  }
+
+  .picture_and_desc
+  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10%;
+    padding-right: 20%;
+    padding-top: 2%;
+  }
+
+  .customButton .image
+  {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; 
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .label
+  {
+    color:#383838;
+    font-size:15px;
+    padding-top: 5%;
+   
+  }
+  .left_part
+  {
+    width: 50%;
+  }
+
+  .input_text
+  {
+    font-family: 'Trebuchet MS', sans-serif;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4); /* Adjust color and thickness as needed */
+  background-color: transparent;
+  margin-top:2%;
+  margin-bottom: 2%;
+  width: 80%;
+  font-size: medium;
+  }
+
+  .input_text:focus
+  {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8); /* Adjust color and thickness as needed */
+    color:rgb(6, 0, 96);
+    margin-top: 3%;
+    outline:none;
+    margin-bottom: 7%;
+    font-size:20px;
+    font-family: 'Trebuchet MS', sans-serif;
+
+  }
+
+
+  .input_textare
+  {
+
+    border: 1px solid rgba(0, 0, 0, 0.4); /* Adjust color and thickness as needed */
+    background-color: transparent;
+    margin-top:2%;
+    margin-bottom: 2%;
+    width: 80%;
+    font-size: medium;
+    font-family: 'Trebuchet MS', sans-serif;
+
+  }
+
+  .input_textare:focus
+  {
+    border: 1px solid rgba(0, 0, 0, 1); /* Adjust color and thickness as needed */
+    color:rgb(6, 0, 96);
+    margin-top: 3%;
+    outline:none;
+    margin-bottom: 7%;
+    font-size:15px;
+    font-family: 'Trebuchet MS', sans-serif;
+  }
+ .select
+ {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  margin-bottom:1%;
+  width: 70%;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top:3%;
+ }
+
+ .select_box
+ {
+  height: fit-content;
+  align-self: baseline;
+  margin-top: auto;
+  padding: 1%;
+  width: 95%;
+  margin-left:5%;
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: transparent;
+  text-align: center;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+ }
+ .select_box:focus
+ {
+  outline: none;
+  margin-top:5%;
+  font-size: 16px;
+
+ }
+ .fild
+ {
+  margin-left:10%;
+ }
+.label2
+{
+  color:#383838;
+  font-size:15px;
+
+}
+
+.second
+{
+  background-color: #f5fefb;
+}
+
+.second_active
+{
+  background-color: rgb(250, 247, 236)
+
+}
+.second .main, .second_active .main
+{
+  display: flex;
+}
+.second .left_part_second, .second_active .left_part_second
+{
+  width : 50%;
+  padding-left:5%;
+}
+
+.second .right_part_second, .second_active .right_part_second
+{
+  width: 50%;
+}
+.labels
+{
+  display: flex;
+  flex-direction: row;
+  padding-top: 5%;
+  width: 60%;
+  justify-content: space-evenly;
+}
+.fild22
+{
+ 
+  display: flex;
+  flex-direction: row;
+  margin-left:10%;
+  width: 80%;
+  margin-bottom:3%;
+  margin-top:1%;
+}
+.ratio_label
+{
+  width: 30%;
+ 
+}
+.submit
+{
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  align-self: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  background: rgb(255, 255, 255);
+  border:none;
+  outline: none;
+  border-radius:40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  margin-left:35%;  
+  margin-bottom: 3%;
+  margin-top:2%;
+}
+.icon_send
+{
+  position: absolute;
+  font-size: 30px;
+  transform: translateX(-200%) translateY(-20%);
+}
