@@ -1,9 +1,9 @@
 package com.example.PetPulse.services;
 
-import com.example.PetPulse.models.dto.UsersDog.DogDTO;
-import com.example.PetPulse.models.entities.UserDog;
+import com.example.PetPulse.models.dto.UsersPet.PetDTO;
+import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.repositories.UserRepository;
-import com.example.PetPulse.repositories.UsersDogsRepository;
+import com.example.PetPulse.repositories.UsersPetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,22 +15,22 @@ import java.nio.file.Paths;
 import java.util.Date;
 
 @Service
-public class UserDogServiceImp implements UserDogService {
-    private final UsersDogsRepository usersDogsRepository;
+public class UserPetServiceImp implements UserPetService {
+    private final UsersPetRepository usersPetRepository;
 
     @Autowired UserRepository userRepository;
-        @Autowired
-        public UserDogServiceImp(UsersDogsRepository usersDogsRepository) {
-            this.usersDogsRepository = usersDogsRepository;
-        }
+    @Autowired
+    public UserPetServiceImp(UsersPetRepository usersPetRepository) {
+        this.usersPetRepository = usersPetRepository;
+    }
 
     @Override
-    public String saveDogPicture(String username, MultipartFile file) {
+    public String savePicture(String username, MultipartFile file) {
         try {
             Long userId = userRepository.findIdByUsername(username);
 
             String fileName = new Date().getTime() + "_" + file.getOriginalFilename();
-            Path uploadPath = Paths.get("D://doggy/" + username);
+            Path uploadPath = Paths.get("D://pet/" + username);
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
@@ -44,11 +44,11 @@ public class UserDogServiceImp implements UserDogService {
     }
 
     @Override
-    public void saveDog(DogDTO dog, String username) {
+    public void savePet(PetDTO dog, String username) {
         Long id = userRepository.findIdByUsername(username);
-        UserDog userDog = new UserDog(id, dog.getName(), dog.getBreed(), dog.getDescription(), dog.getColor(), dog.getWeight(), dog.getMicrochipId(), dog.getAllergies(), dog.getGender(), dog.getAge(), dog.getVisibility(), dog.getImagePath());
-        System.out.println(userDog);
-        usersDogsRepository.save(userDog);
+        UserPet userPet = new UserPet(id, dog.getName(), dog.getBreed(), dog.getDescription(), dog.getColor(), dog.getWeight(), dog.getMicrochipId(), dog.getAllergies(), dog.getGender(), dog.getAge(), dog.getVisibility(), dog.getImagePath(), dog.getAnimalType());
+        System.out.println(userPet);
+        usersPetRepository.save(userPet);
     }
 
 }

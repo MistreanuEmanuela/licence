@@ -19,6 +19,7 @@ interface Pet {
     allergies: string;
     imagePath: string;
     visibility: string;
+    animalType: string;
 }
 
 interface Dog {
@@ -43,6 +44,7 @@ const AddPet: React.FC = () => {
         allergies: '',
         imagePath: '',
         visibility: '',
+        animalType: 'Dog'
     });
     const [path, SetPath] = useState<string>('');
     const [petType, setPetType] = useState<string>('Dog');
@@ -79,6 +81,7 @@ const AddPet: React.FC = () => {
 
 
     const handlePetType = (stringValue: string) => {
+        pet.animalType = stringValue
         setPetType(stringValue);
     }
 
@@ -114,7 +117,7 @@ const AddPet: React.FC = () => {
         formData.append('file', file);
 
         try {
-            const response = await fetch('http://localhost:8082/pet/dogs/upload', {
+            const response = await fetch('http://localhost:8082/pet/upload', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -151,9 +154,9 @@ const AddPet: React.FC = () => {
                 body: JSON.stringify(pet),
                 redirect: "follow"
             };
-        
+            
             try {
-                const response = await fetch("http://localhost:8082/pet/dogs/addDog", requestOptions);
+                const response = await fetch("http://localhost:8082/pet/addPet", requestOptions);
                 const result = await response.text()
                 console.log(result)
                 if (response.ok) {

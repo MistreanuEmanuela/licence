@@ -1,7 +1,7 @@
 package com.example.PetPulse.controllers;
 
-import com.example.PetPulse.models.dto.UsersDog.DogDTO;
-import com.example.PetPulse.services.UserDogServiceImp;
+import com.example.PetPulse.models.dto.UsersPet.PetDTO;
+import com.example.PetPulse.services.UserPetServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,38 +13,38 @@ import org.springframework.web.multipart.MultipartFile;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequestMapping("/pet")
 @RestController
-public class UsersDogController {
+public class UsersPetController {
 
 
-    private UserDogServiceImp petDogService;
+    private UserPetServiceImp petService;
     @Autowired
-    public UsersDogController(UserDogServiceImp petDogService) {
-        this.petDogService = petDogService;
+    public UsersPetController(UserPetServiceImp petDogService) {
+        this.petService = petDogService;
     }
 
 
 
 
-    @PostMapping("/dogs/upload")
+    @PostMapping("/upload")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public ResponseEntity<String> uploadDogPicture(@RequestPart MultipartFile file, Authentication authentication) {
+    public ResponseEntity<String> uploadPicture(@RequestPart MultipartFile file, Authentication authentication) {
         if (file.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Please upload a file");
         }
 
         String username = authentication.getName();
         String imagePath;
-        imagePath = petDogService.saveDogPicture(username, file);
+        imagePath = petService.savePicture(username, file);
 
         return ResponseEntity.ok(imagePath);
     }
 
 
-    @PostMapping("/dogs/addDog")
+    @PostMapping("/addPet")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public void uploadDogPicture(@RequestBody DogDTO dogDTO, Authentication authentication) {
+    public void uploadAnimal(@RequestBody PetDTO petDTO, Authentication authentication) {
         String username = authentication.getName();
-        petDogService.saveDog(dogDTO, username);
+        petService.savePet(petDTO, username);
     }
 }

@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "users_dogs")
-public class UserDog {
+@Table(name = "users_pet")
+public class UserPet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,12 +49,14 @@ public class UserDog {
 
     @Column(name = "imagepath")
     private String imagePath;
+    @Column(name = "animal_type")
+    private String animalType;
 
-    public UserDog() {
+    public UserPet() {
     }
 
-    public UserDog(Long id, Long userId, String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String age, String visibility, String imagePath) {
-        this.id = id;
+
+    public UserPet(Long userId, String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String age, String visibility, String imagePath, String animalType) {
         this.userId = userId;
         this.name = name;
         this.breed = breed;
@@ -67,20 +69,6 @@ public class UserDog {
         this.age = age;
         this.visibility = visibility;
         this.imagePath = imagePath;
-    }
-
-    public UserDog(Long userId, String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String age, String visibility, String imagePath) {
-        this.userId = userId;
-        this.name = name;
-        this.breed = breed;
-        this.description = description;
-        this.color = color;
-        this.weight = weight;
-        this.microchipId = microchipId;
-        this.allergies = allergies;
-        this.gender = gender;
-        this.age = age;
-        this.visibility = visibility;
-        this.imagePath = imagePath;
+        this.animalType = animalType;
     }
 }

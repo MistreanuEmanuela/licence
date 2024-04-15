@@ -1,11 +1,11 @@
-package com.example.PetPulse.models.dto.UsersDog;
+package com.example.PetPulse.models.dto.UsersPet;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class DogDTO {
+public class PetDTO {
 
     private String name;
     private String breed;
@@ -27,11 +27,12 @@ public class DogDTO {
     private String visibility;
 
     private String imagePath;
+    private String animalType;
 
-    public DogDTO() {
+    public PetDTO() {
     }
 
-    public DogDTO(String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String age, String visibility, String imagePath) {
+    public PetDTO(String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String age, String visibility, String imagePath, String animalType) {
         this.name = name;
         this.breed = breed;
         this.description = description;
@@ -43,5 +44,6 @@ public class DogDTO {
         this.age = age;
         this.visibility = visibility;
         this.imagePath = imagePath;
+        this.animalType = animalType;
     }
 }
