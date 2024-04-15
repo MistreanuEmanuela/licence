@@ -1,5 +1,6 @@
 package com.example.PetPulse.controllers;
 
+import com.example.PetPulse.models.dto.AllPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
 import com.example.PetPulse.services.UserPetServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequestMapping("/pet")
 @RestController
@@ -46,5 +50,12 @@ public class UsersPetController {
     public void uploadAnimal(@RequestBody PetDTO petDTO, Authentication authentication) {
         String username = authentication.getName();
         petService.savePet(petDTO, username);
+    }
+
+    @GetMapping("/findMyPet")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public List<AllPetDTO> allMyPets(Authentication authentication) {
+        String username = authentication.getName();
+        return petService.findAllPet(username);
     }
 }

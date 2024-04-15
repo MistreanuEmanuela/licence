@@ -1,5 +1,6 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.models.dto.AllPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
 import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.repositories.UserRepository;
@@ -13,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserPetServiceImp implements UserPetService {
@@ -51,4 +54,12 @@ public class UserPetServiceImp implements UserPetService {
         usersPetRepository.save(userPet);
     }
 
+    @Override
+    public List<AllPetDTO> findAllPet(String username) {
+        Long id = userRepository.findIdByUsername(username);
+        List<UserPet> pets = usersPetRepository.findAllPet(id);
+        return pets.stream()
+                .map(pet -> new AllPetDTO(pet.getId(), pet.getName(), pet.getBreed(), pet.getColor(), pet.getGender(), pet.getAge()))
+                .collect(Collectors.toList());
+    }
 }
