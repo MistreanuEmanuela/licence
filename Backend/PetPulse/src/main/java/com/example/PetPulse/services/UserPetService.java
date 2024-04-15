@@ -11,4 +11,5 @@ public interface UserPetService {
     void savePet(PetDTO dog, String username);
 
     List<AllPetDTO> findAllPet(String username);
-}
+    public byte[] getPetPicture(String path);
+    }

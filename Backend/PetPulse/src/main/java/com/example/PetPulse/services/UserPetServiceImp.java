@@ -59,7 +59,17 @@ public class UserPetServiceImp implements UserPetService {
         Long id = userRepository.findIdByUsername(username);
         List<UserPet> pets = usersPetRepository.findAllPet(id);
         return pets.stream()
-                .map(pet -> new AllPetDTO(pet.getId(), pet.getName(), pet.getBreed(), pet.getColor(), pet.getGender(), pet.getAge()))
+                .map(pet -> new AllPetDTO(pet.getId(), pet.getName(), pet.getBreed(), pet.getColor(), pet.getGender(), pet.getAge(), pet.getImagePath(), pet.getAnimalType()))
                 .collect(Collectors.toList());
+    }
+    @Override
+    public byte[] getPetPicture(String path) {
+        Path filePath = Path.of(path);
+        System.out.println(filePath);
+        try {
+            return Files.readAllBytes(filePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import styles from './NavbarC.module.css';
+import { useNavigate } from 'react-router-dom';
+
 
 interface NavbarProps {
   pagename: string;
@@ -11,6 +13,8 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [placeholder, setPlaceholder] = useState('Search a dog');
+  const history = useNavigate();
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -40,6 +44,11 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
   const handleSearchInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
   };
+
+  const handleNavigate = () => {
+    history('/myPets');
+};
+
 
   return (
     <><div className={styles.body}>
@@ -98,7 +107,7 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
         {!isSearchOpen && (
           <button className={styles.search} onClick={toggleSearch}></button>
         )}
-        <button className={styles.pets}></button>
+        <button className={styles.pets} onClick={handleNavigate}></button>
         <button className={styles.profile}></button>
       </div>
     </div>
