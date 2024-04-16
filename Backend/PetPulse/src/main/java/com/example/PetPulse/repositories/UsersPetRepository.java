@@ -12,4 +12,7 @@ import java.util.List;
 public interface UsersPetRepository extends JpaRepository<UserPet,Long> {
     @Query(value = "SELECT * FROM users_pet WHERE user_id = :id", nativeQuery = true)
     List<UserPet> findAllPet(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM users_pet WHERE id = :id", nativeQuery = true)
+    UserPet findUserPetById(@Param("id") Long id);
 }

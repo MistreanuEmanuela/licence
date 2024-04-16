@@ -1,6 +1,8 @@
 package com.example.PetPulse.services;
 
-import com.example.PetPulse.models.dto.AllPetDTO;
+import com.example.PetPulse.Exception.Pet.PetNotFoundException;
+import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
+import com.example.PetPulse.models.dto.UsersPet.EditPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
 import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.repositories.UserRepository;
@@ -49,8 +51,9 @@ public class UserPetServiceImp implements UserPetService {
     @Override
     public void savePet(PetDTO dog, String username) {
         Long id = userRepository.findIdByUsername(username);
-        UserPet userPet = new UserPet(id, dog.getName(), dog.getBreed(), dog.getDescription(), dog.getColor(), dog.getWeight(), dog.getMicrochipId(), dog.getAllergies(), dog.getGender(), dog.getAge(), dog.getVisibility(), dog.getImagePath(), dog.getAnimalType());
-        System.out.println(userPet);
+        UserPet userPet = new UserPet(id, dog.getName(), dog.getBreed(), dog.getDescription(), dog.getColor(), dog.getWeight(), dog.getMicrochipId(), dog.getAllergies(), dog.getGender(), dog.getVisibility(), dog.getImagePath(), dog.getAnimalType(), dog.getBirthdate());
+        System.out.println(dog.getBirthdate());
+        System.out.println(dog);
         usersPetRepository.save(userPet);
     }
 
@@ -59,7 +62,7 @@ public class UserPetServiceImp implements UserPetService {
         Long id = userRepository.findIdByUsername(username);
         List<UserPet> pets = usersPetRepository.findAllPet(id);
         return pets.stream()
-                .map(pet -> new AllPetDTO(pet.getId(), pet.getName(), pet.getBreed(), pet.getColor(), pet.getGender(), pet.getAge(), pet.getImagePath(), pet.getAnimalType()))
+                .map(pet -> new AllPetDTO(pet.getId(), pet.getName(), pet.getBreed(), pet.getColor(), pet.getGender(), pet.getBirthdate(), pet.getImagePath(), pet.getAnimalType()))
                 .collect(Collectors.toList());
     }
     @Override
@@ -71,5 +74,50 @@ public class UserPetServiceImp implements UserPetService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void editPet(EditPetDTO pet) {
+        UserPet actualPet = usersPetRepository.findUserPetById(pet.getId());
+        if (actualPet != null) {
+            actualPet.setBirthdate(pet.getBirthdate());
+            actualPet.setName(pet.getName());
+            actualPet.setAllergies(pet.getAllergies());
+            actualPet.setDescription(pet.getDescription());
+            actualPet.setVisibility(pet.getVisibility());
+            actualPet.setWeight(pet.getWeight());
+            usersPetRepository.save(actualPet);
+        } else {
+            throw new PetNotFoundException("The pet with provide id doesn't exist");
+        }
+    }
+
+    @Override
+    public UserPet findPet(Long id) {
+        UserPet actualPet = usersPetRepository.findUserPetById(id);
+        if (actualPet != null) {
+            return actualPet;
+        }
+        else {
+            throw new PetNotFoundException("The pet with provide id doesn't exist");
+        }
+    }
+
+    @Override
+    public boolean deletePet(Long id, String username) {
+        UserPet actualPet = usersPetRepository.findUserPetById(id);
+        Long idUser = userRepository.findIdByUsername(username);
+        if(!idUser.equals(actualPet.getUserId()))
+        {
+            return false;
+        }
+        if (actualPet != null) {
+            usersPetRepository.deleteById(id);
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 }

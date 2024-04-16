@@ -76,7 +76,26 @@ const MyPet: React.FC = () => {
     const handleNavigate = () => {
         history('/AddPet');
     };
-    
+
+    const handleNav = (id: Number) => {
+        const id_S = String(id);
+        localStorage.setItem("IdPet", id_S);
+        history('/petInfo');
+    };
+    const calculateAge = (dob: string): string => {
+        const today = new Date();
+        const birthDate = new Date(dob);
+        
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
+        
+        if (months < 0) {
+            years = years-1;
+            months += 12;
+        }
+        
+        return `${years} years, ${months} months`;
+    };
 
     return (
         <div className={styles.body}>
@@ -97,11 +116,11 @@ const MyPet: React.FC = () => {
                                 <div className={styles.title}>{pet.name} </div>
                                 <div className={styles.infos}>
                                     <div>Breed: {pet.breed}</div>
-                                    <div>Age: {pet.age}</div>
+                                    <div>Age: {calculateAge(pet.age)}</div>
                                     <div>Color: {pet.color}</div>
                                     <div>Gender: {pet.gender}</div>
                                 </div>
-                                <button className={styles.more}> More info </button>
+                                <button className={styles.more} onClick={() => handleNav(pet.id)}> More info </button>
                             </div>
                         </div>
                     ))}

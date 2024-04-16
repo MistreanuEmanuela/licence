@@ -1,5 +1,6 @@
 package com.example.PetPulse.Advice;
 
+import com.example.PetPulse.Exception.Pet.PetNotFoundException;
 import com.example.PetPulse.Exception.User.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,5 +52,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleIncorrectCodeException(IncorrectCodeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
+    @ExceptionHandler(PetNotFoundException.class)
+    public ResponseEntity<String> handlePetNotFoundException(PetNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
 }
 

@@ -11,11 +11,11 @@ interface Pet {
     name: string;
     description: string;
     breed: string;
-    age: string;
+    birthdate: string;
     color: string;
     gender: string;
     weight: number;
-    microchipId : string;
+    microchipId: string;
     allergies: string;
     imagePath: string;
     visibility: string;
@@ -36,7 +36,7 @@ const AddPet: React.FC = () => {
         name: '',
         description: '',
         breed: '',
-        age: '',
+        birthdate: '',
         color: '',
         gender: '',
         weight: 0,
@@ -92,7 +92,7 @@ const AddPet: React.FC = () => {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]); 
+            setFile(e.target.files[0]);
         }
         if (e.target.files && e.target.files[0]) {
             const reader = new FileReader();
@@ -128,6 +128,7 @@ const AddPet: React.FC = () => {
             if (response.ok) {
                 const imagePath = await response.text();
                 pet.imagePath = imagePath;
+                
                 console.log('Image uploaded:', imagePath);
             } else {
                 console.error('Failed to upload image:', response.statusText);
@@ -137,24 +138,26 @@ const AddPet: React.FC = () => {
         }
         if (pet.imagePath !== '') {
             console.log(pet.imagePath);
+            console.log(pet);
+
             const token = localStorage.getItem("token");
-        
+
             if (!token) {
                 console.error('Token not found');
                 return;
             }
-        
+
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append("Authorization", `Bearer ${token}`);
-        
+
             const requestOptions: RequestInit = {
                 method: "POST",
                 headers: myHeaders,
                 body: JSON.stringify(pet),
                 redirect: "follow"
             };
-            
+
             try {
                 const response = await fetch("http://localhost:8082/pet/addPet", requestOptions);
                 const result = await response.text()
@@ -165,13 +168,15 @@ const AddPet: React.FC = () => {
                 if (!response.ok) {
                     throw new Error('Failed to create account');
                 }
-        
+
             } catch (error) {
                 console.error(error);
             }
         }
     };
-
+    const formatDate = (birthday: string): string => {
+        return birthday;
+    };
     return (
         <div>
             <Navbar pagename="cats" />
@@ -179,11 +184,11 @@ const AddPet: React.FC = () => {
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.buttons}>
                         {petType === 'Dog' &&
-                            <button  type="button" className={styles.button_pet_active} onClick={(e) => handlePetType('Dog')}>
+                            <button type="button" className={styles.button_pet_active} onClick={(e) => handlePetType('Dog')}>
                                 <div className={styles.icon}><PiDog /></div>Add a new dog friend </button>
                         }
                         {petType !== 'Dog' &&
-                            <button  type="button" className={styles.button_pet} onClick={(e) => handlePetType('Dog')}>
+                            <button type="button" className={styles.button_pet} onClick={(e) => handlePetType('Dog')}>
                                 <div className={styles.icon_transparente}><PiDog /> </div>
                                 Add a new dog friend</button>
 
@@ -286,28 +291,13 @@ const AddPet: React.FC = () => {
                                 </div>
 
                                 <div>
-                                    <div className={styles.select}>
-                                        <div className={styles.label}>
-                                            <label htmlFor="age">Age:</label></div>
-                                        <select className={styles.select_box} id="age" name="age" value={pet.age} onChange={handleInputChange}>
-                                            <option value="">Select Age</option>
-                                            <option value="1 month">1 month</option>
-                                            <option value="2 months">2 months</option>
-                                            <option value="3 months">3 months</option>
-                                            <option value="4 months">4 months</option>
-                                            <option value="5 months">5 months</option>
-                                            <option value="6 months">6 months</option>
-                                            <option value="9 months">9 months</option>
-                                            <option value="1 year">1 year</option>
-                                            <option value="2 years">2 years</option>
-                                            <option value="3 years">3 years</option>
-                                            <option value="4 years">4 years</option>
-                                            <option value="5 years">5 years</option>
-                                            <option value="6 years">6 years</option>
-                                            <option value="7 years">7 years</option>
-                                            <option value="8 years">8 years</option>
-                                            <option value="9 years">9 years</option>
-                                        </select>
+                                    <div>
+                                        <div className={styles.select}>
+                                            <div className={styles.label}>
+                                                <label htmlFor="birthday">Birthday:</label>
+                                            </div>
+                                            <input className={styles.select_box} type="date" id="birthdate" name="birthdate" value={pet.birthdate} onChange={handleInputChange} />
+                                        </div>
                                     </div>
                                 </div>
 
@@ -332,8 +322,8 @@ const AddPet: React.FC = () => {
                             </div>
                         </div>
                         <button type='submit' className={styles.submit}>
-                        
-                             Save pet </button>
+
+                            Save pet </button>
 
                     </div>
                 </form>

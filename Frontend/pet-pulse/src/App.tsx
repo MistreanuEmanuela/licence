@@ -10,6 +10,7 @@ import AllCats from './Scripts/AllCats/AllCats';
 import CatInfo from './Scripts/CatInfo/catInfo';
 import AddPet from './Scripts/AddPet/AddPet';
 import AllMyPets from './Scripts/AllMyPets/MyPet'
+import PetInfo from './Scripts/PetInfo/petInfo';
 
 
 function App(): JSX.Element {
@@ -26,6 +27,7 @@ function App(): JSX.Element {
         <Route path="/allcats" element={<AllCats/>}></Route>
         <Route path="addPet" element={<AddPet/>}></Route>
         <Route path ="myPets" element={<AllMyPets/>}></Route>
+        <Route path ="petInfo" element={<PetInfo/>}></Route>
       </Routes>
     </Router>
   );

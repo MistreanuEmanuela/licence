@@ -138,3 +138,8 @@ display: flex;
     margin-right:5%;
     margin-bottom: 2%;
 }
+.add:hover
+{
+    color:rgb(78, 125, 78);
+
+}

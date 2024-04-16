@@ -1,7 +1,9 @@
 package com.example.PetPulse.controllers;
 
-import com.example.PetPulse.models.dto.AllPetDTO;
+import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
+import com.example.PetPulse.models.dto.UsersPet.EditPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
+import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.services.UserPetServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -81,6 +82,31 @@ public class UsersPetController {
                     .body(resource);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    @PutMapping(path = "/editPet")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<String> editPet(@RequestBody EditPetDTO pet) {
+        petService.editPet(pet);
+        return ResponseEntity.ok("Pet information updated successfully");
+    }
+
+    @GetMapping(path="view")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public UserPet findPet(@RequestParam Long id)
+    {
+        return petService.findPet(id);
+    }
+    @DeleteMapping("/deletePet")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<String> deletePet(@RequestParam Long id, Authentication authentication) {
+        String username = authentication.getName();
+        boolean deleted = petService.deletePet(id, username);
+        if (deleted) {
+            return ResponseEntity.ok("Pet deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet not found or you don't have permission to delete it");
         }
     }
 }

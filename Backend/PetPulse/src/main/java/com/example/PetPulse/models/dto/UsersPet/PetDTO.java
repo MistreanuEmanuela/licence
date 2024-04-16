@@ -3,6 +3,8 @@ package com.example.PetPulse.models.dto.UsersPet;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class PetDTO {
@@ -22,17 +24,18 @@ public class PetDTO {
 
     private String gender;
 
-    private String age;
-
     private String visibility;
 
     private String imagePath;
+
     private String animalType;
+
+    private Date birthdate;
 
     public PetDTO() {
     }
 
-    public PetDTO(String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String age, String visibility, String imagePath, String animalType) {
+    public PetDTO(String name, String breed, String description, String color, Double weight, String microchipId, String allergies, String gender, String visibility, String imagePath, String animalType, Date birthdate) {
         this.name = name;
         this.breed = breed;
         this.description = description;
@@ -41,9 +44,27 @@ public class PetDTO {
         this.microchipId = microchipId;
         this.allergies = allergies;
         this.gender = gender;
-        this.age = age;
         this.visibility = visibility;
         this.imagePath = imagePath;
         this.animalType = animalType;
+        this.birthdate = birthdate;
+    }
+
+    @Override
+    public String toString() {
+        return "PetDTO{" +
+                "name='" + name + '\'' +
+                ", breed='" + breed + '\'' +
+                ", description='" + description + '\'' +
+                ", color='" + color + '\'' +
+                ", weight=" + weight +
+                ", microchipId='" + microchipId + '\'' +
+                ", allergies='" + allergies + '\'' +
+                ", gender='" + gender + '\'' +
+                ", visibility='" + visibility + '\'' +
+                ", imagePath='" + imagePath + '\'' +
+                ", animalType='" + animalType + '\'' +
+                ", birthdate=" + birthdate +
+                '}';
     }
 }
