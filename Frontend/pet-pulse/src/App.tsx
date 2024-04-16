@@ -12,6 +12,7 @@ import AddPet from './Scripts/AddPet/AddPet';
 import AllMyPets from './Scripts/AllMyPets/MyPet'
 import PetInfo from './Scripts/PetInfo/petInfo';
 import AddMedicalHistory from './Scripts/AddMedicalHistory/AddMedicalHistory';
+import MedicalHistory from './Scripts/MedicalHistory/MedicalHistory';
 
 
 function App(): JSX.Element {
@@ -30,6 +31,7 @@ function App(): JSX.Element {
         <Route path ="/myPets" element={<AllMyPets/>}></Route>
         <Route path ="/petInfo" element={<PetInfo/>}></Route>
         <Route path ="/medicalHistory" element={<AddMedicalHistory/>}></Route>
+        <Route path ="/viewMedicalHistory" element={<MedicalHistory/>}></Route>
       </Routes>
     </Router>
   );

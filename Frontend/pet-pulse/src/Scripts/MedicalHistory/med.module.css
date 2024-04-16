@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.body
+{
+    min-height: 100vh;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.table
+{
+    width: 80vw;
+    margin: 5%;
+    margin-left:10%;
+    margin-right: 10%;
+    background-color: rgb(250, 255, 255);
+    min-height:10vh;
+    font-size: 1.1em;
+    box-shadow: 5px 5px 15px 2px rgba(134, 134, 134, 0.5);
+}
+.column
+{
+    width:20%;
+}
+.last
+{
+    width: 5%;
+}
+.tr
+{
+    width: 100%;
+    text-align: center;
+}
+.thead
+{
+    background-color:#63ad798f;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    height: 5vh;
+}
+.td 
+{
+    text-align: center;
+    padding-top:1%;
+    padding-bottom:1%;
+    
+    
+}
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdownContent button {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+}
+
+.dropdownContent button:hover {
+    background-color: #ddd;
+}
+
+td:last-child {
+    position: relative;
+}
+
+td:last-child:hover .dropdownContent {
+    display: block;
+}
+
+
+tr:hover {
+    background-color: #f5f5f5;
+    
+}
+.nothing
+{
+    width: 100%;
+    text-align: center;
+}
+.more
+{
+    height: fit-content;
+    font-size: 1.2em;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    margin-top:-1%;
+    margin-bottom:-1%;
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+}
+
+.confirmDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dialogContent {
+    text-align: center;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.confirmButton, .cancelButton {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    border:solid 2px rgba(0, 0, 0, .4)
+    
+}
+
+.cancelButton {
+    background-color: #f9d5d2;
+}
+
+.confirmButton:hover, .cancelButton:hover {
+    opacity: 0.8;
+    transform: translateY(-5%);
+}
