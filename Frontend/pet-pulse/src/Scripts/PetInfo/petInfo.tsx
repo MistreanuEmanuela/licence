@@ -331,6 +331,7 @@ const PetInfo: React.FC = () => {
                                         </div>
                                     )}
                                 </div>
+                              
 
                             </div>
                             <div className={styles.right_part}>
@@ -463,10 +464,11 @@ const PetInfo: React.FC = () => {
                                         <div className={styles.content}>{pet.microchipId}</div>
                                     </div>
                                 </div>
+                                
                             </div>
 
                         </div>
-                        <button onClick={handleSaveClickFinal} className={styles.save}>Save</button>
+                        <button onClick={handleSaveClickFinal} className={styles.save}>Save</button>  
                     </div>
                 ) : (
                     <p>Loading...</p>

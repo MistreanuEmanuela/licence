@@ -8,10 +8,12 @@
     display: flex;
     flex-direction: row;
     height: 65vh;
+    margin-top:-5vh;
 }
 
 .image
 {
+    margin-left: -10%;
     width: 400px;
     height: 300px;
     border-radius: 15px;
@@ -31,7 +33,7 @@
     flex-direction: column;
     background-color: #faf7ef;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px 5px rgba(1, 1 , 1, 0.2);
+    box-shadow: 5px 5px 15px 4px rgba(1, 1 , 1, 0.2);
     margin:2%;
     margin-right: 10%;
     margin-left:10%;
@@ -181,19 +183,19 @@
 
 .delete_button
 {
-    margin-left:auto;
-    width: auto;
+    margin-left: auto;
     min-height: 5vh;
     padding: 0%;
     width: 5%;
     font-size: 2em;
-    margin-right:-1%;
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-top: 0.5%;
+    z-index: 99;
 
 }
+
 
 @media screen and (max-width: 1600px) {
     .info

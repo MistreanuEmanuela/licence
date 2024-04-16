@@ -104,7 +104,7 @@ const MyPet: React.FC = () => {
             <div className={styles.container}>
                 <div className={styles.petsContainer}>
                     {pets.map(pet => (
-                        <div key={pet.id} className={styles.petContainer} onMouseEnter={() => handleMouseEnter(pet.id)} onMouseLeave={handleMouseLeave}>
+                        <><div key={pet.id} className={styles.petContainer} onMouseEnter={() => handleMouseEnter(pet.id)} onMouseLeave={handleMouseLeave}>
                             <div className={styles.front} style={{ display: hoveredPetId === pet.id ? 'none' : 'block' }}>
                                 {imageSrcs[pet.id.toString()] !== null ? (
                                     <img src={imageSrcs[pet.id.toString()] || ''} alt={pet.name} className={styles.image} />
@@ -122,10 +122,11 @@ const MyPet: React.FC = () => {
                                 </div>
                                 <button className={styles.more} onClick={() => handleNav(pet.id)}> More info </button>
                             </div>
-                        </div>
+                        </div></>
                     ))}
+                    <button className={styles.add} onClick={handleNavigate}></button>
                 </div>
-                <button className={styles.add} onClick={handleNavigate}> Add a new pet</button>
+        
             </div>
         </div>
     );
