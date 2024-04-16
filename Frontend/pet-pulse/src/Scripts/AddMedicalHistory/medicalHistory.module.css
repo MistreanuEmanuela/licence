@@ -2,8 +2,9 @@
 
 .body
 {
-    min-height: 100vh;
+    min-height: 98vh;
     font-family: 'Trebuchet MS', sans-serif;
+    padding-bottom: 2vh;
 }
 
 .options
@@ -111,5 +112,5 @@
     justify-content: center;
     align-items: center;
     background-color:transparent;
-    margin-top:10%;
+    margin-top: 5%;
 }
