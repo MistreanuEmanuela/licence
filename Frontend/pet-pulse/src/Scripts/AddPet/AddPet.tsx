@@ -3,7 +3,7 @@ import styles from './addPet.module.css'
 import Navbar from '../NavBars/NavBar';
 import { PiCat } from "react-icons/pi";
 import { PiDog } from "react-icons/pi";
-import { FcUpload } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -32,6 +32,7 @@ interface Cat {
     name: string;
 }
 const AddPet: React.FC = () => {
+    const [added, setAdded] = useState<Boolean>(false);
     const [pet, setPet] = useState<Pet>({
         name: '',
         description: '',
@@ -51,6 +52,7 @@ const AddPet: React.FC = () => {
     const [dogs, setDogs] = useState<Dog[]>([]);
     const [cats, setCats] = useState<Cat[]>([]);
     const [file, setFile] = useState<File | null>(null); // State to hold the file
+    const history = useNavigate();
 
 
     useEffect(() => {
@@ -128,7 +130,7 @@ const AddPet: React.FC = () => {
             if (response.ok) {
                 const imagePath = await response.text();
                 pet.imagePath = imagePath;
-                
+
                 console.log('Image uploaded:', imagePath);
             } else {
                 console.error('Failed to upload image:', response.statusText);
@@ -164,6 +166,10 @@ const AddPet: React.FC = () => {
                 console.log(result)
                 if (response.ok) {
                     console.log("created")
+                    setAdded(true);
+                    setTimeout(() => {
+                        history('/myPets');
+                    }, 5000);
                 }
                 if (!response.ok) {
                     throw new Error('Failed to create account');
@@ -181,6 +187,13 @@ const AddPet: React.FC = () => {
         <div>
             <Navbar pagename="cats" />
             <div className={styles.body}>
+                {added &&
+                    <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                        <div className={styles.dialogContent}>
+                            <p>Pet added successfully. Redirecting....</p>
+                        </div>
+                    </div>
+                }
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <div className={styles.buttons}>
                         {petType === 'Dog' &&

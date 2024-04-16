@@ -5,21 +5,235 @@
 }
 .information
 {
-    background-color: #faf7ef;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px 5px rgba(1, 1 , 1, 0.2);
-    margin:2%;
     display: flex;
     flex-direction: row;
+    height: 65vh;
 }
 
 .image
 {
-    width:200px;
-    height: 200px;
+    width: 400px;
+    height: 300px;
+    border-radius: 15px;
 }
 .left_part
 {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
 }
+.container
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #faf7ef;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px rgba(1, 1 , 1, 0.2);
+    margin:2%;
+    margin-right: 10%;
+    margin-left:10%;
+    min-height: 75vh;
+    justify-content: space-between;
+}
+.info
+{
+    display:flex;
+    flex-direction: row;
+    width:80%;
+}
+
+.info .content
+{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    font-size: 1.2em;
+    font-family: 'Trebuchet MS', sans-serif;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: transparent;
+    justify-content: space-between;
+    padding-left: 20%;
+}
+
+.fild
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top:5%;
+    
+}
+.label_name
+{
+    font-size: 1.2em;
+    width:20%;
+    min-width: fit-content;
+}
+
+.edit
+{
+    border:none;
+    background-color:transparent;
+    cursor: pointer;
+}
+
+.input_fild
+{
+    background-color: white;
+    box-shadow: 2px 2px 10px 4px rgba(249, 69, 69, 0.2);
+    border-radius: 7px;
+    width: 75%;
+    font-size: 1em;
+    padding-left: 2%;
+    font-family: 'Trebuchet MS', sans-serif;
+    border: 2px rgba(137, 137, 137, 0.4);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: -1%;
+}
+
+.input_fild:focus
+{
+    outline: none;
+}
+
+.right_part
+{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+}
+.save
+{
+    width: 20%;
+    height: 45px;
+    background: rgb(255, 255, 255);
+    border:none;
+    outline: none;
+    border-radius:40px;
+    box-shadow: 5px 5px 10px 4px rgba(0, 0, 0, .1);
+    margin-top: 2%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    align-self: center;
+    margin-bottom: 2%;
+}
+.save:hover
+{
+    transform: translateY(-2%);
+    color:rgb(14, 62, 29)
+}
+
+.confirmDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dialogContent {
+    text-align: center;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.confirmButton, .cancelButton {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    border:solid 2px rgba(0, 0, 0, .4)
+    
+}
+
+.cancelButton {
+    background-color: #f9d5d2;
+}
+
+.confirmButton:hover, .cancelButton:hover {
+    opacity: 0.8;
+    transform: translateY(-5%);
+}
+
+.delete_button
+{
+    margin-left:auto;
+    width: auto;
+    min-height: 5vh;
+    padding: 0%;
+    width: 5%;
+    font-size: 2em;
+    margin-right:-1%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 0.5%;
+
+}
+
+@media screen and (max-width: 1600px) {
+    .info
+    {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .image
+    {
+        width: 300px;
+        height: 300px;
+    }
+
+}
+@media screen and (max-width: 900px) {
+    .information
+    {
+        flex-direction: column;
+        height: auto;
+    }
+    .left_part, .right_part
+    {
+        width: 100%;
+        padding-left: 5%;
+    }
+
+}
+@media screen and (max-width: 550px) {
+    .container
+    {
+        margin-left:1%;
+        margin-right: 1%;
+    }
+    .image
+    {
+        height: 150px;
+        width: 150px;
+    }
+
+}
+
