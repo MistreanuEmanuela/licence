@@ -154,7 +154,7 @@
 .button_care_image
 {
   margin-right: 3%;
-  background-image: url("./DesignPicture/care.png");
+  background-image: url("./DesignPicture/care-removebg-preview.png");
   background-position: center;
   background-size: contain;
   height: 100px;
@@ -182,7 +182,7 @@
 .button_personality_image
 {
   margin-right: 3%;
-  background-image: url("./DesignPicture/personality-removebg-preview.png");
+  background-image: url("./DesignPicture/cat.png");
   background-position: center;
   background-size: contain;
   height: 100px;
@@ -192,7 +192,7 @@
 .button_coat_image
 {
   margin-right: 3%;
-  background-image: url("./DesignPicture/coat.png");
+  background-image: url("./DesignPicture/dryer.png");
   background-position: center;
   background-size: contain;
   height: 100px;
@@ -202,7 +202,7 @@
 .button_size_image
 {
   margin-right: 3%;
-  background-image: url("./DesignPicture/size-removebg-preview.png");
+  background-image: url("./DesignPicture/measure.png");
   background-position: center;
   background-size: contain;
   height: 100px;
@@ -212,7 +212,7 @@
 .button_frendly_image
 {
   margin-right: 3%;
-  background-image: url("./DesignPicture/friendly-removebg-preview.png");
+  background-image: url("./DesignPicture/bff.png");
   background-position: center;
   background-size: contain;
   height: 100px;
@@ -255,7 +255,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/eating-removebg-preview.png);
+  /* background-image: url(./DesignPicture/eating-removebg-preview.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -274,7 +274,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/eating-removebg-preview.png);
+  /* background-image: url(./DesignPicture/eating-removebg-preview.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -292,7 +292,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.40.04-removebg-preview.png);
+  /* background-image: url(./DesignPicture/WhatsApp_Image_2024-03-30_at_21.40.04-removebg-preview.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -310,7 +310,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/care_img.png);
+  /* background-image: url(./DesignPicture/care_img.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -329,7 +329,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/Golden_Moments__25_Adorable_Retriever_Pups_to_Melt_Your_Heart-removebg-preview\ \(1\).png);
+  /* background-image: url(./DesignPicture/Golden_Moments__25_Adorable_Retriever_Pups_to_Melt_Your_Heart-removebg-preview\ \(1\).png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -348,7 +348,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/istock68229937large-removebg-preview.png);
+  /* background-image: url(./DesignPicture/istock68229937large-removebg-preview.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -367,7 +367,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/coat_type-removebg-preview.png);
+  /* background-image: url(./DesignPicture/coat_type-removebg-preview.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
@@ -387,7 +387,7 @@
   border-top-right-radius: 150%;
   border-bottom-left-radius: 150%;
   border-bottom-right-radius: 150%;
-  background-image: url(./DesignPicture/peronality.png);
+  /* background-image: url(./DesignPicture/peronality.png); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
