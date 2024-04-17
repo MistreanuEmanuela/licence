@@ -114,6 +114,11 @@ const MedicalHistory: React.FC = () => {
     const handleNav = () => {
         history('/medicalHistory')
     };
+    const handleMoreClick = (id: number) => {
+        const idMed = String(id);
+        localStorage.setItem("idMedical", idMed)
+        history('/medicalHistoryInfo');
+    }
 
     return (
         <div className={styles.body}>
@@ -156,8 +161,8 @@ const MedicalHistory: React.FC = () => {
                 </thead>
                 <tbody>
                     {medical.length > 0 ? (
-                        medical.map((item, index) => (
-                            <tr key={index}>
+                        medical.map((item, id) => (
+                            <tr key={id}>
                                 <td className={styles.td}>{formatDate(item.date)}</td>
                                 <td className={styles.td}>{item.type}</td>
                                 <td className={styles.td}>{item.doctor}</td>
@@ -166,7 +171,7 @@ const MedicalHistory: React.FC = () => {
                                     <button className={styles.more}><IoMdMore /></button>
                                     <div className={styles.dropdownContent}>
                                         <button onClick={() => handleDelete(item.id)}>Delete <MdDelete /></button>
-                                        <button>More info <IoMdMore /></button>
+                                        <button onClick={() => handleMoreClick(item.id)}>More info <IoMdMore /></button>
                                     </div>
                                 </td>
                             </tr>

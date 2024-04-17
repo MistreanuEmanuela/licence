@@ -3,7 +3,6 @@ package com.example.PetPulse.services;
 import com.example.PetPulse.Exception.General.GeneralException;
 import com.example.PetPulse.Exception.Pet.PetNotFoundException;
 import com.example.PetPulse.models.entities.MedicalRecord;
-import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.repositories.MedicalRecordRepository;
 import com.example.PetPulse.repositories.UserRepository;
 import com.example.PetPulse.repositories.UsersPetRepository;
@@ -12,10 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
-import java.time.LocalDate;
 
 
 @Service
@@ -95,5 +92,23 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
             return false;
         }
 
+    }
+
+    @Override
+    public Optional<MedicalRecord> findById(Long id, String username) {
+        Long id_usr = userRepository.findIdByUsername(username);
+        Long id_user = usersPetRepository.findOwnerId(medicalRecordRepository.findPetId(id));
+        if (id_usr != id_user) {
+            System.out.println(id);
+            System.out.println(id_user);
+            throw new GeneralException("The pet with provided id doesn't exist or you don't have permission to this information");
+        }
+        Optional<MedicalRecord> medical = medicalRecordRepository.findById(id);
+        if (medical != null) {
+            return medical;
+        }
+        else {
+            return Optional.empty();
+        }
     }
 }

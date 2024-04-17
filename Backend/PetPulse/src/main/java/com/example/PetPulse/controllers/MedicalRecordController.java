@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
@@ -54,6 +55,20 @@ public class MedicalRecordController {
             return ResponseEntity.ok("Medical record deleted successfully");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Medical record not found or you don't have permission to delete it");
+        }
+    }
+
+    @GetMapping("/medical-record/{id}")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<Object> getMedicalRecord(@PathVariable Long id, Authentication authentication) {
+        String username = authentication.getName();
+        try {
+            Optional<MedicalRecord> medicalRecords = medicalRecordServiceImp.findById(id, username);
+            return ResponseEntity.ok(medicalRecords);
+        } catch (GeneralException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 }
