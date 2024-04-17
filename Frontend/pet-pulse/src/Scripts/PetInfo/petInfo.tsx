@@ -265,6 +265,11 @@ const PetInfo: React.FC = () => {
     const handleDeleteCancel = () => {
         setDeletePress(false);
     }
+
+    const handleMedicalRecord = () =>
+        {
+            history('/viewMedicalHistory')
+        }
     return (
         <div>
             <div className={styles.body}>
@@ -501,7 +506,10 @@ const PetInfo: React.FC = () => {
                                 <p className={styles.error}>{error}</p>
                             </div>
                         )}
+                        <div className={styles.buttons}>
+                        <button onClick={handleMedicalRecord} className={styles.save}>Medical Record</button>
                         <button onClick={handleSaveClickFinal} className={styles.save}>Save</button>  
+                        </div>
                     </div>
                 ) : (
                     <p>Loading...</p>

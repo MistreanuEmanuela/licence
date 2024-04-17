@@ -34,6 +34,7 @@ interface MedicalHistory {
 const Consultation: React.FC = () => {
     const [added, setAdded] = useState<boolean>(false);
     const history = useNavigate();
+    const [errors, setErrors] = useState<string[]>([]);
     const [medical, setMedical] = useState<MedicalHistory>({
         idPet: 0,
         type: '',
@@ -71,6 +72,30 @@ const Consultation: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const currentDate = new Date().toISOString().split('T')[0];
+        const nameRegex = /^[a-zA-Z\s]+$/;
+
+        const validationErrors: string[] = [];
+
+        if (medical.date > currentDate) {
+            validationErrors.push('Selected date cannot be in the future');
+        }
+
+        if (!nameRegex.test(medical.doctor)) {
+            validationErrors.push('Doctor name can contain only letters');
+        }
+
+        if (medical.duration < 0 || medical.monitoringDays < 0 || medical.treatmentDuration < 0 || medical.dosage < 0 || medical.repetitions < 0 || medical.costs < 0) {
+            validationErrors.push('Numeric fields should be greater than or equal to 0');
+        }
+
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        event.preventDefault();
+
         const petId = localStorage.getItem("IdPet")
         const token = localStorage.getItem("token");
 
@@ -89,7 +114,8 @@ const Consultation: React.FC = () => {
                 body: JSON.stringify({
                     ...medical,
                     idPet: parseInt(petId),
-                    date: new Date(medical.date).toISOString()
+                    date: new Date(medical.date).toISOString(),
+                    type: "Consulatation"
                 })
             };
 
@@ -101,7 +127,7 @@ const Consultation: React.FC = () => {
                 console.log("created");
                 setAdded(true);
                 setTimeout(() => {
-                    history('/viewMedicalRecord');
+                    history('/viewMedicalHistory');
                 }, 5000);
             } else {
                 throw new Error('Failed to create account');
@@ -124,7 +150,17 @@ const Consultation: React.FC = () => {
                     </div>
                 </div>
             }
+
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+            {errors.length > 0 &&
+                <div id="error-container" className={styles.errorContainer}>
+                    {errors.map((error, index) => (
+                        <div key={index} className={styles.error}>
+                            {error}
+                        </div>
+                    ))}
+                </div>
+            }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -176,6 +212,7 @@ const Consultation: React.FC = () => {
 
 const Treatment: React.FC = () => {
     const [added, setAdded] = useState<boolean>(false);
+    const [errors, setErrors] = useState<string[]>([]);
     const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
         idPet: 0,
@@ -214,6 +251,30 @@ const Treatment: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const currentDate = new Date().toISOString().split('T')[0];
+        const nameRegex = /^[a-zA-Z\s]+$/;
+
+        const validationErrors: string[] = [];
+
+        if (medical.date > currentDate) {
+            validationErrors.push('Selected date cannot be in the future');
+        }
+
+        if (!nameRegex.test(medical.doctor)) {
+            validationErrors.push('Doctor name can contain only letters');
+        }
+
+        if (medical.duration < 0 || medical.monitoringDays < 0 || medical.treatmentDuration < 0 || medical.dosage < 0 || medical.repetitions < 0 || medical.costs < 0) {
+            validationErrors.push('Numeric fields should be greater than or equal to 0');
+        }
+
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        event.preventDefault();
+
         const petId = localStorage.getItem("IdPet")
         const token = localStorage.getItem("token");
 
@@ -232,7 +293,8 @@ const Treatment: React.FC = () => {
                 body: JSON.stringify({
                     ...medical,
                     idPet: parseInt(petId),
-                    date: new Date(medical.date).toISOString()
+                    date: new Date(medical.date).toISOString(),
+                    type: "Tratament"
                 })
             };
 
@@ -267,6 +329,15 @@ const Treatment: React.FC = () => {
                 </div>
             }
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+            {errors.length > 0 &&
+                <div id="error-container" className={styles.errorContainer}>
+                    {errors.map((error, index) => (
+                        <div key={index} className={styles.error}>
+                            {error}
+                        </div>
+                    ))}
+                </div>
+            }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -326,6 +397,8 @@ const Treatment: React.FC = () => {
 
 const Vaccine: React.FC = () => {
     const [added, setAdded] = useState<boolean>(false);
+    const [errors, setErrors] = useState<string[]>([]);
+
     const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
         idPet: 0,
@@ -364,6 +437,30 @@ const Vaccine: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const currentDate = new Date().toISOString().split('T')[0];
+        const nameRegex = /^[a-zA-Z\s]+$/;
+
+        const validationErrors: string[] = [];
+
+        if (medical.date > currentDate) {
+            validationErrors.push('Selected date cannot be in the future');
+        }
+
+        if (!nameRegex.test(medical.doctor)) {
+            validationErrors.push('Doctor name can contain only letters');
+        }
+
+        if (medical.duration < 0 || medical.monitoringDays < 0 || medical.treatmentDuration < 0 || medical.dosage < 0 || medical.repetitions < 0 || medical.costs < 0) {
+            validationErrors.push('Numeric fields should be greater than or equal to 0');
+        }
+
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        event.preventDefault();
+
         const petId = localStorage.getItem("IdPet")
         const token = localStorage.getItem("token");
 
@@ -382,7 +479,8 @@ const Vaccine: React.FC = () => {
                 body: JSON.stringify({
                     ...medical,
                     idPet: parseInt(petId),
-                    date: new Date(medical.date).toISOString()
+                    date: new Date(medical.date).toISOString(),
+                    type: "Vaccine"
                 })
             };
 
@@ -417,6 +515,15 @@ const Vaccine: React.FC = () => {
                 </div>
             }
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+            {errors.length > 0 &&
+                <div id="error-container" className={styles.errorContainer}>
+                    {errors.map((error, index) => (
+                        <div key={index} className={styles.error}>
+                            {error}
+                        </div>
+                    ))}
+                </div>
+            }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -463,6 +570,8 @@ const Vaccine: React.FC = () => {
 
 const Intervention: React.FC = () => {
     const [added, setAdded] = useState<boolean>(false);
+    const [errors, setErrors] = useState<string[]>([]);
+
     const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
         idPet: 0,
@@ -501,6 +610,30 @@ const Intervention: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+        const currentDate = new Date().toISOString().split('T')[0];
+        const nameRegex = /^[a-zA-Z\s]+$/;
+
+        const validationErrors: string[] = [];
+
+        if (medical.date > currentDate) {
+            validationErrors.push('Selected date cannot be in the future');
+        }
+
+        if (!nameRegex.test(medical.doctor)) {
+            validationErrors.push('Doctor name can contain only letters');
+        }
+
+        if (medical.duration < 0 || medical.monitoringDays < 0 || medical.treatmentDuration < 0 || medical.dosage < 0 || medical.repetitions < 0 || medical.costs < 0) {
+            validationErrors.push('Numeric fields should be greater than or equal to 0');
+        }
+
+        if (validationErrors.length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+
+        event.preventDefault();
+
         const petId = localStorage.getItem("IdPet")
         const token = localStorage.getItem("token");
 
@@ -519,7 +652,8 @@ const Intervention: React.FC = () => {
                 body: JSON.stringify({
                     ...medical,
                     idPet: parseInt(petId),
-                    date: new Date(medical.date).toISOString()
+                    date: new Date(medical.date).toISOString(),
+                    type: "Intervention"
                 })
             };
 
@@ -554,6 +688,15 @@ const Intervention: React.FC = () => {
                 </div>
             }
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+            {errors.length > 0 &&
+                <div id="error-container" className={styles.errorContainer}>
+                    {errors.map((error, index) => (
+                        <div key={index} className={styles.error}>
+                            {error}
+                        </div>
+                    ))}
+                </div>
+            }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>

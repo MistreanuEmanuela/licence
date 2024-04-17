@@ -3,10 +3,12 @@ import styles from './med.module.css';
 import Navbar from '../NavBars/NavBar';
 import { IoMdMore } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
-
+import { useNavigate } from 'react-router-dom';
+import Delete from '../Components/Animations/Delete';
 
 interface MedicalHistory {
     id: number;
+    idPet: number;
     type: string;
     date: string;
     cabinet: string;
@@ -35,125 +37,109 @@ interface MedicalHistory {
 const MedicalHistory: React.FC = () => {
     const [deleteState, setDeleteState] = useState<boolean>(false);
     const [deleted, setDeleted] = useState<boolean>(false);
+    const [medical, setMedical] = useState<MedicalHistory[]>([]);
+    const [deletedMedicalId, setDeletedMedicalId] = useState<number | null>(null);
+    const history = useNavigate();
 
-    const [medical, setMedical] = useState<MedicalHistory[]>([
-        {
-            id: 1,
-            type: 'Consultation',
-            date: '2023-05-12',
-            cabinet: 'City Hospital',
-            doctor: 'Dr. Smith',
-            symptoms: 'Fever, cough, headache',
-            diagnostic: 'Upper respiratory infection',
-            treatment: 'Prescribed antibiotics and rest',
-            treatmentType: 'Medication',
-            treatmentDuration: 7,
-            treatmentLocation: 'Home',
-            administrationFrequency: 'Twice daily',
-            dosage: 500,
-            repetitions: 14,
-            combat: 'Infection',
-            animalCondition: 'Stable',
-            costs: 120,
-            interventionType: 'Prescription',
-            duration: 30,
-            monitoringDays: 7,
-            regimen: 'Oral medication',
-            additionalInfos: 'Avoid exposure to cold weather',
-            treatmentNeed: 'Immediate',
-            adverseReactions: 'Mild nausea reported',
-        },
-        {
-            id: 2,
-            type: 'Surgery',
-            date: '2022-11-28',
-            cabinet: 'General Hospital',
-            doctor: 'Dr. Johnson',
-            symptoms: 'Persistent abdominal pain',
-            diagnostic: 'Appendicitis',
-            treatment: 'Appendectomy',
-            treatmentType: 'Surgical procedure',
-            treatmentDuration: 1,
-            treatmentLocation: 'Hospital',
-            administrationFrequency: 'N/A',
-            dosage: 0,
-            repetitions: 0,
-            combat: 'Appendicitis',
-            animalCondition: 'Stable post-surgery',
-            costs: 3500,
-            interventionType: 'Emergency surgery',
-            duration: 3,
-            monitoringDays: 2,
-            regimen: 'Post-operative care',
-            additionalInfos: 'Follow-up appointment scheduled in two weeks',
-            treatmentNeed: 'Urgent',
-            adverseReactions: 'None reported',
-        },
-        {
-            id: 3,
-            type: 'Physical Therapy',
-            date: '2024-01-10',
-            cabinet: 'Rehabilitation Center',
-            doctor: 'Dr. Rodriguez',
-            symptoms: 'Limited range of motion in shoulder',
-            diagnostic: 'Rotator cuff injury',
-            treatment: 'Physical therapy sessions',
-            treatmentType: 'Therapeutic exercises',
-            treatmentDuration: 12,
-            treatmentLocation: 'Rehabilitation Center',
-            administrationFrequency: 'Twice weekly',
-            dosage: 0,
-            repetitions: 0,
-            combat: 'Muscle weakness and stiffness',
-            animalCondition: 'Improving',
-            costs: 800,
-            interventionType: 'Non-surgical',
-            duration: 60,
-            monitoringDays: 90,
-            regimen: 'Structured exercise program',
-            additionalInfos: 'Patient advised to avoid heavy lifting',
-            treatmentNeed: 'Ongoing',
-            adverseReactions: 'Mild soreness initially',
+    useEffect(() => {
+        fetchMedicalHistory();
+    }, []);
+
+    const fetchMedicalHistory = async () => {
+        const petId = localStorage.getItem("IdPet");
+        try {
+            const response = await fetch(`http://localhost:8082/medicalRecord/medical-records/${petId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setMedical(data);
+            } else {
+                console.error('Failed to fetch medical history:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error fetching medical history:', error);
+        }
+    };
+
+    const handleDelete = (id: number) => {
+        setDeletedMedicalId(id);
+        setDeleteState(true);
+    };
+
+    const handleDeleteConfirm = async () => {
+        console.log(deletedMedicalId);
+        try {
+            const response = await fetch(`http://localhost:8082/medicalRecord/deleteMedicalRecord?id=${deletedMedicalId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                console.log("Medical record deleted successfully");
+                setDeleted(true);
+                fetchMedicalHistory();
+            } else {
+                console.error('Failed to delete medical record:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error deleting medical record:', error);
         }
 
-
-    ]);
-    const handleDelete = () => {
-        setDeleteState(true);
-    }
-
-    const handleDeleteConfirm = () => {
-        setDeleted(true);
         setTimeout(() => {
             setDeleted(false);
             setDeleteState(false);
-        }, 5000);
+        }, 1500);
+    };
 
-    }
     const handleDeleteCancel = () => {
         setDeleteState(false);
-    }
+    };
+
+    const formatDate = (dateString: string) => {
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-EN', options);
+    };
+
+    const handleNav = () => {
+        history('/medicalHistory')
+    };
+
     return (
         <div className={styles.body}>
             <Navbar pagename='' />
-            {deleteState &&
-            <div id="custom-confirm-dialog" className={styles.confirmDialog}>
-            <div className={styles.dialogContent}>
-                {!deleted ? (
-                    <>
-                        <p>Are you sure you want to delete this pet?</p>
-                        <div className={styles.buttons}>
-                            <button onClick={handleDeleteConfirm} className={styles.confirmButton}>Yes</button>
-                            <button onClick={handleDeleteCancel} className={styles.cancelButton}>No</button>
-                        </div>
-                    </>
-                ) : (
-                    <p> Deleted successfully.</p>
-                )}
+            <div>
+                <button onClick={handleNav}>Add</button>
             </div>
-        </div>
-            }
-            <table className={styles.table}>
+            {deleteState && (
+                <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                    <div className={styles.dialogContent}>
+                        {!deleted ? (
+                            <>
+                                <p>Are you sure you want to delete this medical record?</p>
+                                <div className={styles.buttons}>
+                                    <button onClick={handleDeleteConfirm} className={styles.confirmButton}>Yes</button>
+                                    <button onClick={handleDeleteCancel} className={styles.cancelButton}>No</button>
+                                </div>
+                            </>
+                        ) : (
+                            <div>
+                            <p>Deleted successfully.</p>
+                            <Delete/>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+            <table className={`${styles.table} ${deleteState || deleted ? styles.tableBlur : ''}`}>
                 <thead className={styles.thead}>
                     <tr className={styles.tr}>
                         <th className={styles.column}>Date</th>
@@ -167,14 +153,14 @@ const MedicalHistory: React.FC = () => {
                     {medical.length > 0 ? (
                         medical.map((item, index) => (
                             <tr key={index}>
-                                <td className={styles.td}>{item.date}</td>
+                                <td className={styles.td}>{formatDate(item.date)}</td>
                                 <td className={styles.td}>{item.type}</td>
                                 <td className={styles.td}>{item.doctor}</td>
                                 <td className={styles.td}>{item.cabinet}</td>
                                 <td className={styles.td}>
                                     <button className={styles.more}><IoMdMore /></button>
                                     <div className={styles.dropdownContent}>
-                                        <button onClick={handleDelete}>Delete <MdDelete /></button>
+                                        <button onClick={() => handleDelete(item.id)}>Delete <MdDelete /></button>
                                         <button>More info <IoMdMore /></button>
                                     </div>
                                 </td>
@@ -182,16 +168,13 @@ const MedicalHistory: React.FC = () => {
                         ))
                     ) : (
                         <tr className={styles.tr}>
-                           
-                               Nothing to show...
-                          </tr>  
-                        
+                            <td className={styles.td} colSpan={5}>Nothing to show...</td>
+                        </tr>
                     )}
                 </tbody>
-
             </table>
         </div>
+    );
+};
 
-    )
-}
 export default MedicalHistory;

@@ -219,6 +219,13 @@
     padding-right: 5%;
   }
 
+  .buttons
+  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
 @media screen and (max-width: 1600px) {
     .info
     {
