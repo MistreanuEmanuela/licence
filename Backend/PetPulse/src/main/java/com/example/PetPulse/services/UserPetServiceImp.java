@@ -50,10 +50,20 @@ public class UserPetServiceImp implements UserPetService {
 
     @Override
     public void savePet(PetDTO dog, String username) {
+        Date today = new Date();
+        Date birthdate = dog.getBirthdate();
+        if (birthdate.after(today)) {
+            throw new IllegalArgumentException("Birthdate cannot be in the future");
+        }
+        String name = dog.getName();
+        if (!name.matches("[a-zA-Z]+")) {
+            throw new IllegalArgumentException("Name can only contain letters");
+        }
+        if (dog.getWeight() <= 0) {
+            throw new IllegalArgumentException("Weight must be greater than 0");
+        }
         Long id = userRepository.findIdByUsername(username);
         UserPet userPet = new UserPet(id, dog.getName(), dog.getBreed(), dog.getDescription(), dog.getColor(), dog.getWeight(), dog.getMicrochipId(), dog.getAllergies(), dog.getGender(), dog.getVisibility(), dog.getImagePath(), dog.getAnimalType(), dog.getBirthdate());
-        System.out.println(dog.getBirthdate());
-        System.out.println(dog);
         usersPetRepository.save(userPet);
     }
 
@@ -79,17 +89,33 @@ public class UserPetServiceImp implements UserPetService {
     @Override
     public void editPet(EditPetDTO pet) {
         UserPet actualPet = usersPetRepository.findUserPetById(pet.getId());
-        if (actualPet != null) {
-            actualPet.setBirthdate(pet.getBirthdate());
-            actualPet.setName(pet.getName());
-            actualPet.setAllergies(pet.getAllergies());
-            actualPet.setDescription(pet.getDescription());
-            actualPet.setVisibility(pet.getVisibility());
-            actualPet.setWeight(pet.getWeight());
-            usersPetRepository.save(actualPet);
-        } else {
-            throw new PetNotFoundException("The pet with provide id doesn't exist");
+        if (actualPet == null) {
+            throw new PetNotFoundException("The pet with the provided ID doesn't exist");
         }
+
+        Date today = new Date();
+        Date birthdate = pet.getBirthdate();
+        if (birthdate.after(today)) {
+            throw new IllegalArgumentException("Birthdate cannot be in the future");
+        }
+
+        String name = pet.getName();
+        if (!name.matches("[a-zA-Z]+")) {
+            throw new IllegalArgumentException("Name can only contain letters");
+        }
+
+        if (pet.getWeight() <= 0) {
+            throw new IllegalArgumentException("Weight must be greater than 0");
+        }
+
+        actualPet.setBirthdate(pet.getBirthdate());
+        actualPet.setName(pet.getName());
+        actualPet.setAllergies(pet.getAllergies());
+        actualPet.setDescription(pet.getDescription());
+        actualPet.setVisibility(pet.getVisibility());
+        actualPet.setWeight(pet.getWeight());
+
+        usersPetRepository.save(actualPet);
     }
 
     @Override

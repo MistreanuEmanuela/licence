@@ -44,6 +44,7 @@ const PetInfo: React.FC = () => {
     const [deletePress, setDeletePress] = useState<boolean>(false);
     const [deleted, setDeleted] = useState<boolean>(false);
     const [saved, setSaved] = useState<boolean>(false);
+    const [error, setError] = useState<String>('');
 
     const history = useNavigate();
 
@@ -131,6 +132,25 @@ const PetInfo: React.FC = () => {
 
     const saveEditInfo = async (editInfo: Edit) => {
         const token = localStorage.getItem("token");
+    
+        setError('');
+    
+        // Check if weight is valid
+        if (editInfo.weight <= 0) {
+            setError('Weight must be greater than 0');
+            console.error('Weight must be greater than 0');
+            return;
+        }
+    
+        // Check if birthdate is valid
+        const today = new Date();
+        const selectedDate = new Date(editInfo.birthdate);
+        if (selectedDate > today) {
+            setError('Birthdate cannot be in the future');
+            console.error('Birthdate cannot be in the future');
+            return;
+        }
+    
         try {
             const response = await fetch('http://localhost:8082/pet/editPet', {
                 method: 'PUT',
@@ -140,11 +160,11 @@ const PetInfo: React.FC = () => {
                 },
                 body: JSON.stringify(editInfo),
             });
-
+            const result = await response.text()
             if (!response.ok) {
-                throw new Error('Failed to save edited pet information');
+                setError(result);
             }
-
+    
             console.log('Pet information saved successfully');
             setSaved(true)
             setTimeout(() => {
@@ -154,6 +174,7 @@ const PetInfo: React.FC = () => {
             console.error('Error saving edited pet information:', error);
         }
     };
+    
 
     const handleCancelClick = () => {
         setEditMode(false);
@@ -283,7 +304,7 @@ const PetInfo: React.FC = () => {
                         )}
 
                         <div className={`${styles.information} ${deletePress || deleted || saved ? styles.infoBlur : ''}`}>
-
+                       
                             <div className={styles.left_part}>
                                 {imageSrc && <img src={imageSrc} className={styles.image} alt={pet.name} />}
 
@@ -475,6 +496,11 @@ const PetInfo: React.FC = () => {
                             </div>
 
                         </div>
+                        {error && (
+                            <div className={styles.errorContainer}>
+                                <p className={styles.error}>{error}</p>
+                            </div>
+                        )}
                         <button onClick={handleSaveClickFinal} className={styles.save}>Save</button>  
                     </div>
                 ) : (

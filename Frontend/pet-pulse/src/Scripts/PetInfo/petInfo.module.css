@@ -1,7 +1,8 @@
 .body
 {
-    min-height: 100vh;
+    min-height: 97vh;
     font-family: 'Trebuchet MS', sans-serif;
+    padding-bottom: 0.2%;
 }
 .information
 {
@@ -200,6 +201,23 @@
 
 }
 
+.errorContainer {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .error
+  {
+    box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.1);
+    color: red;
+    width: fit-content;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 
 @media screen and (max-width: 1600px) {
     .info
