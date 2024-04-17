@@ -230,7 +230,7 @@
     transform: translate(-50%, -50%);
     background-color: #ffffff;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 50px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
@@ -353,6 +353,10 @@
 {
   width: 30%;
  
+}
+.addedForm
+{
+  filter: blur(2px);
 }
 .submit
 {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './medicalHistory.module.css';
 import Navbar from '../NavBars/NavBar';
 import { useNavigate } from 'react-router-dom';
-
+import Save from '../Components/Animations/NewPage'
 
 interface MedicalHistory {
     idPet: number,
@@ -113,57 +113,69 @@ const Consultation: React.FC = () => {
     };
 
     return (
-        <form className={styles.formular} onSubmit={handleSubmit}>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="date">Date:</label>
-                    <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+        <div>
+            {added &&
+                <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                    <div className={styles.dialogContent}>
+                        <p>Medical history added succesful, redirecting...</p>
+                        <div>
+                            <Save />
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
-                    <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+            }
+            <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="date">Date:</label>
+                        <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
+                        <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="doctor">Doctor:</label>
+                        <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="type">Consultation Type:</label>
+                        <select className={styles.input} id="type" name="type" value={medical.type} onChange={handleChange}>
+                            <option value="">Select...</option>
+                            <option value="checkup">Checkup</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="onDemand">On Demand</option>
+                        </select>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="doctor">Doctor:</label>
-                    <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                <div className={styles.field_long}>
+                    <label htmlFor="symptoms">Symptoms:</label>
+                    <textarea className={styles.input} id="symptoms" name="symptoms" value={medical.symptoms} placeholder="Enter the animal symptoms" onChange={handleChange} />
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="type">Consultation Type:</label>
-                    <select className={styles.input} id="type" name="type" value={medical.type} onChange={handleChange}>
-                        <option value="">Select...</option>
-                        <option value="checkup">Checkup</option>
-                        <option value="urgent">Urgent</option>
-                        <option value="onDemand">On Demand</option>
-                    </select>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label htmlFor="diagnostic">Diagnostic:</label>
+                        <input className={styles.input} type="text" id="diagnostic" name="diagnostic" value={medical.diagnostic} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="treatmentNeed">Treatment Prescribed:</label>
+                        <select className={styles.input} id="treatmentNeed" name="treatmentNeed" value={medical.treatmentNeed} onChange={handleChange}>
+                            <option value="">Select ...</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.field_long}>
-                <label htmlFor="symptoms">Symptoms:</label>
-                <textarea className={styles.input} id="symptoms" name="symptoms" value={medical.symptoms} placeholder="Enter the animal symptoms" onChange={handleChange} />
-            </div>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label htmlFor="diagnostic">Diagnostic:</label>
-                    <input className={styles.input} type="text" id="diagnostic" name="diagnostic" value={medical.diagnostic} onChange={handleChange} />
+                <div className={styles.button_container}>
+                    <button className={styles.save}> Save</button>
                 </div>
-                <div className={styles.field}>
-                    <label htmlFor="treatmentNeed">Treatment Prescribed:</label>
-                    <select className={styles.input} id="treatmentNeed" name="treatmentNeed" value={medical.treatmentNeed} onChange={handleChange}>
-                        <option value="">Select ...</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            </div>
-            <div className={styles.button_container}>
-                <button className={styles.save}> Save</button>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 
 const Treatment: React.FC = () => {
-    const [added, setAdded] = useState<boolean>(true);
+    const [added, setAdded] = useState<boolean>(false);
     const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
         idPet: 0,
@@ -248,6 +260,9 @@ const Treatment: React.FC = () => {
                 <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                     <div className={styles.dialogContent}>
                         <p>Medical history added succesful, redirecting...</p>
+                        <div>
+                            < Save/>
+                        </div>
                     </div>
                 </div>
             }
@@ -390,47 +405,59 @@ const Vaccine: React.FC = () => {
         }
     };
     return (
-        <form className={styles.formular} onSubmit={handleSubmit}>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="date">Date:</label>
-                    <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+        <div>
+            {added &&
+                <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                    <div className={styles.dialogContent}>
+                        <p>Medical history added succesful, redirecting...</p>
+                        <div>
+                            <Save />
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
-                    <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+            }
+            <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="date">Date:</label>
+                        <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
+                        <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="doctor">Doctor:</label>
+                        <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="adverseReactions">Adverse Reactions:</label>
+                        <select className={styles.input} id="adverseReactions" name="adverseReactions" value={medical.adverseReactions} onChange={handleChange}>
+                            <option value="">Select...</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="doctor">Doctor:</label>
-                    <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                <div className={styles.field_long}>
+                    <label htmlFor="additionalInfos">Additional Information:</label>
+                    <textarea className={styles.input} id="additionalInfos" name="additionalInfos" value={medical.additionalInfos} placeholder="Enter relevant information" onChange={handleChange} />
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="adverseReactions">Adverse Reactions:</label>
-                    <select className={styles.input} id="adverseReactions" name="adverseReactions" value={medical.adverseReactions} onChange={handleChange}>
-                        <option value="">Select...</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label htmlFor="dosage">Administration Dose:</label>
+                        <input className={styles.input} type="number" id="dosage" name="dosage" value={medical.dosage} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="repetitions">Number of Repetitions:</label>
+                        <input className={styles.input} type="number" id="repetitions" name="repetitions" value={medical.repetitions} onChange={handleChange} />
+                    </div>
                 </div>
-            </div>
-            <div className={styles.field_long}>
-                <label htmlFor="additionalInfos">Additional Information:</label>
-                <textarea className={styles.input} id="additionalInfos" name="additionalInfos" value={medical.additionalInfos} placeholder="Enter relevant information" onChange={handleChange} />
-            </div>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label htmlFor="dosage">Administration Dose:</label>
-                    <input className={styles.input} type="number" id="dosage" name="dosage" value={medical.dosage} onChange={handleChange} />
+                <div className={styles.button_container}>
+                    <button className={styles.save}> Save</button>
                 </div>
-                <div className={styles.field}>
-                    <label htmlFor="repetitions">Number of Repetitions:</label>
-                    <input className={styles.input} type="number" id="repetitions" name="repetitions" value={medical.repetitions} onChange={handleChange} />
-                </div>
-            </div>
-            <div className={styles.button_container}>
-                <button className={styles.save}> Save</button>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 
@@ -515,60 +542,72 @@ const Intervention: React.FC = () => {
         }
     };
     return (
-        <form className={styles.formular} onSubmit={handleSubmit}>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="date">Date:</label>
-                    <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+        <div>
+            {added &&
+                <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                    <div className={styles.dialogContent}>
+                        <p>Medical history added succesful, redirecting...</p>
+                        <div>
+                            <Save />
+                        </div>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
-                    <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+            }
+            <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="date">Date:</label>
+                        <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
+                        <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="doctor">Doctor:</label>
+                        <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="interventionType">Intervention Type:</label>
+                        <select className={styles.input} id="interventionType" name="interventionType" value={medical.interventionType} onChange={handleChange}>
+                            <option value="">Select...</option>
+                            <option value="sterilization">Sterilization</option>
+                            <option value="castration">Castration</option>
+                            <option value="surgicalIntervention">Surgical Intervention</option>
+                        </select>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="doctor">Doctor:</label>
-                    <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                <div className={styles.field_long}>
+                    <label htmlFor="animalCondition">Animal Condition:</label>
+                    <textarea className={styles.input} id="animalCondition" name="animalCondition" value={medical.animalCondition} placeholder="Enter relevant information " onChange={handleChange} />
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="interventionType">Intervention Type:</label>
-                    <select className={styles.input} id="interventionType" name="interventionType" value={medical.interventionType} onChange={handleChange}>
-                        <option value="">Select...</option>
-                        <option value="sterilization">Sterilization</option>
-                        <option value="castration">Castration</option>
-                        <option value="surgicalIntervention">Surgical Intervention</option>
-                    </select>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label htmlFor="costs">Costs:</label>
+                        <input className={styles.input} type="number" id="costs" name="costs" value={medical.costs} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="duration">Intervention Duration:</label>
+                        <input className={styles.input} type="number" id="duration" name="duration" value={medical.duration} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="monitoringDays">Monitoring Days:</label>
+                        <input className={styles.input} type="number" id="monitoringDays" name="monitoringDays" value={medical.monitoringDays} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="regimen">Regimen Necessity:</label>
+                        <select className={styles.input} id="regimen" name="regimen" value={medical.regimen} onChange={handleChange}>
+                            <option value="">Select...</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.field_long}>
-                <label htmlFor="animalCondition">Animal Condition:</label>
-                <textarea className={styles.input} id="animalCondition" name="animalCondition" value={medical.animalCondition} placeholder="Enter relevant information " onChange={handleChange} />
-            </div>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label htmlFor="costs">Costs:</label>
-                    <input className={styles.input} type="number" id="costs" name="costs" value={medical.costs} onChange={handleChange} />
+                <div className={styles.button_container}>
+                    <button className={styles.save}> Save</button>
                 </div>
-                <div className={styles.field}>
-                    <label htmlFor="duration">Intervention Duration:</label>
-                    <input className={styles.input} type="number" id="duration" name="duration" value={medical.duration} onChange={handleChange} />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="monitoringDays">Monitoring Days:</label>
-                    <input className={styles.input} type="number" id="monitoringDays" name="monitoringDays" value={medical.monitoringDays} onChange={handleChange} />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="regimen">Regimen Necessity:</label>
-                    <select className={styles.input} id="regimen" name="regimen" value={medical.regimen} onChange={handleChange}>
-                        <option value="">Select...</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-                </div>
-            </div>
-            <div className={styles.button_container}>
-                <button className={styles.save}> Save</button>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 

@@ -4,6 +4,7 @@ import Navbar from '../NavBars/NavBar';
 import { PiCat } from "react-icons/pi";
 import { PiDog } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
+import Save from '../Components/Animations/NewPage'
 
 
 
@@ -31,6 +32,8 @@ interface Cat {
     id: number;
     name: string;
 }
+
+
 const AddPet: React.FC = () => {
     const [added, setAdded] = useState<Boolean>(false);
     const [pet, setPet] = useState<Pet>({
@@ -180,9 +183,7 @@ const AddPet: React.FC = () => {
             }
         }
     };
-    const formatDate = (birthday: string): string => {
-        return birthday;
-    };
+ 
     return (
         <div>
             <Navbar pagename="cats" />
@@ -191,10 +192,12 @@ const AddPet: React.FC = () => {
                     <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                         <div className={styles.dialogContent}>
                             <p>Pet added successfully. Redirecting....</p>
+                            <Save/>
                         </div>
                     </div>
                 }
-                <form className={styles.form} onSubmit={handleSubmit}>
+                    <form className={`${styles.form} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+
                     <div className={styles.buttons}>
                         {petType === 'Dog' &&
                             <button type="button" className={styles.button_pet_active} onClick={(e) => handlePetType('Dog')}>
