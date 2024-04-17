@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserPetServiceImp implements UserPetService {
-    private final UsersPetRepository usersPetRepository;
+    private UsersPetRepository usersPetRepository;
 
     @Autowired UserRepository userRepository;
     @Autowired

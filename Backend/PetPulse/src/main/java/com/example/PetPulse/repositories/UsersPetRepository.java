@@ -15,4 +15,7 @@ public interface UsersPetRepository extends JpaRepository<UserPet,Long> {
 
     @Query(value = "SELECT * FROM users_pet WHERE id = :id", nativeQuery = true)
     UserPet findUserPetById(@Param("id") Long id);
+
+    @Query(value = "SELECT user_id FROM users_pet WHERE id = :id", nativeQuery = true)
+    Long findOwnerId(@Param("id") Long id);
 }

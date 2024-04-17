@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './medicalHistory.module.css';
 import Navbar from '../NavBars/NavBar';
+import { useNavigate } from 'react-router-dom';
+
 
 interface MedicalHistory {
+    idPet: number,
     type: string;
     date: string;
     cabinet: string;
@@ -29,7 +32,10 @@ interface MedicalHistory {
 }
 
 const Consultation: React.FC = () => {
+    const [added, setAdded] = useState<boolean>(false);
+    const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
+        idPet: 0,
         type: '',
         date: '',
         cabinet: '',
@@ -62,9 +68,52 @@ const Consultation: React.FC = () => {
             [name]: value
         }));
     };
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        const petId = localStorage.getItem("IdPet")
+        const token = localStorage.getItem("token");
+
+        if (!token || !petId) {
+            console.error('Token not found');
+            return;
+        }
+
+        try {
+            const requestOptions: RequestInit = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    ...medical,
+                    idPet: parseInt(petId),
+                    date: new Date(medical.date).toISOString()
+                })
+            };
+
+            const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
+            const result = await response.text();
+            console.log(result);
+
+            if (response.ok) {
+                console.log("created");
+                setAdded(true);
+                setTimeout(() => {
+                    history('/viewMedicalRecord');
+                }, 5000);
+            } else {
+                throw new Error('Failed to create account');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
-        <form className={styles.formular}>
+        <form className={styles.formular} onSubmit={handleSubmit}>
             <div className={styles.first_part}>
                 <div className={styles.field}>
                     <label className={styles.label} htmlFor="date">Date:</label>
@@ -114,7 +163,10 @@ const Consultation: React.FC = () => {
 }
 
 const Treatment: React.FC = () => {
+    const [added, setAdded] = useState<boolean>(true);
+    const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
+        idPet: 0,
         type: '',
         date: '',
         cabinet: '',
@@ -147,67 +199,121 @@ const Treatment: React.FC = () => {
             [name]: value
         }));
     };
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
+        const petId = localStorage.getItem("IdPet")
+        const token = localStorage.getItem("token");
+
+        if (!token || !petId) {
+            console.error('Token not found');
+            return;
+        }
+
+        try {
+            const requestOptions: RequestInit = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    ...medical,
+                    idPet: parseInt(petId),
+                    date: new Date(medical.date).toISOString()
+                })
+            };
+
+            const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
+            const result = await response.text();
+            console.log(result);
+
+            if (response.ok) {
+                console.log("created");
+                setAdded(true);
+                setTimeout(() => {
+                    history('/viewMedicalRecord');
+                }, 5000);
+            } else {
+                throw new Error('Failed to create account');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
-        <form className={styles.formular}>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="date">Date:</label>
-                    <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+        <div>
+            {added &&
+                <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                    <div className={styles.dialogContent}>
+                        <p>Medical history added succesful, redirecting...</p>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
-                    <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+            }
+            <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="date">Date:</label>
+                        <input className={styles.input} type="date" id="date" name="date" value={medical.date} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="cabinet">Cabinet:</label>
+                        <input className={styles.input} type="text" id="cabinet" name="cabinet" placeholder="Enter the cabinet name" value={medical.cabinet} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="doctor">Doctor:</label>
+                        <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label className={styles.label} htmlFor="treatmentLocation">Place of Treatment:</label>
+                        <select className={styles.input} id="treatmentLocation" name="treatmentLocation" value={medical.treatmentLocation} onChange={handleChange}>
+                            <option value="">Select...</option>
+                            <option value="home">Home</option>
+                            <option value="hospital">Hospital</option>
+                        </select>
+                    </div>
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="doctor">Doctor:</label>
-                    <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
+                <div className={styles.field_long}>
+                    <label htmlFor="additionalInfos">Additional Information:</label>
+                    <textarea className={styles.input} id="additionalInfos" name="additionalInfos" value={medical.additionalInfos} placeholder="Enter relevant information about this treatment" onChange={handleChange} />
                 </div>
-                <div className={styles.field}>
-                    <label className={styles.label} htmlFor="treatmentLocation">Place of Treatment:</label>
-                    <select className={styles.input} id="treatmentLocation" name="treatmentLocation" value={medical.treatmentLocation} onChange={handleChange}>
-                        <option value="">Select...</option>
-                        <option value="home">Home</option>
-                        <option value="hospital">Hospital</option>
-                    </select>
+                <div className={styles.first_part}>
+                    <div className={styles.field}>
+                        <label htmlFor="treatment">Treatment Name:</label>
+                        <input className={styles.input} type="text" placeholder="Name" id="treatment" name="treatment" value={medical.treatment} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="treatmentType">Treatment Type:</label>
+                        <select className={styles.input} id="treatmentType" name="treatmentType" value={medical.treatmentType} onChange={handleChange}>
+                            <option value="">Select ...</option>
+                            <option value="vaccine">Vaccine</option>
+                            <option value="infusion">Infusion</option>
+                            <option value="drug">Drug</option>
+                        </select>
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="dosage">Dosage:</label>
+                        <input className={styles.input} type="number" placeholder="Dosage" id="dosage" name="dosage" value={medical.dosage} onChange={handleChange} />
+                    </div>
+                    <div className={styles.field}>
+                        <label htmlFor="administrationFrequency">Administration Frequency:</label>
+                        <input className={styles.input} type="text" placeholder="Frequency" id="administrationFrequency" name="administrationFrequency" value={medical.administrationFrequency} onChange={handleChange} />
+                    </div>
                 </div>
-            </div>
-            <div className={styles.field_long}>
-                <label htmlFor="additionalInfos">Additional Information:</label>
-                <textarea className={styles.input} id="additionalInfos" name="additionalInfos" value={medical.additionalInfos} placeholder="Enter relevant information about this treatment" onChange={handleChange} />
-            </div>
-            <div className={styles.first_part}>
-                <div className={styles.field}>
-                    <label htmlFor="treatment">Treatment Name:</label>
-                    <input className={styles.input} type="text" placeholder="Name" id="treatment" name="treatment" value={medical.treatment} onChange={handleChange} />
+                <div className={styles.button_container}>
+                    <button className={styles.save} type="submit"> Save</button>
                 </div>
-                <div className={styles.field}>
-                    <label htmlFor="treatmentType">Treatment Type:</label>
-                    <select className={styles.input} id="treatmentType" name="treatmentType" value={medical.treatmentType} onChange={handleChange}>
-                        <option value="">Select ...</option>
-                        <option value="vaccine">Vaccine</option>
-                        <option value="infusion">Infusion</option>
-                        <option value="drug">Drug</option>
-                    </select>
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="dosage">Dosage:</label>
-                    <input className={styles.input} type="number" placeholder="Dosage" id="dosage" name="dosage" value={medical.dosage} onChange={handleChange} />
-                </div>
-                <div className={styles.field}>
-                    <label htmlFor="administrationFrequency">Administration Frequency:</label>
-                    <input className={styles.input} type="text" placeholder="Frequency" id="administrationFrequency" name="administrationFrequency" value={medical.administrationFrequency} onChange={handleChange} />
-                </div>
-            </div>
-            <div className={styles.button_container}>
-                <button className={styles.save}> Save</button>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 }
 
 const Vaccine: React.FC = () => {
+    const [added, setAdded] = useState<boolean>(false);
+    const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
+        idPet: 0,
         type: '',
         date: '',
         cabinet: '',
@@ -240,9 +346,51 @@ const Vaccine: React.FC = () => {
             [name]: value
         }));
     };
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
+        const petId = localStorage.getItem("IdPet")
+        const token = localStorage.getItem("token");
+
+        if (!token || !petId) {
+            console.error('Token not found');
+            return;
+        }
+
+        try {
+            const requestOptions: RequestInit = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    ...medical,
+                    idPet: parseInt(petId),
+                    date: new Date(medical.date).toISOString()
+                })
+            };
+
+            const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
+            const result = await response.text();
+            console.log(result);
+
+            if (response.ok) {
+                console.log("created");
+                setAdded(true);
+                setTimeout(() => {
+                    history('/viewMedicalRecord');
+                }, 5000);
+            } else {
+                throw new Error('Failed to create account');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
-        <form className={styles.formular}>
+        <form className={styles.formular} onSubmit={handleSubmit}>
             <div className={styles.first_part}>
                 <div className={styles.field}>
                     <label className={styles.label} htmlFor="date">Date:</label>
@@ -287,7 +435,10 @@ const Vaccine: React.FC = () => {
 }
 
 const Intervention: React.FC = () => {
+    const [added, setAdded] = useState<boolean>(false);
+    const history = useNavigate();
     const [medical, setMedical] = useState<MedicalHistory>({
+        idPet: 0,
         type: '',
         date: '',
         cabinet: '',
@@ -320,9 +471,51 @@ const Intervention: React.FC = () => {
             [name]: value
         }));
     };
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
+        const petId = localStorage.getItem("IdPet")
+        const token = localStorage.getItem("token");
+
+        if (!token || !petId) {
+            console.error('Token not found');
+            return;
+        }
+
+        try {
+            const requestOptions: RequestInit = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    ...medical,
+                    idPet: parseInt(petId),
+                    date: new Date(medical.date).toISOString()
+                })
+            };
+
+            const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
+            const result = await response.text();
+            console.log(result);
+
+            if (response.ok) {
+                console.log("created");
+                setAdded(true);
+                setTimeout(() => {
+                    history('/viewMedicalRecord');
+                }, 5000);
+            } else {
+                throw new Error('Failed to create account');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
-        <form className={styles.formular}>
+        <form className={styles.formular} onSubmit={handleSubmit}>
             <div className={styles.first_part}>
                 <div className={styles.field}>
                     <label className={styles.label} htmlFor="date">Date:</label>
@@ -401,8 +594,8 @@ const AddMedicalHistory: React.FC = () => {
             </div>
             {type === 'consultation' && <Consultation />}
             {type === 'treatment' && <Treatment />}
-            {type === 'vaccine' && <Vaccine/>}
-            {type === 'intervention' && <Intervention/>}
+            {type === 'vaccine' && <Vaccine />}
+            {type === 'intervention' && <Intervention />}
         </div>
     );
 }

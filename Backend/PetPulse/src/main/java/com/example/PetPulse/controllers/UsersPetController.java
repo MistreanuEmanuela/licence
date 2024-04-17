@@ -98,6 +98,7 @@ public class UsersPetController {
     {
         return petService.findPet(id);
     }
+
     @DeleteMapping("/deletePet")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
     public ResponseEntity<String> deletePet(@RequestParam Long id, Authentication authentication) {
