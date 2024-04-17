@@ -5,6 +5,8 @@ import { IoMdMore } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import Delete from '../Components/Animations/Delete';
+import { MdNoteAdd } from "react-icons/md";
+
 
 interface MedicalHistory {
     id: number;
@@ -116,8 +118,11 @@ const MedicalHistory: React.FC = () => {
     return (
         <div className={styles.body}>
             <Navbar pagename='' />
-            <div>
-                <button onClick={handleNav}>Add</button>
+            <div className={styles.button_top}>
+                <button onClick={handleNav} className={styles.add}>Add
+                <div className={styles.icon}> <MdNoteAdd /></div>
+
+</button>
             </div>
             {deleteState && (
                 <div id="custom-confirm-dialog" className={styles.confirmDialog}>

@@ -135,14 +135,12 @@ const PetInfo: React.FC = () => {
     
         setError('');
     
-        // Check if weight is valid
         if (editInfo.weight <= 0) {
             setError('Weight must be greater than 0');
             console.error('Weight must be greater than 0');
             return;
         }
     
-        // Check if birthdate is valid
         const today = new Date();
         const selectedDate = new Date(editInfo.birthdate);
         if (selectedDate > today) {

@@ -16,6 +16,7 @@
     min-height:10vh;
     font-size: 1.1em;
     box-shadow: 5px 5px 15px 2px rgba(134, 134, 134, 0.5);
+    margin-top: 1%;
 }
 .column
 {
@@ -151,4 +152,31 @@ tr:hover {
 .confirmButton:hover, .cancelButton:hover {
     opacity: 0.8;
     transform: translateY(-5%);
+}
+.add
+{
+    margin-left: auto;
+    margin-right: 5%;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 1%;
+    background-color: #f5f5f5;
+    border:solid 2px rgba(0, 0, 0, .4);
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0.2%;
+}
+.button_top
+{
+    width: 100%;
+    display: flex;
+}
+.icon 
+{
+    transform: translateY(-7%) translateX(+15%);
+    font-size: 1.4em;
 }
