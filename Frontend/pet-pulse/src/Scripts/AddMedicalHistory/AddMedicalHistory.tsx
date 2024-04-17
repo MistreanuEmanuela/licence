@@ -115,7 +115,7 @@ const Consultation: React.FC = () => {
                     ...medical,
                     idPet: parseInt(petId),
                     date: new Date(medical.date).toISOString(),
-                    type: "Consulatation"
+                    type: "Consultation"
                 })
             };
 
