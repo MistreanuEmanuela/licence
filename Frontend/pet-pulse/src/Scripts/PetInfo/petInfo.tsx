@@ -4,6 +4,8 @@ import Navbar from '../NavBars/NavBar';
 import { FaEdit, FaSave, FaTimes } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
+import Delete from '../Components/Animations/Delete';
+import Save from '../Components/Animations/Save'
 
 
 interface Pet {
@@ -147,7 +149,7 @@ const PetInfo: React.FC = () => {
             setSaved(true)
             setTimeout(() => {
                 setSaved(false)
-            }, 5000);
+            }, 1500);
         } catch (error) {
             console.error('Error saving edited pet information:', error);
         }
@@ -233,7 +235,7 @@ const PetInfo: React.FC = () => {
                 setDeleted(true)
                 setTimeout(() => {
                     history('/myPets');
-                }, 5000);
+                }, 2000);
             })
             .catch(error => {
                 console.error('Error deleting pet:', error);
@@ -250,6 +252,7 @@ const PetInfo: React.FC = () => {
                     <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                         <div className={styles.dialogContent}>
                             <p>Pet updated successfully.</p>
+                            <Save/>
                         </div>
                     </div>
                 }
@@ -270,12 +273,16 @@ const PetInfo: React.FC = () => {
                                             </div>
                                         </>
                                     ) : (
+                                        <div>
                                         <p>Pet deleted successfully. Redirecting....</p>
+                                        <Delete/>
+                                        </div>
                                     )}
                                 </div>
                             </div>
                         )}
-                        <div className={styles.information}>
+
+                        <div className={`${styles.information} ${deletePress || deleted || saved ? styles.infoBlur : ''}`}>
 
                             <div className={styles.left_part}>
                                 {imageSrc && <img src={imageSrc} className={styles.image} alt={pet.name} />}
