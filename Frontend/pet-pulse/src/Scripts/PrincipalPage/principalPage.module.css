@@ -1,0 +1,76 @@
+.body
+{
+    min-height: 100vh;
+    background-image: url('./DesignPicture/background.png');
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.find_pet_banner
+{ 
+    margin-top:1%;
+    margin-left:10%;
+    width: 80%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: row;
+    background-color:#faf3dd90;
+    border-radius:20px;
+    box-shadow: 2px 2px 10px 5px rgba(1, 1, 1, 0.2);
+}
+
+.find_pet_banner .picture
+{
+    width: 60vw;
+    height: 40vh;
+    background-image: url(./DesignPicture/1a791e1bf146bcea768cdb29fe4ca96d-removebg-preview.png);
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
+.find_pet_banner .info
+{
+    width: 60%;
+}
+
+.title
+{
+    font-size: 2.5em;
+    align-self: center;
+    align-items: center;
+    margin-left: 2%;
+    font-family: 'Trebuchet MS', sans-serif;
+      -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-color: rgb(100, 99, 99);
+    padding-bottom: 4%;
+    padding-top:4%;
+}
+
+.content
+{
+    padding-left: 1%;
+    font-size: 1.1em;
+    color:rgb(70, 69, 69);
+    font-family: 'Trebuchet MS', sans-serif;
+    padding-right: 2%;
+    text-indent: 20px;
+    margin-bottom: 2%;
+}
+.link
+{
+    color:black;
+    margin-left: 70%;
+    margin-top:7%;
+    font-size: 1.2em;
+    padding-top: 2%;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link:hover{
+    text-decoration: underline;
+    color:rgba(0, 0, 0, 0.493)
+}
