@@ -1,0 +1,36 @@
+
+.body
+{
+    min-height: 90vh;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.search_text
+{
+    background-color: rgb(244, 242, 242);
+    width: 95%;
+    height: 10vh;
+    display: flex;
+    padding-left: 5%;
+    align-items: center;
+    font-size: larger;
+    font-weight: 600;
+    border-top:solid 2px rgba(1, 1, 1, 0.2);
+    border-bottom :solid 2px rgba(1, 1, 1, 0.2)
+}
+
+.result_container
+{
+    background-color: rgb(244, 242, 242);
+    min-height: 82vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.result_container .informational
+{
+    display: flex;
+    background-color: red;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
