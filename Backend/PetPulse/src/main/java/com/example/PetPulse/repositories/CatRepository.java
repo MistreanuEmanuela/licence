@@ -1,7 +1,6 @@
 package com.example.PetPulse.repositories;
 
 import com.example.PetPulse.models.entities.Cat;
-import com.example.PetPulse.models.entities.Dog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +13,8 @@ public interface CatRepository extends JpaRepository<Cat,Long> {
     @Query(value = "SELECT * FROM cat_info WHERE id = :id",nativeQuery = true)
     Cat findById(@Param("id") long id);
 
-
+    @Query(value = "SELECT * FROM cat_info WHERE LOWER(name) LIKE LOWER(concat('%', :name, '%'))", nativeQuery = true)
+    List<Cat> findByName(@Param("name") String name);
     @Query(value = "SELECT cat_info.id as id, cat_info.name as name, cat_info.general as general, " +
             "cat_info.size as size, cat_info.personality as personality, " +
             "cat_info.health as health, cat_info.coat as coat, " +

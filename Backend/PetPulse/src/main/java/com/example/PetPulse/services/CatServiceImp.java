@@ -1,7 +1,10 @@
 package com.example.PetPulse.services;
 
 import com.example.PetPulse.models.dto.CatDTO.CatAllDTO;
+import com.example.PetPulse.models.dto.CatDTO.SearchResultCatDTO;
+import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.entities.Cat;
+import com.example.PetPulse.models.entities.Dog;
 import com.example.PetPulse.repositories.CatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,5 +86,14 @@ public class CatServiceImp  implements CatService{
         return cats.stream()
                 .map(dog -> new CatAllDTO(dog.getId(), dog.getName()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SearchResultCatDTO> getSearchCats(String name) {
+        List<Cat> cats = catRepository.findByName(name);
+        List<SearchResultCatDTO> catsSearched = cats.stream()
+                .map(cat -> new SearchResultCatDTO(cat.getId(), cat.getName(), cat.getGeneral()))
+                .collect(Collectors.toList());
+        return catsSearched;
     }
 }

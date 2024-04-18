@@ -1,7 +1,9 @@
 package com.example.PetPulse.controllers;
 
 import com.example.PetPulse.models.dto.CatDTO.CatAllDTO;
+import com.example.PetPulse.models.dto.CatDTO.SearchResultCatDTO;
 import com.example.PetPulse.models.dto.DogDTO.DogAllDTO;
+import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.entities.Cat;
 import com.example.PetPulse.services.CatServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
@@ -73,6 +75,16 @@ public class CatController {
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
     public List<CatAllDTO> getAllCatsByStartName(@RequestParam String letter) {
         return catService.getAllCatsByFirstLetter(letter);
+    }
+
+    @GetMapping(path = "/all-cats-searched", params = "name")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<List<SearchResultCatDTO>> getAllDogsSearched(@RequestParam String name) {
+        List<SearchResultCatDTO> cats = catService.getSearchCats(name);
+        if (cats.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(cats);
     }
 }
 

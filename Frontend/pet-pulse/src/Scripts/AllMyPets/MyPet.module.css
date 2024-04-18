@@ -1,41 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-.body
-{
+.body {
     min-height: 95vh;
     font-family: 'Trebuchet MS', sans-serif;
     padding-bottom: 1%;
 }
 
 .container_pet {
-display: flex;
-
+    display: flex;
     transition: transform 0.6s;
 }
 
-.image
-{
+.image {
     width: 100%;
     height: 100%;
     border-radius: 5px;
     z-index: 0;
     position: relative;
 }
-.container
-{
+
+.container {
     display: flex;
     flex-direction: column;
     padding: 1%;
     background-color: rgb(255, 255, 255);
     margin-top: 2%;
     margin-bottom: 1%;
-    margin-left:2%;
-    margin-right:2%;
+    margin-left: 2%;
+    margin-right: 2%;
     box-shadow: 7px 7px 15px 7px rgba(2, 2, 2, 0.2);
     min-height: 75vh;
 }
-.petsContainer
-{
+
+.petsContainer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -43,14 +40,15 @@ display: flex;
     justify-content: center;
     min-height: 70vh;
     width: 100%;
+    padding-bottom: 3%;
 }
 
 .petContainer {
-   margin-top:3%;
-   width: 275px;
-   height: 275px;
-   margin-right:3%;
-   margin-left: 2%;
+    margin-top: 3%;
+    width: 275px;
+    height: 275px;
+    margin-right: 3%;
+    margin-left: 2%;
 }
 
 .front,
@@ -62,15 +60,15 @@ display: flex;
     transition: transform 1s;
 
 }
-.back
-{
-    box-shadow: 5px 5px 15px 5px rgba(1, 1 , 1, 0.2);
+
+.back {
+    box-shadow: 5px 5px 15px 5px rgba(1, 1, 1, 0.2);
 
 }
 
 .front {
     transform-style: preserve-3d;
-    box-shadow: 5px 5px 15px 5px rgba(1, 1 , 1, 0.2);
+    box-shadow: 5px 5px 15px 5px rgba(1, 1, 1, 0.2);
 }
 
 .petContainer:hover .front {
@@ -83,25 +81,26 @@ display: flex;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-.title
-{
+
+.title {
     padding-top: 2%;
     text-align: center;
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 1.5em;
     font-weight: 550;
 }
-.infos{
+
+.infos {
     margin-left: 4%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
     height: 55%;
-    margin-top:5%;
+    margin-top: 5%;
 }
-.more
-{
+
+.more {
     text-decoration: none;
     border: solid 1.5px;
     margin-right: 1%;
@@ -119,25 +118,24 @@ display: flex;
     margin-left: 22%;
     margin-top: 7%;
 }
-.more:hover
-{
-    color:rgb(78, 125, 78);
+
+.more:hover {
+    color: rgb(78, 125, 78);
 }
 
-.add
-{
-    margin-top:3%;
+.add {
+    margin-top: 3%;
     width: 275px;
     height: 275px;
-    background-image:url('./DisplayPicture/add-removebg-preview.png');
+    background-image: url('./DisplayPicture/add-removebg-preview.png');
     background-color: #faf7ef;
     transform: rotateY(0deg);
     background-color: #faf7ef;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
-.add:hover
-{
+
+.add:hover {
     transform: translateY(-10%);
 
 }
@@ -149,11 +147,11 @@ display: flex;
     padding-top: 1%;
     padding-bottom: 1%;
     font-size: larger;
-    box-shadow: 3px -5px 20px 20px  #e0f6f0;
+    box-shadow: 3px -5px 20px 20px #e0f6f0;
     z-index: 1;
     border-radius: 10px;
     margin-top: -5%;
     position: relative;
     width: 90%;
-    margin-left:5%;
+    margin-left: 5%;
 }
