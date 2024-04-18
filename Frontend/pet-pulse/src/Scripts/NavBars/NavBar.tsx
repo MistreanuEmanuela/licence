@@ -49,13 +49,11 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
     history('/myPets');
   };
   const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    localStorage.setItem('search', searchValue);
     if (event.key === 'Enter') {
+      localStorage.setItem('search', searchValue);
       history('/searchResults');
-
     }
   };
-
   return (
     <><div className={styles.body}>
       <div className={styles.logo}>
