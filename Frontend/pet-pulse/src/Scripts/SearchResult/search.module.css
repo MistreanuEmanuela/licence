@@ -54,8 +54,8 @@
 
 .picture
 {
-    width: 300px;
-    height: 200px;
+    width: 250px;
+    height: 180px;
     z-index: 1;
     position: relative;
     border-radius: 10px;
@@ -107,19 +107,83 @@
     padding-left: 2%;
     padding-right: 2%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-top: 1%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .pets_container .element
 {
-    width: 80vw;
-    height: 10vh;
-    background-color: red;
+    width: 40vw;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 10px 3px rgba(1, 1, 1, 0.2);
     margin-bottom: 1%;
-    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    padding: 1%;
+    min-width: 500px;
+    
+
+}
+.first_part_info
+{
+    width: 35%;
+    padding-left: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.first_part_info .petName
+{
+    font-size: 1.4em;
+    margin-bottom: 1%;
+}
+
+.first_part_info .Owner
+{
+    color:rgb(144, 144, 144);
+    margin-bottom: 2%;
+}
+.first_part_info .desc
+{
+    color:rgb(86, 86, 86);
+}
+
+
+.second_part_info
+{
+    width: 35%;
+    padding-left: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.inform
+{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    font-size: 1.2em;
+    margin-bottom: 5%;
+}
+.icon
+{
+    margin-right: 3%;
+}
+.pets_container .element .image
+{
+    width: 150px;
+    height: 170px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
+    border-radius: 10px;
 }
 @media (max-width: 750px) {
     .picture
@@ -133,4 +197,19 @@
     height: fit-content;
 
 }
+
 }
+@media (max-width: 500px) {
+
+.pets_container .element
+{
+    min-width: 400px;
+}
+}
+@media (max-width: 350px) {
+
+    .pets_container .element
+    {
+        min-width: 100%;
+    }
+    }

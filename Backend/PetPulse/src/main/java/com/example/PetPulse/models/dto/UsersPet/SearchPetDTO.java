@@ -17,8 +17,9 @@ public class SearchPetDTO {
     private String animalType;
     private String FirstNameOwner;
     private String LastNameOwner;
+    private String description;
 
-    public SearchPetDTO(Long id, String name, String breed, String color, String gender, Date birthdate, String imagePath, String animalType, String firstNameOwner, String lastNameOwner) {
+    public SearchPetDTO(Long id, String name, String breed, String color, String gender, Date birthdate, String imagePath, String animalType, String firstNameOwner, String lastNameOwner, String description) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -29,6 +30,7 @@ public class SearchPetDTO {
         this.animalType = animalType;
         this.FirstNameOwner = firstNameOwner;
         this.LastNameOwner = lastNameOwner;
+        this.description = description;
     }
 
     public SearchPetDTO() {

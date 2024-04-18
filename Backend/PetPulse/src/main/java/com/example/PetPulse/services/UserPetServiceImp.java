@@ -79,6 +79,8 @@ public class UserPetServiceImp implements UserPetService {
                 .map(pet -> new AllPetDTO(pet.getId(), pet.getName(), pet.getBreed(), pet.getColor(), pet.getGender(), pet.getBirthdate(), pet.getImagePath(), pet.getAnimalType()))
                 .collect(Collectors.toList());
     }
+
+
     @Override
     public byte[] getPetPicture(String path) {
         Path filePath = Path.of(path);
@@ -89,8 +91,6 @@ public class UserPetServiceImp implements UserPetService {
             throw new RuntimeException(e);
         }
     }
-
-    @Override
     public void editPet(EditPetDTO pet) {
         UserPet actualPet = usersPetRepository.findUserPetById(pet.getId());
         if (actualPet == null) {
@@ -169,7 +169,8 @@ public class UserPetServiceImp implements UserPetService {
                                 pet.getImagePath(),
                                 pet.getAnimalType(),
                                 user.getFirstName(),
-                                user.getLastName()
+                                user.getLastName(),
+                                pet.getDescription()
                         );
                     } else {
                         return null;
