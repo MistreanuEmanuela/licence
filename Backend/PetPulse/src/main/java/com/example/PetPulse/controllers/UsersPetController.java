@@ -16,12 +16,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 @RequestMapping("/pet")
@@ -50,6 +53,30 @@ public class UsersPetController {
         return ResponseEntity.ok(imagePath);
     }
 
+    @PostMapping("/findBreed")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<String> findBreed(@RequestPart MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("Please upload a file");
+        }
+
+        try {
+            Path tempFile = Files.createTempFile("temp", ".png");
+            file.transferTo(tempFile.toFile());
+
+            ProcessBuilder pb = new ProcessBuilder("python", "D:\\licence-additionaly\\model-breed\\pythonProject1\\main.py", tempFile.toString());
+            Process process = pb.start();
+            process.waitFor();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String output = reader.lines().collect(Collectors.joining(System.lineSeparator()));
+
+            return ResponseEntity.ok(output);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing the image");
+        }
+    }
 
     @PostMapping("/addPet")
     @ResponseStatus(HttpStatus.CREATED)

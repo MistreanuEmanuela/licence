@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { HiDotsHorizontal } from "react-icons/hi";
+import Loading from '../Components/Animations/Loading';
 
 
 
@@ -383,7 +384,7 @@ const AllDogs: React.FC = () => {
   </>
 )}
 
-{showLoading && <p>Loading...</p>}
+{showLoading && <Loading/>}
 
         </ul>
        

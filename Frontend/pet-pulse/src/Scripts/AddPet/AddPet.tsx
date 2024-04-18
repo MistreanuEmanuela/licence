@@ -5,6 +5,7 @@ import { PiCat } from "react-icons/pi";
 import { PiDog } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 import Save from '../Components/Animations/NewPage'
+import Loading from '../Components/Animations/Loading';
 
 
 
@@ -36,6 +37,8 @@ interface Cat {
 
 const AddPet: React.FC = () => {
     const [added, setAdded] = useState<Boolean>(false);
+    const [breed, setBread] = useState<string>('');
+    const [accuracy, setAccuracy] = useState<string>('');
     const [pet, setPet] = useState<Pet>({
         name: '',
         description: '',
@@ -57,6 +60,7 @@ const AddPet: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
     const history = useNavigate();
     const [error, setError] = useState<string>('');
+    const [isCalculating, setIsCalculating] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -96,20 +100,55 @@ const AddPet: React.FC = () => {
         setPet({ ...pet, [name]: value });
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        setBread('');
+        setAccuracy('');
         if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-        }
-        if (e.target.files && e.target.files[0]) {
+            const selectedFile = e.target.files[0];
+    
+            setFile(selectedFile);
+    
             const reader = new FileReader();
-            reader.onload = function (e) {
-                if (e.target && e.target.result) {
-                    SetPath(e.target.result as string);
+            reader.onload = function (event) {
+                if (event.target && event.target.result) {
+                    SetPath(event.target.result as string);
                 }
             };
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(selectedFile);
+    
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            setIsCalculating(true);
+            try {
+                const response = await fetch('http://localhost:8082/pet/findBreed', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    },
+                    body: formData,
+                });
+    
+                if (response.ok) {
+                    const breed = await response.text();
+                    const predictions = breed.split(':');
+                    const most_predicted = predictions[1].split(' ');
+                    console.log(most_predicted)
+                    console.log("We think you pet is:", predictions[1],"with accuracy: ",predictions[2])
+                    setIsCalculating(false);
+                    setBread(most_predicted[1].replace('_', ' '));
+                    const ac = predictions[2].split(',')[0];
+                    setAccuracy(ac);
+                    console.log('Breed:', breed);
+                } else {
+                    console.error('Failed to upload image:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error uploading image:', error);
+            }
         }
     };
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -158,7 +197,7 @@ const AddPet: React.FC = () => {
         } catch (error) {
             console.error('Error uploading image:', error);
         }
-    
+        
         if (pet.imagePath !== '') {
             console.log(pet.imagePath);
             console.log(pet);
@@ -215,7 +254,7 @@ const AddPet: React.FC = () => {
                     </div>
                 }
                 <form className={`${styles.form} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
-
+                
                     <div className={styles.buttons}>
                         {petType === 'Dog' &&
                             <button type="button" className={styles.button_pet_active} onClick={(e) => handlePetType('Dog')}>
@@ -247,6 +286,15 @@ const AddPet: React.FC = () => {
                                 <p className={styles.error}>{error}</p>
                             </div>
                         )}
+                        {breed && (
+                            <div className={styles.ai}> We thing your pet is a {breed} with probability {accuracy} </div>
+                        )
+                        }
+                        { isCalculating && (
+                            <div className={styles.ai}> <Loading/> </div>
+                        )
+                        }
+                        
                         <div className={styles.picture_and_desc}>
                             <div className={styles.left_part}>
                                 <div className={styles.label}>
@@ -319,7 +367,7 @@ const AddPet: React.FC = () => {
                                     <div className={styles.label}>
                                         <label htmlFor="breed">Breed:</label></div>
                                     <select className={styles.select_box} id="breed" name="breed" value={pet.breed} onChange={handleInputChange} required>
-                                        <option value="">Select Breed</option>
+                                        <option value={breed}>{breed}</option>
                                         {petType === 'Dog' && dogs.map(dog => (
                                             <option className={styles.options} key={dog.id} value={dog.name}>{dog.name}</option>
                                         ))}

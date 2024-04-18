@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './MyPet.module.css';
 import Navbar from '../NavBars/NavBar';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Components/Animations/Loading';
 
 interface Pet {
     id: number;
@@ -18,10 +19,12 @@ const MyPet: React.FC = () => {
     const [pets, setPets] = useState<Pet[]>([]);
     const [imageSrcs, setImageSrcs] = useState<{ [key: string]: string | null }>({});
     const [hoveredPetId, setHoveredPetId] = useState<number | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
     const history = useNavigate();
 
 
     useEffect(() => {
+        setLoading(true);
         const token = localStorage.getItem("token");
         fetch('http://localhost:8082/pet/findMyPet', {
             headers: {
@@ -31,7 +34,10 @@ const MyPet: React.FC = () => {
             .then(response => response.json())
             .then((data: Pet[]) => {
                 setPets(data);
-                preloadImages(data); // Preload images
+                preloadImages(data);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2000);
             })
             .catch(error => console.error('Error fetching pets:', error));
     }, []);
@@ -85,15 +91,15 @@ const MyPet: React.FC = () => {
     const calculateAge = (dob: string): string => {
         const today = new Date();
         const birthDate = new Date(dob);
-        
+
         let years = today.getFullYear() - birthDate.getFullYear();
         let months = today.getMonth() - birthDate.getMonth();
-        
+
         if (months < 0) {
-            years = years-1;
+            years = years - 1;
             months += 12;
         }
-        
+
         return `${years} years, ${months} months`;
     };
 
@@ -103,30 +109,42 @@ const MyPet: React.FC = () => {
 
             <div className={styles.container}>
                 <div className={styles.petsContainer}>
-                    {pets.map(pet => (
-                        <><div key={pet.id} className={styles.petContainer} onMouseEnter={() => handleMouseEnter(pet.id)} onMouseLeave={handleMouseLeave}>
-                            <div className={styles.front} style={{ display: hoveredPetId === pet.id ? 'none' : 'block' }}>
-                                {imageSrcs[pet.id.toString()] !== null ? (
-                                    <img src={imageSrcs[pet.id.toString()] || ''} alt={pet.name} className={styles.image} />
-                                ) : (
-                                    <div className={styles.loading}>Loading...</div>
-                                )}
-                            </div>
-                            <div className={styles.back} style={{ display: hoveredPetId === pet.id ? 'block' : 'none' }}>
-                                <div className={styles.title}>{pet.name} </div>
-                                <div className={styles.infos}>
-                                    <div>Breed: {pet.breed}</div>
-                                    <div>Age: {calculateAge(pet.age)}</div>
-                                    <div>Color: {pet.color}</div>
-                                    <div>Gender: {pet.gender}</div>
+                    {loading &&
+                        (
+                            <Loading />
+                        )
+                    }
+                    {!loading && (
+                        <>
+                            {pets.map(pet => (
+                                <div key={pet.id} className={styles.petContainer} onMouseEnter={() => handleMouseEnter(pet.id)} onMouseLeave={handleMouseLeave}>
+                                    <div className={styles.front} style={{ display: hoveredPetId === pet.id ? 'none' : 'block' }}>
+                                        {imageSrcs[pet.id.toString()] !== null ? (
+                                            <>
+                                                <img src={imageSrcs[pet.id.toString()] || ''} alt={pet.name} className={styles.image} />
+                                                <div className={styles.petName}> {pet.name} </div>
+                                            </>
+                                        ) : (
+                                            <div className={styles.loading}>Loading...</div>
+                                        )}
+                                    </div>
+                                    <div className={styles.back} style={{ display: hoveredPetId === pet.id ? 'block' : 'none' }}>
+                                        <div className={styles.title}>{pet.name} </div>
+                                        <div className={styles.infos}>
+                                            <div>Breed: {pet.breed}</div>
+                                            <div>Age: {calculateAge(pet.age)}</div>
+                                            <div>Color: {pet.color}</div>
+                                            <div>Gender: {pet.gender}</div>
+                                        </div>
+                                        <button className={styles.more} onClick={() => handleNav(pet.id)}> More info </button>
+                                    </div>
                                 </div>
-                                <button className={styles.more} onClick={() => handleNav(pet.id)}> More info </button>
-                            </div>
-                        </div></>
-                    ))}
-                    <button className={styles.add} onClick={handleNavigate}></button>
+                            ))}
+                            <button className={styles.add} onClick={handleNavigate}></button>
+                        </>
+                    )}
                 </div>
-        
+
             </div>
         </div>
     );

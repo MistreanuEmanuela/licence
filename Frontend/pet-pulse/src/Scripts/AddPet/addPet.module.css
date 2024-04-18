@@ -409,6 +409,13 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+.ai 
+{
+  width: 100%;
+  align-items: center;
+  text-align: center;
+  padding: 1%;
+}
 @media  (max-width:1500px) {
   .form
   {

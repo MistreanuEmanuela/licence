@@ -235,30 +235,36 @@ const CatInfo: React.FC<{}> = () => {
                                         <><div className={styles.title_and_picture}>
                                             <div className={styles.title2}>{cat.name} <div className={styles.subtitle}>Health </div></div>
 
-                                            <div className={styles.info_picture_health}></div></div>
+                                            {/* <div className={styles.info_picture_health}></div> */}
+                                                </div>
                                             <div className={styles.content}>{cat.health}</div></>
                                     }
                                  
                                     {selectedCategory === "personality" &&
                                         <><div className={styles.title_and_picture}>
                                             <div className={styles.title2}>{cat.name} <div className={styles.subtitle}>Personality </div></div>
-                                            <div className={styles.info_picture_personality}></div></div>
+                                            {/* <div className={styles.info_picture_personality}></div> */}
+                                            </div>
                                             <div className={styles.content}>{cat.personality}</div></>}
                                     {selectedCategory === "size" && <><div className={styles.title_and_picture}>
                                         <div className={styles.title2}>{cat.name} <div className={styles.subtitle}>Size </div></div>
-                                        <div className={styles.info_picture_size}></div></div>
+                                        {/* <div className={styles.info_picture_size}></div> */}
+                                        </div>
                                         <div className={styles.content}>{cat.size}</div></>}
                                     {selectedCategory === "coat" && <><div className={styles.title_and_picture}>
                                         <div className={styles.title2}>{cat.name} <div className={styles.subtitle}>Coat </div></div>
-                                        <div className={styles.info_picture_coat}></div></div>
+                                        {/* <div className={styles.info_picture_coat}></div> */}
+                                        </div>
                                         <div className={styles.content} >{cat.coat}</div></>}
                                     {selectedCategory === "frendly" && <><div className={styles.title_and_picture}>
                                         <div className={styles.title2}>{cat.name} <div className={styles.subtitle}>Friendship </div></div>
-                                        <div className={styles.info_picture_friendship}></div></div>
+                                        {/* <div className={styles.info_picture_friendship}></div> */}
+                                        </div>
                                         <div className={styles.content}>{cat.friendship}</div></>}
                                     {selectedCategory === "care" && <><div className={styles.title_and_picture}>
                                         <div className={styles.title2}>{cat.name} <div className={styles.subtitle}>Care </div></div>
-                                        <div className={styles.info_picture_care}></div></div>
+                                        {/* <div className={styles.info_picture_care}></div> */}
+                                        </div>
                                         <div className={styles.content}>{cat.care}</div></>}
                                     {selectedCategory === ""}
                                 </div>
