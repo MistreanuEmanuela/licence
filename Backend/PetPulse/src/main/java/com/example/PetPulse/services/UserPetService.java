@@ -3,6 +3,7 @@ package com.example.PetPulse.services;
 import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.EditPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
+import com.example.PetPulse.models.dto.UsersPet.SearchPetDTO;
 import com.example.PetPulse.models.entities.UserPet;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,4 +19,6 @@ public interface UserPetService {
 
     UserPet findPet(Long id);
     boolean deletePet(Long id, String username);
+
+    List<SearchPetDTO> searchPets(String breed, String username);
 }

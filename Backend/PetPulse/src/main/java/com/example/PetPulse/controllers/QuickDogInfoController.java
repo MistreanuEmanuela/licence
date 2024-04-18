@@ -4,6 +4,7 @@ import com.example.PetPulse.services.DogInfoServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,7 +20,10 @@ public class QuickDogInfoController {
 
     @GetMapping("/{id}")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public QuickInfoDogDTO getDogInfo(@PathVariable Long id) {
-        return dogInfoService.getDogInfo(id);
-    }
+    public ResponseEntity<QuickInfoDogDTO> getDogInfo(@PathVariable Long id) {
+        QuickInfoDogDTO info = dogInfoService.getDogInfo(id);
+        if (info == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(info);    }
 }

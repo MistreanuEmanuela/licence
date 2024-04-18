@@ -14,6 +14,7 @@ import PetInfo from './Scripts/PetInfo/petInfo';
 import AddMedicalHistory from './Scripts/AddMedicalHistory/AddMedicalHistory';
 import MedicalHistory from './Scripts/MedicalHistory/MedicalHistory';
 import MedicalHistoryInfo from './Scripts/MedicalHistoryInfo/MedicalHistoryInfo';
+import Search from './Scripts/SearchResult/search';
 
 
 function App(): JSX.Element {
@@ -34,6 +35,7 @@ function App(): JSX.Element {
         <Route path ="/medicalHistory" element={<AddMedicalHistory/>}></Route>
         <Route path ="/viewMedicalHistory" element={<MedicalHistory/>}></Route>
         <Route path ="/medicalHistoryInfo" element={<MedicalHistoryInfo/>}></Route>
+        <Route path ="/searchResults" element={<Search/>}></Route>
       </Routes>
     </Router>
   );

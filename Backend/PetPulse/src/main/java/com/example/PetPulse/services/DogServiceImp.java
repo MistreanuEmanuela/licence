@@ -2,6 +2,7 @@ package com.example.PetPulse.services;
 
 
 import com.example.PetPulse.models.dto.DogDTO.DogAllDTO;
+import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.entities.Dog;
 import com.example.PetPulse.repositories.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,5 +97,14 @@ public class DogServiceImp implements DogService {
                 .map(dog -> new DogAllDTO(dog.getId(), dog.getName()))
                 .collect(Collectors.toList());
         return dogDTOs;
+    }
+
+    @Override
+    public List<SearchResultDogDTO> getDogsSearched(String name) {
+        List<Dog> dogs = dogRepository.findByName(name);
+        List<SearchResultDogDTO> dogsSearched = dogs.stream()
+                .map(dog -> new SearchResultDogDTO(dog.getId(), dog.getName(), dog.getGeneral()))
+                .collect(Collectors.toList());
+        return dogsSearched;
     }
 }

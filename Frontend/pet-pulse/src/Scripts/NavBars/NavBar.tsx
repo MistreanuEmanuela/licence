@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
       const intervalId = setInterval(() => {
         setPlaceholder((prevPlaceholder) => prevPlaceholder + text[index]);
         index++;
-        if (index +1 === text.length) {
+        if (index + 1 === text.length) {
           clearInterval(intervalId);
         }
       }, 100);
@@ -47,8 +47,14 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
 
   const handleNavigate = () => {
     history('/myPets');
-};
+  };
+  const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    localStorage.setItem('search', searchValue);
+    if (event.key === 'Enter') {
+      history('/searchResults');
 
+    }
+  };
 
   return (
     <><div className={styles.body}>
@@ -68,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
                 <li><a href="./principalPage">Home</a></li>
               </div>
             )}
-           {(pagename !=='home' || isMenuOpen) && (
+            {(pagename !== 'home' || isMenuOpen) && (
               <li><a href="./principalPage">Home</a></li>
             )}
             {pagename === 'dogs' && !isMenuOpen && (
@@ -77,16 +83,16 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
                 <li><a href="./alldog">Dogs</a></li>
               </div>
             )}
-           {(pagename !=='dogs' || isMenuOpen) && (
+            {(pagename !== 'dogs' || isMenuOpen) && (
               <li><a href="./alldog">Dogs</a></li>
             )}
-          {pagename === 'cats' && !isMenuOpen && (
+            {pagename === 'cats' && !isMenuOpen && (
               <div className={styles.home}>
                 <div className={styles.page_cat}></div>
                 <li><a href="./allcats">Cats</a></li>
               </div>
             )}
-           {(pagename !=='cats' || isMenuOpen) && (
+            {(pagename !== 'cats' || isMenuOpen) && (
               <li><a href="./allcats">Cats</a></li>
             )}
           </ul>
@@ -100,7 +106,9 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
               placeholder={placeholder}
               className={styles.searchInput}
               value={searchValue}
-              onChange={handleSearchInputChange} />
+              onChange={handleSearchInputChange}
+              onKeyDown={handleSearchKeyPress}
+            />
             <button className={styles.search_active} onClick={toggleSearch}></button>
           </>
         )}
@@ -111,16 +119,16 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
         <button className={styles.profile}></button>
       </div>
     </div>
-    {isSearchOpen && (
-          <><div className={styles.search_small_weight}>
-            <input
-              type="text"
-              placeholder={placeholder}
-              className={styles.searchInputSmall}
-              value={searchValue}
-              onChange={handleSearchInputChange} />
-          </div></>
-        )}
+      {isSearchOpen && (
+        <><div className={styles.search_small_weight}>
+          <input
+            type="text"
+            placeholder={placeholder}
+            className={styles.searchInputSmall}
+            value={searchValue}
+            onChange={handleSearchInputChange} />
+        </div></>
+      )}
     </>
   );
 };

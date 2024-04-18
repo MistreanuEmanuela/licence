@@ -14,6 +14,9 @@ public interface DogRepository extends JpaRepository<Dog,Long> {
     @Query(value = "SELECT * FROM dog_info WHERE id = :id",nativeQuery = true)
     Dog findById(@Param("id") long id);
 
+    @Query(value = "SELECT * FROM dog_info WHERE LOWER(name) LIKE LOWER(concat('%', :name, '%'))", nativeQuery = true)
+    List<Dog> findByName(@Param("name") String name);
+
     @Query(value = "SELECT dog_info.id as id, dog_info.name as name, dog_info.general as general, " +
             "dog_info.overview as overview, dog_info.size as size, dog_info.personality as personality, " +
             "dog_info.health as health, dog_info.feeding as feeding, dog_info.coat as coat, " +

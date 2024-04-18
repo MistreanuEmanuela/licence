@@ -134,9 +134,10 @@ const AddPet: React.FC = () => {
                     const predictions = breed.split(':');
                     const most_predicted = predictions[1].split(' ');
                     console.log(most_predicted)
-                    console.log("We think you pet is:", predictions[1],"with accuracy: ",predictions[2])
+                    console.log("We think you pet is:", predictions[1], "with accuracy: ",predictions[2])
                     setIsCalculating(false);
                     setBread(most_predicted[1].replace('_', ' '));
+                    pet.breed = most_predicted[1].replace('_', ' ');
                     const ac = predictions[2].split(',')[0];
                     setAccuracy(ac);
                     console.log('Breed:', breed);
@@ -173,6 +174,12 @@ const AddPet: React.FC = () => {
             console.error('Weight must be greater than 0');
             return;
         }
+        if (pet.breed === '') {
+            setError('select a breed');
+            console.error('Breed unselected');
+            return;
+        }
+    
     
         const formData = new FormData();
         formData.append('file', file);

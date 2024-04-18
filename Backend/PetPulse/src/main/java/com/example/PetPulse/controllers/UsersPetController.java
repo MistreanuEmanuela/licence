@@ -1,8 +1,10 @@
 package com.example.PetPulse.controllers;
 
+import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.EditPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
+import com.example.PetPulse.models.dto.UsersPet.SearchPetDTO;
 import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.services.UserPetServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
@@ -136,5 +138,16 @@ public class UsersPetController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pet not found or you don't have permission to delete it");
         }
+    }
+
+    @GetMapping(path = "/all-pets-searched", params = "name")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<List<SearchPetDTO>> getAllPetsSearched(@RequestParam String name, Authentication authentication) {
+        String username = authentication.getName();
+        List<SearchPetDTO> pets = petService.searchPets(name, username);
+        if (pets.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pets);
     }
 }

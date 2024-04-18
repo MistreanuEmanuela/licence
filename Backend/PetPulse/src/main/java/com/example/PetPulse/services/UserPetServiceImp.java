@@ -1,9 +1,12 @@
 package com.example.PetPulse.services;
 
 import com.example.PetPulse.Exception.Pet.PetNotFoundException;
+import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.EditPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
+import com.example.PetPulse.models.dto.UsersPet.SearchPetDTO;
+import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.repositories.UserRepository;
 import com.example.PetPulse.repositories.UsersPetRepository;
@@ -17,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -145,5 +149,34 @@ public class UserPetServiceImp implements UserPetService {
             return false;
         }
 
+    }
+
+    @Override
+    public List<SearchPetDTO> searchPets(String breed, String username) {
+        Long userId = userRepository.findIdByUsername(username);
+        List<UserPet> pets = usersPetRepository.findByName(breed, userId);
+        List<SearchPetDTO> petsSearch = pets.stream()
+                .map(pet -> {
+                    User user = userRepository.findById(pet.getUserId()).orElse(null);
+                    if (user != null) {
+                        return new SearchPetDTO(
+                                pet.getId(),
+                                pet.getName(),
+                                pet.getBreed(),
+                                pet.getColor(),
+                                pet.getGender(),
+                                pet.getBirthdate(),
+                                pet.getImagePath(),
+                                pet.getAnimalType(),
+                                user.getFirstName(),
+                                user.getLastName()
+                        );
+                    } else {
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        return petsSearch;
     }
 }

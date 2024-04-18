@@ -2,6 +2,7 @@ package com.example.PetPulse.services;
 
 
 import com.example.PetPulse.models.dto.DogDTO.DogAllDTO;
+import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.entities.Dog;
 
 import java.io.IOException;
@@ -21,5 +22,7 @@ public interface DogService {
     List<DogAllDTO> getAllDogsByColor(String color);
 
     List<DogAllDTO> getAllDogsByFirstLetter(String letter);
+
+    List<SearchResultDogDTO> getDogsSearched(String name);
 
 }

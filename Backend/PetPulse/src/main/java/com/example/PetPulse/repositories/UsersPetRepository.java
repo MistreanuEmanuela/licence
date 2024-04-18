@@ -1,5 +1,6 @@
 package com.example.PetPulse.repositories;
 
+import com.example.PetPulse.models.entities.Dog;
 import com.example.PetPulse.models.entities.UserPet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,7 @@ public interface UsersPetRepository extends JpaRepository<UserPet,Long> {
 
     @Query(value = "SELECT user_id FROM users_pet WHERE id = :id", nativeQuery = true)
     Long findOwnerId(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM users_pet WHERE LOWER(breed) LIKE LOWER(concat('%', :breed, '%')) AND user_id != :idUser AND visibility = 'public'", nativeQuery = true)
+    List<UserPet> findByName(@Param("breed") String breed, @Param("idUser") Long idUser);
 }
