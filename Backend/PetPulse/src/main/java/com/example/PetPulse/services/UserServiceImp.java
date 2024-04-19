@@ -2,6 +2,7 @@ package com.example.PetPulse.services;
 import com.example.PetPulse.Advice.EmailTokenProvider;
 import com.example.PetPulse.Advice.ForgotPasswordToken;
 import com.example.PetPulse.Advice.JwtTokenProvider;
+import com.example.PetPulse.Exception.General.GeneralException;
 import com.example.PetPulse.Exception.User.*;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.entities.Role;
@@ -18,7 +19,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -56,6 +59,13 @@ public class UserServiceImp implements UserService{
 
         if (!isValidPassword(user.getPassword())) {
             throw new PasswordValidationException("Invalid password");
+        }
+        if (!isValidBirthdate(user.getBirthdate())) {
+            throw new GeneralException("Invalid birthdate");
+        }
+
+        if (!isValidName(user.getFirstName()) || !isValidName(user.getLastName())) {
+            throw new GeneralException("Invalid name");
         }
         String encodedPassword = encodePassword(user.getPassword());
         user.setPassword(encodedPassword);
@@ -106,6 +116,17 @@ public class UserServiceImp implements UserService{
     @Override
     public boolean matchesPassword(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+
+    private boolean isValidBirthdate(Date birthdate) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -10);
+        Date tenYearsAgo = cal.getTime();
+        return birthdate.before(tenYearsAgo);
+    }
+
+    private boolean isValidName(String name) {
+        return name.matches("^[a-zA-Z]+$");
     }
     @Override
     public void sendConfirmationEmail(User user)  {

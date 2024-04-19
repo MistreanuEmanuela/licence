@@ -179,7 +179,6 @@
     font-size: 30px;
     color: red;
     align-self: flex-end;
-    margin-bottom: 1%;
   }
   .botton_send
   {
@@ -206,6 +205,13 @@
   .send_icon
   {
     margin-top:2%
+  }
+  .steps
+  {
+    margin-top:-2%;
+    width: 80%;
+    height: 10vh;
+    margin-bottom: 5%;
   }
   @media  (max-width:1000px) {
     .wrapper

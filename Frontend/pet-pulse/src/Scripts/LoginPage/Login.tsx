@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa6";
 import { MdCancel } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
-
+import PasswordChange from '../Components/Animations/password_change';
 
 
 
@@ -76,7 +76,7 @@ const LoginForm: React.FC<FormProps> = ({ onSubmit, errors, onForgotPasswordClic
         <a type="button" className={styles.forgot_pass_bottom} onClick={onForgotPasswordClick}> Forgot password?</a></div>
         <button type="submit" className={styles.login}>Login</button>
         <div className={styles.register}>
-            <p>Don't have an account? <Link to="./register" className={styles.register_button}>Register</Link></p>
+            <p>Don't have an account? <Link to="/sign" className={styles.register_button}>Register</Link></p>
         </div>
       </form>
     </div>
@@ -138,25 +138,7 @@ const LoginPage: React.FC = () => {
   
   return (
     <div className={styles.body}>
-      {/* {!showForgotPassword ? (
-
-        <div className={`${styles.container} ${showForgotPassword ? styles.container_blur : ''}`} id='main_container'>
-      
-          <div className={styles.second_main_container}>
-            <LoginForm onSubmit={handleSubmit} errors={errors} onForgotPasswordClick={handleForgotPasswordClick} />
-           
-          </div>
-        </div>
-
-      ) : (
-        <><div className={`${styles.container} ${showForgotPassword ? styles.container_blur : ''}`} id='main_container'>
-        
-            <div className={styles.second_main_container}>
-              <LoginForm onSubmit={handleSubmit} errors={errors} onForgotPasswordClick={handleForgotPasswordClick} />
-              
-            </div>
-          </div><ForgotPassword onCancel={handleForgotPasswordCancel} /></>
-      )} */}
+   
       {showForgotPassword && (
         <ForgotPassword onCancel={handleForgotPasswordCancel} />
       )}
@@ -215,6 +197,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onCancel }) => {
     <div className={styles.forgot_password_container}>
       <div className={styles.message_box}>
       <div className={styles.botton_cancel} onClick={handleCancel}><MdCancel /></div>
+      <img  src='./DesignPicture/step1.png' alt='not found' className={styles.steps}></img>
         <div className={styles.error}>
           {messageBoxErrors[0] && <div>{messageBoxErrors[0]}</div>}
         </div>
@@ -290,6 +273,7 @@ const ValidateCode: React.FC<ValidateCode> = ({ onCancel, email }) => {
     <div className={styles.forgot_password_container}>
       <div className={styles.message_box}>
       <div className={styles.botton_cancel} onClick={handleCancel}><MdCancel /></div>
+      <img  src='./DesignPicture/step2.png' alt='not found' className={styles.steps}></img>
         <div className={styles.error}>
           {messageBoxErrors[0] && <div>{messageBoxErrors[0]}</div>}
         </div>
@@ -302,7 +286,7 @@ const ValidateCode: React.FC<ValidateCode> = ({ onCancel, email }) => {
           required
         />
         <div className={styles.bottoms_container}>
-          <div className={styles.botton_send} onClick={handleSendCode}>Send</div>
+          <div className={styles.botton_send} onClick={handleSendCode}><div className={styles.send_icon}> <IoIosSend /></div> Send</div>
        
         </div>
       </div>
@@ -370,6 +354,8 @@ const ChangePassword: React.FC<ValidateCode> = ({ onCancel, email }) => {
     <div className={styles.forgot_password_container}>
       <div className={styles.message_box}>
       <div className={styles.botton_cancel} onClick={handleCancel}><MdCancel /></div>
+      <img  src='./DesignPicture/step3.png' alt='not found' className={styles.steps}></img>
+
         <div className={styles.error}>
           {messageBoxErrors[0] && <div>{messageBoxErrors[0]}</div>}
         </div>
@@ -390,7 +376,7 @@ const ChangePassword: React.FC<ValidateCode> = ({ onCancel, email }) => {
           required
         />
         <div className={styles.bottoms_container}>
-          <div className={styles.botton_send} onClick={handleSendNewPassword}>Send</div>
+          <div className={styles.botton_send} onClick={handleSendNewPassword}><div className={styles.send_icon}> <IoIosSend /></div> Send</div>
         </div>
       </div>
       {isPasswordOk=== true ? <ChangeSuccessful onCancel={handleCancel}/> : null}
@@ -405,7 +391,7 @@ interface ChangeSuccessful {
   onCancel: () => void;
 }
 const ChangeSuccessful: React.FC<ChangeSuccessful> = ({onCancel}) => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState<boolean>();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -426,6 +412,7 @@ const ChangeSuccessful: React.FC<ChangeSuccessful> = ({onCancel}) => {
         <div className={styles.forgot_password_container}>
           <div className={styles.message_box}>
             The password has been updated successfully!
+            <PasswordChange/>
           </div>
         </div>
       )}

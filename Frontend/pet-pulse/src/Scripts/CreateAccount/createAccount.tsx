@@ -5,9 +5,8 @@ import { MdEmail } from "react-icons/md";
 import { MdMarkEmailRead } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import { MdDriveFileRenameOutline } from "react-icons/md";
-
-
-
+import { useNavigate } from 'react-router-dom';
+import SendEmail from '../Components/Animations/send_email';
 
 
 interface User {
@@ -15,23 +14,25 @@ interface User {
   lastName: string;
   email: string;
   password: string;
-  birthDate: string;
+  birthdate: string;
   username: string;
 }
 
 const CreateAccount: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [confirmEmail, setConfirmEmail] = useState<string>('');
+  const history = useNavigate();
 
   const [user, setUser] = useState<User>({
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    birthDate: '',
+    birthdate: '',
     username: ''
   });
   const [errors, setErrors] = useState<string[]>([]);
+  const [created, setCreated] = useState<boolean>(false);
 
   const handleCreated = () => {
     const allElements = document.querySelectorAll<HTMLElement>('#add');
@@ -39,17 +40,13 @@ const CreateAccount: React.FC = () => {
       element.style.filter = 'blur(3px)';
 
     });
-    const messageBox = document.createElement('div');
-    messageBox.innerText = 'Your account has been created. Please validate your email.';
-    messageBox.className = `${styles.message_Box}`;
-    document.body.appendChild(messageBox);
+    setCreated(true);
 
     setTimeout(() => {
-      messageBox.remove();
-      allElements.forEach(element => {
-        element.style.filter = 'none';
-      });
-    }, 10000);
+      setCreated(false);
+       history('/')
+    }, 5000);
+   
   };
 
 
@@ -103,6 +100,16 @@ const CreateAccount: React.FC = () => {
 
   return (
     <div className={styles.body}>
+       {
+          created && (
+            <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                        <div className={styles.dialogContent}>
+                            <p>Account created successfully. Please check your email to activate your account. Redirecting...</p>
+                            <SendEmail />
+                        </div>
+                    </div>
+          )
+        }
       <div className={styles.adaugare} id='add'>
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.textBox}>
@@ -150,7 +157,7 @@ const CreateAccount: React.FC = () => {
                 <input className={styles.input} type="text" placeholder="Firstname" name="firstName" id="firstname" value={user.firstName} onChange={handleChange} required />
                 <span className={styles.icon}> <MdDriveFileRenameOutline /></span></div>
 
-              <input className={styles.input} type="date" placeholder="Birthdate" name="birthDate" id="birthdate" value={user.birthDate} onChange={handleChange} required />
+              <input className={styles.input} type="date" placeholder="Birthdate" name="birthdate" id="birthdate" value={user.birthdate} onChange={handleChange} required />
             </div>
           </div>
           <button className={styles.but} type="submit">Submit</button>
