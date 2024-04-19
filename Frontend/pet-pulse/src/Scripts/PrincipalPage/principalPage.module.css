@@ -6,6 +6,7 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-bottom: 2%;
 
 }
 
@@ -17,17 +18,28 @@
     min-height: 30vh;
     display: flex;
     flex-direction: row;
-    background-color:#faf3dd90;
+    background-color:#fffffff5;
     border-radius:20px;
     box-shadow: 2px 2px 10px 5px rgba(1, 1, 1, 0.2);
 }
 
-.find_pet_banner .picture
+.find_pet_banner .picture_info
 {
     width: 60vw;
     height: 40vh;
     background-image: url(./DesignPicture/1a791e1bf146bcea768cdb29fe4ca96d-removebg-preview.png);
     background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
+
+.find_pet_banner .picture2
+{
+    width: 30vw;
+    height: 40vh;
+    background-image: url(./DesignPicture/42736ee6b5155cd2451ad60daaada0a6-removebg-preview.png);
+    background-position: bottom right;
     background-repeat: no-repeat;
     background-size: contain;
     
@@ -73,4 +85,98 @@
 .link:hover{
     text-decoration: underline;
     color:rgba(0, 0, 0, 0.493)
+}
+
+.harti
+{
+    width: auto;
+    margin-top:2%;
+    height: fit-content;
+    background-color: white;
+    width: 80%;
+    padding-left: 10%;
+    margin-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+ .informational
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 1%;
+   
+
+}
+ .informational .element
+{
+    display: flex;
+    align-items: center;
+    margin-top:1%;
+    background-color: white;
+    box-shadow: 2px 2px 10px 3px rgba(1, 1, 1, 0.2);
+    padding-left: 1%;
+    margin-top:5%;
+
+}
+.informational .container
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.picture
+{
+    width: 150px;
+    height: 250px;
+    z-index: 1;
+    position: relative;
+    border-radius: 10px;
+    margin-top:-15%;
+}
+.picture_info
+{
+    width: 150px;
+    height: 250px;
+    z-index: 1;
+    position: relative;
+    border-radius: 10px;
+}
+
+.informational .element .content
+{
+    width: 300px;
+    height: 170px;
+    margin-left: -1%;
+    z-index: 0;
+    position: relative;
+    text-align: center;
+    padding-left: 2%;
+    padding-top:1%;
+    font-size: 0.8em;
+    color: rgb(84, 83, 83);
+}
+.name
+{
+    margin-bottom: 1%;
+    font-size: large;
+}
+.readMore
+{
+    margin-left: 50%;
+    border: none;
+    background-color: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin-top: 6%;
+}
+
+.readMore:hover
+{
+    text-decoration: underline;
 }
