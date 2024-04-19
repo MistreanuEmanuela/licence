@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, Long> {
 
-    @Query(value = "SELECT * FROM medical_records WHERE id_pet = :id",nativeQuery = true)
+    @Query(value = "SELECT * FROM medical_records WHERE id_pet = :id order by date",nativeQuery = true)
     List<MedicalRecord> findByIdPet(@Param("id") long id);
 
     @Query(value = "SELECT id_pet FROM medical_records WHERE id = :id",nativeQuery = true)

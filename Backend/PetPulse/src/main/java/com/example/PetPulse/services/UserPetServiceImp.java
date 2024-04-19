@@ -1,5 +1,6 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.Exception.General.GeneralException;
 import com.example.PetPulse.Exception.Pet.PetNotFoundException;
 import com.example.PetPulse.models.dto.DogDTO.SearchResultDogDTO;
 import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -57,14 +59,14 @@ public class UserPetServiceImp implements UserPetService {
         Date today = new Date();
         Date birthdate = dog.getBirthdate();
         if (birthdate.after(today)) {
-            throw new IllegalArgumentException("Birthdate cannot be in the future");
+            throw new GeneralException("Birthdate cannot be in the future");
         }
         String name = dog.getName();
-        if (!name.matches("[a-zA-Z]+")) {
-            throw new IllegalArgumentException("Name can only contain letters");
+        if (!name.matches("[a-zA-Z ]+")) {
+            throw new GeneralException("Name can only contain letters");
         }
         if (dog.getWeight() <= 0) {
-            throw new IllegalArgumentException("Weight must be greater than 0");
+            throw new GeneralException("Weight must be greater than 0");
         }
         Long id = userRepository.findIdByUsername(username);
         UserPet userPet = new UserPet(id, dog.getName(), dog.getBreed(), dog.getDescription(), dog.getColor(), dog.getWeight(), dog.getMicrochipId(), dog.getAllergies(), dog.getGender(), dog.getVisibility(), dog.getImagePath(), dog.getAnimalType(), dog.getBirthdate());
@@ -104,7 +106,7 @@ public class UserPetServiceImp implements UserPetService {
         }
 
         String name = pet.getName();
-        if (!name.matches("[a-zA-Z]+")) {
+        if (!name.matches("[a-zA-Z ]+")) {
             throw new IllegalArgumentException("Name can only contain letters");
         }
 
@@ -137,18 +139,23 @@ public class UserPetServiceImp implements UserPetService {
     public boolean deletePet(Long id, String username) {
         UserPet actualPet = usersPetRepository.findUserPetById(id);
         Long idUser = userRepository.findIdByUsername(username);
-        if(!idUser.equals(actualPet.getUserId()))
-        {
-            return false;
-        }
-        if (actualPet != null) {
-            usersPetRepository.deleteById(id);
-            return true;
-        }
-        else {
+
+        if (actualPet == null || !idUser.equals(actualPet.getUserId())) {
             return false;
         }
 
+        String imagePath = actualPet.getImagePath();
+
+        usersPetRepository.deleteById(id);
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            File imageFile = new File(imagePath);
+             if (imageFile.exists()) {
+                 imageFile.delete();
+             }
+        }
+
+        return true;
     }
 
     @Override

@@ -665,7 +665,7 @@ const Intervention: React.FC = () => {
                 console.log("created");
                 setAdded(true);
                 setTimeout(() => {
-                    history('/viewMedicalRecord');
+                    history('/viewMedicalHistory');
                 }, 5000);
             } else {
                 throw new Error('Failed to create account');

@@ -33,7 +33,7 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
         if (medicalRecord.getDosage() < 0 || medicalRecord.getRepetitions() < 0 ||
                 medicalRecord.getCosts() < 0 || medicalRecord.getDuration() < 0 ||
                 medicalRecord.getMonitoringDays() < 0 || medicalRecord.getTreatmentDuration() < 0) {
-            throw new IllegalArgumentException("Numeric values must be greater than or equal to 0");
+            throw new GeneralException("Numeric values must be greater than or equal to 0");
         }
 
         if (
@@ -42,7 +42,7 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
                 Pattern.compile("[0-9]").matcher(medicalRecord.getRegimen()).find() ||
                 Pattern.compile("[0-9]").matcher(medicalRecord.getTreatmentNeed()).find() ||
                 Pattern.compile("[0-9]").matcher(medicalRecord.getAdverseReactions()).find()) {
-            throw new IllegalArgumentException("Names cannot contain numbers");
+            throw new GeneralException("Names cannot contain numbers");
         }
 
         Date currentDate = new Date(System.currentTimeMillis());

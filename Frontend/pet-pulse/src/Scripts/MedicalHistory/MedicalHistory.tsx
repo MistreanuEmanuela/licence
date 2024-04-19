@@ -149,7 +149,7 @@ const MedicalHistory: React.FC = () => {
                     </div>
                 </div>
             )}
-            <table className={`${styles.table} ${deleteState || deleted ? styles.tableBlur : ''}`}>
+            <table className={`${styles.table} ${deleteState || deleted ? styles.tableBlFur : ''}`}>
                 <thead className={styles.thead}>
                     <tr className={styles.tr}>
                         <th className={styles.column}>Date</th>

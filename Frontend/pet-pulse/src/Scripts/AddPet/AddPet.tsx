@@ -168,11 +168,11 @@ const AddPet: React.FC = () => {
             return;
         }
     
-        if (pet.weight <= 0) {
-            setError('Weight must be greater than 0');
-            console.error('Weight must be greater than 0');
-            return;
-        }
+        // if (pet.weight <= 0) {
+        //     setError('Weight must be greater than 0');
+        //     console.error('Weight must be greater than 0');
+        //     return;
+        // }
         console.log(breed)
         setPet({ ...pet, [breed]: breed });
         pet.breed = breed
@@ -297,7 +297,7 @@ const AddPet: React.FC = () => {
                             </div>
                         )}
                         {breed && (
-                            <div className={styles.ai}> We thing your pet is a {breed} with probability {accuracy} </div>
+                            <div className={styles.ai}> We think your pet is a {breed} with probability {accuracy} </div>
                         )
                         }
                         { isCalculating && (
