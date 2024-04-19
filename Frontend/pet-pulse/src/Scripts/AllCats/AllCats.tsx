@@ -373,60 +373,55 @@ const AllCats: React.FC = () => {
         </div>
         <ul className={styles.main_container}>
         {!showLoading && (
-  <>
-    {currentCats.map((cat, index) => (
-      <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(cat.id)}>
-        <img src={`./Cats/${cat.name}.png`} alt={cat.name} className={styles.dog_picture} />
-        <div className={styles.name}>{cat.name}</div>
-      </button>
-    ))}
-  </>
+  <><>
+              {currentCats.map((cat, index) => (
+                <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(cat.id)}>
+                  <img src={`./Cats/${cat.name}.png`} alt={cat.name} className={styles.dog_picture} />
+                  <div className={styles.name}>{cat.name}</div>
+                </button>
+              ))}
+
+            </><div className={styles.pagination}>
+                <button className={styles.page_button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                  <GrPrevious />
+                </button>
+                <>
+                  <button onClick={() => handlePageChange(1)} className={styles.page_button}>
+                    1
+                  </button>
+                  {(currentPage - 1) > 2 &&
+                    <div className={styles.dots}><HiDotsHorizontal />
+                    </div>}
+                  {(currentPage - 1) > 1 &&
+                    <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className={styles.page_button}>
+                      {currentPage - 1}
+                    </button>}
+                  {(currentPage) > 1 && (currentPage) < totalPages &&
+                    <button onClick={() => handlePageChange(currentPage)} className={styles.page_button}>
+                      {currentPage}
+                    </button>}           {(currentPage + 1) < totalPages &&
+                      <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.page_button}>
+                        {currentPage + 1}
+                      </button>}
+                  {(currentPage + 1) < totalPages &&
+                    <div className={styles.dots}><HiDotsHorizontal />
+                    </div>}
+                  {(totalPages != 1 &&
+                    <button onClick={() => handlePageChange(totalPages)} className={styles.page_button}>
+                      {totalPages}
+                    </button>
+                  )}
+                </>
+                <button className={styles.page_button} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}
+                >
+                  <GrNext />
+                </button>
+              </div></>
 )}
 
 {showLoading && <Loading/>}
 
         </ul>
-       
-
-        <div className={styles.pagination}>
-          <button className={styles.page_button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-            <GrPrevious />
-          </button>
-          <>
-            <button onClick={() => handlePageChange(1)} className={styles.page_button}>
-              1
-            </button>
-            {(currentPage - 1) > 2 &&
-              <div className={styles.dots}><HiDotsHorizontal />
-              </div>
-            }
-            {(currentPage - 1) > 1 &&
-              <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className={styles.page_button}>
-                {currentPage - 1}
-              </button>
-            }
-            {(currentPage) > 1 && (currentPage) < totalPages &&
-              <button onClick={() => handlePageChange(currentPage)} className={styles.page_button}>
-                {currentPage}
-              </button>
-            }           {(currentPage + 1) < totalPages &&
-              <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.page_button}>
-                {currentPage + 1}
-              </button>
-            }
-            {(currentPage + 1) < totalPages &&
-              <div className={styles.dots}><HiDotsHorizontal />
-              </div>
-            }
-            <button onClick={() => handlePageChange(totalPages)} className={styles.page_button}>
-              {totalPages}
-            </button>
-          </>
-          <button className={styles.page_button} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}
-          >
-            <GrNext />
-          </button>
-        </div>
       </div>
     </div>
 

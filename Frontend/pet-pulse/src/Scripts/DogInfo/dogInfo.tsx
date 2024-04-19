@@ -148,7 +148,9 @@ const DogInfo: React.FC<{}> = () => {
                                 <div className={styles.content}>{dog.general}</div>
                             </div>
                         </div>
+                      
                         <div className={styles.quick_info}>
+                        {quickInfo && (
                             <div className={styles.info}>
                                 <div className={styles.information}>
                                     <b><i>Origin: </i></b>{quickInfo?.origin}
@@ -166,6 +168,7 @@ const DogInfo: React.FC<{}> = () => {
                                     <b><i>Temperament:</i></b> {quickInfo?.temperament}
                                 </div>
                             </div>
+                        )}
                             <div className={styles.star}>
                                 <div className={styles.starInfo}>
                                     <b>Apartament living: </b>
