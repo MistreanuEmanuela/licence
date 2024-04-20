@@ -15,7 +15,7 @@ import AddMedicalHistory from './Scripts/AddMedicalHistory/AddMedicalHistory';
 import MedicalHistory from './Scripts/MedicalHistory/MedicalHistory';
 import MedicalHistoryInfo from './Scripts/MedicalHistoryInfo/MedicalHistoryInfo';
 import Search from './Scripts/SearchResult/search';
-
+import Profile from './Scripts/Profile/profile'
 
 function App(): JSX.Element {
   return (
@@ -36,6 +36,7 @@ function App(): JSX.Element {
         <Route path ="/viewMedicalHistory" element={<MedicalHistory/>}></Route>
         <Route path ="/medicalHistoryInfo" element={<MedicalHistoryInfo/>}></Route>
         <Route path ="/searchResults" element={<Search/>}></Route>
+        <Route path ="/profile" element={<Profile/>}></Route>
       </Routes>
     </Router>
   );

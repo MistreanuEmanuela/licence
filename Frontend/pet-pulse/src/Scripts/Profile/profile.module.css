@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+.body
+{
+    min-height: 98vh;
+    background-color: rgb(243, 243, 243);
+    padding-bottom: 2vh;
+    font-family: 'Trebuchet MS', sans-serif;
+
+}
+.content
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    min-width: 100vw;
+}
+
+.content .profile_container
+{
+    width: 70%;
+    height: 40%;
+    background-color:rgb(255, 255, 255);
+    box-shadow: 5px 5px 15px 10px rgba(19, 0, 111, 0.2);
+    display: flex;
+    flex-direction: column;
+    min-width:fit-content;
+    min-height: fit-content;
+}
+.content .profile_container .text1
+{
+    font-size: 1.5em;
+    padding-left: 5%;
+    padding-top: 2%;
+    color: rgb(79, 79, 79);
+
+}
+.content .profile_container .text2
+{
+    font-size: 1em;
+    padding-left: 5%;
+    color: rgb(79, 79, 79);
+}
+
+.content .profile_container .main
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.main .left_info
+{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-height: 40vh;
+    border-right: 4px solid rgba(1, 1,1, 0.1);
+    padding-top:4%;
+    min-width: 300px;
+}
+
+.edit
+{
+    background: #ffffffac;
+    border: 2px solid rgba(1, 1,1, 0.5);
+    outline: none;
+    border-radius:40px;
+    margin-top: 2%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    align-self: center;
+    width: fit-content;
+    align-self: center;
+    padding-left: 7%;
+    padding-right: 7%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+.left_info .information
+{
+    width: 100%;
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top:15%;
+
+}
+
+.nr_pets{
+    margin-left: 2%;
+    color: green;
+    font-weight: 600;
+}
+
+.main .right_info
+{
+     display: flex;
+     flex-direction: row;
+     min-width: 300px;
+     width: 60%;
+}
+.right_info .first_part_info 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    min-width: 350px;
+    flex-wrap: wrap;
+    padding-left: 10%;
+}
+
+.right_info .first_part_info .field, .right_info .second_part_info .field
+{
+    width: 80%;
+}
+.label
+{
+    color: grey;
+}
+
+.input
+{
+    border-bottom: 2px solid rgba(120, 120, 120, 0.5);
+    width: 100%;
+    font-size:1.2em;
+    margin-top:3%;
+}
+.right_info .second_part_info
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    min-width: 350px;
+    flex-wrap: wrap;
+}

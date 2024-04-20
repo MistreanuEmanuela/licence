@@ -48,6 +48,9 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
   const handleNavigate = () => {
     history('/myPets');
   };
+  const handleProfileNavigate = () => {
+    history('/profile');
+  };
   const handleSearchKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       localStorage.setItem('search', searchValue);
@@ -114,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
           <button className={styles.search} onClick={toggleSearch}></button>
         )}
         <button className={styles.pets} onClick={handleNavigate}></button>
-        <button className={styles.profile}></button>
+        <button className={styles.profile} onClick={handleProfileNavigate}></button>
       </div>
     </div>
       {isSearchOpen && (
