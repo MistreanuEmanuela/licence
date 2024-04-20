@@ -1,5 +1,6 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.entities.User;
 import jakarta.mail.MessagingException;
@@ -21,5 +22,6 @@ public interface UserService {
     public void changePassword(String email, String newPassword);
     public void forgotPassword(String email);
     public void sendPasswordResetEmail(String email, String token) ;
+    public ProfileUserDTO findUserProfile(String username);
 
     }

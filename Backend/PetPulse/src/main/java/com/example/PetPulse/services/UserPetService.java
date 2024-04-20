@@ -21,4 +21,6 @@ public interface UserPetService {
     boolean deletePet(Long id, String username);
 
     List<SearchPetDTO> searchPets(String breed, String username);
+
+    Long findNumberOfPets(String username);
 }

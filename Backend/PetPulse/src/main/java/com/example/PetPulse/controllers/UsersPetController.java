@@ -94,6 +94,13 @@ public class UsersPetController {
         String username = authentication.getName();
         return petService.findAllPet(username);
     }
+
+    @GetMapping("/findNumberOfPets")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public Long allNumberOfPets(Authentication authentication) {
+        String username = authentication.getName();
+        return petService.findNumberOfPets(username);
+    }
     @GetMapping(path = "/picture")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
     public ResponseEntity<ByteArrayResource> getImage(@RequestParam String path) {

@@ -22,4 +22,7 @@ public interface UsersPetRepository extends JpaRepository<UserPet,Long> {
 
     @Query(value = "SELECT * FROM users_pet WHERE LOWER(breed) LIKE LOWER(concat('%', :breed, '%')) AND user_id != :idUser AND visibility = 'public'", nativeQuery = true)
     List<UserPet> findByName(@Param("breed") String breed, @Param("idUser") Long idUser);
+
+    @Query(value = "SELECT count(*) FROM users_pet WHERE user_id = :id", nativeQuery = true)
+    Long findPetsNumber(@Param("id") Long id);
 }

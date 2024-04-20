@@ -187,4 +187,11 @@ public class UserPetServiceImp implements UserPetService {
                 .collect(Collectors.toList());
         return petsSearch;
     }
+
+    @Override
+    public Long findNumberOfPets(String username) {
+        Long id = userRepository.findIdByUsername(username);
+        Long nrPets = usersPetRepository.findPetsNumber(id);
+        return nrPets;
+    }
 }

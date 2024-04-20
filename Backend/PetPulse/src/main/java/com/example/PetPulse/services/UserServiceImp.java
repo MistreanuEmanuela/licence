@@ -4,6 +4,7 @@ import com.example.PetPulse.Advice.ForgotPasswordToken;
 import com.example.PetPulse.Advice.JwtTokenProvider;
 import com.example.PetPulse.Exception.General.GeneralException;
 import com.example.PetPulse.Exception.User.*;
+import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.entities.Role;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -197,5 +198,11 @@ public class UserServiceImp implements UserService{
         mailSender.send(message);
     }
 
+    @Override
+    public ProfileUserDTO findUserProfile(String username) {
+        User user = userRepository.findByUsername(username);
+        ProfileUserDTO profile = new ProfileUserDTO(user.getLastName(), user.getFirstName(),user.getEmail(), user.getBirthDate(), user.getUsername());
+        return profile;
+    }
 }
 

@@ -1,13 +1,17 @@
 package com.example.PetPulse.controllers;
+import com.example.PetPulse.models.dto.DogDTO.DogAllDTO;
 import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.services.UserServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import com.example.PetPulse.models.dto.UsersDto.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -60,5 +64,13 @@ public class UserController {
         String newPassword = changePasswordDTO.getNewPassword();
         userService.changePassword(email, newPassword);
     }
+    @GetMapping(path = "/profile")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ProfileUserDTO getProfile(Authentication authentication)
+    {
+        String username = authentication.getName();
+        return userService.findUserProfile(username);
+    }
+
 }
 
