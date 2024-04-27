@@ -4,6 +4,7 @@ import com.example.PetPulse.models.dto.PostDTO.PostCreateDTO;
 import com.example.PetPulse.models.dto.PostDTO.PostLongInfo;
 import com.example.PetPulse.models.dto.PostDTO.PostShortInfo;
 import com.example.PetPulse.models.entities.Post;
+import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.repositories.PostRepository;
 import com.example.PetPulse.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,14 +69,17 @@ public class PostServiceImp implements  PostService {
 
 
     @Override
-    public PostLongInfo getPost(Long id) {
+    public PostLongInfo getPost(Long id, String username) {
+        Long userRequestId = userRepository.findIdByUsername(username);
         Optional<Post> postOptional = postRepository.findById(id);
         if (!postOptional.isPresent()) {
             return null;
         } else {
             Post post = postOptional.get();
-            return new PostLongInfo(post.getId(), post.getPostName(), post.getPostText(), post.getCreatedAt(), post.getUserId());
+            long userId = post.getUserId();
+            User user = userRepository.findById(userId);
+            boolean isOwner = (userId == userRequestId);
+            return new PostLongInfo(post.getId(), post.getPostName(), post.getPostText(), post.getCreatedAt(),isOwner, user.getFirstName(), user.getLastName());
         }
-
     }
 }

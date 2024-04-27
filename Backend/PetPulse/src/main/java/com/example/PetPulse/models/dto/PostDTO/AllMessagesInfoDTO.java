@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class AllMessagesInfoDTO {
     private Long id;
-    private Long userId;
+    private boolean owner;
     private Long postId;
     private String messageText;
     private LocalDateTime createdAt;

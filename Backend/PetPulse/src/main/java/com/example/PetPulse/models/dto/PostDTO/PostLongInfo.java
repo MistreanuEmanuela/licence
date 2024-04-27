@@ -11,14 +11,25 @@ public class PostLongInfo {
     private String postName;
     private String postText;
     private LocalDateTime createdAt;
+    private boolean isOwner;
+    private String userFirstName;
+    private String userLastName;
 
-    private Long userId;
-
-    public PostLongInfo(Long id, String postName, String postText, LocalDateTime createdAt, Long userId) {
+    public PostLongInfo(Long id, String postName, String postText, LocalDateTime createdAt, boolean isOwner) {
         this.id = id;
         this.postName = postName;
         this.postText = postText;
         this.createdAt = createdAt;
-        this.userId = userId;
+        this.isOwner = isOwner;
+    }
+
+    public PostLongInfo(Long id, String postName, String postText, LocalDateTime createdAt, boolean isOwner, String userFirstName, String userLastName) {
+        this.id = id;
+        this.postName = postName;
+        this.postText = postText;
+        this.createdAt = createdAt;
+        this.isOwner = isOwner;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
     }
 }

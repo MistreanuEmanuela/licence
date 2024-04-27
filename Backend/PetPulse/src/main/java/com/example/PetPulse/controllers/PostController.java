@@ -46,8 +46,9 @@ public class PostController {
 
     @GetMapping("/findPost")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public PostLongInfo post(@RequestParam Long id) {
-        return postServiceImp.getPost(id);
+    public PostLongInfo post(@RequestParam Long id,Authentication authentication ) {
+        String username = authentication.getName();
+        return postServiceImp.getPost(id, username);
     }
 
     @DeleteMapping("/deletePost")

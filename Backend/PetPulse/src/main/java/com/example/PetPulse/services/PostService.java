@@ -14,5 +14,5 @@ public interface PostService {
 
     List<PostShortInfo> getAll();
 
-    PostLongInfo getPost(Long id);
+    PostLongInfo getPost(Long id, String username);
 }

@@ -134,7 +134,7 @@ const MedicalHistory: React.FC = () => {
                     <div className={styles.dialogContent}>
                         {!deleted ? (
                             <>
-                                <p>Are you sure you want to delete this medical record?</p>
+                                <p>Are you sure you want to delete this post?</p>
                                 <div className={styles.buttons}>
                                     <button onClick={handleDeleteConfirm} className={styles.confirmButton}>Yes</button>
                                     <button onClick={handleDeleteCancel} className={styles.cancelButton}>No</button>

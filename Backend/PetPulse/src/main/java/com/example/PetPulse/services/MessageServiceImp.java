@@ -2,9 +2,7 @@ package com.example.PetPulse.services;
 
 import com.example.PetPulse.models.dto.PostDTO.AllMessagesInfoDTO;
 import com.example.PetPulse.models.dto.PostDTO.MessagePostDTO;
-import com.example.PetPulse.models.dto.UsersPet.SearchPetDTO;
 import com.example.PetPulse.models.entities.Message;
-import com.example.PetPulse.models.entities.Post;
 import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.repositories.MessageRepository;
 import com.example.PetPulse.repositories.UserRepository;
@@ -43,10 +41,11 @@ public class MessageServiceImp implements MessageService{
         List<AllMessagesInfoDTO> mess = messages.stream()
                 .map(message -> {
                     User user = userRepository.findById(message.getUserId()).orElse(null);
+                    boolean owner = (user.getId() == message.getUserId());
                     if (user != null) {
                         return new AllMessagesInfoDTO(
                                message.getId(),
-                               message.getUserId(),
+                                owner,
                                 message.getPostId(),
                                 message.getMessageText(),
                                 message.getCreatedAt(),
