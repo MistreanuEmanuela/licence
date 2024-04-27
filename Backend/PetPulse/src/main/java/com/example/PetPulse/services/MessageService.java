@@ -9,7 +9,7 @@ public interface MessageService {
 
     void postMessage(String username, MessagePostDTO messagePostDTO);
 
-    List<AllMessagesInfoDTO> getAll(Long id);
+    List<AllMessagesInfoDTO> getAll(Long id, String username);
 
     boolean deleteMessage(Long id, String username);
 }

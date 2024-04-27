@@ -3,7 +3,8 @@
     "google-maps-react": "^2.0.6",
     "lottie-react-web": "^2.2.2",
     "react-icons": "^5.0.1",
-    "react-lottie": "^1.2.4"
+    "react-lottie": "^1.2.4",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/react-lottie": "^1.2.10"

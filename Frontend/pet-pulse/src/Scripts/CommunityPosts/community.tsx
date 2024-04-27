@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './community.module.css';
 import Navbar from '../NavBars/NavBar';
 import { RiMenuUnfoldFill, RiMenuFoldFill } from 'react-icons/ri';
@@ -8,54 +8,73 @@ import { IoIosSend } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 import Delete from '../Components/Animations/Delete';
 import { MdDelete } from "react-icons/md";
+import { LuUserCircle2 } from "react-icons/lu";
+import { IoSendSharp } from "react-icons/io5";
+import Save from '../Components/Animations/Save';
 
-
-
-import Save from '../Components/Animations/Save'
 interface Post {
     id: number;
     postText: string;
     createdAt: string;
 }
 
-interface newPost {
-    postName: string;
-    postText: string;
-}
-interface postInfo {
-
+interface Message {
     id: number,
-    postName: string,
-    postText: string,
-    createdAt: string,
     owner: boolean,
-    userFirstName: string,
-    userLastName: string
+    postId: number,
+    messageText: string,
+    createdAt: string,
+    lastName: string,
+    firstName: string
 }
+
 function Community() {
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [newPost, setNewPost] = useState<boolean>(false);
     const [added, setAdded] = useState<boolean>(false);
     const [deletedState, setDeleteState] = useState<boolean>(false);
-    const [deleted, setDeleted] = useState<boolean>(false);
-    const [newPostContent, setNewPostContent] = useState<newPost>({
+    const [deletedStateMessage, setDeleteStateMessage] = useState<boolean>(false);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [socket, setSocket] = useState<any>(null);
+    const [newPostContent, setNewPostContent] = useState<{ postName: string, postText: string }>({
         postName: '',
         postText: ''
     });
+    const [errors, setErrors] = useState<string[]>([]);
+    const [postId, setPostId] = useState<number>();
+    const [postInfo, setPostInfo] = useState<any>(null);
+    const [messageNew, setMessageNew] = useState<{ postId: number, messageText: string }>({
+        postId: 0,
+        messageText: '',
+    });
+    const [messageId, setMessageId] = useState<number>();
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "auto", block: "end" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+    useEffect(() => {
+        fetchPosts();
+    }, []);
 
     const toggleSlideBar = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleClickNew = () => {
-        setNewPost(true);
-
-    };
-
     useEffect(() => {
-        fetchPosts();
-    }, []);
+        const interval = setInterval(() => {
+            fetchPosts();
+            if(postId) {
+                fetchMessages();
+            }
+        }, 5000); 
+        return () => clearInterval(interval);
+    });
 
     const fetchPosts = async () => {
         try {
@@ -77,10 +96,61 @@ function Community() {
         }
     };
 
+    const fetchPostInfo = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('No token found');
+            }
+
+            const response = await fetch(`http://localhost:8082/posts/findPost?id=${postId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch post info');
+            }
+
+            const data = await response.json();
+            setPostInfo(data);
+        } catch (error) {
+            console.error('Error fetching post info:', error);
+        }
+    };
+
+    const fetchMessages = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('No token found');
+            }
+
+            const response = await fetch(`http://localhost:8082/messages/findMessages?id=${postId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch messages');
+            }
+
+            const data = await response.json();
+            setMessages(data);
+        } catch (error) {
+            console.error('Error fetching messages:', error);
+        }
+    };
+
     const handleCancel = () => {
         setNewPost(false);
     };
-    const [errors, setErrors] = useState<string[]>([]);
 
     const handleAddPost = async () => {
         try {
@@ -110,7 +180,6 @@ function Community() {
             if (!response.ok) {
                 throw new Error('Failed to add post');
             }
-            console.log('Response:', response);
             const responseBody = await response.text();
             const newPost: Post = responseBody ? JSON.parse(responseBody) : {};
             setPosts(prevPosts => [...prevPosts, newPost]);
@@ -123,56 +192,11 @@ function Community() {
             }, 2000);
         } catch (error) {
             console.error('Error adding post:', error);
-            setErrors(errors);
+            setErrors([]);
         }
     };
 
-    const [postId, setPostId] = useState<number>();
-    const [postInfo, setPostInfo] = useState<postInfo | null>(null);
-
-    const handleSetPostId = (postId: number) => {
-        setPostId(postId);
-    }
-    useEffect(() => {
-        const fetchPostInfo = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                if (!token) {
-                    throw new Error('No token found');
-                }
-
-                const response = await fetch(`http://localhost:8082/posts/findPost?id=${postId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch post info');
-                }
-
-                const data = await response.json();
-                setPostInfo(data);
-                console.log(data);
-            } catch (error) {
-                console.error('Error fetching post info:', error);
-            }
-        };
-
-        if (postId !== undefined) {
-            fetchPostInfo();
-        }
-    }, [postId]);
-
-    const formatDate = (dateString: string) => {
-        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString('en-EN', options);
-    };
-
-
-    const handleDeleteConfirm = async () => {
+    const handleDeletePost = async () => {
         try {
             const response = await fetch(`http://localhost:8082/posts/deletePost?id=${postId}`, {
                 method: 'DELETE',
@@ -184,31 +208,114 @@ function Community() {
 
             if (response.ok) {
                 console.log("Post deleted successfully");
+                setDeleted(true);
+                setTimeout(() => {
+                    setDeleted(false);
+                    setDeleteState(false);
+                    setPostId(undefined);
+                    setPostInfo(null);
+                }, 2000);
                 fetchPosts();
-            
             } else {
                 console.error('Failed to delete post:', response.statusText);
             }
         } catch (error) {
             console.error('Error deleting post:', error);
         }
-        setDeleted(true);
-        setTimeout(() => {
-            setDeleted(false);
-            setDeleteState(false);
-            setPostId(undefined);
-            setPostInfo(null);
-        }, 2000);
+    };
+
+    const handleSendMessage = async () => {
+        try {
+            if (postId) {
+                const token = localStorage.getItem('token');
+                messageNew.postId = postId;
+                if (!token) {
+                    throw new Error('No token found');
+                }
+
+                const response = await fetch('http://localhost:8082/messages/addMessage', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(messageNew)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to send message');
+                }
+                else
+                {
+                    fetchMessages();
+                }
+
+                setMessageNew({ postId: postId, messageText: '' });
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    };
+
+    const handleDeleteMessage = async () => {
+        try {
+            const response = await fetch(`http://localhost:8082/messages/deleteMessage?id=${messageId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                console.log("Message deleted successfully");
+                setDeleted(true);
+                setTimeout(() => {
+                    setDeleted(false);
+                    setDeleteStateMessage(false);
+                    setMessageId(undefined);
+                    fetchMessages();
+                }, 2000);
+            } else {
+                console.error('Failed to delete message:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error deleting message:', error);
+        }
+    };
+
+    const formatDate = (dateString: string) => {
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-EN', options);
+    };
+
+    const handleSetPostId = (postId: number) => {
+        setPostId(postId);
+        fetchPostInfo();
+        fetchMessages();
+    };
+    const [deleted, setDeleted] = useState<boolean>(false);
+    const handleDeleteConfirm = () => {
+        handleDeletePost();
     };
 
     const handleDeleteCancel = () => {
         setDeleteState(false);
     };
 
-    const handleDeletePost = () =>
-        {
-            setDeleteState(true);
-        }
+    const handleDeleteConfirmMessage = () => {
+        handleDeleteMessage();
+      
+    };
+    const handleDeleteMessagePress = (id: number) =>
+    {
+        setMessageId(id);
+        setDeleteStateMessage(true);
+
+    }
+    const handleDeleteCancelMessage = () => {
+        setDeleteStateMessage(false);
+    };
 
     return (
         <div className={styles.body}>
@@ -253,8 +360,6 @@ function Community() {
                         <Save />
                     </div>
                 }
-
-                
                 <div className={styles.menu}>
                     <button className={styles.toggleBtn} onClick={toggleSlideBar}>
                         {isOpen ? <RiMenuFoldFill /> : <RiMenuUnfoldFill />}
@@ -262,7 +367,7 @@ function Community() {
                     <div className={`${styles.slideBar} ${isOpen ? styles.slideBarOpen : ''}`}>
                         <div className={styles.content}>
                             <div className={styles.title}>Community posts</div>
-                            <button className={styles.button_new} onClick={handleClickNew}>
+                            <button className={styles.button_new} onClick={() => setNewPost(true)}>
                                 <div className={styles.icon}><IoAddCircleOutline /></div>New post
                             </button>
                             {posts.slice().reverse().map(post => (
@@ -293,10 +398,31 @@ function Community() {
                         </div>
                     </div>
                 )}
-                {postInfo &&
+                  {deletedStateMessage && postInfo && (
+                    <div id="custom-confirm-dialog" className={styles.confirmDialog}>
+                        <div className={styles.dialogContent}>
+                            {!deleted ? (
+                                <>
+                                    <p>Are you sure you want to delete this message?</p>
+                                    <div className={styles.buttons}>
+                                        <button onClick={handleDeleteConfirmMessage} className={styles.confirmButton}>Yes</button>
+                                        <button onClick={handleDeleteCancelMessage} className={styles.cancelButton}>No</button>
+                                    </div>
+                                </>
+                            ) : (
+                                <div>
+                                    <p>Deleted successfully.</p>
+                                    <Delete />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
+                {postInfo && (
                     <div className={styles.post}>
-                        <button onClick={handleDeletePost} className={styles.delete_button}><MdDelete />
-                        </button>
+                        {postInfo.owner && (
+                            <button onClick={() => setDeleteState(true)} className={styles.delete_button}><MdDelete />
+                            </button>)}
                         <div className={styles.postare}>
                             <div className={styles.post_infos}>
                                 <div> {postInfo.userFirstName} {postInfo.userLastName}</div>
@@ -307,9 +433,49 @@ function Community() {
                                 <div className={styles.post_text}> {postInfo.postText} </div>
                             </div>
                         </div>
-                    </div>
-                }
 
+                        <div className={styles.message_display}>
+                            {messages && messages.slice().map(message => (
+                                <div className={`${styles.message} ${message.owner ? styles.message_owner : ''}`} key={message.id}>
+                                    <div className={`${styles.post_infos} ${message.owner ? styles.post_infos_owner : ''}`}>
+
+                                        {message.owner && (<div> Me </div>)}
+                                        {!message.owner && (<div>{message.firstName} {message.lastName}</div>)}
+
+                                        <div> {formatDate(message.createdAt)}</div>
+
+                                    </div>
+                                    <div className={`${styles.message_content} ${message.owner ? styles.message_content_owner : ''}`}>
+                                        <div className={styles.message_icon}> <LuUserCircle2 /></div>
+                                        <div className={`${styles.message_text} ${message.owner ? styles.message_text_owner : ''}`}>
+
+                                            {message.messageText} </div>
+                                    </div>
+                                    {message.owner && (
+                                        <div className={styles.post_infos}>
+                                            <button className={styles.delete} onClick={() => handleDeleteMessagePress(message.id)}> Delete</button>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        <div ref={messagesEndRef} />
+                        </div>
+                        <div className={styles.newMessage}>
+                            <input
+                                className={styles.input_field}
+                                type="text"
+                                value={messageNew.messageText}
+                                onChange={(e) => setMessageNew({ ...messageNew, messageText: e.target.value })}
+                                placeholder="Type your message..."
+                            />
+                            {messageNew.messageText !== '' ? (
+                                <button onClick={handleSendMessage} className={styles.sendMessage}><IoSendSharp /></button>
+                            ) : (
+                                <button className={styles.sendMessage_inactive}><IoSendSharp /></button>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.Exception.General.GeneralException;
 import com.example.PetPulse.models.dto.PostDTO.AllMessagesInfoDTO;
 import com.example.PetPulse.models.dto.PostDTO.MessagePostDTO;
 import com.example.PetPulse.models.entities.Message;
@@ -29,19 +30,23 @@ public class MessageServiceImp implements MessageService{
 
     @Override
     public void postMessage(String username, MessagePostDTO messagePostDTO) {
-        Long id = userRepository.findIdByUsername(username);
-        LocalDateTime time = LocalDateTime.now();
-        Message message = new Message(id, messagePostDTO.getPostId(), messagePostDTO.getMessageText(), time);
-        messageRepository.save(message);
+        if (messagePostDTO.getMessageText().equals("")) {
+            throw new GeneralException("The message can t be empty");
+        } else {
+            Long id = userRepository.findIdByUsername(username);
+            LocalDateTime time = LocalDateTime.now();
+            Message message = new Message(id, messagePostDTO.getPostId(), messagePostDTO.getMessageText(), time);
+            messageRepository.save(message);
+        }
     }
-
     @Override
-    public List<AllMessagesInfoDTO> getAll(Long id) {
+    public List<AllMessagesInfoDTO> getAll(Long id, String username) {
         List<Message> messages = messageRepository.findByUserId(id);
         List<AllMessagesInfoDTO> mess = messages.stream()
                 .map(message -> {
                     User user = userRepository.findById(message.getUserId()).orElse(null);
-                    boolean owner = (user.getId() == message.getUserId());
+                    Long userOwer = userRepository.findIdByUsername(username);
+                    boolean owner = (userOwer.equals( message.getUserId()));
                     if (user != null) {
                         return new AllMessagesInfoDTO(
                                message.getId(),

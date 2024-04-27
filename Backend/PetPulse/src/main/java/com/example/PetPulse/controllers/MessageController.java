@@ -38,8 +38,8 @@ public class MessageController {
 
     @GetMapping("/findMessages")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public List<AllMessagesInfoDTO> allPost(@RequestParam Long id) {
-        return messageServiceImp.getAll(id);
+    public List<AllMessagesInfoDTO> allPost(@RequestParam Long id, Authentication authentication) {
+        return messageServiceImp.getAll(id, authentication.getName());
     }
 
     @DeleteMapping("/deleteMessage")
