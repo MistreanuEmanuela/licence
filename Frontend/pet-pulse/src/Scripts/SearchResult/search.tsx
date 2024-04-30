@@ -8,6 +8,7 @@ import { MdPets } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoIosColorFilter } from "react-icons/io";
 import { BsGenderAmbiguous } from "react-icons/bs";
+import Buttons from '../Components/MenuChatCommunity/Buttons';
 
 
 interface InfoDog {
@@ -160,6 +161,7 @@ const Search: React.FC = () => {
   return (
     <div className={styles.body}>
       <Navbar pagename="" />
+      <Buttons></Buttons>
       <div className={styles.search_text}>
         <div>
           Search Results for: <i> {input}</i>

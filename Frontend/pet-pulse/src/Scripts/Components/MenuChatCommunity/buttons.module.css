@@ -1,0 +1,45 @@
+.buttonsContainer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    flex-direction: column;
+    display: flex;
+}
+
+.button_chat {
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 10px 2px rgba(1,1,1,0.3);
+    background-image:url('./DesignPictures/1000_F_211619589_fnRk5LeZohVD1hWInMAQkWzAdyVlS5ox-removebg-preview.png') ;
+    background-position: center;
+    background-size: contain;
+}
+.button_comm {
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 10px 2px rgba(1,1,1,0.3);
+    background-image:url('./DesignPictures/Design\ fără\ titlu\ \(1\).png') ;
+    background-position: center;
+    background-size: contain;
+    
+}
+.button_chat:last-child {
+    margin-bottom: 0;
+}
+.button_comm:last-child {
+    margin-bottom: 0;
+}

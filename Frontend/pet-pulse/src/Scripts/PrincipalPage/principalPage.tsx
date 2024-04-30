@@ -4,6 +4,7 @@ import Navbar from '../NavBars/NavBar';
 import { Link } from 'react-router-dom';
 import Maps from '../Components/GoogleMaps/Maps';
 import { useNavigate } from 'react-router-dom';
+import Buttons from '../Components/MenuChatCommunity/Buttons';
 
 interface InfoDog {
   id: number;
@@ -86,6 +87,7 @@ const PrincipalPage = () => {
   return (
     <div className={styles.body}>
       <Navbar pagename="home" />
+      <Buttons></Buttons>
       <div className={styles.find_pet_banner}>
         <div className={styles.info}>
           <div className={styles.title}>Find your best match</div>

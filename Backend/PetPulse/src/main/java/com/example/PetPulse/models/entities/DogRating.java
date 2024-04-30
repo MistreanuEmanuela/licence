@@ -102,7 +102,6 @@ public class DogRating {
     private Integer playfulness;
 
 
-
     public DogRating() {
     }
 
