@@ -18,6 +18,7 @@ import Search from './Scripts/SearchResult/search';
 import Profile from './Scripts/Profile/profile'
 import Community from './Scripts/CommunityPosts/community';
 import BreedRecognition from './Scripts/BreedRecognition/breedRecognition';
+import PetFind from './Scripts/BestPetFind/PetFind';
 
 function App(): JSX.Element {
   return (
@@ -41,6 +42,7 @@ function App(): JSX.Element {
         <Route path ="/profile" element={<Profile/>}></Route>
         <Route path ="/community" element={<Community/>}></Route>
         <Route path='/breedRecognition' element={<BreedRecognition/>}></Route>
+        <Route path ='/findPet'  element={<PetFind/>}></Route>
       </Routes>
     </Router>
   );
