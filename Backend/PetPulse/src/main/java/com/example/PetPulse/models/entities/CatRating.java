@@ -69,4 +69,23 @@ public class CatRating {
         this.strangers = strangers;
         this.petFriendly = petFriendly;
     }
+
+    @Override
+    public String toString() {
+        return "CatRating{" +
+                "id=" + id +
+                ", idCat=" + idCat +
+                ", name='" + name + '\'' +
+                ", affection=" + affection +
+                ", shedding=" + shedding +
+                ", health=" + health +
+                ", playfulness=" + playfulness +
+                ", kidFriendly=" + kidFriendly +
+                ", vocalize=" + vocalize +
+                ", intelligence=" + intelligence +
+                ", groom=" + groom +
+                ", strangers=" + strangers +
+                ", petFriendly=" + petFriendly +
+                '}';
+    }
 }
