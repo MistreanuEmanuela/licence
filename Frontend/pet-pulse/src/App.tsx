@@ -17,6 +17,7 @@ import MedicalHistoryInfo from './Scripts/MedicalHistoryInfo/MedicalHistoryInfo'
 import Search from './Scripts/SearchResult/search';
 import Profile from './Scripts/Profile/profile'
 import Community from './Scripts/CommunityPosts/community';
+import BreedRecognition from './Scripts/BreedRecognition/breedRecognition';
 
 function App(): JSX.Element {
   return (
@@ -39,6 +40,7 @@ function App(): JSX.Element {
         <Route path ="/searchResults" element={<Search/>}></Route>
         <Route path ="/profile" element={<Profile/>}></Route>
         <Route path ="/community" element={<Community/>}></Route>
+        <Route path='/breedRecognition' element={<BreedRecognition/>}></Route>
       </Routes>
     </Router>
   );

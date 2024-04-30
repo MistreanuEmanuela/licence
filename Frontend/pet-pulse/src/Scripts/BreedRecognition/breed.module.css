@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Trebuchet MS', sans-serif;
+    min-height: 100vh;
+  }
+
+  .fileInputContainer {
+    
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .fileInput {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .customButton {
+    display: inline-block;
+    background-image: url('./86a31e35b4b769ae5861db102a9e0404-removebg-preview.png');
+    background-size: cover;
+    width: 500px; 
+    height: 350px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgb(237, 237, 237);
+    
+  }
+
+  
+  .customButton .image
+  {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px; 
+    cursor: pointer;
+  }
+
+  .content
+  {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px 4px rgba(1, 1, 1, 0.2);
+    width: 60%;
+    display: flex;
+    min-width: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 4%;
+    padding-bottom: 4%;
+ }
+ .content_blur
+ {
+    filter: blur(5px);
+ }
+
+ .button_send
+ {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    background: rgb(220, 236, 230);
+    border:none;
+    outline: none;
+    border-radius:40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 4%;
+ 
+ }
+
+ .page
+ {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+ }
+
+ .response
+ {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 10px 4px rgba(1, 1, 1, 0.2);
+    width: 40%;
+    display: flex;
+    min-width: fit-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4%;
+    position: absolute;
+    
+ }
+ .response_padding
+ {
+    padding-top: 4%;
+ }
+
+ .responseImage
+ {
+    width: 200px;
+    height: 200px;
+    margin-top: 1%;
+ }
+
+ .imageContainer
+ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+ }
+
+ .text
+ {
+    font-size: 1.4em;
+    margin-top: 5%;
+ }
+
+ .botton_cancel
+ {
+   font-size: 30px;
+   color: red;
+   align-self: flex-end;
+   cursor: pointer;
+   margin-right: 2%;
+   margin-bottom: 4%;
+   margin-top: 1%;
+ }

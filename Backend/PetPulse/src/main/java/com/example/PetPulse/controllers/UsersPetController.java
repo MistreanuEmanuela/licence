@@ -17,7 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
+import java.io.*;
+import java.net.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,12 +62,13 @@ public class UsersPetController {
         if (file.isEmpty()) {
             return ResponseEntity.badRequest().body("Please upload a file");
         }
-
         try {
             Path tempFile = Files.createTempFile("temp", ".png");
             file.transferTo(tempFile.toFile());
 
-            ProcessBuilder pb = new ProcessBuilder("python", "D:\\licence-additionaly\\model-breed\\pythonProject1\\main.py", tempFile.toString());
+//            ProcessBuilder pb = new ProcessBuilder("python", "D:\\licence-additionaly\\model-breed\\pythonProject1\\main.py", tempFile.toString());
+            ProcessBuilder pb = new ProcessBuilder("python", "D:\\licence\\licence\\Additionally programs\\breedRecognition\\main.py", tempFile.toString());
+
             Process process = pb.start();
             process.waitFor();
 
@@ -78,6 +80,7 @@ public class UsersPetController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing the image");
         }
+
     }
 
     @PostMapping("/addPet")
