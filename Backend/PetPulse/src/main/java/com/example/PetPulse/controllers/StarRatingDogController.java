@@ -1,7 +1,11 @@
 package com.example.PetPulse.controllers;
 
 import com.example.PetPulse.models.dto.DogRating.DogRatingDTO;
+import com.example.PetPulse.models.dto.FormsBestFit.DogFormDTO;
+import com.example.PetPulse.models.dto.FormsBestFit.FormCat;
 import com.example.PetPulse.models.dto.QuickInfoDog.QuickInfoDogDTO;
+import com.example.PetPulse.models.entities.CatRating;
+import com.example.PetPulse.models.entities.DogRating;
 import com.example.PetPulse.services.DogRatingServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -24,5 +28,12 @@ public class StarRatingDogController {
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
     public DogRatingDTO getDogStar(@PathVariable Long id) {
         return dogRatingServiceImp.getDogRating(id);
+    }
+
+
+    @PostMapping("/findBestFit")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public DogRating getBest(@RequestBody DogFormDTO form) {
+        return dogRatingServiceImp.getBestFit(form);
     }
 }

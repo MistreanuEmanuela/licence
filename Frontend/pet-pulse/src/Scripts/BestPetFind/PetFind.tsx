@@ -142,7 +142,7 @@ const CatFind: React.FC = () => {
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
                                     </select>
-                                </label ><br /><label className={styles.input}>
+                                </label><br /><label className={styles.input}>
                                     Frequent Travels?:
                                     <select className={styles.select} name="frequentTravels" value={formData.frequentTravels.toString()} onChange={handleChange}>
                                         <option value="true">Yes</option>
@@ -164,7 +164,8 @@ const CatFind: React.FC = () => {
                         </div>
                     )}
                     {part === 'preferinces' && (
-                        <div className={styles.form_inputs}>
+  <div className={styles.left_part}>
+                            <div className={styles.form_inputs}>
                             <div className={styles.title}> How do you prefere to be your cat? </div>
 
                             <><label className={styles.input}>
@@ -195,10 +196,11 @@ const CatFind: React.FC = () => {
                                         value={formData.intelligence}
                                         onChange={handleChange} />
                                 </label><br /></>
+                                </div><div>   <button type="submit" className={styles.button_send}>Submit</button> </div>
+
                         </div>
                     )}
                 </div>
-                <button type="submit" className={styles.button_send}>Submit</button>
             </form>
             {(isCalculating || result) && (
                 <div className={`${styles.response} ${isCalculating ? styles.response_padding : ''}`}>
