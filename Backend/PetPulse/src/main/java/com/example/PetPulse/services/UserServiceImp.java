@@ -7,6 +7,7 @@ import com.example.PetPulse.Exception.User.*;
 import com.example.PetPulse.models.dto.UsersDto.ChangeProfilePasswordDTO;
 import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
+import com.example.PetPulse.models.dto.UsersDto.UserEditDTO;
 import com.example.PetPulse.models.entities.Role;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -217,6 +218,23 @@ public class UserServiceImp implements UserService{
         }
         System.out.println("heree!");
         return false;
+    }
+
+    @Override
+    public boolean changeProfileInformation(UserEditDTO userEditDTO, String username) {
+        User user = userRepository.findByUsername(username);
+        if (!isValidBirthdate(userEditDTO.getBirthdate())) {
+            throw new GeneralException("Invalid birthdate");
+        }
+
+        if (!isValidName(userEditDTO.getFirstName()) || !isValidName(userEditDTO.getLastName())) {
+            throw new GeneralException("Invalid name");
+        }
+        user.setLastName(userEditDTO.getLastName());
+        user.setFirstName(userEditDTO.getFirstName());
+        user.setBirthDate(userEditDTO.getBirthdate());
+        userRepository.save(user);
+        return true;
     }
 }
 

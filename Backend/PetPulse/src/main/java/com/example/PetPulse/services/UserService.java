@@ -3,6 +3,8 @@ package com.example.PetPulse.services;
 import com.example.PetPulse.models.dto.UsersDto.ChangeProfilePasswordDTO;
 import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
+import com.example.PetPulse.models.dto.UsersDto.UserEditDTO;
+import com.example.PetPulse.models.dto.UsersPet.EditPetDTO;
 import com.example.PetPulse.models.entities.User;
 import jakarta.mail.MessagingException;
 
@@ -26,5 +28,7 @@ public interface UserService {
     public ProfileUserDTO findUserProfile(String username);
 
     public boolean changeProfilePassword(ChangeProfilePasswordDTO changePassword, String username);
+
+    public boolean changeProfileInformation(UserEditDTO userEditDTO, String username);
 
     }

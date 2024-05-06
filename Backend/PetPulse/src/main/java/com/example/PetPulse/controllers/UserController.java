@@ -84,5 +84,17 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Incorrect password or an error occurs!");
         }
     }
+
+    @PutMapping(value = "/editUser", produces = "application/json")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<String> changeInfoProfile(@RequestBody UserEditDTO userEditDTO, Authentication authentication) {
+        String username = authentication.getName();
+        boolean changed = userService.changeProfileInformation(userEditDTO, username);
+        if (changed) {
+            return ResponseEntity.ok("Information updated successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Some errors occurs");
+        }
+    }
 }
 
