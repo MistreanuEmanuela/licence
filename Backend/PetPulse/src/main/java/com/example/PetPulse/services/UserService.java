@@ -1,5 +1,6 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.models.dto.UsersDto.ChangeProfilePasswordDTO;
 import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.entities.User;
@@ -23,5 +24,7 @@ public interface UserService {
     public void forgotPassword(String email);
     public void sendPasswordResetEmail(String email, String token) ;
     public ProfileUserDTO findUserProfile(String username);
+
+    public boolean changeProfilePassword(ChangeProfilePasswordDTO changePassword, String username);
 
     }

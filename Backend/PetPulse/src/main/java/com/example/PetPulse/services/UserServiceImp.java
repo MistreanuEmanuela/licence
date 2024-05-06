@@ -4,6 +4,7 @@ import com.example.PetPulse.Advice.ForgotPasswordToken;
 import com.example.PetPulse.Advice.JwtTokenProvider;
 import com.example.PetPulse.Exception.General.GeneralException;
 import com.example.PetPulse.Exception.User.*;
+import com.example.PetPulse.models.dto.UsersDto.ChangeProfilePasswordDTO;
 import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.entities.Role;
@@ -20,10 +21,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 
@@ -194,7 +192,7 @@ public class UserServiceImp implements UserService{
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
         message.setSubject("PasswordChange");
-        message.setText("The code for resetting password is" + token);
+        message.setText("The code for resetting password is: " + token);
         mailSender.send(message);
     }
 
@@ -203,6 +201,22 @@ public class UserServiceImp implements UserService{
         User user = userRepository.findByUsername(username);
         ProfileUserDTO profile = new ProfileUserDTO(user.getLastName(), user.getFirstName(),user.getEmail(), user.getBirthDate(), user.getUsername());
         return profile;
+    }
+
+    @Override
+    public boolean changeProfilePassword(ChangeProfilePasswordDTO changePassword, String username) {
+        User user = userRepository.findByUsername(username);
+        if (matchesPassword(changePassword.getCurrentPassword(), user.getPassword())) {
+            if (!isValidPassword(changePassword.getNewPassword())) {
+                throw new PasswordValidationException("Invalid password");
+            }
+            String encodedPassword = encodePassword(changePassword.getNewPassword());
+            user.setPassword(encodedPassword);
+            userRepository.save(user);
+            return true;
+        }
+        System.out.println("heree!");
+        return false;
     }
 }
 

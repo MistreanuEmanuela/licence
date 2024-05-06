@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -72,5 +73,16 @@ public class UserController {
         return userService.findUserProfile(username);
     }
 
+    @PatchMapping(value = "/changePasswordProfile", produces = "application/json")
+    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+    public ResponseEntity<String> changePasswordProfile(@RequestBody ChangeProfilePasswordDTO changeProfilePasswordDTO, Authentication authentication) {
+       String username = authentication.getName();
+       boolean changed = userService.changeProfilePassword(changeProfilePasswordDTO, username);
+        if (changed) {
+            return ResponseEntity.ok("Password changed successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Incorrect password or an error occurs!");
+        }
+    }
 }
 
