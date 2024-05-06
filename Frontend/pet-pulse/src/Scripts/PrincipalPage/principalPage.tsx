@@ -92,7 +92,7 @@ const PrincipalPage = () => {
         <div className={styles.info}>
           <div className={styles.title}>Find your best match</div>
           <div className={styles.content}> Finding the perfect furry (or not so furry) companion can be a delightful journey, but sometimes it's hard to decide which type of pet is the best fit for your lifestyle and preferences. That's where we come in! Take a moment to fill out our simple form below, and we'll provide you with a personalized pet suggestion tailored just for you. Whether you're a dog lover, a cat enthusiast, or considering something a bit more exotic, we're here to guide you on your path to pet parenthood.</div>
-          <Link to="./formPage" className={styles.link}>Let's get started!</Link>
+          <Link to="/findPet" className={styles.link}>Let's get started!</Link>
         </div>
         <div className={styles.picture_info}></div>
       </div>
@@ -138,6 +138,7 @@ const PrincipalPage = () => {
           )}
         </div>
       </div>
+   
       <div className={styles.find_pet_banner}>
         <div className={styles.info}>
           <div className={styles.title}>Meet Our ChatBot Solution</div>
