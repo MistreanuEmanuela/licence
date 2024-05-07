@@ -24,15 +24,29 @@
     border-radius:20px;
     box-shadow: 2px 2px 10px 5px rgba(1, 1, 1, 0.2);
 }
-
-.find_pet_banner .picture_info
+.find_pet_banner_first
+{
+    margin-top:1%;
+    margin-left:10%;
+    width: 80%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: row;
+    background-color:#fffffff5;
+    border-radius:20px;
+    box-shadow: 2px 2px 10px 5px rgba(1, 1, 1, 0.2);
+}
+.find_pet_banner_first .picture_info
 {
     width: 60vw;
-    height: 40vh;
+    height: 100%;
     background-image: url(./DesignPicture/1a791e1bf146bcea768cdb29fe4ca96d-removebg-preview.png);
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: contain;
+    min-height: 40vh;
+    margin-top: auto;
+
     
 }
 
@@ -58,7 +72,7 @@
     background-size: contain;
     
 }
-.find_pet_banner .info
+.find_pet_banner .info, .find_pet_banner_first .info
 {
     width: 60%;
 }
@@ -89,12 +103,13 @@
 .link
 {
     color:black;
-    margin-left: 70%;
+    margin-left: 65%;
     margin-top:7%;
     font-size: 1.2em;
     padding-top: 2%;
     text-decoration: none;
     cursor: pointer;
+    min-width: fit-content;
 }
 .link:hover{
     text-decoration: underline;
@@ -193,4 +208,61 @@
 .readMore:hover
 {
     text-decoration: underline;
+}
+
+@media (max-width: 950px)
+{
+ .find_pet_banner_first
+ {
+    display: flex;
+    flex-direction: column;
+ }
+ .find_pet_banner_first .info
+ {
+    width: 90%;
+ }
+ .find_pet_banner_first .picture_info
+ {
+    width: 90%;
+ }
+ .title
+ {
+    font-size: 1.2em;
+ }
+}
+
+@media (max-width: 650px) {
+    .content
+    {
+        font-size: 0.8em;
+    }
+    .link
+    {
+        font-size: 1em;
+        min-width: fit-content;
+        margin-left: 50%;
+    }
+    
+}
+@media (max-width:950px) {
+    .informational .element
+{margin-top: 10%;}
+    
+}
+
+@media (max-width:500px) {
+    .informational .element
+{margin-top: 15%;
+    min-height: max-content;
+}
+    .picture
+    {
+        width: 100px;
+        height: 250px;
+    }
+    .informational .element .content
+{
+    width: 200px;
+    height: auto;
+}
 }
