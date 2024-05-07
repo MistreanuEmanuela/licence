@@ -111,7 +111,9 @@
     align-items: center;
     padding-bottom: 4%;
     position: absolute;
-    
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: center;
  }
  .response_padding
  {

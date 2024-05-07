@@ -166,7 +166,8 @@ const DogFind: React.FC = () => {
         }
     }, [result]);
 
-    return (<div>
+    return (
+    <div className={styles.content_form}>
         <form onSubmit={handleSubmit} className={`${styles.form} ${isCalculating || result ? styles.form_blur : ''}`}>
             <div className={styles.elements}>
                 <div className={styles.lateral_buttons}>

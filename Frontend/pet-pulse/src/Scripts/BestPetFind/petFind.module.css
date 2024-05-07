@@ -90,7 +90,7 @@
     min-width: fit-content;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+   
     justify-content: space-between;
     padding-left: 2%;
   }
@@ -114,6 +114,7 @@
 {
     margin-bottom: 5%;
     font-size: 1.2em;
+    max-width: 80vw;
 }
 .button_send
 {
@@ -159,8 +160,8 @@
 
  .responseImage
  {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin-top: 1%;
  }
 
@@ -202,11 +203,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 4%;
+  padding-bottom: 2%;
   position: absolute;
-  top: 50%; 
+  top: calc(50% - 2%); 
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
+  margin-bottom: 2%; 
 }
 
 .response_padding {
@@ -276,6 +278,7 @@
   background-color: transparent;
   background-image: url(./cat.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .petChooseDog
@@ -287,6 +290,7 @@
   background-color: transparent;
   background-image: url(./dog.png);
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .petChooseCat:hover
@@ -297,4 +301,148 @@
 .petChooseDog:hover
 {
   transform: translateY(-5%);
+}
+@media (max-width: 1300px)
+{
+  .response
+  {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1100px)
+{
+  .petChooseCat
+  {
+    min-width: 25vw;
+  }
+  .petChooseDog
+  {
+    min-width: 25vw
+  }
+  .form
+  {
+    width: 70vw;
+  }
+  .response {
+    width: 70%;
+    transform: translate(-50%, -40%);
+
+  }
+}
+@media (max-width: 900px)
+{
+  .petChooseCat
+  {
+    min-width: 30vw;
+  }
+  .petChooseDog
+  {
+    min-width: 30vw
+  }
+  .response
+  {
+    transform: translate(-50%, -30%);
+
+  }
+}
+@media (max-width: 700px)
+{
+  .buttons
+  {
+    width: 90%;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .petChooseCat
+  {
+    min-width: 40vw;
+  }
+  .petChooseDog
+  {
+    min-width: 40vw
+  }
+  .elements
+  {
+    display: flex;
+    flex-direction: column;
+  }
+  .lateral_buttons
+  {
+    min-height: 10vh;
+    width: 100%;
+    display: flex;
+    flex-direction:row ;
+    
+  }
+  .button
+  {
+    width: 50%;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0px;
+  }
+  .form
+  {
+    width: 80vw;
+    margin-left: 1%;
+    margin-right: 1%;
+ 
+  }
+  .response {
+    width: 90%;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    transform: translate(-50%, -30%);
+
+  }
+}
+@media (max-width: 550px)
+{
+  .input {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .select
+  {
+    align-self: center;
+  }
+  .star .starInfo img
+{
+  width: 200px;
+  height: 15px;
+}
+.star .starInfo
+{
+  font-size: 0.6em;
+}
+.star{
+  min-width: fit-content;
+}
+.response
+{
+  font-size: 0.8em;
+  text-align: center;
+  transform: translate(-50%, -40%);
+
+}
+.responseImage
+ {
+    width: 100px;
+    height: 100px;
+    margin-top: 1%;
+ }
+}
+
+.content_form
+{
+  max-height: 90vh;
+  max-width: 100vw;
 }

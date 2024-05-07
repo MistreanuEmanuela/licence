@@ -147,6 +147,17 @@ const PrincipalPage = () => {
         </div>
         <div className={styles.picture2}></div>
       </div>
+
+      <div className={styles.find_pet_banner}>
+        <div className={styles.info}>
+          <div className={styles.title}>You don't know what breed is your pet?!</div>
+          <div className={styles.content}> Would you like to discover the likely breed of your cat or dog? Even if they're not purebred, we can help identify their most prominent breed traits. Simply follow the link, upload a picture of your pet, and we'll provide insights into their likely breed characteristics!</div>
+          <Link to="/breedRecognition" className={styles.link}>Let's find!</Link>
+        </div>
+        <div className={styles.picture3}></div>
+      </div>
+
+
       <div className={styles.harti}>
         <div> <h2>Looking for veterinary care for your pet? Find nearby veterinary clinics:</h2> </div>
         {/* <Maps /> */}

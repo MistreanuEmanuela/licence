@@ -46,6 +46,18 @@
     background-size: contain;
     
 }
+
+
+.find_pet_banner .picture3
+{
+    width: 30vw;
+    height: 40vh;
+    background-image: url(./DesignPicture/breeed.png);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}
 .find_pet_banner .info
 {
     width: 60%;
