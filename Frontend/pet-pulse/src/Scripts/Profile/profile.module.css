@@ -26,6 +26,7 @@
     flex-direction: column;
     min-width:fit-content;
     min-height: fit-content;
+    
 }
 .content .profile_container .text1
 {
@@ -102,7 +103,7 @@
 {
      display: flex;
      flex-direction: row;
-     min-width: 300px;
+     min-width: fit-content;
      width: 60%;
 }
 .right_info .first_part_info 
@@ -250,4 +251,47 @@
     margin-top: 2%;
     margin-bottom: 3%;
     min-width: 100px;
+}
+@media  (max-width:1450px) {
+    .content .profile_container
+    {
+        width:90%;
+    }
+}
+@media  (max-width:1150px) {
+    .content .profile_container
+    {
+        width: 90%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .main .left_info
+    {
+        width: 90%;
+        border-right: none;
+        margin-bottom: 5%;
+    }
+
+    .main .right_info
+    {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .right_info .first_part_info 
+{
+    width: 50%;
+    padding: 0%;
+    align-items: center;
+}
+.right_info .second_part_info
+{
+    width: 50%;
+    align-items: center;
+}
+
 }

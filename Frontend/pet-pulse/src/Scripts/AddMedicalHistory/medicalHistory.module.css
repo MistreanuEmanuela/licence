@@ -102,8 +102,9 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 600;
-    padding-left:10%;
+    padding-left: 10%;
     padding-right: 10%;
+    min-width: fit-content;
 }
 
 .button_container
@@ -169,4 +170,19 @@
     padding: 1%;
     padding-left: 5%;
     padding-right: 5%;
+  }
+  @media  (max-width:1000px) {
+    .field
+    {
+        width: 100%;
+    }
+  }
+
+  @media  (max-width:600px) {
+    .formular
+    {
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
   }
