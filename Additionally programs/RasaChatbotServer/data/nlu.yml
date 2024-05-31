@@ -20,7 +20,6 @@ nlu:
     - greetings
     - good day
     - howdy
-    - hey, how are you?
 
 - intent: goodbye
   examples: |
