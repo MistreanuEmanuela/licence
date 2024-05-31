@@ -16,6 +16,11 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - hey there
+    - greetings
+    - good day
+    - howdy
+    - hey, how are you?
 
 - intent: goodbye
   examples: |
@@ -29,6 +34,13 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - take care
+    - farewell
+    - until next time
+    - bye for now
+    - have a good one
+    - see you soon
+    - goodbye, pet friend
 
 - intent: affirm
   examples: |
@@ -38,16 +50,27 @@ nlu:
     - of course
     - that sounds good
     - correct
+    - yep
+    - yeah
+    - absolutely
+    - sure
+    - affirmative
+    - that's right
+    - you bet
+    - okay
 
 - intent: deny
   examples: |
     - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
+    - nope
+    - nah
+    - negative
     - not really
+    - I don't think so
+    - not at all
+    - I disagree
+    - definitely not
+    - no way
 
 - intent: mood_great
   examples: |
@@ -65,6 +88,12 @@ nlu:
     - so so perfect
     - so good
     - so perfect
+    - I'm feeling great
+    - I'm doing well
+    - I'm very happy today
+    - everything's fantastic
+    - I'm in a good mood
+    - life is good
 
 - intent: mood_unhappy
   examples: |
@@ -85,7 +114,79 @@ nlu:
 
 - intent: bot_challenge
   examples: |
+    - Are you a machine?
+    - Are you a computer program?
+    - Can you pass the Turing test?
+    - Do you have feelings?
+    - Can you experience emotions?
+    - Are you sentient?
+    - Are you a product of artificial intelligence?
+    - Are you programmed to respond to me?
+    - Can you think for yourself?
+    - Do you have self-awareness?
+    - Are you capable of learning?
+    - Can you understand sarcasm?
+    - Do you have consciousness?
+    - Are you just following a script?
+    - Can you make decisions independently?
+    - Are you aware of your existence?
+    - Do you dream?
+    - Can you imagine things?
+    - Are you alive?
+    - Do you have a soul?
     - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - are you human?
+    - what are you?
+    - can you prove you are not a bot?
+    - are you a real person?
+    - is there a human behind this?
+    - are you AI?
+    - are you a chatbot?
+    - who created you?
+    - are you automated?
+
+- intent: general_question
+  examples: |
+    - What's the weather like today?
+    - How do I change my password?
+    - Can you recommend a good restaurant nearby?
+    - What time does the movie start?
+    - How do I get to [location]?
+    - What's the capital of France?
+    - How do I cook spaghetti?
+    - Can you help me with my homework?
+    - What's the latest news?
+    - How do I unsubscribe from emails?
+    - How do I update my software?
+    - Where can I find a reliable plumber?
+    - What are the symptoms of COVID-19?
+    - How do I set up a bank account?
+    - Can you recommend a good book to read?
+    - What's the best way to learn a new language?
+    - How do I create a budget?
+    - Where can I find affordable housing?
+    - What's the average lifespan of a cat?
+    - How do I start a small business?
+    - Can you help me troubleshoot my computer?
+    - What are the tourist attractions in [city]?
+    - How do I apply for a visa?
+    - Can you explain the theory of relativity?
+    - What are the benefits of meditation?
+    - How do I improve my credit score?
+    - What's the process for recycling?
+    - How do I make a reservation at a restaurant?
+    - What are the requirements for obtaining a driver's license?
+    - Can you suggest ways to reduce stress?
+
+
+- intent: thank
+  examples: |
+    - thank you
+    - thanks
+    - thanks a lot
+    - thank you so much
+    - thanks for your help
+    - thanks for the assistance
+    - I appreciate it
+    - I'm grateful
+    - thanks for everything

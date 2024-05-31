@@ -8,27 +8,43 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - general_question
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+    - text: "Hello! Welcome to our veterinary clinic. How may I assist you and your furry companion today?"
+    - text: "Hi there! I'm your virtual vet assistant. How can I help you and your pet today?"
+    - text: "Good [morning/afternoon/evening]! How can I assist you and your pet today?"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Here is something to brighten your day and your pet's day:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "A little pet cuddle can often work wonders. Give your furry friend some extra love today!"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+    - text: "Did that answer your question or is there anything else you'd like to know?"
+    - text: "I hope that helps! Is there anything more you need assistance with?"
 
   utter_happy:
-  - text: "Great, carry on!"
+    - text: "Wonderful! If you have any more questions, don't hesitate to ask."
+    - text: "I'm glad I could assist you and your pet! Let me know if there's anything else I can do for you."
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Goodbye! Wishing you and your beloved pet a tail-waggingly great day!"
+    - text: "Take care and give your furry friend an extra treat from me. Goodbye!"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+    - text: "I'm here to provide expert advice and assistance for all your pet-related queries!"
 
+  utter_default:
+    - text: "I'm sorry, I'm just a virtual vet assistant, specialized in pet care. If you have any pet-related questions, feel free to ask!"
+    - text: "Oops! It seems like I'm not equipped to provide information on that topic. However, I'm here to help with any pet-related queries you have!"
+
+  utter_thanks:
+  - text: "You're welcome! If you have any more questions, feel free to ask."
+  - text: "Glad I could assist! Don't hesitate to reach out if you need anything else."
+
+  
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

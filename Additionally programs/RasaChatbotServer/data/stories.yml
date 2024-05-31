@@ -28,3 +28,23 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: greet and respond
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- story: say goodbye
+  steps:
+    - intent: goodbye
+    - action: utter_goodbye
+
+- story: handle unknown question
+  steps:
+    - intent: general_question
+    - action: utter_default
+
+- story: express gratitude
+  steps:
+    - intent: thank
+    - action: utter_thanks
