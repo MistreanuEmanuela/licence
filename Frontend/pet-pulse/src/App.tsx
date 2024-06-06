@@ -19,6 +19,7 @@ import Profile from './Scripts/Profile/profile'
 import Community from './Scripts/CommunityPosts/community';
 import BreedRecognition from './Scripts/BreedRecognition/breedRecognition';
 import PetFind from './Scripts/BestPetFind/PetFind';
+import ChatBot from './Scripts/ChatBotPage/ChatBot';
 
 function App(): JSX.Element {
   return (
@@ -43,6 +44,7 @@ function App(): JSX.Element {
         <Route path ="/community" element={<Community/>}></Route>
         <Route path='/breedRecognition' element={<BreedRecognition/>}></Route>
         <Route path ='/findPet'  element={<PetFind/>}></Route>
+        <Route path ='/chatbot'  element={<ChatBot/>}></Route>
       </Routes>
     </Router>
   );
