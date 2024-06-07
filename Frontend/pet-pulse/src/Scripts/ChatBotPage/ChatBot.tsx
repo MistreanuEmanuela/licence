@@ -30,23 +30,57 @@ const ChatBot: React.FC = () => {
   const [inputText, setInputText] = useState<string>('');
   const [messages, setMessages] = useState<Message[]>([]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const [authToken, setAuthToken] = useState('');
+  const [isResponding, setIsResponding] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", `Bearer ${token}`);
+
+        const response = await fetch('http://localhost:8082/chat/token', {
+          method: 'GET',
+          headers: myHeaders
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch auth token');
+        }
+
+        const tokenn = await response.text(); 
+        setAuthToken(tokenn);
+      } catch (error) {
+        console.error('Error fetching auth token:', error);
+      }
+    };
+
+    fetchToken();
+
+    return () => {
+    };
+  }, []);
+
+
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    setIsResponding(true);
     e.preventDefault();
 
     if (!inputText.trim()) return;
 
-    // Add user message to the conversation
     setMessages(prevMessages => [...prevMessages, { sender: 'user', text: inputText }]);
 
     try {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", "Bearer ya29.c.c0AY_VpZjSPpRhuAMUq5-N4i9CPSPqZA8HWgC0_lYtewHR2OPwGksYrLtQ2Qq67SHpVykfpPx5ZlAUWr3n0mRhk9lTqn7VdBPaQdMBguSlRYDZKr_-qHP7mvHOhofAiA0bNCQ0-dnhU0g7SZn8Vi5TClhAIq1q3ewCk169sIG-EzTcl9wTWTYbxF-Y7JffZDNmAtsTj1oVKnfRhZl_AqK92HhptkdeVn_BO1xTzNg9OnKfj3dPtKbZ0ITcaEz6zUVSEoxmz8I5St8yoFjtuC93jW8k8Hiads6i47DgxUpJ0yGwiIxgwotn8dkf5-mmc71qlPGO6PLer7_lEpqnaU13HPWugtxhyOI5QEjZGk8sT35NYmgh8T5zoBWmxwT387A75Fs0gqeQRs8XVtJaYc0cwecl_1RtXohuiFxF1Mo58i35MeBzMo8lcqmVQ-O4tb3q-80lgMbOnJRa2MX8-7VVoq7nc35jm1e0J8ngF7s7cjpXbQBwt2dIazryW0Z57mhV8qestR6sjzYynlkBnF8d-zzJIXqmpgfnVy2fwJXBRB2V1SuwVc42Wycfy51rFuSyigaU5BXizORJnzZnI9YtggMq21n4jwk92_02o8Ym32syQvoBfrcpIF5goIeouvBR94okvtMgWYp4BJ5RhM4Md_U4646SteR9-Og21aIpBqdpbZ8-6wuO4bUUBq2e9ounYFukpIIBS4SdQwYVhqX-wtdMvqhk2vBbk7g5tFw6WY0j5Zeo8yrhtowMl7osieMr1p6X4ObOVwcBRQIRaJmm8SRF1h72YO41r-6kgxhFOiaJkmF7BRr3YQfmjFx_BWsW_Slhq6oeRbUa7rjc6hvBuYXMF5UaoUUYRYrxgwc_laJF_a9yQOmtUhJIB3mS-ZSSz4Uk9Ikf0Zzyv2im0zqh5YZ6holyukVllfMqhm4Zzl9FnWBV4_j5r3d1ajVyX1c47-ujMt6b7S_RXe-g3M2W5xZ_UBUgvXYJpevpx_zJowSInIbyblf56Ui");
+      myHeaders.append("Authorization", `Bearer ${authToken}`);
       const raw = JSON.stringify({
         "queryInput": {
           "text": {
@@ -69,18 +103,17 @@ const ChatBot: React.FC = () => {
       }
       const data: QueryResult = await response.json();
 
-      // Extract the bot's response text
       const botMessage = data.queryResult.responseMessages[0]?.text?.text[0];
 
-      // Add bot message to the conversation
       if (botMessage) {
         setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: botMessage }]);
       }
+      setIsResponding(false);
     } catch (error) {
       console.error('Error:', error);
       setMessages(prevMessages => [...prevMessages, { sender: 'bot', text: 'Sorry, there was an error processing your request.' }]);
     } finally {
-      setInputText(''); // Clear the input field
+      setInputText('');
     }
   };
 
@@ -103,8 +136,15 @@ const ChatBot: React.FC = () => {
               <div className={message.sender === 'user' ? styles.messageDisplayUser : styles.messageDisplay}> {message.text} </div>
               </div>
             ))}
+            {isResponding &&
+            (
+              <div className={styles.bot}>
+              <div className={styles.botImg}> </div>      
+              <div className={styles.messageDisplay}> ... </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
-
+            
           </div>
 
         </div>
@@ -115,7 +155,16 @@ const ChatBot: React.FC = () => {
             value={inputText}
             onChange={handleChange}
           />
-          <button type="submit" className={styles.sendMessage}><IoSendSharp /></button>
+          {isResponding && (
+            <button type="button" className={styles.sendMessage_inactive} disabled>
+              <IoSendSharp />
+            </button>
+          )}
+          {!isResponding && (
+            <button type="submit" className={styles.sendMessage}>
+              <IoSendSharp />
+            </button>
+          )}
         </form>
       </div>
     </div>

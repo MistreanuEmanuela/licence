@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "chatbotproject-425609",
+  "private_key_id": "ec9a94d2a7d368205c7800f50e592445cdd78767",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD6duPGjjhOVs24\nCpsPIxoLslAPInomcMMQV4MhQnUmVGvnwAgdWKeVKj6QoSJ1iKWnGrg67jKEFQn7\n8aYT782jJ4iGBtF8UlCoBbVTTnqpJNfFHjzi+moQm/ft7DxMOJGMfLF/sjVrh2Z7\nMlgw/BU8WQx19BlpwsAGEtAQTQBUx+pj9Nul6Lih7M/MER694WA45c23251+tYje\noITdBoP1Nd8TU7pkGDWjl7oEO5zhLg3lLO8BGYu4qWo5415a3+qo2mZnRtHIRmhb\nc2DxELShFVbeM3GhlCalemjpHx5j73LBpR5ImL0isHG5DinQD8sT9NUZnBn9NGmo\n5YfXS/EbAgMBAAECggEATDAhHnOBpjbachrrywF6+Ube+pOaw5m2hICSV2ovV58D\nieYMsdyXcZT9niId6NHNzhSfKPHvNOVveY+q3NKr427xpQ9q5t3lQg8mdrZfMpeN\n+Ry3GbZh0DaZhuq+9tKYV7tQhQ8RF+oCnwQT9qaf0REnbLP5jQXcQpyzZNn/eUoS\nsSLONLOepHowGjP3sCMeDdSe65y/cq36NtRdvjfosGyGGF7vWczw5Wr9zXE0pkbJ\nzszfvRm3n9qZ1dVYMa39eJagEBg9TCe3H01WfxQvv9BsPOQ896QAOgNpA4SlXw6I\nb2XFgtH8Kk3LmzPWIMCYsLCI7nrcU4iBBdtU6402kQKBgQD+Yv/lf2xyLIMVA/tY\n0nei222Jhl/RRM/sNZB0M49xJUd0+jLB7JhJPQQnDk6u7VClmEo1mi883LvzosiU\nenIkM4oW15FwbUaseiAwxT+TdRDCjngB/Cl18CrYGhiHX4z4sGcfAGY6DBAAgbIf\nDvHHsVp1eMRdHntuwC1Pwk6esQKBgQD8DYWxVUZ/VP89vV403jiS6yJPJN8EI3uy\nhNr4qQhyJib5ZZe0sxsVbkoHSRLUauzCHK7dGfn8CZhd//IwqluQbU/xX4lXkLOb\nP/rCI/zbVx/SXRF7WKNrPhBNVZuuHcENzwd5RjafGsmwpXz9JC3v89Lcgsb4KQGD\nnTbGKS/3iwKBgBrXUU7i0gt9/NrDz8qAcpUhd/5RylxnWVUAFdzc796tY0vJdn+V\nuj/IC18fmFfGvIKsffAH88IFPGOpomZgQRjmw0RDvJnTPejG/gyHU3z4lishIzJ6\na9mA3NRudHYcM+CtpEPWI/MuAKY9CRFT31kFspjAhF+a7sUxy9Yll2wRAoGAVA+q\nc98N2O+fBJdAcP9f/NfApIaWfknbOkmGwgGV2IQS4YBZXSGSuc4DkHR1fDSA66gn\nRYQhVEZa85alzkcyrHNYgxaqtnKDBBcNaWwZK4neCgmSCAIi1mRniXMwrZwsw481\nXePl2aBUfb5jdgV38Jvvyi0vcJo0cBGhr+sSnUsCgYEA7lVSFvcoxa93eDcLTwXl\nl1xBNvKzaGZ8GkQECG3J7oPhIBf+5aHfI46OSb/x9Zu0ooMgM7aRWqjITNg9KQUv\nrDtKhOJOy3LRKVWCjYSrcL7wfThqcVBtaaJGoyCJrSsLOe9kZG486DcNHIdwKM7o\nxaluGfqDXefYqq8tixBFW7M=\n-----END PRIVATE KEY-----\n",
+  "client_email": "petpulse@chatbotproject-425609.iam.gserviceaccount.com",
+  "client_id": "104122560360069496532",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/petpulse%40chatbotproject-425609.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
