@@ -160,7 +160,7 @@ const PrincipalPage = () => {
 
       <div className={styles.harti}>
         <div> <h2>Looking for veterinary care for your pet? Find nearby veterinary clinics:</h2> </div>
-        {/* <Maps /> */}
+        <Maps />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import styles from './chatbot.module.css';
 import ChatbotAnimation from '../Components/Animations/chatbotAnimation';
 import Navbar from '../NavBars/NavBar';
 import { IoSendSharp } from "react-icons/io5";
+import Typeing from "../Components/Animations/Typeing";
 
 interface Message {
   sender: 'user' | 'bot';
@@ -31,7 +32,7 @@ const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [authToken, setAuthToken] = useState('');
-  const [isResponding, setIsResponding] = useState<boolean>(true);
+  const [isResponding, setIsResponding] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -123,6 +124,24 @@ const ChatBot: React.FC = () => {
     }
   }, [messages]);
 
+
+  function formatToList(text: string): string {
+    const items = text.split('. ');
+    
+    const formattedItems: string[] = [];
+    
+    items.forEach(item => {
+        if (item && !isNaN(Number(item[0]))) {
+            formattedItems.push(item.trim());
+        }
+    });
+    
+    const formattedText = formattedItems.map((item, index) => `${index + 1}. ${item}`).join('\n');
+    
+    return formattedText;
+}
+
+  
   return (
     <div>
       <Navbar pagename=''></Navbar>
@@ -140,7 +159,7 @@ const ChatBot: React.FC = () => {
             (
               <div className={styles.bot}>
               <div className={styles.botImg}> </div>      
-              <div className={styles.messageDisplay}> ... </div>
+              <div className={styles.messageDisplay}> <Typeing></Typeing> </div>
               </div>
             )}
             <div ref={messagesEndRef} />

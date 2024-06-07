@@ -6,7 +6,7 @@ const Buttons: React.FC = () => {
     return (
         <div className={styles.buttonsContainer}>
             <Link to='/Community' className={styles.button_comm}></Link>
-            <Link to='./chat' className={styles.button_chat}></Link>
+            <Link to='/chatBot' className={styles.button_chat}></Link>
         </div>
     )
 }
