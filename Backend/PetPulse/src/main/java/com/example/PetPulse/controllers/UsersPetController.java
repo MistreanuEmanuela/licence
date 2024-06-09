@@ -53,19 +53,19 @@ public class UsersPetController {
         return ResponseEntity.ok(imagePath);
     }
 
-    @PostMapping("/findBreed")
-    @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public ResponseEntity<String> findBreed(@RequestPart MultipartFile file) {
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Please upload a file");
-        }
+
         try {
             Path tempFile = Files.createTempFile("temp", ".png");
             file.transferTo(tempFile.toFile());
 
 //            ProcessBuilder pb = new ProcessBuilder("python", "D:\\licence-additionaly\\model-breed\\pythonProject1\\main.py", tempFile.toString());
             ProcessBuilder pb = new ProcessBuilder("python", "D:\\licence\\licence\\Additionally programs\\breedRecognition\\main.py", tempFile.toString());
-
+            @PostMapping("/findBreed")
+            @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
+            public ResponseEntity<String> findBreed(@RequestPart MultipartFile file) {
+                if (file.isEmpty()) {
+                    return ResponseEntity.badRequest().body("Please upload a file");
+                }
             Process process = pb.start();
             process.waitFor();
 

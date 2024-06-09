@@ -50,16 +50,18 @@ const BreedRecognition: React.FC = () => {
 
             if (response.ok) {
                 const breedData = await response.text();
-                const predictions = breedData.split(':');
-                const mostPredicted = predictions[1].split(' ');
+                const predictions = breedData.split('Predicted:');
+                const transf = predictions[1].split(':');
+                const mostPredicted = transf[0];
+                const acc = transf[1].split(",")[0];
                 console.log(mostPredicted);
-                console.log("We think your pet is:", mostPredicted[1].replace('_', ' '), "with accuracy:", predictions[2]);
+                console.log("We think your pet is:", mostPredicted, "with accuracy:", acc);
                 setIsCalculating(false);
-                setBreed(mostPredicted[1].replace('_', ' '));
-                const accuracyValue = predictions[2].split(',')[0];
+                setBreed(mostPredicted);
+                const accuracyValue = acc
                 setAccuracy(accuracyValue);
                 console.log('Breed:', breedData);
-                findPicture(mostPredicted[1].replace('_', ' '));
+                findPicture(mostPredicted);
                 setIsResponse(true);
             } else {
                 console.error('Failed to upload image:', response.statusText);

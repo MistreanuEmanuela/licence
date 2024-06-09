@@ -130,15 +130,15 @@ const AddPet: React.FC = () => {
                 });
     
                 if (response.ok) {
-                    const breed = await response.text();
-                    const predictions = breed.split(':');
-                    const most_predicted = predictions[1].split(' ');
-                    console.log(most_predicted)
-                    console.log("We think you pet is:", predictions[1], "with accuracy: ",predictions[2])
+                    const breedData = await response.text();
+                    const predictions = breedData.split('Predicted:');
+                    const transf = predictions[1].split(':');
+                    const mostPredicted = transf[0];
+                    const acc = transf[1].split(",")[0];
+                    console.log("We think you pet is:", mostPredicted, "with accuracy: ",acc)
                     setIsCalculating(false);
-                    setBread(most_predicted[1].replace('_', ' '));
-                    const ac = predictions[2].split(',')[0];
-                    setAccuracy(ac);
+                    setBread(mostPredicted);
+                    setAccuracy(acc);
                     console.log('Breed:', breed);
                 } else {
                     console.error('Failed to upload image:', response.statusText);
