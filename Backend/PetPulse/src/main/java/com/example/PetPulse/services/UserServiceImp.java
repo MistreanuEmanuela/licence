@@ -9,6 +9,7 @@ import com.example.PetPulse.models.dto.UsersDto.ProfileUserDTO;
 import com.example.PetPulse.models.dto.UsersDto.UserDto;
 import com.example.PetPulse.models.dto.UsersDto.UserEditDTO;
 import com.example.PetPulse.models.entities.Role;
+import com.example.PetPulse.repositories.RoleRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -30,6 +31,7 @@ import java.util.regex.Pattern;
 public class UserServiceImp implements UserService{
 
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -41,11 +43,11 @@ public class UserServiceImp implements UserService{
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public UserServiceImp(UserRepository userDao, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+    public UserServiceImp(UserRepository userDao, BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, RoleRepository role) {
         this.userRepository = userDao;
-
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.roleRepository = role;
     }
 @Override
     public User createUser(UserDto user) {
@@ -69,10 +71,16 @@ public class UserServiceImp implements UserService{
         }
         String encodedPassword = encodePassword(user.getPassword());
         user.setPassword(encodedPassword);
+        Role role = roleRepository.findByName("user");
+        System.out.println(role);
         User newUser = new User(user.getFirstName(), user.getLastName(), user.getEmail(),
-                encodedPassword,user.getBirthdate(), user.getUsername());
+                encodedPassword,user.getBirthdate(), user.getUsername() );
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        newUser.setRoles(roles);
         sendConfirmationEmail(newUser);
         return userRepository.save(newUser);
+
     }
     @Override
     public String login(String username, String password) {

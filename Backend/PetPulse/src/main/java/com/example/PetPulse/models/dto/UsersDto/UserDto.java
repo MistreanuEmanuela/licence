@@ -1,8 +1,6 @@
 package com.example.PetPulse.models.dto.UsersDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.PetPulse.models.entities.Role;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -19,4 +17,7 @@ public class UserDto {
     private String email;
     private Date birthdate;
     private String username;
+    @Getter @Setter
+    private Role role;
+
 }
