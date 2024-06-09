@@ -1,0 +1,166 @@
+.body
+{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-bottom: 4%;
+}
+.nav {
+    background-color:#B1D3C3;
+  }
+
+.first_container
+{
+    width: 100%;
+    height: 15vw;
+    background-image: url(./DesignPictures/Design\ fără\ titlu\ \(8\).png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    max-height: fit-content;
+}
+
+.second
+{
+    display: flex;
+    flex-direction: row;
+    height: 55vh;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.second .left
+{
+    width: 40vw;
+    height: 90%;
+    align-self: center;
+    background-image: url(./DesignPictures/pexels-maksgelatin-4422100.jpg);
+    background-size: cover;
+    background-position: right bottom;
+}
+
+.second .right
+{
+    width: 55vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 5%;
+}
+
+.top_write
+{
+    color: rgb(183, 0, 0);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.right .title
+{
+    color: black;
+    font-weight: 800;
+    font-size: 28px;
+}
+
+.right .content
+{
+    color: rgb(72, 72, 72);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.join
+{
+    display: initial;
+    text-decoration: none;
+    color: black;
+    width: 20%;
+    height: 30px;
+    border: 2px solid;
+    border-radius:40px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+}
+
+.third
+{
+    width: 100%;
+    background-color: #F7ECCA;
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.third .left
+{
+    width: 50%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.third .left .title
+{
+    color: black;
+    font-weight: 800;
+    font-size: 28px;
+    margin-bottom: 2%;
+}
+
+.third .left .content{
+color: rgb(72, 72, 72);
+font-weight: 500;
+font-size: 20px;
+}
+
+
+.third .right
+{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.third .right .firstPicture
+{
+    background-image: url('./DesignPictures/pexels-ingewallu-126407.jpg');
+    background-size: cover;
+    margin-top: -5%;
+    height: 40vh;
+    width: 30vw;
+    background-position: center center;
+}
+.third .right .secondPicture
+{
+    background-image: url('./DesignPictures/pexels-brunocervera-128817.jpg');
+    background-size: cover;
+    margin-top: 1%;
+    margin-left: 25%;
+    height: 40vh;
+    width: 30vw;
+    background-position: center center;
+
+}
+@media  (max-width:700px) {
+    .second
+{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    margin-top: 0%;
+}
+.second .left
+{
+    width: 100vw;
+    height: 40vh;
+}
+
+.second .right
+{
+    width: 85vw;
+    height: 50vh;
+}
+}
