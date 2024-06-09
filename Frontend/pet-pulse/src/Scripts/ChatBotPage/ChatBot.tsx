@@ -103,6 +103,7 @@ const ChatBot: React.FC = () => {
         throw new Error('Failed to fetch');
       }
       const data: QueryResult = await response.json();
+      console.log(data)
 
       const botMessage = data.queryResult.responseMessages[0]?.text?.text[0];
 

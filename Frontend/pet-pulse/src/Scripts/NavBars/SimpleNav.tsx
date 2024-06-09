@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import styles from './Nav.module.css'; 
 import { Link } from 'react-router-dom'; 
 
+interface NavbarProps {
+  pagename: string;
+}
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -24,9 +27,23 @@ const Navbar = () => {
       </div>
       <div className={styles.list}> 
       <ul className={`${styles['nav-links']} ${isMenuOpen ? styles.open : ''}`}>
-      <li><a href="./Home">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+      {pagename ==="home" &&
+      (<>
+          <li><a href="./help">Help</a></li>
+          <li><a href="./about">About</a></li></>
+      )
+      }
+      {pagename ==="help" && (
+        <>
+          <li><a href="./">Home</a></li>
+          <li><a href="./about">About</a></li></>
+        )
+      }
+        {pagename ==="about" &&(
+          <>
+          <li><a href="./help">Help</a></li>
+          <li><a href="./">Home</a></li></>)
+      }
       </ul>
     
       </div>

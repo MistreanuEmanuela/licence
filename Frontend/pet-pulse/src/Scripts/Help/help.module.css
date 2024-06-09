@@ -1,0 +1,109 @@
+.body
+{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding-bottom: 2%;
+}
+
+.faq_container {
+    width: 100%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+.first_part
+{
+  width: 100%;
+  padding-left: 2%;
+  min-height: 35vh;
+  display: flex;
+  flex-direction: row;
+}
+.first_part .right_part
+{
+  background-image: url(./DesignPictures/341c26c25dea064e795be55f7a00094f.jpg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  min-height: 20vh;
+  width: 50%;
+}
+.first_part .left_part
+{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+}
+
+.first_part .left_part .title
+{
+  font-size: 24px;
+  margin-bottom: 2%;
+}
+
+.first_part .left_part .content
+{
+  font-size: 20px;
+  color: rgb(82, 80, 80);
+}
+  .faq_item {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+  .faq_question {
+    background-color: #f9f9f9;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 97%;
+    box-shadow:  1px  1px 4px 1px rgba(1, 1, 1, 0.1);
+  }
+  
+  .faq_question:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .faq_answer {
+    padding: 15px;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+  }
+  .nav {
+    background-color:#B1D3C3;
+
+  }
+  .questions
+  {
+    padding-left: 2%;
+    padding-right: 2%;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1%;
+  }
+  .question_resp
+  {
+    display: flex;
+    flex-direction: column;
+    width: 76vw;
+  }
+  .section
+  {
+    width: 20vw;
+    font-size: 20px;
+  }
+  @media (max-width: 600px) {
+    .faq_question {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  

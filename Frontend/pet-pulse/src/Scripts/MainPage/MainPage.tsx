@@ -123,7 +123,7 @@ function Body() {
   return (
     <div className={styles.second_body} onTouchStart={handleTouchStart}>
       <div className={styles.center_container}>
-        <Navbar />
+        <Navbar pagename='home'/>
         <div className={styles.second_main_container}>
           <div className={styles.container_bottom}>
             {currentDataIndex !== 0 && (
