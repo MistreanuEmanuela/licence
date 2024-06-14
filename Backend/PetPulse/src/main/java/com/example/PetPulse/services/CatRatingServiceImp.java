@@ -38,7 +38,7 @@ public class CatRatingServiceImp  implements CatRatingService{
             int score = 0;
 
             if (form.isOtherPet()) {
-                score += 2 * catRating.getKidFriendly();
+                score += 2 * catRating.getPetFriendly();
             } else {
                 score += 2 * 5;
             }

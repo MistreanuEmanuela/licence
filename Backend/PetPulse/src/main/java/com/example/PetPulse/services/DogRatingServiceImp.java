@@ -40,14 +40,14 @@ public class DogRatingServiceImp implements DogRatingService{
                 score += 2 * 5 + 2 * 5;
             }
             if (form.isTravel()) {
-                score += 2 * (5 - dogRating.getAlone()) + 2 * (dogRating.getStrangersFriendly());
+                score += 2 * (dogRating.getAlone()) + 2 * (dogRating.getStrangersFriendly());
             } else {
                 score += 2 * 5 + 2 * 5;
             }
             if (form.isKids()) {
-                score += 2 * (dogRating.getDogFriendly()) + 2 * (5 * dogRating.getShedding()) + 2 * (dogRating.getPlayfulness());
+                score += 2 * (dogRating.getKidFriendly()) + 2 * (5 * dogRating.getShedding()) + 2 * (dogRating.getPlayfulness()) + 2 * (5 - dogRating.getMouthiness());
             } else {
-                score += 2 * 5 + 2 * 5 + 2 * 5;
+                score += 2 * 5 + 2 * 5 + 2 * 5 +2 * 5;
             }
             if (form.isDogs()) {
                 score += 2 * dogRating.getDogFriendly();
@@ -75,7 +75,7 @@ public class DogRatingServiceImp implements DogRatingService{
                 score += 5 - dogRating.getSize();
             }
 
-            if (form.isTimeForCare()) {
+            if (form.isTrain()) {
                 score += dogRating.getTrainability();
             } else {
                 score += 5;
