@@ -15,7 +15,6 @@ interface Cat {
   name: string;
 }
 const token = localStorage.getItem("token");
-console.log(token)
 
 const AllCats: React.FC = () => {
   const [cats, setCats] = useState<Cat[]>([]);

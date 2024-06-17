@@ -59,7 +59,6 @@ const Search: React.FC = () => {
       .then(response => response.json())
       .then((data: InfoDog[]) => {
         setInfoDogs(data);
-        console.log(data)
       })
       .catch(error => console.error('Error fetching dogs:', error));
 
@@ -72,7 +71,6 @@ const Search: React.FC = () => {
       .then(response => response.json())
       .then((data: InfoCat[]) => {
         setInfoCats(data);
-        console.log(data)
       })
       .catch(error => console.error('Error fetching cats:', error));
 
@@ -85,7 +83,6 @@ const Search: React.FC = () => {
       .then((data: Pet[]) => {
         setPets(data);
         preloadImages(data);
-        console.log(data)
       })
       .catch(error => console.error('Error fetching cats:', error));
     const timeoutId = setTimeout(() => {

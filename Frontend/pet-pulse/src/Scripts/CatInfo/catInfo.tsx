@@ -114,7 +114,6 @@ const CatInfo: React.FC<{}> = () => {
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
-        console.log(cat);
         setTimeout(() => {
             const element = document.getElementById('category');
             if (element) {

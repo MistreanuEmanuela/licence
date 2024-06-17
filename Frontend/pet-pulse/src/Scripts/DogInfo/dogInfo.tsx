@@ -117,7 +117,6 @@ const DogInfo: React.FC<{}> = () => {
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(category);
-        console.log(dog);
         setTimeout(() => {
             const element = document.getElementById('category');
             if (element) {

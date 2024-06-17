@@ -76,7 +76,6 @@ const CreateAccount: React.FC = () => {
       const response = await fetch("http://localhost:8082/users/create", requestOptions);
       const result = await response.text()
       setErrors([result])
-      console.log(result)
       if (response.ok) {
         handleCreated();
       }

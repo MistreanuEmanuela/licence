@@ -102,7 +102,6 @@ function Body() {
     const handleTouchMove = (moveEvent: TouchEvent) => {
       const endX = moveEvent.touches[0].clientX;
       const deltaX = startX - endX;
-      console.log(deltaX);
 
       if (Math.abs(deltaX) > 50) {
         const direction = deltaX > 0 ? 'left' : 'right';
@@ -119,7 +118,6 @@ function Body() {
 
     document.addEventListener('touchmove', handleTouchMove);
   };
-  console.log(currentDataIndex)
   return (
     <div className={styles.second_body} onTouchStart={handleTouchStart}>
       <div className={styles.center_container}>
@@ -165,7 +163,6 @@ function Body() {
 }
 
 function MainPage() {
-  console.log('I am in this page');
   return (
     <div className={styles.body}>
       <Body />

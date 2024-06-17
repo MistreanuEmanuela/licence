@@ -250,7 +250,6 @@ const PetInfo: React.FC = () => {
                 }
             })
             .then(data => {
-                console.log(data);
                 setDeleted(true)
                 setTimeout(() => {
                     history('/myPets');

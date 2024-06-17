@@ -57,7 +57,6 @@ const PrincipalPage = () => {
         });
         const dataDog = await responseDog.json();
         setInfoDogs(dataDog);
-        console.log(dataDog);
 
         const responseDog2 = await fetch(`http://localhost:8082/dog/all-dogs-searched?name=${dog2}`, {
           headers: {
@@ -66,7 +65,6 @@ const PrincipalPage = () => {
         });
         const dataDog2 = await responseDog2.json();
         setInfoDogs2(dataDog2);
-        console.log(dataDog2);
   
         const responseCat = await fetch(`http://localhost:8082/cat/all-cats-searched?name=${cat}`, {
           headers: {
@@ -75,7 +73,6 @@ const PrincipalPage = () => {
         });
         const dataCat = await responseCat.json();
         setInfoCats(dataCat);
-        console.log(dataCat);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

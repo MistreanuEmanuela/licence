@@ -75,7 +75,6 @@ const MedicalHistory: React.FC = () => {
     };
 
     const handleDeleteConfirm = async () => {
-        console.log(deletedMedicalId);
         try {
             const response = await fetch(`http://localhost:8082/medicalRecord/deleteMedicalRecord?id=${deletedMedicalId}`, {
                 method: 'DELETE',
@@ -86,7 +85,6 @@ const MedicalHistory: React.FC = () => {
             });
 
             if (response.ok) {
-                console.log("Medical record deleted successfully");
                 setDeleted(true);
                 fetchMedicalHistory();
             } else {

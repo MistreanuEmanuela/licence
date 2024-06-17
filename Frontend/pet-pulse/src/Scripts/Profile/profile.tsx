@@ -436,7 +436,6 @@ const Profile = () => {
                                             name="birthdate"
                                             value={formatDate(userEdit?.birthdate || '')}
                                             onChange={(e) => {
-                                                console.log('Input changed:', e.target.value);
                                                 handleInputChange(e);
                                             }}
                                             placeholder="Enter new birthdate"

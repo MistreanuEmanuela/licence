@@ -124,7 +124,6 @@ const DogFind: React.FC = () => {
                 body: JSON.stringify(formData)
             });
             const data = await response.json();
-            console.log(data);
             SetResult(data);
 
 
@@ -145,7 +144,6 @@ const DogFind: React.FC = () => {
     }
 
     const findPicture = (breed: string) => {
-        console.log(breed);
         const searchQuery = `${breed}`;
         const accessKey = "Okf32cAXDulQsI4EhqJqul2lWKEitSjN0FH5CQMcSvY";
         const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${accessKey}`;
@@ -153,7 +151,6 @@ const DogFind: React.FC = () => {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data.results);
                 setImages(data.results.map((image: any) => image.urls.small));
             })
             .catch(error => console.error('Error fetching images:', error));
@@ -386,7 +383,6 @@ const CatFind: React.FC = () => {
                 body: JSON.stringify(formData)
             });
             const data = await response.json();
-            console.log(data);
             SetResult(data);
 
 
@@ -407,7 +403,6 @@ const CatFind: React.FC = () => {
     }
 
     const findPicture = (breed: string) => {
-        console.log(breed);
         const searchQuery = `${breed}`;
         const accessKey = "Okf32cAXDulQsI4EhqJqul2lWKEitSjN0FH5CQMcSvY";
         const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${accessKey}`;
@@ -415,7 +410,6 @@ const CatFind: React.FC = () => {
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data.results);
                 setImages(data.results.map((image: any) => image.urls.small));
             })
             .catch(error => console.error('Error fetching images:', error));

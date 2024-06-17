@@ -16,7 +16,6 @@ interface Dog {
   picture: string;
 }
 const token = localStorage.getItem("token");
-console.log(token)
 
 const AllDogs: React.FC = () => {
   const [dogs, setDogs] = useState<Dog[]>([]);

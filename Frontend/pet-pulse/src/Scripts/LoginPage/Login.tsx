@@ -92,7 +92,6 @@ const LoginPage: React.FC = () => {
 
   const handleConnect=(token: string) => {
       localStorage.setItem("token", token);
-      console.log(token);
       history(-1);
       setTimeout(() => {
         history('/principalPage', { replace: true });
@@ -176,7 +175,6 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ onCancel }) => {
     fetch("http://localhost:8082/users/forgotPassword", requestOptions)
       .then((response) => response.text())
       .then((result) => {setMessageBoxErrors([result])
-      console.log(result)
       if(result)
     {
       setIsEmailOk(false)
@@ -236,14 +234,11 @@ const ValidateCode: React.FC<ValidateCode> = ({ onCancel, email }) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    console.log(email)
-    console.log(code)
     const raw = JSON.stringify({
       "email": email,
       "code": code
     });
 
-    console.log(raw)
     const requestOptions: RequestInit = {
       method: "POST",
       headers: myHeaders,
@@ -254,7 +249,6 @@ const ValidateCode: React.FC<ValidateCode> = ({ onCancel, email }) => {
     fetch("http://localhost:8082/users/codeForgotPassword", requestOptions)
     .then((response) => response.text())
     .then((result) => {setMessageBoxErrors([result])
-      console.log(result)
       if(result)
     {
       setIsCodeOk(false)
@@ -316,14 +310,12 @@ const ChangePassword: React.FC<ValidateCode> = ({ onCancel, email }) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    console.log(email)
-    console.log(password)
+
     const raw = JSON.stringify({
       "email": email,
       "newPassword": password
     });
 
-    console.log(raw)
     const requestOptions: RequestInit = {
       method: "POST",
       headers: myHeaders,
@@ -334,7 +326,6 @@ const ChangePassword: React.FC<ValidateCode> = ({ onCancel, email }) => {
     fetch("http://localhost:8082/users/changePassword", requestOptions)
     .then((response) => response.text())
     .then((result) => {setMessageBoxErrors([result])
-      console.log(result)
       if(result)
     {
       setIsPasswordOk(false)

@@ -121,7 +121,6 @@ const Consultation: React.FC = () => {
 
             const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
             const result = await response.text();
-            console.log(result);
 
             if (response.ok) {
                 console.log("created");
@@ -300,7 +299,6 @@ const Treatment: React.FC = () => {
 
             const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
             const result = await response.text();
-            console.log(result);
 
             if (response.ok) {
                 console.log("created");
@@ -486,7 +484,6 @@ const Vaccine: React.FC = () => {
 
             const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
             const result = await response.text();
-            console.log(result);
 
             if (response.ok) {
                 console.log("created");
@@ -659,7 +656,6 @@ const Intervention: React.FC = () => {
 
             const response = await fetch("http://localhost:8082/medicalRecord/addMedicalHistory", requestOptions);
             const result = await response.text();
-            console.log(result);
 
             if (response.ok) {
                 console.log("created");

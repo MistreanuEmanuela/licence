@@ -65,7 +65,6 @@ const AddPet: React.FC = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
-        console.log(token);
         fetch('http://localhost:8082/dog/alldogs', {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -173,7 +172,6 @@ const AddPet: React.FC = () => {
         //     console.error('Weight must be greater than 0');
         //     return;
         // }
-        console.log(breed)
         setPet({ ...pet, [breed]: breed });
         pet.breed = breed
 
@@ -200,7 +198,6 @@ const AddPet: React.FC = () => {
                 const imagePath = await response.text();
                 pet.imagePath = imagePath;
     
-                console.log('Image uploaded:', imagePath);
             } else {
                 console.error('Failed to upload image:', response.statusText);
             }
@@ -209,9 +206,7 @@ const AddPet: React.FC = () => {
         }
         
         if (pet.imagePath !== '') {
-            console.log(pet.imagePath);
-            console.log(pet);
-    
+
             const token = localStorage.getItem("token");
     
             if (!token) {
@@ -233,9 +228,7 @@ const AddPet: React.FC = () => {
             try {
                 const response = await fetch("http://localhost:8082/pet/addPet", requestOptions);
                 const result = await response.text()
-                console.log(result)
                 if (response.ok) {
-                    console.log("created")
                     setAdded(true);
                     setTimeout(() => {
                         history('/myPets');
