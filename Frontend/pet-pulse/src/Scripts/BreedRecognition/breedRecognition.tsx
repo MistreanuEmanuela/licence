@@ -52,7 +52,7 @@ const BreedRecognition: React.FC = () => {
                 const breedData = await response.text();
                 const predictions = breedData.split('Predicted:');
                 const transf = predictions[1].split(':');
-                const mostPredicted = transf[0];
+                const mostPredicted = transf[0].replace("_", " ");
                 const acc = transf[1].split(",")[0];
                 console.log(mostPredicted);
                 console.log("We think your pet is:", mostPredicted, "with accuracy:", acc);
