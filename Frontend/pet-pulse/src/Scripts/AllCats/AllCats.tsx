@@ -18,7 +18,7 @@ const token = localStorage.getItem("token");
 
 const AllCats: React.FC = () => {
   const [cats, setCats] = useState<Cat[]>([]);
-  const [fetchCounter, setFetchCounter] = useState<number>(15);
+  const [fetchCounter, setFetchCounter] = useState<number>(16);
   const [last, setLast] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(true);
   const [selectedFilter, setSelectedFilter] = useState<string>('');
@@ -40,7 +40,7 @@ const AllCats: React.FC = () => {
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const catsPerPage = 15;
+  const catsPerPage = 16;
 
   const fetchAllDogs = () => {
     setSelectedFilter('');
@@ -58,7 +58,7 @@ const AllCats: React.FC = () => {
       .then(response => response.json())
       .then((data: Cat[]) => {
         setCats(data);
-        setLast(data.length <= 15);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching cats:', error));
   };
@@ -83,7 +83,7 @@ const AllCats: React.FC = () => {
     setTotalPages(totalPages);
     const timeoutId = setTimeout(() => {
       setShowLoading(false);
-    }, 1000);
+    }, 500);
   }, [cats]);
   useEffect(() => {
     setShowLoading(true);
@@ -101,7 +101,7 @@ const AllCats: React.FC = () => {
     if (cats.length <= fetchCounter) {
       setLast(true);
     } else {
-      setFetchCounter(prevCounter => prevCounter + 15);
+      setFetchCounter(prevCounter => prevCounter + 16);
     }
   };
 
@@ -120,8 +120,8 @@ const AllCats: React.FC = () => {
       .then(response => response.json())
       .then((data: Cat[]) => {
         setCats(data);
-        setFetchCounter(15);
-        setLast(data.length <= 15);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching cats:', error));
   };
@@ -135,8 +135,8 @@ const AllCats: React.FC = () => {
       .then(response => response.json())
       .then((data: Cat[]) => {
         setCats(data);
-        setFetchCounter(15);
-        setLast(data.length <= 15);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching cats:', error));
   };
@@ -150,8 +150,8 @@ const AllCats: React.FC = () => {
       .then(response => response.json())
       .then((data: Cat[]) => {
         setCats(data);
-        setFetchCounter(15);
-        setLast(data.length <= 15);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching cats:', error));
   };
@@ -165,8 +165,8 @@ const AllCats: React.FC = () => {
       .then(response => response.json())
       .then((data: Cat[]) => {
         setCats(data);
-        setFetchCounter(15);
-        setLast(data.length <= 15);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching cats:', error));
   };
@@ -180,8 +180,8 @@ const AllCats: React.FC = () => {
       .then(response => response.json())
       .then((data: Cat[]) => {
         setCats(data);
-        setFetchCounter(15);
-        setLast(data.length <= 15);
+        setFetchCounter(16);
+        setLast(data.length <= 16);
       })
       .catch(error => console.error('Error fetching cats:', error));
   };
