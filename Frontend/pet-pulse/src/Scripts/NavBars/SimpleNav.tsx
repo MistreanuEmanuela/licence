@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ pagename }) => {
         <div className={styles.logo_text}> PetPulse</div>
     </div>
     <nav className={styles.navbar}>
-    <Link to="./login" className={styles.start}>Sign in</Link>
+    <Link to="/login" className={styles.start}>Sign in</Link>
       <div className={styles['menu-icon']} onClick={toggleMenu}>
         <div>Menu</div>
       </div>

@@ -93,9 +93,10 @@ const LoginPage: React.FC = () => {
   const handleConnect=(token: string) => {
       localStorage.setItem("token", token);
       console.log(token);
+      history(-1);
       setTimeout(() => {
         history('/principalPage', { replace: true });
-    }, 500);
+    }, 10);
   }
 
   const handleSubmit = async ({ username, password }: Credentials) => {
