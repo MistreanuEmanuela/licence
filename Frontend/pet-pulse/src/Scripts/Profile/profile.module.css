@@ -252,10 +252,52 @@
     margin-bottom: 3%;
     min-width: 100px;
 }
+
+.out{
+    position: absolute;
+    top:10%;
+    left:97%;
+    font-size: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+.confirmButton, .cancelButton {
+    background-color: #ffffff;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    border:solid 2px rgba(0, 0, 0, .4)
+    
+}
+
+.cancelButton {
+    background-color: #f9d5d2;
+}
+
+.confirmButton:hover, .cancelButton:hover {
+    opacity: 0.8;
+    transform: translateY(-5%);
+}
 @media  (max-width:1450px) {
     .content .profile_container
     {
         width:90%;
+    }
+    .out
+    {
+        left:95%;
     }
 }
 @media  (max-width:1150px) {
@@ -294,4 +336,11 @@
     align-items: center;
 }
 
+}
+
+@media  (max-width:950px) {
+    .out
+    {
+        left: 90%;
+    }
 }
