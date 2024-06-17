@@ -94,7 +94,7 @@ const LoginPage: React.FC = () => {
       localStorage.setItem("token", token);
       console.log(token);
       setTimeout(() => {
-        history('/principalPage');
+        history('/principalPage', { replace: true });
     }, 500);
   }
 
