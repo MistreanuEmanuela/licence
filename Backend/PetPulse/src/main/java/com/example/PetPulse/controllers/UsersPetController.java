@@ -30,8 +30,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/pet")
 @RestController
 public class UsersPetController {
-
-
+    
     private UserPetServiceImp petService;
     @Autowired
     public UsersPetController(UserPetServiceImp petDogService) {

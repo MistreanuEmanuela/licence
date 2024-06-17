@@ -50,6 +50,7 @@ const BreedRecognition: React.FC = () => {
 
             if (response.ok) {
                 const breedData = await response.text();
+                console.log(breedData);
                 const predictions = breedData.split('Predicted:');
                 const transf = predictions[1].split(':');
                 const mostPredicted = transf[0].replace("_", " ");
