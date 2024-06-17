@@ -127,20 +127,24 @@ const ChatBot: React.FC = () => {
 
 
   function formatToList(text: string): string {
-    const items = text.split('. ');
+    // const items = text.split('. ');
     
-    const formattedItems: string[] = [];
+    // const formattedItems: string[] = [];
     
-    items.forEach(item => {
-        if (item && !isNaN(Number(item[0]))) {
-            formattedItems.push(item.trim());
-        }
-    });
-    
-    const formattedText = formattedItems.map((item, index) => `${index + 1}. ${item}`).join('\n');
-    
+    // items.forEach(item => {
+    //     if (item && !isNaN(Number(item[0]))) {
+    //         formattedItems.push(item.trim());
+    //     }
+
+    const formattedText = text.replace(/(\d+)\./g, '\n$1.');
     return formattedText;
-}
+
+    }
+    
+    // const formattedText = formattedItems.map((item, index) => `${index + 1}. ${item}`).join('\n');
+    
+    // return formattedText;
+
 
   
   return (
@@ -153,7 +157,7 @@ const ChatBot: React.FC = () => {
             {messages.map((message, index) => (
             <div key={index} className={message.sender === 'user' ? styles.user : styles.bot}>
               <div className={message.sender === 'user' ? styles.userImg : styles.botImg}> </div>      
-              <div className={message.sender === 'user' ? styles.messageDisplayUser : styles.messageDisplay}> {message.text} </div>
+              <div className={message.sender === 'user' ? styles.messageDisplayUser : styles.messageDisplay}> {formatToList(message.text)} </div>
               </div>
             ))}
             {isResponding &&
