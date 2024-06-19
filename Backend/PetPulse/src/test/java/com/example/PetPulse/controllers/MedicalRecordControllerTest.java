@@ -10,7 +10,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +40,9 @@ public class MedicalRecordControllerTest {
 
     @Test
     public void testUploadMedicalHistory() {
-        MedicalRecord medicalRecord = new MedicalRecord(); // create a medical record object
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        MedicalRecord medicalRecord = new MedicalRecord();
 
         when(authentication.getName()).thenReturn("testuser");
 
@@ -48,6 +53,8 @@ public class MedicalRecordControllerTest {
 
     @Test
     public void testGetMedicalRecords() throws GeneralException {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Long petId = 1L;
         List<MedicalRecord> medicalRecords = Collections.singletonList(new MedicalRecord());
 
@@ -63,6 +70,8 @@ public class MedicalRecordControllerTest {
 
     @Test
     public void testDeleteMedicalRecord() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Long id = 1L;
 
         when(authentication.getName()).thenReturn("testuser");
@@ -77,6 +86,8 @@ public class MedicalRecordControllerTest {
 
     @Test
     public void testGetMedicalRecord() throws GeneralException {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Long id = 1L;
         MedicalRecord medicalRecord = new MedicalRecord();
 

@@ -32,4 +32,8 @@ public class PostLongInfo {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
     }
+
+    public PostLongInfo() {
+
+    }
 }

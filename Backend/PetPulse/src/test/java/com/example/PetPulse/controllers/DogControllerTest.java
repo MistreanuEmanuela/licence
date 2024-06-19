@@ -11,6 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +39,8 @@ public class DogControllerTest {
 
     @BeforeEach
     public void setUp() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         testDog = new Dog();
         testDog.setId(1L);
         testDog.setName("Buddy");
@@ -53,6 +58,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetDog() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getDog(anyLong())).thenReturn(testDog);
 
         Dog result = dogController.getDog(1L);
@@ -63,6 +70,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetDogPicture() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getDogPicture(anyString())).thenReturn(testImage);
 
         ResponseEntity<byte[]> response = dogController.getDogPicture("Buddy");
@@ -74,6 +83,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogs() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getAllDogs()).thenReturn(testDogList);
 
         List<DogAllDTO> result = dogController.getAllDogs();
@@ -84,6 +95,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsBySize() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getAllDogsBySize(anyString())).thenReturn(testDogList);
 
         List<DogAllDTO> result = dogController.getAllDogsBySize("small");
@@ -94,6 +107,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsByLifespan() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getAllDogsByLifespan(anyString())).thenReturn(testDogList);
 
         List<DogAllDTO> result = dogController.getAllDogsByLifespan("10");
@@ -104,6 +119,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsByCoat() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getAllDogsByCoat(anyString())).thenReturn(testDogList);
 
         List<DogAllDTO> result = dogController.getAllDogsByCoat("short");
@@ -114,6 +131,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsByColor() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getAllDogsByColor(anyString())).thenReturn(testDogList);
 
         List<DogAllDTO> result = dogController.getAllDogsByCoatColor("black");
@@ -124,6 +143,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsByFirstLetter() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getAllDogsByFirstLetter(anyString())).thenReturn(testDogList);
 
         List<DogAllDTO> result = dogController.getAllDogsByStartName("B");
@@ -134,6 +155,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsSearched() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getDogsSearched(anyString())).thenReturn(testSearchResultList);
 
         ResponseEntity<List<SearchResultDogDTO>> response = dogController.getAllDogsSearched("Buddy");
@@ -145,6 +168,8 @@ public class DogControllerTest {
 
     @Test
     public void testGetAllDogsSearchedNotFound() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         when(dogService.getDogsSearched(anyString())).thenReturn(Collections.emptyList());
 
         ResponseEntity<List<SearchResultDogDTO>> response = dogController.getAllDogsSearched("Unknown");

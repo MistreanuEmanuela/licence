@@ -10,7 +10,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +39,8 @@ public class MessageControllerTest {
 
     @Test
     public void testUploadMessage() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         MessagePostDTO messagePostDTO = new MessagePostDTO();
         when(authentication.getName()).thenReturn("testuser");
         messageController.uploadMessage(messagePostDTO, authentication);
@@ -45,6 +50,8 @@ public class MessageControllerTest {
 
     @Test
     public void testAllPost() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Long id = 1L;
         List<AllMessagesInfoDTO> messages = Collections.singletonList(new AllMessagesInfoDTO());
 
@@ -59,6 +66,8 @@ public class MessageControllerTest {
 
     @Test
     public void testDeleteMessage() {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Long id = 1L;
 
         when(authentication.getName()).thenReturn("testuser");
