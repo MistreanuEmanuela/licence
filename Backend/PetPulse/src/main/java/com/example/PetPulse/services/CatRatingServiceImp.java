@@ -1,6 +1,7 @@
 package com.example.PetPulse.services;
 
 import com.example.PetPulse.models.dto.CatRatingDTO.CatRatingDTO;
+import com.example.PetPulse.models.dto.CatRatingDTO.CatRatingsCompleteDTO;
 import com.example.PetPulse.models.dto.FormsBestFit.FormCat;
 import com.example.PetPulse.models.entities.CatRating;
 import com.example.PetPulse.repositories.CatRatingRepository;
@@ -17,19 +18,21 @@ import java.util.Map;
 public class CatRatingServiceImp  implements CatRatingService{
 
     private final CatRatingRepository catRatingRepository;
+    private CatRepository catRepository;
     @Autowired
-    public CatRatingServiceImp(CatRatingRepository catRatingRepository) {
+    public CatRatingServiceImp(CatRatingRepository catRatingRepository, CatRepository catRepository) {
         this.catRatingRepository = catRatingRepository;
+        this.catRepository = catRepository;
     }
 
     @Override
     public CatRatingDTO getCatRating(Long id) {
-        CatRating catRating =catRatingRepository.findInfoById(id);
-        return new CatRatingDTO(catRating.getId(), catRating.getAffection(), catRating.getPlayfulness(), catRating.getKidFriendly(), catRating.getIntelligence(), catRating.getPetFriendly(), catRating.getGroom(), catRating.getStrangers());
+        CatRating catRating = catRatingRepository.findInfoById(id);
+        return new CatRatingDTO(catRating.getId(), catRating.getAffection(), catRating.getPlayfulness(), catRating.getKidFriendly(),catRating.getIntelligence(), catRating.getPetFriendly(), catRating.getGroom(), catRating.getStrangers());
     }
 
     @Override
-    public CatRating getBestFit(FormCat form) {
+    public CatRatingsCompleteDTO getBestFit(FormCat form) {
         List<CatRating> cats = catRatingRepository.findAll();
 
         Map<CatRating, Integer> catScores = new HashMap<>();
@@ -76,8 +79,10 @@ public class CatRatingServiceImp  implements CatRatingService{
 
         List<Map.Entry<CatRating, Integer>> sortedScores = new ArrayList<>(catScores.entrySet());
         sortedScores.sort((a, b) -> b.getValue().compareTo(a.getValue()));
-        System.out.println(sortedScores);
-        return sortedScores.get(0).getKey();
+        CatRating catResult = sortedScores.get(0).getKey();
+        String name = catRepository.findById(catResult.getIdCat()).getName();
+        CatRatingsCompleteDTO catRatingsCompleteDTO = new CatRatingsCompleteDTO(catResult.getId(),name, catResult.getIdCat(), catResult.getAffection(), catResult.getShedding(), catResult.getPlayfulness(), catResult.getKidFriendly(), catResult.getIntelligence(), catResult.getPetFriendly(), catResult.getGroom(), catResult.getStrangers(), catResult.getVocalize(), catResult.getHealth() );
+        return catRatingsCompleteDTO;
     }
 }
 

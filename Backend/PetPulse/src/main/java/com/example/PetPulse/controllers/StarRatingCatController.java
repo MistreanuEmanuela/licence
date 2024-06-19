@@ -1,6 +1,7 @@
 package com.example.PetPulse.controllers;
 
 import com.example.PetPulse.models.dto.CatRatingDTO.CatRatingDTO;
+import com.example.PetPulse.models.dto.CatRatingDTO.CatRatingsCompleteDTO;
 import com.example.PetPulse.models.dto.FormsBestFit.FormCat;
 import com.example.PetPulse.models.entities.CatRating;
 import com.example.PetPulse.services.CatRatingServiceImp;
@@ -28,7 +29,7 @@ public class StarRatingCatController {
 
     @PostMapping("/findBestFit")
     @Operation(security = @SecurityRequirement(name = "Bearer Authentication"))
-    public CatRating getBest(@RequestBody FormCat form) {
+    public CatRatingsCompleteDTO getBest(@RequestBody FormCat form) {
         return catRatingService.getBestFit(form);
     }
 }

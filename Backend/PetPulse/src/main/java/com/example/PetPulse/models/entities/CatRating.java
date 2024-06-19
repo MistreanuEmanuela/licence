@@ -18,8 +18,6 @@ public class CatRating {
     @Column(name = "cat_id")
     private Integer idCat;
 
-    @Column(name = "cat_name")
-    private String name;
 
     @Column(name = "affection")
     private Integer affection;
@@ -54,10 +52,9 @@ public class CatRating {
     public CatRating() {
     }
 
-    public CatRating(Integer id, Integer idCat, String name, Integer affection, Integer shedding, Integer health, Integer playfulness, Integer kidFriendly, Integer vocalize, Integer intelligence, Integer groom, Integer strangers, Integer petFriendly) {
+    public CatRating(Integer id, Integer idCat, Integer affection, Integer shedding, Integer health, Integer playfulness, Integer kidFriendly, Integer vocalize, Integer intelligence, Integer groom, Integer strangers, Integer petFriendly) {
         this.id = id;
         this.idCat = idCat;
-        this.name = name;
         this.affection = affection;
         this.shedding = shedding;
         this.health = health;
@@ -75,7 +72,6 @@ public class CatRating {
         return "CatRating{" +
                 "id=" + id +
                 ", idCat=" + idCat +
-                ", name='" + name + '\'' +
                 ", affection=" + affection +
                 ", shedding=" + shedding +
                 ", health=" + health +
