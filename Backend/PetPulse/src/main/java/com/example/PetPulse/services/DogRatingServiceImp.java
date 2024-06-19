@@ -1,9 +1,11 @@
 package com.example.PetPulse.services;
 
+import com.example.PetPulse.models.dto.DogRating.DogRatingsCompleteDTO;
 import com.example.PetPulse.models.dto.FormsBestFit.DogFormDTO;
 import com.example.PetPulse.models.dto.DogRating.DogRatingDTO;
 import com.example.PetPulse.models.entities.DogRating;
 import com.example.PetPulse.repositories.DogRatingRepository;
+import com.example.PetPulse.repositories.DogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,11 @@ import java.util.Map;
 @Service
 public class DogRatingServiceImp implements DogRatingService{
     private final DogRatingRepository dogRatingRepository;
+    private DogRepository dogRepository;
     @Autowired
-    public DogRatingServiceImp(DogRatingRepository dogRatingRepository) {
+    public DogRatingServiceImp(DogRatingRepository dogRatingRepository, DogRepository dogRepository) {
         this.dogRatingRepository = dogRatingRepository;
+        this.dogRepository = dogRepository;
     }
 
     @Override
@@ -27,7 +31,7 @@ public class DogRatingServiceImp implements DogRatingService{
     }
 
     @Override
-    public DogRating getBestFit(DogFormDTO form) {
+    public DogRatingsCompleteDTO getBestFit(DogFormDTO form) {
         List<DogRating> dogs = dogRatingRepository.findAll();
 
         Map<DogRating, Integer> dogScores = new HashMap<>();
@@ -94,6 +98,39 @@ public class DogRatingServiceImp implements DogRatingService{
         }
         List<Map.Entry<DogRating, Integer>> sortedScores = new ArrayList<>(dogScores.entrySet());
         sortedScores.sort((a, b) -> b.getValue().compareTo(a.getValue()));
-        return sortedScores.get(0).getKey();
+        DogRating dog = sortedScores.get(0).getKey();
+        String name = dogRepository.findById(dog.getIdDog()).getName();
+        System.out.println(name);
+        DogRatingsCompleteDTO dogResult = new DogRatingsCompleteDTO(
+                dog.getId(),
+                name,
+                dog.getIdDog(),
+                dog.getApartmentLiving(),
+                dog.getNoviceOwner(),
+                dog.getSensibility(),
+                dog.getAlone(),
+                dog.getColdWater(),
+                dog.getHotWater(),
+                dog.getAffection(),
+                dog.getKidFriendly(),
+                dog.getDogFriendly(),
+                dog.getStrangersFriendly(),
+                dog.getShedding(),
+                dog.getDrooling(),
+                dog.getGroom(),
+                dog.getHealthy(),
+                dog.getWeightGain(),
+                dog.getSize(),
+                dog.getTrainability(),
+                dog.getIntelligence(),
+                dog.getMouthiness(),
+                dog.getPreyDrive(),
+                dog.getBark(),
+                dog.getWanderlust(),
+                dog.getEnergy(),
+                dog.getIntensity(),
+                dog.getExercise(),
+                dog.getPlayfulness()
+        );        return dogResult;
     }
 }
