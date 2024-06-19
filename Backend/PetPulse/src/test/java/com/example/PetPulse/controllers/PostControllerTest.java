@@ -40,7 +40,7 @@ class PostControllerTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
     }
-
+    @Test
     void testUploadPost() throws Exception {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));

@@ -27,4 +27,8 @@ public class AllPetDTO {
         this.animalType = animalType;
         this.imagePath = imagePath;
     }
+
+    public AllPetDTO() {
+
+    }
 }
