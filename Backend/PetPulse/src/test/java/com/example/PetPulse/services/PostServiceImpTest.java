@@ -83,5 +83,5 @@ class PostServiceImpTest {
         assertNotNull(postResult);
         assertEquals(2, postResult.size());
     }
-    
+
 }

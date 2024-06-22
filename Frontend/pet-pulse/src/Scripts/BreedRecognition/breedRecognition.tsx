@@ -101,7 +101,7 @@ const BreedRecognition: React.FC = () => {
                 <div className={`${styles.content} ${isCalculating || isResponse ? styles.content_blur : ''}`}>
                     <div className={styles.fileInputContainer}>
                         <input className={styles.fileInput} type="file" id="photo" name="photo" accept="image/*" onChange={handleFileChange} required />
-                        <label htmlFor="photo" className={styles.customButton}>
+                        <label htmlFor="photo" className={`${styles.customButton} ${path !== '' ? styles.customButtonWhite : ''}`}>
                             {path && <img src={path} alt="Dog" className={styles.image} />}
                         </label>
                     </div>

@@ -38,10 +38,25 @@
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
-    background-color: rgb(237, 237, 237);
-    
-  }
+    background-color: rgb(226, 226, 226);
+   }
 
+.customButtonWhite
+{
+   display: inline-block;
+   background-image: none;
+   background-size: contain;
+   background-position: center center;
+   width: 500px; 
+   height: 350px;
+   line-height: 40px;
+   text-align: center;
+   color: white;
+   font-weight: bold;
+   cursor: pointer;
+   border-radius: 5px;
+   background-color: rgb(255, 255, 255);
+}
   
   .customButton .image
   {

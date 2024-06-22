@@ -140,7 +140,7 @@ const PrincipalPage = () => {
         <div className={styles.info}>
           <div className={styles.title}>Meet Our ChatBot Solution</div>
           <div className={styles.content}> Do you find yourself in a pickle with your pet's care? Whether it's about their health, behavior, or just general advice, our specialized pet chatbot is here to lend a helping paw! Our furry-friendly AI companion is equipped with knowledge and solutions tailored to pets of all shapes and sizes..</div>
-          <Link to="./chatbot" className={styles.link}>Give it a try!</Link>
+          <Link to="/chatbot" className={styles.link}>Give it a try!</Link>
         </div>
         <div className={styles.picture2}></div>
       </div>
