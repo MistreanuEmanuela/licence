@@ -1,10 +1,7 @@
 package com.example.PetPulse.controllers;
-
-import com.example.PetPulse.models.dto.PostDTO.PostShortInfo;
 import com.example.PetPulse.models.dto.UsersPet.AllPetDTO;
 import com.example.PetPulse.models.dto.UsersPet.PetDTO;
 import com.example.PetPulse.models.dto.UsersPet.SearchPetDTO;
-import com.example.PetPulse.models.entities.Cat;
 import com.example.PetPulse.models.entities.UserPet;
 import com.example.PetPulse.services.UserPetServiceImp;
 import org.junit.jupiter.api.BeforeEach;
@@ -87,9 +84,6 @@ class UsersPetControllerTest {
         verify(userPetServiceImp).findNumberOfPets(authentication.getName());
     }
 
-    @Test
-    void editPet() {
-    }
 
     @Test
     void findPet() {
