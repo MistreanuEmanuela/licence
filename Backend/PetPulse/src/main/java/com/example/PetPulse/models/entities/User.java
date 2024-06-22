@@ -57,6 +57,13 @@ public class User {
         this.activated = false;
     }
 
+    public User(Long id, String firstName, String lastName, String username) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+    }
+
     public boolean isActivated() {
         return activated;
     }
