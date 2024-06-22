@@ -102,7 +102,7 @@ public class DogRating {
     public DogRating() {
     }
 
-    public DogRating(Integer id, Integer idDog, String name, Integer apartmentLiving, Integer noviceOwner, Integer sensibility, Integer alone, Integer coldWater, Integer hotWater, Integer affection, Integer kidFriendly, Integer dogFriendly, Integer strangersFriendly, Integer shedding, Integer drooling, Integer groom, Integer healthy, Integer weightGain, Integer size, Integer trainability, Integer intelligence, Integer mouthiness, Integer preyDrive, Integer bark, Integer wanderlust, Integer energy, Integer intensity, Integer exercise, Integer playfulness) {
+    public DogRating(Integer id, Integer idDog, Integer apartmentLiving, Integer noviceOwner, Integer sensibility, Integer alone, Integer coldWater, Integer hotWater, Integer affection, Integer kidFriendly, Integer dogFriendly, Integer strangersFriendly, Integer shedding, Integer drooling, Integer groom, Integer healthy, Integer weightGain, Integer size, Integer trainability, Integer intelligence, Integer mouthiness, Integer preyDrive, Integer bark, Integer wanderlust, Integer energy, Integer intensity, Integer exercise, Integer playfulness) {
         this.id = id;
         this.idDog = idDog;
         this.apartmentLiving = apartmentLiving;
