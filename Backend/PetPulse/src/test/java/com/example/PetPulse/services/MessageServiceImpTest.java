@@ -6,7 +6,6 @@ import com.example.PetPulse.models.entities.Message;
 import com.example.PetPulse.models.entities.User;
 import com.example.PetPulse.repositories.MessageRepository;
 import com.example.PetPulse.repositories.UserRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -33,7 +32,7 @@ class MessageServiceImpTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        MockitoAnnotations.openMocks(this); // Inițializare mock-urile
+        MockitoAnnotations.openMocks(this);
 
         String username = "testuser";
         Long userId = 1L;

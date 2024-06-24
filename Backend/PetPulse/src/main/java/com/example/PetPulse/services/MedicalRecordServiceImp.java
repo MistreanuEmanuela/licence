@@ -17,7 +17,9 @@ import java.util.regex.Pattern;
 
 @Service
 public class MedicalRecordServiceImp implements  MedicalRecordService{
-    private final MedicalRecordRepository medicalRecordRepository;
+//    private final MedicalRecordRepository medicalRecordRepository;
+    private  MedicalRecordRepository medicalRecordRepository;
+
     @Autowired
     UserRepository userRepository;
 
