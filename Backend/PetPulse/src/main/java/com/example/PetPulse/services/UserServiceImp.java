@@ -32,7 +32,8 @@ public class UserServiceImp implements UserService{
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+//    private final BCryptPasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     @Autowired
     private ForgotPasswordToken forgotPasswordToken;
@@ -72,7 +73,6 @@ public class UserServiceImp implements UserService{
         String encodedPassword = encodePassword(user.getPassword());
         user.setPassword(encodedPassword);
         Role role = roleRepository.findByName("user");
-        System.out.println(role);
         User newUser = new User(user.getFirstName(), user.getLastName(), user.getEmail(),
                 encodedPassword,user.getBirthdate(), user.getUsername() );
         Set<Role> roles = new HashSet<>();
@@ -107,7 +107,6 @@ public class UserServiceImp implements UserService{
 
         String token = jwtTokenProvider.generateToken(authentication);
 
-        System.out.println(token);
         return token;
     }
 
@@ -145,7 +144,6 @@ public class UserServiceImp implements UserService{
         message.setSubject("Account Confirmation");
         message.setText("Please click the following link to confirm your account: http://localhost:8082/users/confirm?token=" + token);
         mailSender.send(message);
-        System.out.print(message);
     }
     @Override
     public boolean confirmUserAccount(String token) {
@@ -192,8 +190,6 @@ public class UserServiceImp implements UserService{
             throw new EmailNotFoundException("The email introduced is not associated with any account");
         }
         String token = forgotPasswordToken.generateToken(email);
-        System.out.print("token");
-        System.out.print(token);
         sendPasswordResetEmail(email, token);
     }
     @Override
@@ -224,7 +220,6 @@ public class UserServiceImp implements UserService{
             userRepository.save(user);
             return true;
         }
-        System.out.println("heree!");
         return false;
     }
 

@@ -56,8 +56,6 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
         Long id = userRepository.findIdByUsername(username);
         Long id_user = usersPetRepository.findOwnerId(medicalRecord.getIdPet());
         if (id != id_user){
-            System.out.println(id);
-            System.out.println(id_user);
             throw new PetNotFoundException("The pet with provided id doesn't exist or you don't have permission to add");
         }
 
@@ -69,8 +67,6 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
         Long id_usr = userRepository.findIdByUsername(username);
         Long id_user = usersPetRepository.findOwnerId(id);
         if (id_usr != id_user){
-            System.out.println(id);
-            System.out.println(id_user);
             throw new GeneralException("The pet with provided id doesn't exist or you don't have permission to this information");
         }
         return medicalRecordRepository.findByIdPet(id);
@@ -81,8 +77,6 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
         Long id_usr = userRepository.findIdByUsername(username);
         Long id_user = usersPetRepository.findOwnerId(medicalRecordRepository.findPetId(id));
         if (id_usr != id_user){
-            System.out.println(id);
-            System.out.println(id_user);
             throw new GeneralException("The pet with provided id doesn't exist or you don't have permission to this information");
         }
         Optional<MedicalRecord> medical = medicalRecordRepository.findById(id);
@@ -101,8 +95,6 @@ public class MedicalRecordServiceImp implements  MedicalRecordService{
         Long id_usr = userRepository.findIdByUsername(username);
         Long id_user = usersPetRepository.findOwnerId(medicalRecordRepository.findPetId(id));
         if (id_usr != id_user) {
-            System.out.println(id);
-            System.out.println(id_user);
             throw new GeneralException("The pet with provided id doesn't exist or you don't have permission to this information");
         }
         Optional<MedicalRecord> medical = medicalRecordRepository.findById(id);
