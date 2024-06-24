@@ -35,7 +35,7 @@ class PostServiceImpTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        MockitoAnnotations.openMocks(this); // Inițializare mock-urile
+        MockitoAnnotations.openMocks(this);
 
         String username = "testuser";
         Long userId = 1L;
@@ -61,7 +61,7 @@ class PostServiceImpTest {
         Long postId = 1L;
         String username = "testUser";
         Long userId = 1L;
-        Post post = new Post(1L,1l,"test", "test", null);
+        Post post = new Post(1L,1L, "test", "test", null);
         when(userRepository.findIdByUsername(username)).thenReturn(userId);
         when(postRepository.findById(postId)).thenReturn(Optional.of(post));
 
