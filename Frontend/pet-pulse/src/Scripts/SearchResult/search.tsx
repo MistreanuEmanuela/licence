@@ -9,6 +9,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { IoIosColorFilter } from "react-icons/io";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import Buttons from '../Components/MenuChatCommunity/Buttons';
+import PetInfo from '../PetInfo/petInfo';
 
 
 interface InfoDog {
@@ -85,9 +86,14 @@ const Search: React.FC = () => {
         preloadImages(data);
       })
       .catch(error => console.error('Error fetching cats:', error));
+
     const timeoutId = setTimeout(() => {
       setIsSearching(false);
     }, 3000);
+    console.log(isSearching)
+    console.log(pets);
+    console.log(infoCats)
+    console.log(infoDogs)
   }, [input]);
 
   const truncateText = (text: string, maxLength: number) => {
@@ -169,7 +175,7 @@ const Search: React.FC = () => {
           (
             <Searching />
           )}
-        {!infoCats && !infoDogs && !pets && !isSearching &&
+        {infoCats?.length == 0 && infoDogs?.length == 0  && pets?.length == 0  && !isSearching &&
           (
             <NotFound />
           )
