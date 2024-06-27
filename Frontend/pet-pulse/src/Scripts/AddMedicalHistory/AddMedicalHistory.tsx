@@ -142,7 +142,7 @@ const Consultation: React.FC = () => {
             {added &&
                 <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                     <div className={styles.dialogContent}>
-                        <p>Medical history added succesful, redirecting...</p>
+                        <p>Medical history added successfully, redirecting...</p>
                         <div>
                             <Save />
                         </div>
@@ -151,15 +151,15 @@ const Consultation: React.FC = () => {
             }
 
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
-            {errors.length > 0 &&
-                <div id="error-container" className={styles.errorContainer}>
-                    {errors.map((error, index) => (
-                        <div key={index} className={styles.error}>
-                            {error}
-                        </div>
-                    ))}
-                </div>
-            }
+                {errors.length > 0 &&
+                    <div id="error-container" className={styles.errorContainer}>
+                        {errors.map((error, index) => (
+                            <div key={index} className={styles.error}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
+                }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -174,8 +174,8 @@ const Consultation: React.FC = () => {
                         <input className={styles.input} placeholder="Enter doctor's name" type="text" id="doctor" name="doctor" value={medical.doctor} onChange={handleChange} />
                     </div>
                     <div className={styles.field}>
-                        <label className={styles.label} htmlFor="type">Consultation Type:</label>
-                        <select className={styles.input} id="type" name="type" value={medical.type} onChange={handleChange}>
+                        <label className={styles.label} htmlFor="additionalInfos">consultation Type:</label>
+                        <select className={styles.input} id="additionalInfos" name="additionalInfos" value={medical.additionalInfos} onChange={handleChange}>
                             <option value="">Select...</option>
                             <option value="checkup">Checkup</option>
                             <option value="urgent">Urgent</option>
@@ -319,23 +319,23 @@ const Treatment: React.FC = () => {
             {added &&
                 <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                     <div className={styles.dialogContent}>
-                        <p>Medical history added succesful, redirecting...</p>
+                        <p>Medical history added successfully, redirecting...</p>
                         <div>
-                            < Save/>
+                            < Save />
                         </div>
                     </div>
                 </div>
             }
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
-            {errors.length > 0 &&
-                <div id="error-container" className={styles.errorContainer}>
-                    {errors.map((error, index) => (
-                        <div key={index} className={styles.error}>
-                            {error}
-                        </div>
-                    ))}
-                </div>
-            }
+                {errors.length > 0 &&
+                    <div id="error-container" className={styles.errorContainer}>
+                        {errors.map((error, index) => (
+                            <div key={index} className={styles.error}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
+                }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -504,7 +504,7 @@ const Vaccine: React.FC = () => {
             {added &&
                 <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                     <div className={styles.dialogContent}>
-                        <p>Medical history added succesful, redirecting...</p>
+                        <p>Medical history added successfully, redirecting...</p>
                         <div>
                             <Save />
                         </div>
@@ -512,15 +512,15 @@ const Vaccine: React.FC = () => {
                 </div>
             }
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
-            {errors.length > 0 &&
-                <div id="error-container" className={styles.errorContainer}>
-                    {errors.map((error, index) => (
-                        <div key={index} className={styles.error}>
-                            {error}
-                        </div>
-                    ))}
-                </div>
-            }
+                {errors.length > 0 &&
+                    <div id="error-container" className={styles.errorContainer}>
+                        {errors.map((error, index) => (
+                            <div key={index} className={styles.error}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
+                }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -613,7 +613,7 @@ const Intervention: React.FC = () => {
         const validationErrors: string[] = [];
 
         if (medical.date > currentDate) {
-            validationErrors.push('Selected date cannot be in the future');
+            validationErrors.push('Selected date can not be in the future');
         }
 
         if (!nameRegex.test(medical.doctor)) {
@@ -676,7 +676,7 @@ const Intervention: React.FC = () => {
             {added &&
                 <div id="custom-confirm-dialog" className={styles.confirmDialog}>
                     <div className={styles.dialogContent}>
-                        <p>Medical history added succesful, redirecting...</p>
+                        <p>Medical history added successfully, redirecting...</p>
                         <div>
                             <Save />
                         </div>
@@ -684,15 +684,15 @@ const Intervention: React.FC = () => {
                 </div>
             }
             <form className={`${styles.formular} ${added ? styles.addedForm : ''}`} onSubmit={handleSubmit}>
-            {errors.length > 0 &&
-                <div id="error-container" className={styles.errorContainer}>
-                    {errors.map((error, index) => (
-                        <div key={index} className={styles.error}>
-                            {error}
-                        </div>
-                    ))}
-                </div>
-            }
+                {errors.length > 0 &&
+                    <div id="error-container" className={styles.errorContainer}>
+                        {errors.map((error, index) => (
+                            <div key={index} className={styles.error}>
+                                {error}
+                            </div>
+                        ))}
+                    </div>
+                }
                 <div className={styles.first_part}>
                     <div className={styles.field}>
                         <label className={styles.label} htmlFor="date">Date:</label>
@@ -713,6 +713,13 @@ const Intervention: React.FC = () => {
                             <option value="sterilization">Sterilization</option>
                             <option value="castration">Castration</option>
                             <option value="surgicalIntervention">Surgical Intervention</option>
+                            <option value="dentalCare">Dental Care</option>
+                            <option value="microchipping">Microchipping</option>
+                            <option value="deworming">Deworming</option>
+                            <option value="spaying">Spaying</option>
+                            <option value="neutering">Neutering</option>
+                            <option value="emergencyCare">Emergency Care</option>
+                            <option value="physicalTherapy">Physical Therapy</option>
                         </select>
                     </div>
                 </div>

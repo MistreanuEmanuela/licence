@@ -38,8 +38,7 @@ const Treatment: React.FC<{ medical: MedicalHistory }> = ({ medical }) => {
 
     return (
         <div className={styles.content}>
-            <h3> treatment
- information</h3>
+            <h3> Treatment information</h3>
 
 
             <div className={styles.first_part}>
@@ -162,7 +161,7 @@ const Consultation: React.FC<{ medical: MedicalHistory }> = ({ medical }) => {
                 </div>
                 <div className={styles.field}>
                     <label className={styles.label} htmlFor="type">Type:</label>
-                    <div className={styles.input} > {medical.type} </div>
+                    <div className={styles.input} > {medical.additionalInfos} </div>
 
                 </div>
             </div>
