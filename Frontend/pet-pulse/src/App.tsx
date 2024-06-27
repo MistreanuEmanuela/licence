@@ -22,6 +22,7 @@ import PetFind from './Scripts/BestPetFind/PetFind';
 import ChatBot from './Scripts/ChatBotPage/ChatBot';
 import Help from './Scripts/Help/help';
 import About from './Scripts/About/about';
+import NotFound from './Scripts/NotFoundPage/NotFound';
 
 function App(): JSX.Element {
   return (
@@ -49,6 +50,7 @@ function App(): JSX.Element {
         <Route path ='/chatbot'  element={<ChatBot/>}></Route>
         <Route path ='/help'  element={<Help/>}></Route>
         <Route path ='/about'  element={<About/>}></Route>
+        <Route path ='*'  element={<NotFound/>}></Route>
       </Routes>
     </Router>
   );
