@@ -425,7 +425,7 @@ const AllDogs: React.FC = () => {
                       <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.page_button}>
                         {currentPage + 1}
                       </button>}
-                  {(currentPage + 1) < totalPages &&
+                  {(currentPage + 1) < totalPages -1 &&
                     <div className={styles.dots}><HiDotsHorizontal />
                     </div>}
                   {(totalPages != 1 &&
