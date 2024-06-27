@@ -29,7 +29,7 @@ This repository contains the source code for the PetPulse application, which inc
   - **Exceptions:** Defines custom exceptions used in the application.
   - **Config:** Contains necessary configuration files.
 
-### Additional Programs
+### Additionally Programs
 **Folder:** `AdditionalPrograms`
 
 - **Chatbot Training Files:** Contains files necessary for training the chatbot.
