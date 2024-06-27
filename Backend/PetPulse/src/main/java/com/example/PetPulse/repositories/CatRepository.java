@@ -45,9 +45,9 @@ public interface CatRepository extends JpaRepository<Cat,Long> {
             "ORDER BY cat_info.name", nativeQuery = true)
     List<Cat> findAllCatsByCoatType(@Param("coat") String coat);
 
-    @Query(value = "SELECT * FROM cat_info WHERE lower(coat) LIKE %:color%", nativeQuery = true)
+    @Query(value = "SELECT * FROM cat_info WHERE lower(coat) LIKE %:color% ORDER BY cat_info.name ", nativeQuery = true)
     List<Cat> findCatsByCoatColor(@Param("color") String color);
 
-    @Query(value = "SELECT * FROM cat_info WHERE lower(name) LIKE :letter%", nativeQuery = true)
+    @Query(value = "SELECT * FROM cat_info WHERE lower(name) LIKE :letter% ORDER BY cat_info.name", nativeQuery = true)
     List<Cat> findCatsByNameStartingWithLetter(@Param("letter") String letter);
 }

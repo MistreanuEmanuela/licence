@@ -74,7 +74,7 @@ const AllCats: React.FC = () => {
 
   const indexOfLastCat = currentPage * catsPerPage;
   const indexOfFirstCat = indexOfLastCat - catsPerPage;
-  const currentCats =cats.slice(indexOfFirstCat, indexOfLastCat);
+  const currentCats = cats.slice(indexOfFirstCat, indexOfLastCat);
   useEffect(() => {
     setShowLoading(true);
 
@@ -300,10 +300,15 @@ const AllCats: React.FC = () => {
                 <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'black' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByColor('black')}>black</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'white' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
-                  onClick={() => handleFilteredByColor('white')}>White
-                </li>
+                  onClick={() => handleFilteredByColor('white')}>white</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'chocolate' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
-                  onClick={() => handleFilteredByColor('chocolate')}>Chocolate</li>
+                  onClick={() => handleFilteredByColor('chocolate')}>chocolate</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'gray' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByColor('gray')}>gray</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'orange' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByColor('orange')}>orange</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedColor !== 'tabby' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByColor('tabby')}>tabby</li>
               </ul>
             )}
           </button>
@@ -317,12 +322,22 @@ const AllCats: React.FC = () => {
             Lifespan
             {lifespanHovered && (
               <ul className={styles.subFilterOptions}>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 10 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(10)}>10 years</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 11 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(11)}>11 years</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 12 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByLifespan(12)}>12 years</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 13 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(13)}>13 years</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 14 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByLifespan(14)}>14 years</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 15 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByLifespan(15)}>15 years</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 16 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(16)}>16 years</li>
+                <li className={`${styles.subFilterOptionsli} ${selectedLifespan !== 17 ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByLifespan(17)}>17 years</li>
               </ul>
             )}
           </button>
@@ -337,13 +352,13 @@ const AllCats: React.FC = () => {
               <ul className={styles.subFilterOptions}>
                 <li className={`${styles.subFilterOptionsli} ${selectedSize !== 'small' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
 
-                  onClick={() => handleFilteredBySize('small')}>Small</li>
+                  onClick={() => handleFilteredBySize('small')}>small</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedSize !== 'medium' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
 
-                  onClick={() => handleFilteredBySize('medium')}>Medium</li>
+                  onClick={() => handleFilteredBySize('medium')}>medium</li>
                 <li className={`${styles.subFilterOptionsli} ${selectedSize !== 'large' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
 
-                  onClick={() => handleFilteredBySize('large')}>Large</li>
+                  onClick={() => handleFilteredBySize('large')}>large</li>
               </ul>
             )}
           </button>
@@ -365,14 +380,21 @@ const AllCats: React.FC = () => {
 
                 <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'long' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByCoat('long')}>long</li>
+
+<li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'pointed' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByCoat('pointed')}>pointed</li>
+
+                  
+                <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'tabby' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                  onClick={() => handleFilteredByCoat('tabby')}>tabby</li>
               </ul>
             )}
           </button>
           <button className={styles.exit} onClick={() => handleFetch()}> </button>
         </div>
         <ul className={styles.main_container}>
-        {!showLoading && (
-  <><>
+          {!showLoading && currentCats.length > 0 && (
+            <>
               {currentCats.map((cat, index) => (
                 <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(cat.id)}>
                   <img src={`./Cats/${cat.name}.png`} alt={cat.name} className={styles.dog_picture} />
@@ -380,7 +402,7 @@ const AllCats: React.FC = () => {
                 </button>
               ))}
 
-            </><div className={styles.pagination}>
+              <div className={styles.pagination}>
                 <button className={styles.page_button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                   <GrPrevious />
                 </button>
@@ -402,7 +424,7 @@ const AllCats: React.FC = () => {
                       <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.page_button}>
                         {currentPage + 1}
                       </button>}
-                  {(currentPage + 1) < totalPages &&
+                  {(currentPage + 1) < totalPages -1 &&
                     <div className={styles.dots}><HiDotsHorizontal />
                     </div>}
                   {(totalPages != 1 &&
@@ -415,11 +437,11 @@ const AllCats: React.FC = () => {
                 >
                   <GrNext />
                 </button>
-              </div></>
-)}
+              </div>
+            </>
+          )}
 
-{showLoading && <Loading/>}
-
+          {showLoading && <Loading />}
         </ul>
       </div>
     </div>
