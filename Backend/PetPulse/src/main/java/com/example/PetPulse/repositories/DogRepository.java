@@ -47,9 +47,9 @@ public interface DogRepository extends JpaRepository<Dog,Long> {
             "ORDER BY dog_info.name", nativeQuery = true)
     List<Dog> findAllDogsByCoatType(@Param("coat") String coat);
 
-    @Query(value = "SELECT * FROM dog_info WHERE lower(coat) LIKE %:color%", nativeQuery = true)
+    @Query(value = "SELECT * FROM dog_info WHERE lower(coat) LIKE %:color% ORDER BY dog_info.name", nativeQuery = true)
     List<Dog> findDogsByCoatColor(@Param("color") String color);
 
-    @Query(value = "SELECT * FROM dog_info WHERE lower(name) LIKE :letter%", nativeQuery = true)
+    @Query(value = "SELECT * FROM dog_info WHERE lower(name) LIKE :letter% ORDER BY dog_info.name", nativeQuery = true)
     List<Dog> findDogsByNameStartingWithLetter(@Param("letter") String letter);
 }
