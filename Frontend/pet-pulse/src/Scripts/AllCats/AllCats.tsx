@@ -381,10 +381,10 @@ const AllCats: React.FC = () => {
                 <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'long' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByCoat('long')}>long</li>
 
-<li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'pointed' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
+                <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'pointed' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByCoat('pointed')}>pointed</li>
 
-                  
+
                 <li className={`${styles.subFilterOptionsli} ${selectedCoat !== 'tabby' ? styles.subFilterOptionsli : styles.subFilterOptionsliActive}`}
                   onClick={() => handleFilteredByCoat('tabby')}>tabby</li>
               </ul>
@@ -424,7 +424,7 @@ const AllCats: React.FC = () => {
                       <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className={styles.page_button}>
                         {currentPage + 1}
                       </button>}
-                  {(currentPage + 1) < totalPages -1 &&
+                  {(currentPage + 1) < totalPages - 1 &&
                     <div className={styles.dots}><HiDotsHorizontal />
                     </div>}
                   {(totalPages != 1 &&
