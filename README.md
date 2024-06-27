@@ -30,7 +30,7 @@ This repository contains the source code for the PetPulse application, which inc
   - **Config:** Contains necessary configuration files.
 
 ### Additionally Programs
-**Folder:** `AdditionalPrograms`
+**Folder:** `Additionally programs`
 
 - **Chatbot Training Files:** Contains files necessary for training the chatbot.
 - **TensorFlow Model:** Contains the Python project used to run the TensorFlow model for image recognition.
@@ -52,22 +52,22 @@ This repository contains the source code for the PetPulse application, which inc
 
 2. Install the dependencies:
    ```bash
-    npm install
+   npm install
 
 3. Start the development server:
    ```bash
-      npm start
+   npm start
 
 #### Backend
 1. Navigate to the `Backend` directory:
    ```bash
-   cd Frontend
+   cd Backend
 
 2. Build the project using Maven:
    ```bash
-    mvn clean install
+   mvn clean install
 
 3. Run the Spring Boot application:
    ```bash
-      mvn spring-boot:run
+    mvn spring-boot:run
 
