@@ -176,8 +176,8 @@ const DogFind: React.FC = () => {
                     <div className={styles.form_inputs}>
                         <div className={styles.title}> Enter your information to help to find your best cat! </div>
                         <><label className={styles.input}>
-                            Apartment Living
-                            <select className={styles.select} name="appartementLiving" value={formData.appartementLiving.toString()} onChange={handleChange}>
+                        Do you live in an apartment?
+                        <select className={styles.select} name="appartementLiving" value={formData.appartementLiving.toString()} onChange={handleChange}>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                             </select>
@@ -190,21 +190,21 @@ const DogFind: React.FC = () => {
                                 </select>
                             </label><br />
                             <label className={styles.input}>
-                                Frequent Travels?
+                            Do you travel frequently?
                                 <select className={styles.select} name="travel" value={formData.travel.toString()} onChange={handleChange}>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
                             </label><br />
                             <label className={styles.input}>
-                                Free Time to Accord?
+                            Do you have free time to dedicate to a dog?
                                 <select className={styles.select} name="timeForCare" value={formData.timeForCare.toString()} onChange={handleChange}>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
                             </label><br />
                             <label className={styles.input}>
-                                Kids?
+                                Do you have kids?
                                 <select className={styles.select} name="kids" value={formData.kids.toString()} onChange={handleChange}>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
@@ -435,32 +435,32 @@ const CatFind: React.FC = () => {
                         <div className={styles.form_inputs}>
                             <div className={styles.title}> Enter your information to help to find your best cat! </div>
                             <><label className={styles.input}>
-                                Apartment Living:
+                                Do you live in an apartment?
                                 <select className={styles.select} name="apartmentLiving" value={formData.apartmentLiving.toString()} onChange={handleChange}>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
                                 </select>
                             </label><br />
                                 <label className={styles.input}>
-                                    Do you have other pets?:
+                                    Do you have other pets?
                                     <select className={styles.select} name="otherPet" value={formData.otherPet.toString()} onChange={handleChange}>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
                                     </select>
                                 </label><br /><label className={styles.input}>
-                                    Frequent Travels?:
+                                    Do you travel frequently?
                                     <select className={styles.select} name="frequentTravels" value={formData.frequentTravels.toString()} onChange={handleChange}>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
                                     </select>
                                 </label><br /><label className={styles.input}>
-                                    Free Time to Accord?:
+                                Are you disposed to dedicate free time to a cat?
                                     <select className={styles.select} name="freeTimeToAccord" value={formData.freeTimeToAccord.toString()} onChange={handleChange}>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
                                     </select>
                                 </label><br /><label className={styles.input}>
-                                    Kids?:
+                                    Do you have kids?
                                     <select className={styles.select} name="kids" value={formData.kids.toString()} onChange={handleChange}>
                                         <option value="true">Yes</option>
                                         <option value="false">No</option>
@@ -474,7 +474,7 @@ const CatFind: React.FC = () => {
                                 <div className={styles.title}> How do you prefere to be your cat? </div>
 
                                 <><label className={styles.input}>
-                                    Affection (1-5):
+                                    Affection (1-5)
                                     <input className={styles.select}
                                         type="number"
                                         name="affection"
@@ -483,7 +483,7 @@ const CatFind: React.FC = () => {
                                         value={formData.affection}
                                         onChange={handleChange} />
                                 </label><br /><label className={styles.input}>
-                                        Playfulness (1-5):
+                                        Playfulness (1-5)
                                         <input className={styles.select}
                                             type="number"
                                             name="playfulness"
@@ -492,7 +492,7 @@ const CatFind: React.FC = () => {
                                             value={formData.playfulness}
                                             onChange={handleChange} />
                                     </label><br /><label className={styles.input}>
-                                        Intelligence (1-5):
+                                        Intelligence (1-5)
                                         <input className={styles.select}
                                             type="number"
                                             name="intelligence"

@@ -24,7 +24,7 @@ const About: React.FC = () => {
                     <div className={styles.content}>
                     PetPulse is a comprehensive pet management application designed to help pet owners care for their furry friends with ease and efficiency. Our app provides a wide range of features including pet profile management, medical history tracking, and real-time health updates to ensure your pet receives the best care possible. Whether you're a first-time pet owner or a seasoned pet parent, PetPulse offers the tools you need to keep your pets healthy and happy.
                     </div>
-                    <Link to="./login" className={styles.join}> Join us</Link>
+                    <Link to="/login" className={styles.join}> Join us</Link>
                 </div>
             </div>
             <div className={styles.third}>

@@ -55,14 +55,12 @@ const faqData: FAQSection[] = [
     category: "Security",
     questions: [
       { question: "How do you ensure the security of my data?", answer: "We implement industry-standard security measures including encryption, secure servers, and regular security audits to protect your data." },
-      { question: "Is my information shared with third parties?", answer: "Your information is not shared with third parties without your consent, and we adhere to strict privacy policies to ensure your data remains private." }
     ]
   },
   {
     category: "Technical Support",
     questions: [
-      { question: "How can I contact technical support?", answer: "If you need technical support, you can contact us via the 'Help' section in the app or send an email to support@petpulse.com." },
-      { question: "What should I do if I encounter a bug?", answer: "If you encounter a bug, please report it through the 'Feedback' section in the app, providing as much detail as possible so our team can address it promptly." }
+      { question: "How can I contact technical support?", answer: "If you need technical support, you can contact us by sending us an email to mistreanu.emanuela8@gmail.com." },
     ]
   }
 ];

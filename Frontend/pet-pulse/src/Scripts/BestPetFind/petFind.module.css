@@ -21,13 +21,13 @@
   .form
   {
     background-color: white;
-    min-width: 50vw;
+    min-width: 60vw;
     min-height: 60vh;
     display: flex;
     flex-direction:column;
     flex-wrap: wrap;
     box-shadow: 2px 2px 10px 4px rgba(1, 1, 1, 0.2);
-    width: 50vw;
+    width: 60vw;
     min-width: max-content;
   }
   
@@ -121,8 +121,8 @@
    display: flex;
    flex-direction: row;
    width: fit-content;
-   padding-top: 1%;
-   padding-bottom: 1%;
+   padding-top: 2%;
+   padding-bottom: 2%;
    padding-left: 5vw;
    padding-right: 5vw;
    background: rgb(220, 236, 230);
