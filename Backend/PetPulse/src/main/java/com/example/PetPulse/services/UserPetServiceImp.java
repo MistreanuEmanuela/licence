@@ -146,7 +146,6 @@ public class UserPetServiceImp implements UserPetService {
 
         String imagePath = actualPet.getImagePath();
 
-        usersPetRepository.deleteById(id);
 
         if (imagePath != null && !imagePath.isEmpty()) {
             File imageFile = new File(imagePath);
@@ -154,7 +153,7 @@ public class UserPetServiceImp implements UserPetService {
                  imageFile.delete();
              }
         }
-
+        usersPetRepository.deleteById(id);
         return true;
     }
 
