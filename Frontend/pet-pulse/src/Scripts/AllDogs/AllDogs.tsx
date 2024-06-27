@@ -395,7 +395,7 @@ const AllDogs: React.FC = () => {
           <button className={styles.exit} onClick={() => handleFetch()}> </button>
         </div>
         <ul className={styles.main_container}>
-          {!showLoading && (
+        {!showLoading && currentDogs.length > 0 && (
             <><>
               {currentDogs.map((dog, index) => (
                 <button className={styles.bottom_dog} key={index} onClick={() => handleSetId(dog.id)}>

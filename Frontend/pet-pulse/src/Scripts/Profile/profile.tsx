@@ -167,7 +167,7 @@ const Profile = () => {
             setWrong(true);
             setTimeout(() => {
                 setWrong(false)
-            }, 2000);
+            }, 4000);
             return;
         }
         const today = new Date();
@@ -180,16 +180,17 @@ const Profile = () => {
             setWrong(true);
             setTimeout(() => {
                 setWrong(false)
-            }, 2000);
+            }, 4000);
             return;
         }
 
         if (selectedDate > minDate) {
             setError('Birthdate must be at least 10 years ago!');
             console.error('Birthdate must be at least 10 years ago!');
+            setWrong(true);
             setTimeout(() => {
                 setWrong(false)
-            }, 2000);
+            }, 4000);
             return;
         }
 
