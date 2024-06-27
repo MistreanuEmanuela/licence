@@ -29,12 +29,10 @@ public class ChatController {
     public String getToken() {
         try {
             File file = new File("chatbotproject-425609-ec9a94d2a7d3.json");
-            System.out.println("Absolute Path: " + file.getAbsolutePath());
             FileInputStream serviceAccountStream = new FileInputStream("D:\\licence\\licence\\Backend\\PetPulse\\src\\main\\java\\com\\example\\PetPulse\\controllers\\chatbotproject-425609-ec9a94d2a7d3.json");
             GoogleCredentials credentials = GoogleCredentials.fromStream(serviceAccountStream)
                     .createScoped("https://www.googleapis.com/auth/cloud-platform");
             AccessToken accessToken = credentials.refreshAccessToken();
-            System.out.println(accessToken.getTokenValue());
             serviceAccountStream.close();
             return accessToken.getTokenValue();
         } catch (IOException e) {
