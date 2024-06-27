@@ -138,7 +138,6 @@ public class UserServiceImp implements UserService{
     @Override
     public void sendConfirmationEmail(User user)  {
         String token = EmailTokenProvider.generateToken(user.getEmail());
-        System.out.print(token);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Account Confirmation");

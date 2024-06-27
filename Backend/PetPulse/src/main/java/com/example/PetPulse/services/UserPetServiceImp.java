@@ -86,7 +86,6 @@ public class UserPetServiceImp implements UserPetService {
     @Override
     public byte[] getPetPicture(String path) {
         Path filePath = Path.of(path);
-        System.out.println(filePath);
         try {
             return Files.readAllBytes(filePath);
         } catch (IOException e) {

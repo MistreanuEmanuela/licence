@@ -100,7 +100,6 @@ public class DogRatingServiceImp implements DogRatingService{
         sortedScores.sort((a, b) -> b.getValue().compareTo(a.getValue()));
         DogRating dog = sortedScores.get(0).getKey();
         String name = dogRepository.findById(dog.getIdDog()).getName();
-        System.out.println(name);
         DogRatingsCompleteDTO dogResult = new DogRatingsCompleteDTO(
                 dog.getId(),
                 name,
