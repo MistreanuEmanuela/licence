@@ -75,7 +75,7 @@ const BreedRecognition: React.FC = () => {
     const findPicture = (breed: string) => {
         console.log(breed);
         const searchQuery = breed;
-        const accessKey = "Okf32cAXDulQsI4EhqJqul2lWKEitSjN0FH5CQMcSvY";
+        const accessKey = "***********************************";
         const url = `https://api.unsplash.com/search/photos?query=${searchQuery}&client_id=${accessKey}`;
 
         fetch(url)
